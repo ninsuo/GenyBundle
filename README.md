@@ -21,4 +21,4 @@ To make this possible, I need to:
 
 Why would I use a configuration file between the form creator and the form renderer?
 - if a form can be stored inside a json file, it can be easily stored on a database/shared through apis...
-- as this will be generic, it will be possible to make those forms compatible with mobile devices
+- as this "form format" will be generic, it will be possible to make those forms compatible with mobile devices
