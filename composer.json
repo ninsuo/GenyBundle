@@ -1,0 +1,19 @@
+{
+   "name": "ninsuo/GenyBundle",
+   "license": "MIT",
+   "type": "library",
+   "description": "Provides UIs to create, render and validate forms",
+   "autoload": {
+      "psr-4": { "Fuz\\GenyBundle\\": "" }
+   },
+   "require": {
+      "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/yaml": "~2.3",
+        "symfony/form": "~2.3",
+        "symfony/http-kernel": "~2.3",
+        "symfony/config": "~2.3",
+        "symfony/validator": "~2.3",
+        "symfony/dependency-injection": "~2.2"
+   }
+}
