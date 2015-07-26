@@ -51,7 +51,7 @@ php composer.phar require ninsuo/GenyBundle
 
 ```yml
 geny:
-    resource: "@GenyBundle/Controller/"
+    resource: "@FuzGenyBundle/Controller/"
     type:     annotation
     prefix:   /geny
 ```
