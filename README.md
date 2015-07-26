@@ -2,7 +2,7 @@
 
 Goal of this project is to provide:
 - a user interface to create forms
-- a user interface to display and validate that form
+- a user interface to display and validate those forms
 
 ---
 
