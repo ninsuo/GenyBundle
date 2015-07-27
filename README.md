@@ -57,3 +57,159 @@ geny:
 ```
 
 ## Usage
+
+## How does it work?
+
+I define each type, each option and each validation constraint as a form that can be rendered and validated.
+
+This way:
+- I can render a form to generate forms using the very same code as the one that generates forms
+- I can validate a json form representation by using the same validators used to validate forms
+
+About the implementation, I'll use Symfony's form and validator components.
+
+### Let's take an example...
+
+We create a simple text field having a length constraint between 10 and 20 characters:
+
+```json
+{
+    "simple_string": {
+        "type": "text",
+        "options": {
+            "label": "a simple text field"
+        },
+        "validation": {
+            "Length": {
+                "min": "10",
+                "max": "20"
+            }
+        }
+    }
+}
+```
+
+a) Options
+
+In our example, we are applying one option, `"label"`:
+
+```
+"a simple text field"
+```
+
+This simple string comes from the following form:
+
+```json
+{
+    "label": {
+        "type": "text",
+        "options": {
+            "label": "Enter a label"
+        }
+    }
+}
+```
+
+b) Validation
+
+In our example, we are applying one validation constraint, `"Length"`:
+
+```json
+{
+    "min": "10",
+    "max": "20"
+}
+```
+
+Which is an object that come from the following form:
+
+```json
+{
+    "name": "Length",
+    "type": "structure",
+    "fields": {
+        "min": {
+            "type": "text",
+            "options": {
+                "label": "Minimal value"
+            },
+            "validation": {
+                "Type": {
+                    "type": "integer"
+                }
+            }
+        },
+        "max": {
+            "type": "text",
+            "options": {
+                "label": "Maximal value"
+            },
+            "validation": {
+                "Type": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
+```
+
+Type being an object coming from:
+
+```json
+{
+    "name": "Type",
+    "type": "structure",
+    "fields": {
+        "type": {
+            "type": "choice",
+            "options": {
+                "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"],
+                "label": "Required data type"
+            },
+            "validation": {
+                "choice": {
+                    "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"]
+                }
+            }
+        }
+    }
+}
+```
+
+Choice being an object coming from:
+
+```json
+{
+    "name": "choice",
+    "type": "structure",
+    "fields": {
+        "choices": {
+            "type": "collection",
+            "options": {
+                "label": "choices"
+            },
+            "validation": {
+                "type": {
+                    "type": "array"
+                }
+            },
+            "fields": {
+                "choice": {
+                    "type": "text",
+                    "options": {
+                        "label": "New choice"
+                    },
+                    "validation": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+c) Field type
