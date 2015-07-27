@@ -74,7 +74,7 @@ We create a simple text field having a length constraint between 10 and 20 chara
 
 ```json
 {
-    name: "simple_string",
+    "name": "simple_string",
     "type": "text",
     "options": {
         "label": "a simple text field"
@@ -225,12 +225,12 @@ In our sample, we're only rendering a text field:
 {
     "name": "text",
     "parent": "common",
-    "supports_option": {
-        ["... specific options for a text type"]
-    },
-    "supports_validation": {
-        ["... specific validation constraints for a text type"]
-    },
+    "supports_option": [
+        "... specific options for a text type"
+    ],
+    "supports_validation": [
+        "... specific validation constraints for a text type"
+    ],
 }
 ```
 
@@ -251,17 +251,17 @@ to display an "email validation" constraint for a checkbox.
     "type": "structure",
     "fields": {
         "name": {
-            type: "text",
-            options: {
+            "type": "text",
+            "options": {
                 "label": "Field name"
             }
         },
         "options": {
-            type: "collection",
+            "type": "collection",
             ["..."]
         },
         "validation": {
-            type: "collection",
+            "type": "collection",
             ["..."]
         },
 
