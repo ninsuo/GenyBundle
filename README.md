@@ -74,16 +74,15 @@ We create a simple text field having a length constraint between 10 and 20 chara
 
 ```json
 {
-    "simple_string": {
-        "type": "text",
-        "options": {
-            "label": "a simple text field"
-        },
-        "validation": {
-            "Length": {
-                "min": "10",
-                "max": "20"
-            }
+    name: "simple_string",
+    "type": "text",
+    "options": {
+        "label": "a simple text field"
+    },
+    "validation": {
+        "Length": {
+            "min": "10",
+            "max": "20"
         }
     }
 }
@@ -177,6 +176,8 @@ Type being an object coming from:
 }
 ```
 
+(Note: will probably avoid duplicating choices on options/validation by using some trick, will think about it).
+
 Choice being an object coming from:
 
 ```json
@@ -213,3 +214,57 @@ Choice being an object coming from:
 ```
 
 c) Field type
+
+In our form generator, the field type will be chosen within a list of available types (else the form generator would be
+a big collection quite challenging to make friendly). So to simplify the whole thing, I decided to create a distinct
+form for each type.
+
+In our sample, we're only rendering a text field:
+
+```json
+{
+    "name": "text",
+    "parent": "common",
+    "supports_option": {
+        ["... specific options for a text type"]
+    },
+    "supports_validation": {
+        ["... specific validation constraints for a text type"]
+    },
+}
+```
+
+This notation is quite different from what you seen before, but you can use those options within other forms,
+just like in Symfony.
+
+The parent type, `"common"`, will be inherited from the given type: so the `"common"` type will be loaded,
+and the `"text"` type will be merged to it (all intersecting fields from `"text"` will recursively overwrite those
+from `"common"` if they are scalar, and will merge if they are compound).
+
+The `"supports_option"` and `"supports_validation"` will be used exclusively by the UI that let users create forms,
+it will allow us to know if an option or a validation constraint is supported by a type. For example, it is useless
+to display an "email validation" constraint for a checkbox.
+
+```json
+{
+    "name": "common",
+    "type": "structure",
+    "fields": {
+        "name": {
+            type: "text",
+            options: {
+                "label": "Field name"
+            }
+        },
+        "options": {
+            type: "collection",
+            ["..."]
+        },
+        "validation": {
+            type: "collection",
+            ["..."]
+        },
+
+    }
+}
+```
