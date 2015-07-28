@@ -257,12 +257,28 @@ to display an "email validation" constraint for a checkbox.
             }
         },
         "options": {
-            "type": "collection",
-            ["..."]
+            "type": "structure",
+            "fields": {
+                "label": {
+                    "type": "checkbox",
+                    "options": {
+                        "label": "Add a label to your field..."
+                    }
+                },
+                "..."
+            }
         },
         "validation": {
-            "type": "collection",
-            ["..."]
+            "type": "structure",
+            "fields": {
+                "length": {
+                    "type": "checkbox",
+                    "options": {
+                        "label": "Limit the value's length to...",
+                    }
+                },
+                "..."
+            }
         },
 
     }
