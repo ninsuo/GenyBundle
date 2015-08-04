@@ -1,0 +1,9 @@
+{
+    "name": "collection",
+    "parent": "base",
+    "supports_options": [
+        "allow_extra_fields", "extra_fields_message"
+    ],
+    "supports_validators": [
+    ]
+}

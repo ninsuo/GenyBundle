@@ -1,0 +1,8 @@
+{
+    "name": "base",
+    "supports_options": [
+        "attr", "data", "disabled", "invalid_message", "label", "label_attr", "read_only", "required"
+    ],
+    "supports_validators": [
+    ]
+}

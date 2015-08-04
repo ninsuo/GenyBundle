@@ -1,0 +1,8 @@
+{
+    "name": "checkbox",
+    "parent": "base",
+    "supports_options": [
+    ],
+    "supports_validators": [
+    ]
+}

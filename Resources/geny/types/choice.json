@@ -1,0 +1,8 @@
+{
+    "name": "choice",
+    "parent": "base",
+    "supports_options": [
+    ],
+    "supports_validators": [
+    ]
+}
