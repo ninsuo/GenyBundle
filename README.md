@@ -225,10 +225,10 @@ In our sample, we're only rendering a text field:
 {
     "name": "text",
     "parent": "common",
-    "supports_option": [
+    "supports_options": [
         "... specific options for a text type"
     ],
-    "supports_validation": [
+    "supports_validators": [
         "... specific validation constraints for a text type"
     ],
 }
@@ -248,39 +248,9 @@ to display an "email validation" constraint for a checkbox.
 ```json
 {
     "name": "common",
-    "type": "structure",
-    "fields": {
-        "name": {
-            "type": "text",
-            "options": {
-                "label": "Field name"
-            }
-        },
-        "options": {
-            "type": "structure",
-            "fields": {
-                "label": {
-                    "type": "checkbox",
-                    "options": {
-                        "label": "Add a label to your field..."
-                    }
-                },
-                "..."
-            }
-        },
-        "validation": {
-            "type": "structure",
-            "fields": {
-                "length": {
-                    "type": "checkbox",
-                    "options": {
-                        "label": "Limit the value's length to...",
-                    }
-                },
-                "..."
-            }
-        },
-
-    }
+    "supports_options": [
+    ],
+    "supports_validators": [
+    ],
 }
 ```

@@ -1,0 +1,9 @@
+{
+    "name": "text",
+    "parent": "base",
+    "supports_options": [
+        "trim"
+    ],
+    "supports_validators": [
+    ]
+}

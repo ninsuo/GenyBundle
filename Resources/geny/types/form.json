@@ -1,7 +1,8 @@
 {
-    "name": "button",
+    "name": "form",
     "parent": "base",
     "supports_options": [
+        "method"
     ],
     "supports_validators": [
     ]
