@@ -2,6 +2,13 @@
     "name": "choice",
     "parent": "base",
     "supports_options": [
+        "choices",
+        "data",
+        "empty_value",
+        "expanded",
+        "multiple",
+        "preferred_choices",
+        "read_only"
     ],
     "supports_validators": [
     ]

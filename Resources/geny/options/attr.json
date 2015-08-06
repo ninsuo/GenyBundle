@@ -1,0 +1,41 @@
+{
+    "name": "option_attr",
+    "type": "collection",
+    "options": {
+        "label": "geny.options.attr.label",
+        "allow_add": true,
+        "allow_delete": true,
+        "geny": {
+            "type": "structure",
+            "fields": {
+                "key": {
+                    "type": "text",
+                    "options": {
+                        "label": "geny.options.attr.key"
+                    },
+                    "validation": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "value": {
+                    "type": "text",
+                    "options": {
+                        "label": "geny.options.attr.value"
+                    },
+                    "validation": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "validation": {
+        "type": {
+            "type": "array"
+        }
+    }
+}

@@ -2,6 +2,7 @@
     "name": "form",
     "parent": "base",
     "supports_options": [
+        "action",
         "method"
     ],
     "supports_validators": [
