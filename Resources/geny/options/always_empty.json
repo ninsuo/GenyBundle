@@ -1,0 +1,12 @@
+{
+    "name": "option_always_empty",
+    "type": "checkbox",
+    "options": {
+        "label": "geny.options.always_empty.label"
+    },
+    "validation": {
+        "type": {
+            "type": "bool"
+        }
+    }
+}
