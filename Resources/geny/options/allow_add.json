@@ -1,0 +1,12 @@
+{
+    "name": "option_allow_add",
+    "type": "checkbox",
+    "options": {
+        "label": "geny.options.allow_add.label"
+    },
+    "validation": {
+        "type": {
+            "type": "bool"
+        }
+    }
+}

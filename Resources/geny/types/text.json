@@ -2,6 +2,9 @@
     "name": "text",
     "parent": "base",
     "supports_options": [
+        "data",
+        "max_length",
+        "read_only",
         "trim"
     ],
     "supports_validators": [

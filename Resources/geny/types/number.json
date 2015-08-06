@@ -1,0 +1,11 @@
+{
+    "name": "number",
+    "parent": "text",
+    "supports_options": [
+        "rounding_mode",
+        "precision",
+        "grouping"
+    ],
+    "supports_validators": [
+    ]
+}

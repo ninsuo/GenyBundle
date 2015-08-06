@@ -1,0 +1,8 @@
+{
+    "name": "textarea",
+    "parent": "text",
+    "supports_options": [
+    ],
+    "supports_validators": [
+    ]
+}
