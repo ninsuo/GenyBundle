@@ -1,0 +1,13 @@
+{
+    "name": "validator_type",
+    "type": "choice",
+    "options": {
+        "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"],
+        "label": "!!! TODO !!!"
+    },
+    "validation": {
+        "choice": {
+            "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"]
+        }
+    }
+}
