@@ -2,7 +2,9 @@
     "name": "collection",
     "parent": "base",
     "supports_options": [
-        "allow_extra_fields", "extra_fields_message"
+        "allow_add",
+        "allow_delete",
+        "geny"
     ],
     "supports_validators": [
     ]

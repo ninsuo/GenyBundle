@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="zz" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>geny.options.action.label</source>
+        <target><![CDATA[Form endpoint]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>geny.options.allow_add.label</source>
+        <target><![CDATA[Allow users to add elements]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>geny.options.allow_delete.label</source>
+        <target><![CDATA[Allow users to remove elements]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>geny.options.always_empty.label</source>
+        <target><![CDATA[Always initialize this field with an empty value]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>geny.options.attr.label</source>
+        <target><![CDATA[Field's HTML attributes]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>geny.options.attr.key</source>
+        <target><![CDATA[Key]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>geny.options.attr.value</source>
+        <target><![CDATA[Value]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>geny.options.</source>
+        <target><![CDATA[]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

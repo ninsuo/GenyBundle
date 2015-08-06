@@ -1,0 +1,12 @@
+{
+    "name": "option_allow_delete",
+    "type": "checkbox",
+    "options": {
+        "label": "geny.options.allow_delete.label"
+    },
+    "validation": {
+        "type": {
+            "type": "bool"
+        }
+    }
+}
