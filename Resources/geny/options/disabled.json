@@ -1,0 +1,12 @@
+{
+    "name": "option_disabled",
+    "type": "checkbox",
+    "options": {
+        "label": "geny.options.disabled.label"
+    },
+    "validation": {
+        "type": {
+            "type": "bool"
+        }
+    }
+}

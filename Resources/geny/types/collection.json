@@ -4,7 +4,8 @@
     "supports_options": [
         "allow_add",
         "allow_delete",
-        "geny"
+        "geny",
+        "geny_import"
     ],
     "supports_validators": [
     ]

@@ -1,0 +1,12 @@
+{
+    "name": "option_grouping",
+    "type": "checkbox",
+    "options": {
+        "label": "geny.options.grouping.label"
+    },
+    "validation": {
+        "type": {
+            "type": "bool"
+        }
+    }
+}

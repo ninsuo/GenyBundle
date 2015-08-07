@@ -1,0 +1,12 @@
+{
+    "name": "option_max_length",
+    "type": "number",
+    "options": {
+        "label": "geny.options.max_length.label"
+    },
+    "validation": {
+        "type": {
+            "type": "integer"
+        }
+    }
+}

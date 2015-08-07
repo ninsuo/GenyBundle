@@ -1,0 +1,25 @@
+{
+    "name": "option_choices",
+    "type": "collection",
+    "options": {
+        "label": "geny.options.choices.label",
+        "allow_add": true,
+        "allow_delete": true,
+        "geny": {
+            "type": "text",
+            "options": {
+                "label": "geny.options.choices.choice"
+            },
+            "validation": {
+                "type": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "validation": {
+        "type": {
+            "type": "array"
+        }
+    }
+}
