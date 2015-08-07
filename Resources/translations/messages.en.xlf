@@ -30,21 +30,57 @@
         <source>geny.options.attr.value</source>
         <target><![CDATA[Value]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="8">
+        <source>geny.options.disabled.label</source>
+        <target><![CDATA[Disable this field]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="9">
+        <source>geny.options.geny_import.label</source>
+        <target><![CDATA[Use another Geny form]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="10">
+        <source>geny.options.geny_import.label</source>
+        <target><![CDATA[Create a subform]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="11">
+        <source>geny.options.grouping.label</source>
+        <target><![CDATA[Automatically format numbers according to locale]]></target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>geny.options.invalid_message.label</source>
+        <target><![CDATA[Message to display if invalid value]]></target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>geny.options.label_attr.label</source>
+        <target><![CDATA[Label's HTML attributes]]></target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>geny.options.label_attr.key</source>
+        <target><![CDATA[Key]]></target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>geny.options.label_attr.value</source>
+        <target><![CDATA[Value]]></target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>geny.options.label.label</source>
+        <target><![CDATA[Field's label]]></target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>geny.options.max_length.label</source>
+        <target><![CDATA[Field content's max length]]></target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>geny.options.method.label</source>
+        <target><![CDATA[HTTP method]]></target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>geny.options.choices.label</source>
+        <target><![CDATA[Choices list]]></target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>geny.options.choices.choice</source>
+        <target><![CDATA[Add a choice]]></target>
       </trans-unit>
       <trans-unit id="">
         <source>geny.options.</source>

@@ -1,0 +1,13 @@
+{
+    "name": "option_geny_import",
+    "type": "text",
+    "options": {
+        "label": "geny.options.geny_import.label"
+    },
+    "validation": {
+        "type": {
+            "type": "string"
+        },
+        "geny_import": {}
+    }
+}

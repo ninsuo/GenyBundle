@@ -2,7 +2,11 @@
     "name": "structure",
     "parent": "base",
     "supports_options": [
+        "geny",
+        "geny_import"
     ],
     "supports_validators": [
+        "geny",
+        "geny_import"
     ]
 }
