@@ -1,1 +1,10 @@
-string|geny
+{
+    "name": "option_geny",
+    "type": "structure",
+    "options": {
+        "label": "geny.options.geny.label"
+    },
+    "validation": {
+        "geny": {}
+    }
+}

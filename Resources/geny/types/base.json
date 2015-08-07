@@ -7,5 +7,6 @@
         "label_attr"
     ],
     "supports_validators": [
+        "type"
     ]
 }
