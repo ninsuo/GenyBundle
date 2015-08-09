@@ -1,8 +1,8 @@
 {
-    "name": "option_value",
+    "name": "option_type_import",
     "type": "text",
     "options": {
-        "label": "geny.options.value.label"
+        "label": "geny.options.type_import.label"
     },
     "validation": {
         "type": {

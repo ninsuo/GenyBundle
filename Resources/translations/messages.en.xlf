@@ -35,11 +35,11 @@
         <target><![CDATA[Disable this field]]></target>
       </trans-unit>
       <trans-unit id="9">
-        <source>geny.options.geny_import.label</source>
+        <source>geny.options.type_import.label</source>
         <target><![CDATA[Use another Geny form]]></target>
       </trans-unit>
       <trans-unit id="10">
-        <source>geny.options.geny_import.label</source>
+        <source>geny.options.type.label</source>
         <target><![CDATA[Create a subform]]></target>
       </trans-unit>
       <trans-unit id="11">
@@ -79,68 +79,84 @@
         <target><![CDATA[Choices list]]></target>
       </trans-unit>
       <trans-unit id="20">
-        <source>geny.options.choices.choice</source>
-        <target><![CDATA[Add a choice]]></target>
+        <source>geny.options.choices.label</source>
+        <target><![CDATA[Choice label]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="21">
+        <source>geny.options.choices.value</source>
+        <target><![CDATA[Choice value]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="22">
+        <source>geny.options.precision.label</source>
+        <target><![CDATA[Number precision (rounding)]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="23">
+        <source>geny.options.read_only.label</source>
+        <target><![CDATA[Field should be read-only]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="24">
+        <source>geny.options.rounding_mode.label</source>
+        <target><![CDATA[Rounding mode]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="25">
+        <source>geny.options.rounding_mode.ROUND_CEILING</source>
+        <target><![CDATA[Rounds a number towards positive infinity (rounds 1.4 to 2 and -1.4 to -1).]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="26">
+        <source>geny.options.rounding_mode.ROUND_FLOOR</source>
+        <target><![CDATA[Rounds a number towards negative infinity (rounds 1.4 to 1 and -1.4 to -2).]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="27">
+        <source>geny.options.rounding_mode.ROUND_UP</source>
+        <target><![CDATA[Rounds a number away from zero (rounds 1.4 to 2 and -1.4 to -2)]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="28">
+        <source>geny.options.rounding_mode.ROUND_DOWN</source>
+        <target><![CDATA[Rounds a number towards zero (rounds 1.4 to 1 and -1.4 to -1).]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="29">
+        <source>geny.options.rounding_mode.ROUND_HALF_EVEN</source>
+        <target><![CDATA[Rounds to the nearest number and halves to the next even number (rounds 2.5, 1.6 and 1.5 to 2 and 1.4 to 1).]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="30">
+        <source>geny.options.rounding_mode.ROUND_HALF_UP</source>
+        <target><![CDATA[Rounds to the nearest number and halves away from zero (rounds 2.5 to 3, 1.6 and 1.5 to 2 and 1.4 to 1).]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="31">
+        <source>geny.options.rounding_mode.ROUND_HALF_DOWN</source>
+        <target><![CDATA[Rounds to the nearest number and halves towards zero (rounds 2.5 and 1.6 to 2, 1.5 and 1.4 to 1).]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="32">
+        <source>geny.options.required.label</source>
+        <target><![CDATA[Required value]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="33">
+        <source>geny.options.trim.label</source>
+        <target><![CDATA[Automatically trim values]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="34">
+        <source>geny.options.preferred_choices</source>
+        <target><![CDATA[Preferred choices]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="35">
+        <source>geny.options.empty_value.enabled</source>
+        <target><![CDATA[Enable empty value]]></target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>geny.options.empty_value.value</source>
+        <target><![CDATA[Value to use]]></target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>geny.options.expanded.label</source>
+        <target><![CDATA[Expanded choice list]]></target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>geny.options.multiple.label</source>
+        <target><![CDATA[Allow multiple selection]]></target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>geny.options.value.label</source>
+        <target><![CDATA[Choose a specific value to send through HTTP]]></target>
       </trans-unit>
       <trans-unit id="">
         <source>geny.options.</source>

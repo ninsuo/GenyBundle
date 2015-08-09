@@ -1,9 +1,7 @@
 {
-    "name": "collection",
+    "name": "container",
     "parent": "base",
     "supports_options": [
-        "allow_add",
-        "allow_delete",
         "type",
         "type_import"
     ],

@@ -1,6 +1,6 @@
 {
     "name": "form",
-    "parent": "base",
+    "parent": "container",
     "supports_options": [
         "action",
         "method"

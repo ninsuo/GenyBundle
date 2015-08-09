@@ -3,8 +3,16 @@
     "type": "choice",
     "options": {
         "label": "geny.options.method.label",
-        "choices": ["GET", "POST", "OPTIONS", "HEAD", "PUT", "DELETE", "TRACE"],
-        "preffered_choices": ["GET", "POST"]
+        "choices": [
+            {"value": "GET"},
+            {"value": "POST"},
+            {"value": "OPTIONS"},
+            {"value": "HEAD"},
+            {"value": "PUT"},
+            {"value": "DELETE"},
+            {"value": "TRACE"}
+        ],
+        "preferred_choices": ["GET", "POST"]
     },
     "validation": {
         "type": {

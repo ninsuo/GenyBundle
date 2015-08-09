@@ -2,6 +2,7 @@
     "name": "base",
     "supports_options": [
         "attr",
+        "data",
         "disabled",
         "label",
         "label_attr"
