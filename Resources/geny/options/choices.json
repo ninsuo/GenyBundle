@@ -5,14 +5,30 @@
         "label": "geny.options.choices.label",
         "allow_add": true,
         "allow_delete": true,
-        "geny": {
-            "type": "text",
-            "options": {
-                "label": "geny.options.choices.choice"
-            },
-            "validation": {
-                "type": {
-                    "type": "string"
+        "type": {
+            "type": "container",
+            "fields": {
+                "label": {
+                    "type": "text",
+                    "options": {
+                        "label": "geny.options.choices.label"
+                    },
+                    "validation": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "value": {
+                    "type": "text",
+                    "options": {
+                        "label": "geny.options.choices.value"
+                    },
+                    "validation": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         }

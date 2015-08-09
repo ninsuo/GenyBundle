@@ -1,0 +1,7 @@
+{
+    "name": "option_type",
+    "type": "container",
+    "options": {
+        "label": "geny.options.type.label"
+    }
+}

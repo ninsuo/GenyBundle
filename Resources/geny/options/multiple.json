@@ -1,0 +1,12 @@
+{
+    "name": "option_multiple",
+    "type": "checkbox",
+    "options": {
+        "label": "geny.options.multiple.label"
+    },
+    "validation": {
+        "type": {
+            "type": "bool"
+        }
+    }
+}

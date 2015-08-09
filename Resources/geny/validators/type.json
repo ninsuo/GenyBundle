@@ -2,7 +2,38 @@
     "name": "validator_type",
     "type": "choice",
     "options": {
-        "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"],
+        "choices": [
+            {
+                "value": "array"
+            },
+            {
+                "value": "bool"
+            },
+            {
+                "value": "float"
+            },
+            {
+                "value": "double"
+            },
+            {
+                "value": "integer"
+            },
+            {
+                "value": "null"
+            },
+            {
+                "value": "numeric"
+            },
+            {
+                "value": "object"
+            },
+            {
+                "value": "scalar"
+            },
+            {
+                "value": "string"
+            }
+        ],
         "label": "!!! TODO !!!"
     },
     "validation": {

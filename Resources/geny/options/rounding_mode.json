@@ -1,0 +1,42 @@
+{
+    "name": "option_rounding_mode",
+    "type": "choice",
+    "options": {
+        "label": "geny.options.rounding_mode.label",
+        "choices": [
+            {
+                "label": "geny.options.rounding_mode.ROUND_CEILING",
+                "value": "ROUND_CEILING"
+            },
+            {
+                "label": "geny.options.rounding_mode.ROUND_FLOOR",
+                "value": "ROUND_FLOOR"
+            },
+            {
+                "label": "geny.options.rounding_mode.ROUND_UP",
+                "value": "ROUND_UP"
+            },
+            {
+                "label": "geny.options.rounding_mode.ROUND_DOWN",
+                "value": "ROUND_DOWN"
+            },
+            {
+                "label": "geny.options.rounding_mode.HALF_EVEN",
+                "value": "ROUND_HALF_EVEN"
+            },
+            {
+                "label": "geny.options.rounding_mode.HALF_UP",
+                "value": "ROUND_HALF_UP"
+            },
+            {
+                "label": "geny.options.rounding_mode.HALF_DOWN",
+                "value": "ROUND_HALF_DOWN"
+            }
+        ]
+    },
+    "validation": {
+        "type": {
+            "type": "string"
+        }
+    }
+}

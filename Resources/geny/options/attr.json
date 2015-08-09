@@ -6,7 +6,7 @@
         "allow_add": true,
         "allow_delete": true,
         "geny": {
-            "type": "structure",
+            "type": "container",
             "fields": {
                 "key": {
                     "type": "text",

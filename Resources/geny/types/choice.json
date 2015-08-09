@@ -3,7 +3,6 @@
     "parent": "base",
     "supports_options": [
         "choices",
-        "data",
         "empty_value",
         "expanded",
         "multiple",

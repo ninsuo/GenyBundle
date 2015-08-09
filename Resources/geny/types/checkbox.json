@@ -2,7 +2,6 @@
     "name": "checkbox",
     "parent": "base",
     "supports_options": [
-        "data",
         "value"
     ],
     "supports_validators": [

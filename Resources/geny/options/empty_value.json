@@ -1,0 +1,28 @@
+{
+    "name": "option_empty_value",
+    "type": "container",
+    "fields": {
+        "enabled": {
+            "type": "checkbox",
+            "options": {
+                "label": "geny.options.empty_value.enabled"
+            },
+            "validation": {
+                "type": {
+                    "type": "bool"
+                }
+            }
+        },
+        "value": {
+            "type": "text",
+            "options": {
+                "label": "geny.options.empty_value.value"
+            },
+            "validation": {
+                "type": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

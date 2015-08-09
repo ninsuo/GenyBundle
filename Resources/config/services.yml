@@ -1,3 +1,7 @@
 parameters:
+    geny.class: Fuz\GenyBundle\Services\Environment
 
 services:
+    geny:
+        class: %geny.class%
+        arguments: []
