@@ -4,4 +4,4 @@ parameters:
 services:
     geny:
         class: %geny.class%
-        arguments: []
+        arguments: [@file_locator, @serializer]
