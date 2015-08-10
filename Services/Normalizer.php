@@ -55,12 +55,12 @@ class Normalizer
 
                 if (!in_array($optionName, $optionsStack)) {
                     array_push($optionsStack, $optionName);
-                    $option = $this->normalizeOption($optionName, $optionsStack, $validatorsStack);
-                    $form->getOptions()->add($option);
+                    $this->normalizeOption($optionName, $optionsStack, $validatorsStack);
                     array_pop($optionsStack);
                 }
 
                 $this->validator->validate($this->agent->getOptions()->get($optionName), $parameters);
+                $form->getOptions()->set($optionName, $parameters);
             }
         }
 
@@ -72,14 +72,18 @@ class Normalizer
 
                 if (!in_array($validatorName, $validatorsStack)) {
                     array_push($validatorsStack, $validatorName);
-                    $validation = $this->normalizeValidator($validatorName, $optionsStack, $validatorsStack);
-                    $form->getValidation()->add($validation);
+                    $this->normalizeValidator($validatorName, $optionsStack, $validatorsStack);
                     array_pop($validatorsStack);
                 }
 
                 $this->validator->validate($this->agent->getValidators()->get($validatorName), $parameters);
+                $form->getValidation()->set($validatorName, $parameters);
             }
         }
+
+        // todo:
+        // 1- create validator json files
+        // 2- fields
 
         if (array_key_exists('fields', $data)) {
 
