@@ -1,6 +1,6 @@
 {
     "name": "option_label",
-    "type": "string",
+    "type": "text",
     "options": {
         "label": "geny.options.label.label"
     },

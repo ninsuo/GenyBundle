@@ -5,7 +5,7 @@
         "label": "geny.options.attr.label",
         "allow_add": true,
         "allow_delete": true,
-        "geny": {
+        "type": {
             "type": "container",
             "fields": {
                 "key": {

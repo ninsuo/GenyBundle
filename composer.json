@@ -14,6 +14,7 @@
         "symfony/http-kernel": "~2.3",
         "symfony/config": "~2.3",
         "symfony/validator": "~2.3",
-        "symfony/dependency-injection": "~2.2"
+        "symfony/dependency-injection": "~2.3",
+        "symfony/serializer": "~2.3"
    }
 }
