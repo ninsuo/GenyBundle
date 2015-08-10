@@ -2,6 +2,8 @@
 
 namespace Fuz\GenyBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Form
 {
 
@@ -21,25 +23,25 @@ class Form
     protected $type;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
     protected $options;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
     protected $validation;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
     protected $fields;
 
     public function __construct()
     {
-        $this->options    = array();
-        $this->validation = array();
-        $this->fields     = array();
+        $this->options    = new ArrayCollection();
+        $this->validation = new ArrayCollection();
+        $this->fields     = new ArrayCollection();
     }
 
     /**
@@ -67,7 +69,7 @@ class Form
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
     public function getOptions()
     {
@@ -75,11 +77,19 @@ class Form
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
     public function getValidation()
     {
         return $this->validation;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getFields()
+    {
+        return $this->fields;
     }
 
     /**
@@ -112,23 +122,4 @@ class Form
         return $this;
     }
 
-    /**
-     * @param array $options
-     * @return Form
-     */
-    public function setOptions(array $options)
-    {
-        $this->options = $options;
-        return $this;
-    }
-
-    /**
-     * @param array $validation
-     * @return Form
-     */
-    public function setValidation(array $validation)
-    {
-        $this->validation = $validation;
-        return $this;
-    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Service;
+namespace Fuz\GenyBundle\Services;
 
 use Fuz\GenyBundle\Entity\Form;
 
@@ -14,7 +14,7 @@ class Validator
         $this->agent = $agent;
     }
 
-    public function validate($resource, array $data) {
+    public function validate($resource, $parameters) {
 
         // ...
 

@@ -26,7 +26,7 @@ services:
 
     geny.normalizer:
         class: %geny.normalizer.class%
-        arguments: [@geny.loader, @geny.unserializer, @geny.validator]
+        arguments: [@geny.agent, @geny.loader, @geny.unserializer, @geny.validator]
 
     geny.builder:
         class: %geny.builder.class%
