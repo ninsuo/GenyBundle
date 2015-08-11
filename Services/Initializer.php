@@ -11,16 +11,17 @@ class Initializer
     public function initialize(FormInterface $type, Form $form, $scope = 0)
     {
         if (false === $form->getType()->isCompound()) {
-
-            // todo if scope == 0, use $type->get($form->getName()) instead of $type
-
-
+            if (0 === $scope) {
+                $type = $type->get($form->getName());
+            }
             if (is_null($form->getData())) {
                 return;
             }
             $type->setData($form->getData());
             return;
         }
+
+        // todo: if there are data for a compound object, we also need to apply them first
 
         foreach ($form->getFields() as $field) {
             $child = $type->get($field->getName());

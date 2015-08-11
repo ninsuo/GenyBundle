@@ -102,6 +102,8 @@ class Normalizer
 
         if (array_key_exists('data', $data)) {
             $form->setData($data['data']);
+
+            // todo: we should validate those data with the form
         }
 
         $this->agent->getForms()->set($resource, $form);
