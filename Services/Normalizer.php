@@ -8,13 +8,11 @@ use Fuz\GenyBundle\Exception\NormalizerException;
 
 class Normalizer
 {
-    const DIR_OPTIONS        = '@FuzGenyBundle/Resources/geny/options';
-    const DIR_TYPES          = '@FuzGenyBundle/Resources/geny/types';
-    const DIR_VALIDATORS     = '@FuzGenyBundle/Resources/geny/validators';
-    const CORE_LOADER        = Loader::TYPE_FILE;
-    const CORE_UNSERIALIZER  = Unserializer::FORMAT_JSON;
-    const IGNORED_OPTIONS    = array('data');
-    const IGNORED_VALIDATORS = array();
+    const DIR_OPTIONS       = '@FuzGenyBundle/Resources/geny/options';
+    const DIR_TYPES         = '@FuzGenyBundle/Resources/geny/types';
+    const DIR_VALIDATORS    = '@FuzGenyBundle/Resources/geny/validators';
+    const CORE_LOADER       = Loader::TYPE_FILE;
+    const CORE_UNSERIALIZER = Unserializer::FORMAT_JSON;
 
     protected $agent;
     protected $loader;
@@ -59,10 +57,6 @@ class Normalizer
                     throw new NormalizerException(sprintf("Type %s does not support %s option", $form->getType()->getName(), $optionName));
                 }
 
-                if (in_array($optionName, self::IGNORED_OPTIONS)) {
-                    continue;
-                }
-
                 if (!in_array($optionName, $optionsStack)) {
                     array_push($optionsStack, $optionName);
                     $this->normalizeOption($optionName, $optionsStack, $validatorsStack);
@@ -78,10 +72,6 @@ class Normalizer
             foreach ($data['validation'] as $validatorName => $parameters) {
                 if (!in_array($validatorName, $form->getType()->getSupportsValidators())) {
                     throw new NormalizerException(sprintf("Type %s does not support %s validator", $form->getType()->getName(), $validatorName));
-                }
-
-                if (in_array($validatorName, self::IGNORED_VALIDATORS)) {
-                    continue;
                 }
 
                 if (!in_array($validatorName, $validatorsStack)) {
@@ -102,10 +92,16 @@ class Normalizer
             }
 
             foreach ($data['fields'] as $name => $field) {
-                $field['name'] = $name;
-                $subform       = $this->normalizeForm("{$resource}[{$name}]", $field, $optionsStack, $validatorsStack);
+                if (!array_key_exists('name', $field)) {
+                    $field['name'] = $name;
+                }
+                $subform = $this->normalizeForm("{$resource}[{$name}]", $field, $optionsStack, $validatorsStack);
                 $form->getFields()->add($subform);
             }
+        }
+
+        if (array_key_exists('data', $data)) {
+            $form->setData($data['data']);
         }
 
         $this->agent->getForms()->set($resource, $form);

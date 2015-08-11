@@ -6,12 +6,13 @@ parameters:
     geny.normalizer.class: Fuz\GenyBundle\Services\Normalizer
     geny.builder.class: Fuz\GenyBundle\Services\Builder
     geny.validator.class: Fuz\GenyBundle\Services\Validator
+    geny.initializer.class: Fuz\GenyBundle\Services\Initializer
     geny.form.type.container.class: Fuz\GenyBundle\Form\ContainerType
 
 services:
     geny:
         class: %geny.class%
-        arguments: [@geny.agent, @geny.loader, @geny.unserializer, @geny.normalizer, @geny.builder, @geny.validator]
+        arguments: [@geny.agent, @geny.loader, @geny.unserializer, @geny.normalizer, @geny.builder, @geny.validator, @geny.initializer]
 
     geny.agent:
         class: %geny.agent.class%
@@ -36,6 +37,10 @@ services:
     geny.validator:
         class: %geny.validator.class%
         arguments: [@geny.agent]
+
+    geny.initializer:
+        class: %geny.initializer.class%
+        arguments: []
 
     geny.form.type.container:
         class: %geny.form.type.container.class%

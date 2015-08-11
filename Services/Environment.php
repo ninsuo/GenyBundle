@@ -4,15 +4,15 @@ namespace Fuz\GenyBundle\Services;
 
 class Environment
 {
-
     protected $agent;
     protected $loader;
     protected $unserializer;
     protected $normalizer;
     protected $builder;
     protected $validator;
+    protected $initializer;
 
-    public function __construct(Agent $agent, Loader $loader, Unserializer $unserializer, Normalizer $normalizer, Builder $builder, Validator $validator)
+    public function __construct(Agent $agent, Loader $loader, Unserializer $unserializer, Normalizer $normalizer, Builder $builder, Validator $validator, Initializer $initializer)
     {
         $this->agent        = $agent;
         $this->loader       = $loader;
@@ -20,6 +20,7 @@ class Environment
         $this->normalizer   = $normalizer;
         $this->builder      = $builder;
         $this->validator    = $validator;
+        $this->initializer  = $initializer;
     }
 
     public function load($path)
@@ -36,8 +37,11 @@ class Environment
         // 4- Symfony FormType Builder
         $type = $this->builder->build($form);
 
+        // 5- Data Initializer
+        $this->initializer->initialize($type, $form);
+
+
         return $type;
     }
-
 
 }

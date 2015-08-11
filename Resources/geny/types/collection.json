@@ -1,11 +1,10 @@
 {
     "name": "collection",
     "parent": "base",
+    "compound": "true",
     "supports_options": [
         "allow_add",
-        "allow_delete",
-        "type",
-        "type_import"
+        "allow_delete"
     ],
     "supports_validators": [
     ]

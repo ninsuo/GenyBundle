@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Form
 {
-
     /**
      * @var string
      */
@@ -37,11 +36,17 @@ class Form
      */
     protected $fields;
 
+    /**
+     * @var mixed
+     */
+    protected $data;
+
     public function __construct()
     {
         $this->options    = new ArrayCollection();
         $this->validation = new ArrayCollection();
         $this->fields     = new ArrayCollection();
+        $this->data       = null;
     }
 
     /**
@@ -93,6 +98,14 @@ class Form
     }
 
     /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
      * @param string $resource
      * @return Form
      */
@@ -119,6 +132,16 @@ class Form
     public function setType(Type $type)
     {
         $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @param mixed $data
+     * @return Form
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
         return $this;
     }
 
