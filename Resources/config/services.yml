@@ -6,6 +6,7 @@ parameters:
     geny.normalizer.class: Fuz\GenyBundle\Services\Normalizer
     geny.builder.class: Fuz\GenyBundle\Services\Builder
     geny.validator.class: Fuz\GenyBundle\Services\Validator
+    geny.form.type.container.class: Fuz\GenyBundle\Form\ContainerType
 
 services:
     geny:
@@ -30,8 +31,14 @@ services:
 
     geny.builder:
         class: %geny.builder.class%
-        arguments: []
+        arguments: [@form.factory]
 
     geny.validator:
         class: %geny.validator.class%
         arguments: [@geny.agent]
+
+    geny.form.type.container:
+        class: %geny.form.type.container.class%
+        arguments: []
+        tags:
+          - { name: form.type, alias: container }

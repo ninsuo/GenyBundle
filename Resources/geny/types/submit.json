@@ -1,0 +1,8 @@
+{
+    "name": "submit",
+    "parent": "button",
+    "supports_options": [
+    ],
+    "supports_validators": [
+    ]
+}

@@ -2,23 +2,33 @@
 
 namespace Fuz\GenyBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Fuz\GenyBundle\Services\Builder;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContainerType extends FormType
+class ContainerType extends AbstractType
 {
 
-    protected $fields;
-
-    public function __construct(Builder $builder, array $fields)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::__construct();
-        $this->fields = $fields;
+        $resolver->setDefaults(array(
+            'compound' => true,
+        ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent()
+    {
+        return 'form';
+    }
 
-    
-
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'container';

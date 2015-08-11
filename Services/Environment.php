@@ -36,19 +36,6 @@ class Environment
         // 4- Symfony FormType Builder
         $type = $this->builder->build($form);
 
-
-        \Symfony\Component\VarDumper\VarDumper::dump($form);
-        \Symfony\Component\VarDumper\VarDumper::dump($this->agent);
-        die();
-
-
-        /*
-         *
-         *
-         * 4- Form builder
-         * 5- Form validator
-         */
-
         return $type;
     }
 
