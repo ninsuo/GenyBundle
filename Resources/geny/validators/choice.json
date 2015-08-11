@@ -1,0 +1,12 @@
+{
+    "name": "validator_choice",
+    "type": "list",
+    "options": {
+        "label": "geny.validator.choice.label"
+    },
+    "validation": {
+        "type": {
+            "type": "array"
+        }
+    }
+}

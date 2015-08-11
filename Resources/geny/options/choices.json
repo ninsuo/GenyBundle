@@ -1,37 +1,8 @@
 {
     "name": "option_choices",
-    "type": "collection",
+    "type": "keyvalue",
     "options": {
-        "label": "geny.options.choices.label",
-        "allow_add": true,
-        "allow_delete": true,
-        "type": {
-            "type": "container",
-            "fields": {
-                "label": {
-                    "type": "text",
-                    "options": {
-                        "label": "geny.options.choices.label"
-                    },
-                    "validation": {
-                        "type": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "value": {
-                    "type": "text",
-                    "options": {
-                        "label": "geny.options.choices.value"
-                    },
-                    "validation": {
-                        "type": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        }
+        "label": "geny.options.choices.label"
     },
     "validation": {
         "type": {

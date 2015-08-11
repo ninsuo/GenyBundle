@@ -2,39 +2,8 @@
     "name": "validator_type",
     "type": "choice",
     "options": {
-        "choices": [
-            {
-                "value": "array"
-            },
-            {
-                "value": "bool"
-            },
-            {
-                "value": "float"
-            },
-            {
-                "value": "double"
-            },
-            {
-                "value": "integer"
-            },
-            {
-                "value": "null"
-            },
-            {
-                "value": "numeric"
-            },
-            {
-                "value": "object"
-            },
-            {
-                "value": "scalar"
-            },
-            {
-                "value": "string"
-            }
-        ],
-        "label": "!!! TODO !!!"
+        "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"],
+        "label": "geny.validator.type.label"
     },
     "validation": {
         "choice": {

@@ -4,6 +4,9 @@ namespace Fuz\GenyBundle\Entity;
 
 class Type
 {
+    const VISIBILITY_PUBLIC  = 'public';
+    const VISIBILITY_PRIVATE = 'private';
+
     /**
      * @var string
      */
@@ -19,10 +22,16 @@ class Type
      */
     protected $supportsValidators;
 
+    /**
+     * @var string
+     */
+    protected $visibility;
+
     public function __construct()
     {
-        $this->supportsOptions = array();
+        $this->supportsOptions    = array();
         $this->supportsValidators = array();
+        $this->visibility         = self::VISIBILITY_PUBLIC;
     }
 
     /**
@@ -47,6 +56,14 @@ class Type
     public function getSupportsValidators()
     {
         return $this->supportsValidators;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility()
+    {
+        return $this->visibility;
     }
 
     /**
@@ -76,6 +93,16 @@ class Type
     public function setSupportsValidators(array $supportsValidators)
     {
         $this->supportsValidators = $supportsValidators;
+        return $this;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Type
+     */
+    public function setVisibility($visibility)
+    {
+        $this->visibility = $visibility;
         return $this;
     }
 }

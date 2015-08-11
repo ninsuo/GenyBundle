@@ -8,7 +8,6 @@ use Fuz\GenyBundle\Exception\NormalizerException;
 
 class Normalizer
 {
-
     const DIR_OPTIONS       = '@FuzGenyBundle/Resources/geny/options';
     const DIR_TYPES         = '@FuzGenyBundle/Resources/geny/types';
     const DIR_VALIDATORS    = '@FuzGenyBundle/Resources/geny/validators';
@@ -138,6 +137,18 @@ class Normalizer
             $type->setSupportsValidators(array_merge(
                   $type->getSupportsValidators(), $data['supports_validators']
             ));
+        }
+
+        if (array_key_exists('visibility', $data)) {
+
+            if (!in_array($data['visibility'], array(
+                   Type::VISIBILITY_PRIVATE,
+                   Type::VISIBILITY_PUBLIC,
+               ))) {
+                throw new NormalizerException(sprintf("Unknown visibility given in %s: %s", $typeName, $data['visibility']));
+            }
+
+            $type->setVisibility($data['visibility']);
         }
 
         $this->agent->getTypes()->set($typeName, $type);

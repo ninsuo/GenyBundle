@@ -23,11 +23,11 @@
         <target><![CDATA[Field's HTML attributes]]></target>
       </trans-unit>
       <trans-unit id="6">
-        <source>geny.options.attr.key</source>
+        <source>geny.keyvalue.key</source>
         <target><![CDATA[Key]]></target>
       </trans-unit>
       <trans-unit id="7">
-        <source>geny.options.attr.value</source>
+        <source>geny.keyvalue.value</source>
         <target><![CDATA[Value]]></target>
       </trans-unit>
       <trans-unit id="8">
@@ -54,14 +54,6 @@
         <source>geny.options.label_attr.label</source>
         <target><![CDATA[Label's HTML attributes]]></target>
       </trans-unit>
-      <trans-unit id="14">
-        <source>geny.options.label_attr.key</source>
-        <target><![CDATA[Key]]></target>
-      </trans-unit>
-      <trans-unit id="15">
-        <source>geny.options.label_attr.value</source>
-        <target><![CDATA[Value]]></target>
-      </trans-unit>
       <trans-unit id="16">
         <source>geny.options.label.label</source>
         <target><![CDATA[Field's label]]></target>
@@ -80,11 +72,7 @@
       </trans-unit>
       <trans-unit id="20">
         <source>geny.options.choices.label</source>
-        <target><![CDATA[Choice label]]></target>
-      </trans-unit>
-      <trans-unit id="21">
-        <source>geny.options.choices.value</source>
-        <target><![CDATA[Choice value]]></target>
+        <target><![CDATA[Choices list]]></target>
       </trans-unit>
       <trans-unit id="22">
         <source>geny.options.precision.label</source>
@@ -139,11 +127,7 @@
         <target><![CDATA[Preferred choices]]></target>
       </trans-unit>
       <trans-unit id="35">
-        <source>geny.options.empty_value.enabled</source>
-        <target><![CDATA[Enable empty value]]></target>
-      </trans-unit>
-      <trans-unit id="36">
-        <source>geny.options.empty_value.value</source>
+        <source>geny.options.empty_value.label</source>
         <target><![CDATA[Value to use]]></target>
       </trans-unit>
       <trans-unit id="37">
@@ -158,13 +142,13 @@
         <source>geny.options.value.label</source>
         <target><![CDATA[Choose a specific value to send through HTTP]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="40">
+        <source>geny.validator.type.label</source>
+        <target><![CDATA[Choose the allowed data type]]></target>
       </trans-unit>
-      <trans-unit id="">
-        <source>geny.options.</source>
-        <target><![CDATA[]]></target>
+      <trans-unit id="41">
+        <source>geny.validator.choice.label</source>
+        <target><![CDATA[Choose the allowed choices]]></target>
       </trans-unit>
       <trans-unit id="">
         <source>geny.options.</source>

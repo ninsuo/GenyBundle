@@ -1,18 +1,8 @@
 {
     "name": "option_preferred_choices",
-    "type": "collection",
+    "type": "keyvalue",
     "options": {
-        "label": "geny.options.attr.label",
-        "allow_add": true,
-        "allow_delete": true,
-        "geny": {
-            "type": "text",
-            "validation": {
-                "type": {
-                    "type": "string"
-                }
-            }
-        }
+        "label": "geny.options.attr.label"
     },
     "validation": {
         "type": {
