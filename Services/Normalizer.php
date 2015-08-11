@@ -8,11 +8,13 @@ use Fuz\GenyBundle\Exception\NormalizerException;
 
 class Normalizer
 {
-    const DIR_OPTIONS       = '@FuzGenyBundle/Resources/geny/options';
-    const DIR_TYPES         = '@FuzGenyBundle/Resources/geny/types';
-    const DIR_VALIDATORS    = '@FuzGenyBundle/Resources/geny/validators';
-    const CORE_LOADER       = Loader::TYPE_FILE;
-    const CORE_UNSERIALIZER = Unserializer::FORMAT_JSON;
+    const DIR_OPTIONS        = '@FuzGenyBundle/Resources/geny/options';
+    const DIR_TYPES          = '@FuzGenyBundle/Resources/geny/types';
+    const DIR_VALIDATORS     = '@FuzGenyBundle/Resources/geny/validators';
+    const CORE_LOADER        = Loader::TYPE_FILE;
+    const CORE_UNSERIALIZER  = Unserializer::FORMAT_JSON;
+    const IGNORED_OPTIONS    = array('data');
+    const IGNORED_VALIDATORS = array();
 
     protected $agent;
     protected $loader;
@@ -42,14 +44,23 @@ class Normalizer
 
         $form->setType($this->normalizeType($data['type']));
 
-        if (array_key_exists('name', $data)) {
-            $form->setName($data['name']);
+        if (!array_key_exists('name', $data)) {
+            throw new NormalizerException(sprintf("Form %s has no name.", $resource));
         }
+
+        if (!preg_match("/^[0-9a-zA-Z_]+$/", $data['name'])) {
+            throw new NormalizerException(sprintf("Form %s has an invalid name: %s.", $resource, $data['name']));
+        }
+        $form->setName($data['name']);
 
         if (array_key_exists('options', $data)) {
             foreach ($data['options'] as $optionName => $parameters) {
                 if (!in_array($optionName, $form->getType()->getSupportsOptions())) {
                     throw new NormalizerException(sprintf("Type %s does not support %s option", $form->getType()->getName(), $optionName));
+                }
+
+                if (in_array($optionName, self::IGNORED_OPTIONS)) {
+                    continue;
                 }
 
                 if (!in_array($optionName, $optionsStack)) {
@@ -69,6 +80,10 @@ class Normalizer
                     throw new NormalizerException(sprintf("Type %s does not support %s validator", $form->getType()->getName(), $validatorName));
                 }
 
+                if (in_array($validatorName, self::IGNORED_VALIDATORS)) {
+                    continue;
+                }
+
                 if (!in_array($validatorName, $validatorsStack)) {
                     array_push($validatorsStack, $validatorName);
                     $this->normalizeValidator($validatorName, $optionsStack, $validatorsStack);
@@ -80,12 +95,17 @@ class Normalizer
             }
         }
 
-        // todo:
-        // 1- create validator json files
-        // 2- fields
-
         if (array_key_exists('fields', $data)) {
 
+            if (!$form->getType()->isCompound()) {
+                throw new NormalizerException(sprintf("Type %s is not compound and can't contain a 'field' attribute.", $form->getType()->getName()));
+            }
+
+            foreach ($data['fields'] as $name => $field) {
+                $field['name'] = $name;
+                $subform       = $this->normalizeForm("{$resource}[{$name}]", $field, $optionsStack, $validatorsStack);
+                $form->getFields()->add($subform);
+            }
         }
 
         $this->agent->getForms()->set($resource, $form);
@@ -125,6 +145,8 @@ class Normalizer
 
             $type->setSupportsOptions($parent->getSupportsOptions());
             $type->setSupportsValidators($parent->getSupportsValidators());
+            $type->setVisibility($parent->getVisibility());
+            $type->setCompound($parent->isCompound());
         }
 
         if (array_key_exists('supports_options', $data)) {
@@ -140,7 +162,6 @@ class Normalizer
         }
 
         if (array_key_exists('visibility', $data)) {
-
             if (!in_array($data['visibility'], array(
                    Type::VISIBILITY_PRIVATE,
                    Type::VISIBILITY_PUBLIC,
@@ -149,6 +170,17 @@ class Normalizer
             }
 
             $type->setVisibility($data['visibility']);
+        }
+
+        if (array_key_exists('compound', $data)) {
+            if (!in_array($data['compound'], array(
+                   Type::COMPOUND_TRUE,
+                   Type::COMPOUND_FALSE,
+               ))) {
+                throw new NormalizerException(sprintf("Unknown compound value given in %s: %s", $typeName, $data['compound']));
+            }
+
+            $type->setCompound(Type::COMPOUND_TRUE === strtolower($data['compound']));
         }
 
         $this->agent->getTypes()->set($typeName, $type);
@@ -179,7 +211,7 @@ class Normalizer
         $realpath = self::DIR_VALIDATORS.'/'.$validatorName.'.'.self::CORE_UNSERIALIZER;
         $contents = $this->loader->load(self::CORE_LOADER, $realpath);
         $data     = $this->unserializer->unserialize($realpath, self::CORE_UNSERIALIZER, $contents);
-        $option   = $this->normalizeForm($realpath, $data, array(), $optionsStack, $validatorsStack);
+        $option   = $this->normalizeForm($realpath, $data, $optionsStack, $validatorsStack);
 
         $this->agent->getValidators()->set($validatorName, $option);
         return $option;

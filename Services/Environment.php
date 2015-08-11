@@ -24,10 +24,6 @@ class Environment
 
     public function load($path)
     {
-        if ($this->agent->getForms()->containsKey($path)) {
-            return $this->agent->getForms->get($path);
-        }
-
         // 1- Content Loader (fs, db, ...)
         $contents = $this->loader->load('file', $path);
 
@@ -36,6 +32,10 @@ class Environment
 
         // 3- Geny Normalizer
         $form = $this->normalizer->normalizeForm($path, $data);
+
+        // 4- Symfony FormType Builder
+        $type = $this->builder->build($form);
+
 
         \Symfony\Component\VarDumper\VarDumper::dump($form);
         \Symfony\Component\VarDumper\VarDumper::dump($this->agent);
@@ -49,8 +49,7 @@ class Environment
          * 5- Form validator
          */
 
-        $this->agent->getForms()->set($path, $form);
-        return $form;
+        return $type;
     }
 
 

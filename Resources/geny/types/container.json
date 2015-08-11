@@ -1,9 +1,8 @@
 {
     "name": "container",
     "parent": "base",
+    "compound": "true",
     "supports_options": [
-        "type",
-        "type_import"
     ],
     "supports_validators": [
     ]

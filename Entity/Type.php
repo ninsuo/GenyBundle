@@ -6,6 +6,8 @@ class Type
 {
     const VISIBILITY_PUBLIC  = 'public';
     const VISIBILITY_PRIVATE = 'private';
+    const COMPOUND_TRUE      = "true";
+    const COMPOUND_FALSE     = "false";
 
     /**
      * @var string
@@ -27,11 +29,17 @@ class Type
      */
     protected $visibility;
 
+    /**
+     * @var boolean
+     */
+    protected $compound;
+
     public function __construct()
     {
         $this->supportsOptions    = array();
         $this->supportsValidators = array();
         $this->visibility         = self::VISIBILITY_PUBLIC;
+        $this->compound           = false;
     }
 
     /**
@@ -64,6 +72,14 @@ class Type
     public function getVisibility()
     {
         return $this->visibility;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isCompound()
+    {
+        return $this->compound;
     }
 
     /**
@@ -105,4 +121,15 @@ class Type
         $this->visibility = $visibility;
         return $this;
     }
+
+    /**
+     * @param boolean $compound
+     * @return Type
+     */
+    public function setCompound($compound)
+    {
+        $this->compound = $compound;
+        return $this;
+    }
+
 }
