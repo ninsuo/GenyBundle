@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Services\Loader;
+namespace Fuz\GenyBundle\Provider\Loader;
 
 interface LoaderInterface
 {

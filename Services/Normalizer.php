@@ -6,6 +6,7 @@ use Fuz\GenyBundle\Agent\Agent;
 use Fuz\GenyBundle\Entity\Form;
 use Fuz\GenyBundle\Entity\Type;
 use Fuz\GenyBundle\Exception\NormalizerException;
+use Fuz\GenyBundle\Provider\Loader;
 
 class Normalizer
 {

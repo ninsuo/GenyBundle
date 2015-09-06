@@ -3,7 +3,8 @@
 namespace Fuz\GenyBundle\Services;
 
 use Fuz\GenyBundle\Agent\Agent;
-use Fuz\GenyBundle\Services\Loader\FileLoader;
+use Fuz\GenyBundle\Provider\Loader;
+use Fuz\GenyBundle\Provider\Loader\FileLoader;
 
 class Environment
 {
