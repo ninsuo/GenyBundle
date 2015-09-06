@@ -6,22 +6,25 @@ use Fuz\GenyBundle\Agent\Agent;
 use Fuz\GenyBundle\Entity\Form;
 use Fuz\GenyBundle\Entity\Type;
 use Fuz\GenyBundle\Exception\NormalizerException;
-use Fuz\GenyBundle\Provider\Loader;
+use Fuz\GenyBundle\Provider\LoaderProvider;
+use Fuz\GenyBundle\Provider\Loader\FileLoader;
+use Fuz\GenyBundle\Provider\UnserializerProvider;
+use Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer;
 
 class Normalizer
 {
     const DIR_OPTIONS       = '@FuzGenyBundle/Resources/geny/options';
     const DIR_TYPES         = '@FuzGenyBundle/Resources/geny/types';
     const DIR_VALIDATORS    = '@FuzGenyBundle/Resources/geny/validators';
-    const CORE_LOADER       = Loader\FileLoader::TYPE_FILE;
-    const CORE_UNSERIALIZER = Unserializer::FORMAT_JSON;
+    const CORE_LOADER       = FileLoader::TYPE_FILE;
+    const CORE_UNSERIALIZER = JsonUnserializer::FORMAT_JSON;
 
     protected $agent;
     protected $loader;
     protected $unserializer;
     protected $validator;
 
-    public function __construct(Agent $agent, Loader $loader, Unserializer $unserializer, Validator $validator)
+    public function __construct(Agent $agent, LoaderProvider $loader, UnserializerProvider $unserializer, Validator $validator)
     {
         $this->agent        = $agent;
         $this->loader       = $loader;
@@ -120,7 +123,7 @@ class Normalizer
 
         $realpath = self::DIR_TYPES.'/'.$typeName.'.'.self::CORE_UNSERIALIZER;
         $contents = $this->loader->load(self::CORE_LOADER, $realpath);
-        $data     = $this->unserializer->unserialize($realpath, self::CORE_UNSERIALIZER, $contents);
+        $data     = $this->unserializer->unserialize(self::CORE_UNSERIALIZER, $contents);
 
         $type = new Type();
 
@@ -195,7 +198,7 @@ class Normalizer
 
         $realpath = self::DIR_OPTIONS.'/'.$optionName.'.'.self::CORE_UNSERIALIZER;
         $contents = $this->loader->load(self::CORE_LOADER, $realpath);
-        $data     = $this->unserializer->unserialize($realpath, self::CORE_UNSERIALIZER, $contents);
+        $data     = $this->unserializer->unserialize(self::CORE_UNSERIALIZER, $contents);
         $option   = $this->normalizeForm($realpath, $data, $optionsStack, $validatorsStack);
 
         $this->agent->getOptions()->set($optionName, $option);
@@ -210,7 +213,7 @@ class Normalizer
 
         $realpath = self::DIR_VALIDATORS.'/'.$validatorName.'.'.self::CORE_UNSERIALIZER;
         $contents = $this->loader->load(self::CORE_LOADER, $realpath);
-        $data     = $this->unserializer->unserialize($realpath, self::CORE_UNSERIALIZER, $contents);
+        $data     = $this->unserializer->unserialize(self::CORE_UNSERIALIZER, $contents);
         $option   = $this->normalizeForm($realpath, $data, $optionsStack, $validatorsStack);
 
         $this->agent->getValidators()->set($validatorName, $option);

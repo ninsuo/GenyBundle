@@ -6,7 +6,7 @@ use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Provider\Loader\LoaderInterface;
 use Fuz\GenyBundle\Exception\LoaderException;
 
-class Loader extends BaseService
+class LoaderProvider extends BaseService
 {
     protected $loaders = array();
 

@@ -3,8 +3,10 @@
 namespace Fuz\GenyBundle\Services;
 
 use Fuz\GenyBundle\Agent\Agent;
-use Fuz\GenyBundle\Provider\Loader;
+use Fuz\GenyBundle\Provider\LoaderProvider;
 use Fuz\GenyBundle\Provider\Loader\FileLoader;
+use Fuz\GenyBundle\Provider\UnserializerProvider;
+use Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer;
 
 class Environment
 {
@@ -16,7 +18,8 @@ class Environment
     protected $validator;
     protected $initializer;
 
-    public function __construct(Agent $agent, Loader $loader, Unserializer $unserializer, Normalizer $normalizer, Builder $builder, Validator $validator, Initializer $initializer)
+    public function __construct(Agent $agent, LoaderProvider $loader, UnserializerProvider $unserializer,
+       Normalizer $normalizer, Builder $builder, Validator $validator, Initializer $initializer)
     {
         $this->agent        = $agent;
         $this->loader       = $loader;
@@ -27,18 +30,18 @@ class Environment
         $this->initializer  = $initializer;
     }
 
-    public function load($path, array $options = array())
+    public function load($resource, array $options = array())
     {
         $config = $this->getConfig($options);
 
         // 1- Content Loader (fs, db, ...)
-        $contents = $this->loader->load($config['loader_type'], $path);
+        $contents = $this->loader->load($config['loader_type'], $resource);
 
         // 2- Unserializer (json, xml, ...)
-        $data = $this->unserializer->unserialize($path, 'json', $contents);
+        $data = $this->unserializer->unserialize($config['unserializer_type'], $contents);
 
         // 3- Geny Normalizer
-        $form = $this->normalizer->normalizeForm($path, $data);
+        $form = $this->normalizer->normalizeForm($resource, $data);
 
         // 4- Symfony FormType Builder
         $type = $this->builder->build($form);
@@ -52,7 +55,8 @@ class Environment
     public function getConfig(array $options)
     {
         return array_merge(array(
-            'loader_type' => FileLoader::TYPE_FILE,
-        ), $options);
+            'loader_type'       => FileLoader::TYPE_FILE,
+            'unserializer_type' => JsonUnserializer::FORMAT_JSON,
+           ), $options);
     }
 }

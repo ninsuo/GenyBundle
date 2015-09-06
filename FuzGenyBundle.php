@@ -12,5 +12,6 @@ class FuzGenyBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new DependencyInjection\Compiler\LoaderCompilerPass());
+        $container->addCompilerPass(new DependencyInjection\Compiler\UnserializerCompilerPass());
     }
 }
