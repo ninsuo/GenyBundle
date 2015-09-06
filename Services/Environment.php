@@ -26,10 +26,12 @@ class Environment
         $this->initializer  = $initializer;
     }
 
-    public function load($path, $loaderType = FileLoader::TYPE_FILE)
+    public function load($path, array $options = array())
     {
+        $config = $this->getConfig($options);
+
         // 1- Content Loader (fs, db, ...)
-        $contents = $this->loader->load($loaderType, $path);
+        $contents = $this->loader->load($config['loader_type'], $path);
 
         // 2- Unserializer (json, xml, ...)
         $data = $this->unserializer->unserialize($path, 'json', $contents);
@@ -44,5 +46,12 @@ class Environment
         $this->initializer->initialize($type, $form);
 
         return $type;
+    }
+
+    public function getConfig(array $options)
+    {
+        return array_merge(array(
+            'loader_type' => FileLoader::TYPE_FILE,
+        ), $options);
     }
 }

@@ -1,4 +1,5 @@
 parameters:
+    geny.base.class: Fuz\GenyBundle\Base\BaseService
     geny.class: Fuz\GenyBundle\Services\Environment
     geny.agent.class: Fuz\GenyBundle\Agent\Agent
     geny.loader.class: Fuz\GenyBundle\Services\Loader
@@ -11,6 +12,12 @@ parameters:
     geny.form.type.container.class: Fuz\GenyBundle\Form\ContainerType
 
 services:
+    geny.base:
+        class: %geny.base.class%
+        abstract: true
+        calls:
+          - [setContainer, [@service_container]]
+
     geny:
         class: %geny.class%
         arguments: [@geny.agent, @geny.loader, @geny.unserializer, @geny.normalizer, @geny.builder, @geny.validator, @geny.initializer]
@@ -21,6 +28,7 @@ services:
 
     geny.loader:
         class: %geny.loader.class%
+        parent: geny.base
 
     geny.loader.file:
         class: %geny.loader.file.class%

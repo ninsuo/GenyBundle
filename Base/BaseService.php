@@ -4,7 +4,7 @@ namespace Fuz\GenyBundle\Base;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 
-class BaseService extends ContainerAware
+abstract class BaseService extends ContainerAware
 {
 
 }

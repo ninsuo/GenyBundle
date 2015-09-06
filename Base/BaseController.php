@@ -4,7 +4,7 @@ namespace Fuz\GenyBundle\Base;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class BaseController extends Controller
+abstract class BaseController extends Controller
 {
     public function info($message, array $parameters = array())
     {
