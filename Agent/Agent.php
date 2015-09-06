@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Services;
+namespace Fuz\GenyBundle\Agent;
 
 use Doctrine\Common\Collections\ArrayCollection;
 

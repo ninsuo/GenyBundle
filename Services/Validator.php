@@ -2,6 +2,7 @@
 
 namespace Fuz\GenyBundle\Services;
 
+use Fuz\GenyBundle\Agent\Agent;
 use Fuz\GenyBundle\Entity\Form;
 
 class Validator

@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BaseController extends Controller
 {
-
     public function info($message, array $parameters = array())
     {
         $this->addFlash('info', $this->trans($message, $parameters));
@@ -31,5 +30,4 @@ class BaseController extends Controller
     {
         return $this->container->get('translator')->trans($property, $parameters);
     }
-
 }

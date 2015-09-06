@@ -2,6 +2,9 @@
 
 namespace Fuz\GenyBundle\Services;
 
+use Fuz\GenyBundle\Agent\Agent;
+use Fuz\GenyBundle\Services\Loader\FileLoader;
+
 class Environment
 {
     protected $agent;
@@ -23,10 +26,10 @@ class Environment
         $this->initializer  = $initializer;
     }
 
-    public function load($path)
+    public function load($path, $loaderType = FileLoader::TYPE_FILE)
     {
         // 1- Content Loader (fs, db, ...)
-        $contents = $this->loader->load('file', $path);
+        $contents = $this->loader->load($loaderType, $path);
 
         // 2- Unserializer (json, xml, ...)
         $data = $this->unserializer->unserialize($path, 'json', $contents);
@@ -40,8 +43,6 @@ class Environment
         // 5- Data Initializer
         $this->initializer->initialize($type, $form);
 
-
         return $type;
     }
-
 }

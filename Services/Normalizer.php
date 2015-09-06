@@ -2,6 +2,7 @@
 
 namespace Fuz\GenyBundle\Services;
 
+use Fuz\GenyBundle\Agent\Agent;
 use Fuz\GenyBundle\Entity\Form;
 use Fuz\GenyBundle\Entity\Type;
 use Fuz\GenyBundle\Exception\NormalizerException;
@@ -11,7 +12,7 @@ class Normalizer
     const DIR_OPTIONS       = '@FuzGenyBundle/Resources/geny/options';
     const DIR_TYPES         = '@FuzGenyBundle/Resources/geny/types';
     const DIR_VALIDATORS    = '@FuzGenyBundle/Resources/geny/validators';
-    const CORE_LOADER       = Loader::TYPE_FILE;
+    const CORE_LOADER       = Loader\FileLoader::TYPE_FILE;
     const CORE_UNSERIALIZER = Unserializer::FORMAT_JSON;
 
     protected $agent;

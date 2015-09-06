@@ -1,7 +1,8 @@
 parameters:
     geny.class: Fuz\GenyBundle\Services\Environment
-    geny.agent.class: Fuz\GenyBundle\Services\Agent
+    geny.agent.class: Fuz\GenyBundle\Agent\Agent
     geny.loader.class: Fuz\GenyBundle\Services\Loader
+    geny.loader.file.class: Fuz\GenyBundle\Services\Loader\FileLoader
     geny.unserializer.class: Fuz\GenyBundle\Services\Unserializer
     geny.normalizer.class: Fuz\GenyBundle\Services\Normalizer
     geny.builder.class: Fuz\GenyBundle\Services\Builder
@@ -20,7 +21,12 @@ services:
 
     geny.loader:
         class: %geny.loader.class%
+
+    geny.loader.file:
+        class: %geny.loader.file.class%
         arguments: [@file_locator]
+        tags:
+            - { name: geny.loader }
 
     geny.unserializer:
         class: %geny.unserializer.class%

@@ -2,34 +2,27 @@
 
 namespace Fuz\GenyBundle\Services;
 
-use Symfony\Component\HttpKernel\Config\FileLocator;
+use Fuz\GenyBundle\Base\BaseService;
+use Fuz\GenyBundle\Services\Loader\LoaderInterface;
 use Fuz\GenyBundle\Exception\LoaderException;
 
-class Loader
+class Loader extends BaseService
 {
-    const TYPE_FILE = 'file';
-
-    protected $locator;
-
-    public function __construct(FileLocator $locator)
-    {
-        $this->locator = $locator;
-    }
+    protected $loaders = array();
 
     public function load($type, $resource)
     {
-        switch ($type) {
-            case self::TYPE_FILE:
-                $realpath = $this->locator->locate($resource);
-                $contents = file_get_contents($realpath);
-                if (false === $contents) {
-                    throw new LoaderException(sprintf("Unable to open or read file: %s", $realpath));
-                }
-                break;
-            default:
-                throw new LoaderException(sprintf("Loader %s is not implemented.", $type));
+        foreach ($this->loaders as $loader) {
+            if ($loader->supports($type)) {
+                return $loader->load($resource);
+            }
         }
-        return $contents;
+
+        throw new LoaderException(sprintf("Loader %s is not implemented.", $type));
     }
 
+    public function addLoader(LoaderInterface $loader)
+    {
+        $this->loaders[] = $loader;
+    }
 }
