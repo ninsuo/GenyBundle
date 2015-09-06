@@ -2,7 +2,6 @@
 
 namespace Fuz\GenyBundle\Services;
 
-use Fuz\GenyBundle\Agent\Agent;
 use Fuz\GenyBundle\Provider\LoaderProvider;
 use Fuz\GenyBundle\Provider\Loader\FileLoader;
 use Fuz\GenyBundle\Provider\UnserializerProvider;
@@ -10,7 +9,6 @@ use Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer;
 
 class Environment
 {
-    protected $agent;
     protected $loader;
     protected $unserializer;
     protected $normalizer;
@@ -18,10 +16,9 @@ class Environment
     protected $validator;
     protected $initializer;
 
-    public function __construct(Agent $agent, LoaderProvider $loader, UnserializerProvider $unserializer,
+    public function __construct(LoaderProvider $loader, UnserializerProvider $unserializer,
        Normalizer $normalizer, Builder $builder, Validator $validator, Initializer $initializer)
     {
-        $this->agent        = $agent;
         $this->loader       = $loader;
         $this->unserializer = $unserializer;
         $this->normalizer   = $normalizer;
