@@ -1,6 +1,6 @@
 parameters:
     geny.base.class: Fuz\GenyBundle\Base\BaseService
-    geny.class: Fuz\GenyBundle\Services\Environment
+    geny.class: Fuz\GenyBundle\Services\Geny
     geny.agent.class: Fuz\GenyBundle\Agent\Agent
     geny.loader.class: Fuz\GenyBundle\Provider\LoaderProvider
     geny.loader.file.class: Fuz\GenyBundle\Provider\Loader\FileLoader

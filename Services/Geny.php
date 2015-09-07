@@ -7,7 +7,7 @@ use Fuz\GenyBundle\Provider\Loader\FileLoader;
 use Fuz\GenyBundle\Provider\UnserializerProvider;
 use Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer;
 
-class Environment
+class Geny
 {
     protected $loader;
     protected $unserializer;
@@ -16,8 +16,12 @@ class Environment
     protected $validator;
     protected $initializer;
 
-    public function __construct(LoaderProvider $loader, UnserializerProvider $unserializer,
-       Normalizer $normalizer, Builder $builder, Validator $validator, Initializer $initializer)
+    public function __construct(LoaderProvider $loader,
+                                UnserializerProvider $unserializer,
+                                Normalizer $normalizer,
+                                Builder $builder,
+                                Validator $validator,
+                                Initializer $initializer)
     {
         $this->loader       = $loader;
         $this->unserializer = $unserializer;

@@ -144,5 +144,4 @@ class Form
         $this->data = $data;
         return $this;
     }
-
 }
