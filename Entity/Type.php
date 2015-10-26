@@ -131,5 +131,4 @@ class Type
         $this->compound = $compound;
         return $this;
     }
-
 }
