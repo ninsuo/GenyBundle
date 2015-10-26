@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Provider\Unserializer;
+namespace Fuz\GenyBundle\Unserializer;
 
 class JsonUnserializer implements UnserializerInterface
 {
@@ -19,5 +19,10 @@ class JsonUnserializer implements UnserializerInterface
     public function supports($type)
     {
         return self::FORMAT_JSON === strtolower($type);
+    }
+
+    public function getName()
+    {
+        return self::FORMAT_JSON;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Provider\Loader;
+namespace Fuz\GenyBundle\Loader;
 
 use Symfony\Component\HttpKernel\Config\FileLocator;
 
@@ -33,5 +33,10 @@ class FileLoader implements LoaderInterface
     public function supports($type)
     {
         return self::TYPE_FILE === strtolower($type);
+    }
+
+    public function getName()
+    {
+        return self::TYPE_FILE;
     }
 }

@@ -1,10 +1,9 @@
 parameters:
     geny.base.class: Fuz\GenyBundle\Base\BaseService
-    geny.class: Fuz\GenyBundle\Services\Geny
+    geny.class: Fuz\GenyBundle\Services\Environment
     geny.agent.class: Fuz\GenyBundle\Agent\Agent
-    geny.loader.class: Fuz\GenyBundle\Provider\LoaderProvider
+    geny.extension.class: Fuz\GenyBundle\Extension\CoreExtension
     geny.loader.file.class: Fuz\GenyBundle\Provider\Loader\FileLoader
-    geny.unserializer.class: Fuz\GenyBundle\Provider\UnserializerProvider
     geny.unserializer.json.class: Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer
     geny.normalizer.class: Fuz\GenyBundle\Services\Normalizer
     geny.builder.class: Fuz\GenyBundle\Services\Builder
@@ -21,25 +20,24 @@ services:
 
     geny:
         class: %geny.class%
-        arguments: [@geny.loader, @geny.unserializer, @geny.normalizer, @geny.builder, @geny.validator, @geny.initializer]
+        parent: geny.base
+        arguments: []
 
     geny.agent:
         class: %geny.agent.class%
         arguments: []
 
-    geny.loader:
-        class: %geny.loader.class%
-        parent: geny.base
+    geny.extension.core:
+        class: %geny.extension.core.class%
+        arguments: []
+        tags:
+            - { name: geny.extension }
 
     geny.loader.file:
         class: %geny.loader.file.class%
         arguments: [@file_locator]
         tags:
             - { name: geny.loader }
-
-    geny.unserializer:
-        class: %geny.unserializer.class%
-        parent: geny.base
 
     geny.unserializer.json:
         class: %geny.unserializer.json.class%
@@ -48,7 +46,7 @@ services:
 
     geny.normalizer:
         class: %geny.normalizer.class%
-        arguments: [@geny.agent, @geny.loader, @geny.unserializer, @geny.validator]
+        arguments: [@geny.agent, @geny.validator]
 
     geny.builder:
         class: %geny.builder.class%

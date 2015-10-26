@@ -2,8 +2,8 @@
 
 namespace Fuz\GenyBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class FuzGenyBundle extends Bundle
 {
@@ -11,6 +11,7 @@ class FuzGenyBundle extends Bundle
     {
         parent::build($container);
 
+        $container->addCompilerPass(new DependencyInjection\Compiler\ExtensionCompilerPass());
         $container->addCompilerPass(new DependencyInjection\Compiler\LoaderCompilerPass());
         $container->addCompilerPass(new DependencyInjection\Compiler\UnserializerCompilerPass());
     }
