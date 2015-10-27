@@ -6,10 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Form
 {
-    /**
-     * @var string
-     */
-    protected $resource;
 
     /**
      * @var string

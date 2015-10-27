@@ -8,7 +8,7 @@ class Resource
     protected $resource;
     protected $format;
 
-    protected $data      = null;
+    protected $array     = null;
     protected $type      = null;
     protected $validator = null;
 
@@ -52,14 +52,14 @@ class Resource
         return $this;
     }
 
-    public function getData()
+    public function getArray()
     {
-        return $this->data;
+        return $this->array;
     }
 
-    public function setData($data)
+    public function setArray($array)
     {
-        $this->data = $data;
+        $this->array = $array;
         return $this;
     }
 

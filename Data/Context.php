@@ -1,16 +1,11 @@
 <?php
 
-namespace Fuz\GenyBundle\Agent;
+namespace Fuz\GenyBundle\Data;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Agent
+class Context
 {
-    /**
-     * @var ArrayCollection
-     */
-    protected $forms;
-
     /**
      * @var ArrayCollection
      */
@@ -28,18 +23,9 @@ class Agent
 
     public function __construct()
     {
-        $this->forms      = new ArrayCollection();
         $this->types      = new ArrayCollection();
         $this->options    = new ArrayCollection();
         $this->validators = new ArrayCollection();
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getForms()
-    {
-        return $this->forms;
     }
 
     /**
@@ -65,5 +51,4 @@ class Agent
     {
         return $this->validators;
     }
-
 }

@@ -12,19 +12,32 @@ class Environment extends BaseService
     use Traits\Loader;
     use Traits\Unserializer;
 
-    protected $resources;
+    protected $normalizer;
+    protected $builder;
+    protected $initializer;
+    protected $validator;
 
-    public function getType(Resource $resource)
+    public function __construct(
+                                Normalizer $normalizer,
+                                Builder $builder,
+                                Validator $validator,
+                                Initializer $initializer)
+    {
+        $this->normalizer  = $normalizer;
+        $this->builder     = $builder;
+        $this->initializer = $initializer;
+        $this->validator   = $validator;
+    }
+
+    public function getType(Resource $resource, $data)
     {
         if ($resource->getType()) {
             return $resource->getType();
         }
 
-        // 1- Content Loader (fs, db, ...)
-        $contents = $this->load($resource->getLoader(), $resource->getResource());
+        $converted = $this->convertResource($resource);
 
-        // 2- Unserializer (json, xml, ...)
-        $data = $this->unserialize($resource->getFormat(), $contents);
+        // Loading
 
         // ... to think (inject geny in all Resource and proceed from inside??)
 
@@ -33,6 +46,19 @@ class Environment extends BaseService
     public function getValidator(Resource $resource)
     {
 
+    }
+
+    protected function convertResource(Resource $resource)
+    {
+        $data = $resource->getData();
+        if (is_null($data)) {
+            $contents = $this->load($resource->getLoader(), $resource->getResource());
+            $array = $this->unserialize($resource->getFormat(), $contents);
+            $data = $this->normalizer->normalize($array);
+            $resource->setData($data);
+        }
+
+        return $data;
     }
 
     protected function getConfig(array $options)
@@ -79,7 +105,7 @@ class Environment extends BaseService
         $data = $this->unserializer->unserialize($config['unserializer_type'], $contents);
 
 
-        // FieldNormalizer
+        // Normalizer
         // TypeNormalizer
         // OptionNormalizer
         // ValidatorNormalizer
