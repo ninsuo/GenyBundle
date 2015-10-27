@@ -14,7 +14,7 @@ class UnserializerCompilerPass implements CompilerPassInterface
             return;
         }
 
-        $definition = $container->findDefinition('geny');
+        $definition = $container->findDefinition('geny.unserializer');
         $taggedServices = $container->findTaggedServiceIds('geny.unserializer');
 
         foreach (array_keys($taggedServices) as $id) {

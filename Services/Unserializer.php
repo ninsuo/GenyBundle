@@ -1,11 +1,12 @@
 <?php
 
-namespace Fuz\GenyBundle\Traits;
+namespace Fuz\GenyBundle\Services;
 
+use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\UnserializerException;
 use Fuz\GenyBundle\Unserializer\UnserializerInterface;
 
-trait Unserializer
+class Unserializer extends BaseService
 {
     protected $unserializers = array();
 

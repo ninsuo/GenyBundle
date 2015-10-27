@@ -14,7 +14,7 @@ class LoaderCompilerPass implements CompilerPassInterface
             return;
         }
 
-        $definition = $container->findDefinition('geny');
+        $definition = $container->findDefinition('geny.loader');
         $taggedServices = $container->findTaggedServiceIds('geny.loader');
 
         foreach (array_keys($taggedServices) as $id) {

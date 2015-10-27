@@ -1,11 +1,12 @@
 <?php
 
-namespace Fuz\GenyBundle\Traits;
+namespace Fuz\GenyBundle\Services;
 
+use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\LoaderException;
 use Fuz\GenyBundle\Loader\LoaderInterface;
 
-trait Loader
+class Loader extends BaseService
 {
     protected $loaders = array();
 

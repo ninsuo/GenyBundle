@@ -14,7 +14,7 @@ class ExtensionCompilerPass implements CompilerPassInterface
             return;
         }
 
-        $definition = $container->findDefinition('geny');
+        $definition = $container->findDefinition('geny.extension');
         $taggedServices = $container->findTaggedServiceIds('geny.extension');
 
         foreach (array_keys($taggedServices) as $id) {

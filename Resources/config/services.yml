@@ -2,8 +2,11 @@ parameters:
     geny.base.class: Fuz\GenyBundle\Base\BaseService
     geny.context.class: Fuz\GenyBundle\Data\Context
     geny.class: Fuz\GenyBundle\Services\Environment
-    geny.extension.class: Fuz\GenyBundle\Extension\CoreExtension
+    geny.extension.class: Fuz\GenyBundle\Services\Extension
+    geny.extension.core.class: Fuz\GenyBundle\Extension\CoreExtension
+    geny.loader.class: Fuz\GenyBundle\Services\Loader
     geny.loader.file.class: Fuz\GenyBundle\Provider\Loader\FileLoader
+    geny.unserializer.class: Fuz\GenyBundle\Services\Unserializer
     geny.unserializer.json.class: Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer
     geny.normalizer.class: Fuz\GenyBundle\Services\Normalizer
     geny.builder.class: Fuz\GenyBundle\Services\Builder
@@ -24,8 +27,12 @@ services:
 
     geny:
         class: %geny.class%
-        parent: geny.base
         arguments: [@geny.normalizer, @geny.builder, @geny.initializer, @geny.validator]
+
+    geny.extension:
+        class: %geny.extension.class%
+        parent: geny.base
+        arguments: []
 
     geny.extension.core:
         class: %geny.extension.core.class%
@@ -33,11 +40,21 @@ services:
         tags:
             - { name: geny.extension }
 
+    geny.loader:
+        class: %geny.loader.class%
+        parent: geny.base
+        arguments: []
+
     geny.loader.file:
         class: %geny.loader.file.class%
         arguments: [@file_locator]
         tags:
             - { name: geny.loader }
+
+    geny.unserializer:
+        class: %geny.unserializer.class%
+        parent: geny.base
+        arguments: []
 
     geny.unserializer.json:
         class: %geny.unserializer.json.class%
@@ -51,14 +68,17 @@ services:
 
     geny.builder:
         class: %geny.builder.class%
+        parent: geny.base
         arguments: [@form.factory]
 
     geny.validator:
         class: %geny.validator.class%
+        parent: geny.base
         arguments: [@geny.agent]
 
     geny.initializer:
         class: %geny.initializer.class%
+        parent: geny.base
         arguments: []
 
     geny.form.type.container:

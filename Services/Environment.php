@@ -2,35 +2,37 @@
 
 namespace Fuz\GenyBundle\Services;
 
-use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Data\Resource;
-use Fuz\GenyBundle\Traits;
 
-class Environment extends BaseService
+class Environment
 {
-    // put into distinct services (whose' parent is BaseService)
-    use Traits\Extension;
-    use Traits\Loader;
-    use Traits\Unserializer;
-
+    protected $extension;
+    protected $loader;
+    protected $unserializer;
     protected $normalizer;
     protected $builder;
     protected $initializer;
     protected $validator;
 
     public function __construct(
-                                Normalizer $normalizer,
-                                Builder $builder,
-                                Validator $validator,
-                                Initializer $initializer)
+                                Extension    $extension,
+                                Loader       $loader,
+                                Unserializer $unserializer,
+                                Normalizer   $normalizer,
+                                Builder      $builder,
+                                Validator    $validator,
+                                Initializer  $initializer)
     {
-        $this->normalizer  = $normalizer;
-        $this->builder     = $builder;
-        $this->initializer = $initializer;
-        $this->validator   = $validator;
+        $this->extension    = $extension;
+        $this->loader       = $loader;
+        $this->unserializer = $unserializer;
+        $this->normalizer   = $normalizer;
+        $this->builder      = $builder;
+        $this->initializer  = $initializer;
+        $this->validator    = $validator;
     }
 
-    public function getType(Resource $resource, $data)
+    public function getType(Resource $resource, $data = null)
     {
         if ($resource->getType()) {
             return $resource->getType();

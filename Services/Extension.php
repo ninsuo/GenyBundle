@@ -1,11 +1,12 @@
 <?php
 
-namespace Fuz\GenyBundle\Traits;
+namespace Fuz\GenyBundle\Services;
 
+use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\ExtensionException;
 use Fuz\GenyBundle\Extension\ExtensionInterface;
 
-trait Extension
+class Extension extends BaseService
 {
     protected $extensions = array();
 

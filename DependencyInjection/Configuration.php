@@ -14,6 +14,8 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
+
+        /*
         $rootNode    = $treeBuilder->root('fuz_geny');
 
         $node = $rootNode->children();
@@ -50,6 +52,7 @@ class Configuration implements ConfigurationInterface
                      ->end()
         ;
 
+        */
         return $treeBuilder;
     }
 }
