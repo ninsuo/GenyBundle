@@ -8,6 +8,7 @@ use Fuz\GenyBundle\Traits;
 
 class Environment extends BaseService
 {
+    // put into distinct services (whose' parent is BaseService)
     use Traits\Extension;
     use Traits\Loader;
     use Traits\Unserializer;
@@ -39,7 +40,7 @@ class Environment extends BaseService
 
         // Loading
 
-        // ... to think (inject geny in all Resource and proceed from inside??)
+
 
     }
 
