@@ -9,6 +9,7 @@ use Fuz\GenyBundle\Extension\ExtensionInterface;
 class Extension extends BaseService
 {
     protected $extensions = array();
+    protected $ordered    = null;
 
     public function hasExtension($name)
     {
@@ -27,11 +28,13 @@ class Extension extends BaseService
     public function addExtension(ExtensionInterface $extension)
     {
         $this->extensions[$extension->getName()] = $extension;
+        $this->ordered                           = null;
     }
 
     public function removeExtension($name)
     {
         unset($this->extensions[$name]);
+        $this->ordered = null;
     }
 
     public function setExtensions(array $extensions)
@@ -44,5 +47,17 @@ class Extension extends BaseService
     public function getExtensions()
     {
         return $this->extensions;
+    }
+
+    public function getType($name) {
+
+    }
+
+    public function getOption($name) {
+
+    }
+
+    public function getValidator($name) {
+        
     }
 }
