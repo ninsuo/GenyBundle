@@ -55,7 +55,10 @@ class Environment
     {
         $data = $resource->getData();
         if (is_null($data)) {
-            $contents = $this->load($resource->getLoader(), $resource->getResource());
+            $this->loader->load($resource);
+            $this->unserializer->unserialize($resource);
+
+            // todo
             $array = $this->unserialize($resource->getFormat(), $contents);
             $data = $this->normalizer->normalize($array);
             $resource->setData($data);

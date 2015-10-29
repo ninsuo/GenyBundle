@@ -1,13 +1,14 @@
 <?php
 
-namespace Fuz\GenyBundle\Data;
+namespace Fuz\GenyBundle\Data\Resources;
 
-class Resource
+abstract class AbstractResource implements ResourceInterface
 {
     protected $loader;
     protected $resource;
     protected $format;
 
+    protected $contents  = null;
     protected $array     = null;
     protected $type      = null;
     protected $validator = null;
@@ -49,6 +50,18 @@ class Resource
     public function setFormat($format)
     {
         $this->format = $format;
+        return $this;
+    }
+
+    public function getContents()
+    {
+        return $this->contents;
+    }
+
+    public function setContents($contents)
+    {
+        $this->contents = $contents;
+
         return $this;
     }
 

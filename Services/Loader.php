@@ -5,16 +5,27 @@ namespace Fuz\GenyBundle\Services;
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\LoaderException;
 use Fuz\GenyBundle\Loader\LoaderInterface;
+use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
 class Loader extends BaseService
 {
     protected $loaders = array();
 
-    public function load($type, $resource)
+    public function load(ResourceInterface $resource)
     {
+        if (!is_null($resource->getContents())) {
+            return $resource->getContents();
+        }
+
+        $type = $resource->getLoader();
+        $data = $resource->getResource();
+
         foreach ($this->loaders as $loader) {
             if ($loader->supports($type)) {
-                return $loader->load($resource);
+                $contents = $loader->load($data);
+                $resource->setContents($contents);
+
+                return $contents;
             }
         }
 

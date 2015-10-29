@@ -2,7 +2,9 @@
 
 namespace Fuz\GenyBundle\Extension;
 
-use Fuz\GenyBundle\Data\Resource;
+use Fuz\GenyBundle\Data\Resources\Type;
+use Fuz\GenyBundle\Data\Resources\Option;
+use Fuz\GenyBundle\Data\Resources\Validator;
 use Fuz\GenyBundle\Provider\Loader\FileLoader;
 use Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer;
 
@@ -11,67 +13,67 @@ class CoreExtension extends AbstractExtension
     public function getTypes()
     {
         return array(
-            'base' => new Resource(
+            'base' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/base.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'button' => new Resource(
+            'button' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/button.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'checkbox' => new Resource(
+            'checkbox' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/checkbox.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'choice' => new Resource(
+            'choice' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/choice.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'collection' => new Resource(
+            'collection' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/collection.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'container' => new Resource(
+            'container' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/container.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'form' => new Resource(
+            'form' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/form.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'keyvalue' => new Resource(
+            'keyvalue' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/keyvalue.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'list' => new Resource(
+            'list' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/list.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'number' => new Resource(
+            'number' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/number.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'submit' => new Resource(
+            'submit' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/submit.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'text' => new Resource(
+            'text' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/text.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'textarea' => new Resource(
+            'textarea' => new Type(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/types/textarea.json',
                 JsonUnserializer::FORMAT_JSON
@@ -82,117 +84,117 @@ class CoreExtension extends AbstractExtension
     public function getOptions()
     {
         return array(
-            'action' => new Resource(
+            'action' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/action.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'allow_add' => new Resource(
+            'allow_add' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/allow_add.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'allow_delete' => new Resource(
+            'allow_delete' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/allow_delete.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'always_empty' => new Resource(
+            'always_empty' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/always_empty.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'attr' => new Resource(
+            'attr' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/attr.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'choices' => new Resource(
+            'choices' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/choices.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'disabled' => new Resource(
+            'disabled' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/disabled.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'empty_value' => new Resource(
+            'empty_value' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/empty_value.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'expanded' => new Resource(
+            'expanded' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/expanded.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'grouping' => new Resource(
+            'grouping' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/grouping.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'invalid_message' => new Resource(
+            'invalid_message' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/invalid_message.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'label' => new Resource(
+            'label' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/label.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'label_attr' => new Resource(
+            'label_attr' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/label_attr.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'max_length' => new Resource(
+            'max_length' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/max_length.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'method' => new Resource(
+            'method' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/method.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'multiple' => new Resource(
+            'multiple' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/multiple.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'precision' => new Resource(
+            'precision' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/precision.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'preferred_choices' => new Resource(
+            'preferred_choices' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/preferred_choices.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'read_only' => new Resource(
+            'read_only' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/read_only.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'required' => new Resource(
+            'required' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/required.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'rounding_mode' => new Resource(
+            'rounding_mode' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/rounding_mode.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'trim' => new Resource(
+            'trim' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/trim.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'value' => new Resource(
+            'value' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/value.json',
                 JsonUnserializer::FORMAT_JSON
@@ -203,12 +205,12 @@ class CoreExtension extends AbstractExtension
     public function getValidators()
     {
         return array(
-            'choice' => new Resource(
+            'choice' => new Validator(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/validators/choice.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'type' => new Resource(
+            'type' => new Validator(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/validators/type.json',
                 JsonUnserializer::FORMAT_JSON

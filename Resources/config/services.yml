@@ -5,9 +5,10 @@ parameters:
     geny.extension.class: Fuz\GenyBundle\Services\Extension
     geny.extension.core.class: Fuz\GenyBundle\Extension\CoreExtension
     geny.loader.class: Fuz\GenyBundle\Services\Loader
-    geny.loader.file.class: Fuz\GenyBundle\Provider\Loader\FileLoader
+    geny.loader.file.class: Fuz\GenyBundle\Loader\FileLoader
     geny.unserializer.class: Fuz\GenyBundle\Services\Unserializer
-    geny.unserializer.json.class: Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer
+    geny.unserializer.json.class: Fuz\GenyBundle\Unserializer\JsonUnserializer
+    geny.provider.class: Fuz\GenyBundle\Services\Provider
     geny.normalizer.class: Fuz\GenyBundle\Services\Normalizer
     geny.builder.class: Fuz\GenyBundle\Services\Builder
     geny.validator.class: Fuz\GenyBundle\Services\Validator
@@ -60,6 +61,11 @@ services:
         class: %geny.unserializer.json.class%
         tags:
             - { name: geny.unserializer }
+
+    geny.provider:
+        class: %geny.provider.class%
+        parent: geny.base
+        arguments: []
 
     geny.normalizer:
         class: %geny.normalizer.class%
