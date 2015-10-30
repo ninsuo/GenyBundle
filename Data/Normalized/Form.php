@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Entity;
+namespace Fuz\GenyBundle\Data\Normalized;
 
 use Doctrine\Common\Collections\ArrayCollection;
 

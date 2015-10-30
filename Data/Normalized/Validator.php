@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Entity;
+namespace Fuz\GenyBundle\Data\Normalized;
 
 class Validator extends Form
 {

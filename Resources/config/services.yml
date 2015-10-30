@@ -1,7 +1,7 @@
 parameters:
+    geny.class: Fuz\GenyBundle\Services\Environment
     geny.base.class: Fuz\GenyBundle\Base\BaseService
     geny.context.class: Fuz\GenyBundle\Data\Context
-    geny.class: Fuz\GenyBundle\Services\Environment
     geny.extension.class: Fuz\GenyBundle\Services\Extension
     geny.extension.core.class: Fuz\GenyBundle\Extension\CoreExtension
     geny.loader.class: Fuz\GenyBundle\Services\Loader
@@ -16,6 +16,10 @@ parameters:
     geny.form.type.container.class: Fuz\GenyBundle\Form\ContainerType
 
 services:
+    geny:
+        class: %geny.class%
+        arguments: [@geny.normalizer, @geny.builder, @geny.initializer, @geny.validator]
+
     geny.base:
         class: %geny.base.class%
         abstract: true
@@ -25,10 +29,6 @@ services:
     geny.context:
         class: %geny.context.class%
         arguments: []
-
-    geny:
-        class: %geny.class%
-        arguments: [@geny.normalizer, @geny.builder, @geny.initializer, @geny.validator]
 
     geny.extension:
         class: %geny.extension.class%
