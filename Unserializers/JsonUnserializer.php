@@ -16,9 +16,9 @@ class JsonUnserializer implements UnserializerInterface
         return $data;
     }
 
-    public function supports($type)
+    public function supports($format)
     {
-        return self::FORMAT_JSON === strtolower($type);
+        return self::FORMAT_JSON === strtolower($format);
     }
 
     public function getName()

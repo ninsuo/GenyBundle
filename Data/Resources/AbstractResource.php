@@ -70,7 +70,7 @@ abstract class AbstractResource implements ResourceInterface
         return $this->array;
     }
 
-    public function setArray($array)
+    public function setArray(array $array)
     {
         $this->array = $array;
         return $this;

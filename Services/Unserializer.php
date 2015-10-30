@@ -5,20 +5,31 @@ namespace Fuz\GenyBundle\Services;
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\UnserializerException;
 use Fuz\GenyBundle\Unserializer\UnserializerInterface;
+use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
 class Unserializer extends BaseService
 {
     protected $unserializers = array();
 
-    public function unserialize($type, $contents)
+    public function unserialize(ResourceInterface $resource)
     {
+        if (!is_null($resource->getArray())) {
+            return $resource->getArray();
+        }
+
+        $format = $resource->getFormat();
+        $contents = $resource->getContents();
+
         foreach ($this->unserializers as $unserializer) {
-            if ($unserializer->supports($type)) {
-                return $unserializer->unserialize($contents);
+            if ($unserializer->supports($format)) {
+                $array = $unserializer->unserialize($contents);
+                $resource->setArray($array);
+
+                return $array;
             }
         }
 
-        throw new UnserializerException("Unserializer '{$type}' is not implemented.");
+        throw new UnserializerException("Unserializer '{$format}' is not implemented.");
     }
 
     public function hasUnserializer($name)

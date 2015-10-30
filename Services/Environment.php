@@ -58,8 +58,8 @@ class Environment
             $this->loader->load($resource);
             $this->unserializer->unserialize($resource);
 
-            // todo
-            $array = $this->unserialize($resource->getFormat(), $contents);
+            // todo (create normalizer according to resource type)
+
             $data = $this->normalizer->normalize($array);
             $resource->setData($data);
         }

@@ -11,4 +11,8 @@ interface ResourceInterface
     public function getFormat();
 
     public function getContents();
+    public function setContents($contents);
+
+    public function getArray();
+    public function setArray(array $array);
 }
