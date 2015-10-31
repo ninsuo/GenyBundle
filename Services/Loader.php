@@ -13,8 +13,8 @@ class Loader extends BaseService
 
     public function load(ResourceInterface $resource)
     {
-        if (!is_null($resource->getContents())) {
-            return $resource->getContents();
+        if (!is_null($resource->getLoaded())) {
+            return $resource->getLoaded();
         }
 
         $type = $resource->getLoader();
@@ -23,7 +23,7 @@ class Loader extends BaseService
         foreach ($this->loaders as $loader) {
             if ($loader->supports($type)) {
                 $contents = $loader->load($data);
-                $resource->setContents($contents);
+                $resource->setLoaded($contents);
 
                 return $contents;
             }

@@ -2,7 +2,8 @@
 
 namespace Fuz\GenyBundle\Services;
 
-use Fuz\GenyBundle\Data\Resource;
+use Fuz\GenyBundle\Data\Resources\Form;
+use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
 class Environment
 {
@@ -32,13 +33,13 @@ class Environment
         $this->validator    = $validator;
     }
 
-    public function getType(Resource $resource, $data = null)
+    public function getType(Form $form, $data = null)
     {
-        if ($resource->getType()) {
-            return $resource->getType();
+        if ($form->getType()) {
+            return $form->getType();
         }
 
-        $converted = $this->convertResource($resource);
+        $normalized = $this->normalizeResource($form);
 
         // Loading
 
@@ -46,89 +47,20 @@ class Environment
 
     }
 
-    public function getValidator(Resource $resource)
+    public function getValidator(Form $form)
     {
 
     }
 
-    protected function convertResource(Resource $resource)
+    protected function normalizeResource(ResourceInterface $resource)
     {
-        $data = $resource->getData();
-        if (is_null($data)) {
+        $normalized = $resource->getNormalized();
+        if (is_null($normalized)) {
             $this->loader->load($resource);
             $this->unserializer->unserialize($resource);
-
-            // todo (create normalizer according to resource type)
-
-            $data = $this->normalizer->normalize($array);
-            $resource->setData($data);
+            $normalized = $this->normalizer->normalize($resource);
         }
 
-        return $data;
+        return $normalized;
     }
-
-    protected function getConfig(array $options)
-    {
-        $config = $this->container->getParameter('geny');
-
-        return array_merge(array(
-            'loader' => $config['default_loader'],
-            'format' => $config['default_format'],
-           ), $options);
-    }
-
-    /*
-    protected $normalizer;
-    protected $builder;
-    protected $validator;
-    protected $initializer;
-
-    public function __construct(
-                                Normalizer $normalizer,
-                                Builder $builder,
-                                Validator $validator,
-                                Initializer $initializer)
-    {
-        $this->normalizer   = $normalizer;
-        $this->builder      = $builder;
-        $this->validator    = $validator;
-        $this->initializer  = $initializer;
-    }
-
-    public function getType()
-    {
-
-    }
-
-    public function load($resource, array $options = array())
-    {
-        $config = $this->getConfig($options);
-
-        // 1- Content Loader (fs, db, ...)
-        $contents = $this->loader->load($config['loader_type'], $resource);
-
-        // 2- Unserializer (json, xml, ...)
-        $data = $this->unserializer->unserialize($config['unserializer_type'], $contents);
-
-
-        // Normalizer
-        // TypeNormalizer
-        // OptionNormalizer
-        // ValidatorNormalizer
-
-
-        // 3- Geny Normalizer
-        $form = $this->normalizer->normalizeForm($resource, $data);
-
-        // 4- Symfony FormType Builder
-        $type = $this->builder->build($form);
-
-        // 5- Data Initializer
-        $this->initializer->initialize($type, $form);
-
-        return $type;
-    }
-
-
-    */
 }

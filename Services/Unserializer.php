@@ -13,8 +13,12 @@ class Unserializer extends BaseService
 
     public function unserialize(ResourceInterface $resource)
     {
-        if (!is_null($resource->getArray())) {
-            return $resource->getArray();
+        if (is_null($resource->getLoaded())) {
+            throw new UnserializerException("Resource should be loaded before being unserialized.");
+        }
+
+        if (!is_null($resource->getUnserialized())) {
+            return $resource->getUnserialized();
         }
 
         $format = $resource->getFormat();
@@ -23,7 +27,7 @@ class Unserializer extends BaseService
         foreach ($this->unserializers as $unserializer) {
             if ($unserializer->supports($format)) {
                 $array = $unserializer->unserialize($contents);
-                $resource->setArray($array);
+                $resource->setUnserialized($array);
 
                 return $array;
             }

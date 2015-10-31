@@ -8,10 +8,10 @@ abstract class AbstractResource implements ResourceInterface
     protected $resource;
     protected $format;
 
-    protected $contents  = null;
-    protected $array     = null;
-    protected $type      = null;
-    protected $validator = null;
+    protected $loaded       = null;
+    protected $unserialized = null;
+    protected $type         = null;
+    protected $validator    = null;
 
     public function __construct($loader, $resource, $format)
     {
@@ -53,26 +53,26 @@ abstract class AbstractResource implements ResourceInterface
         return $this;
     }
 
-    public function getContents()
+    public function getLoaded()
     {
-        return $this->contents;
+        return $this->loaded;
     }
 
-    public function setContents($contents)
+    public function setLoaded($contents)
     {
-        $this->contents = $contents;
+        $this->loaded = $contents;
 
         return $this;
     }
 
-    public function getArray()
+    public function getUnserialized()
     {
-        return $this->array;
+        return $this->unserialized;
     }
 
-    public function setArray(array $array)
+    public function setUnserialized(array $array)
     {
-        $this->array = $array;
+        $this->unserialized = $array;
         return $this;
     }
 

@@ -5,14 +5,15 @@ namespace Fuz\GenyBundle\Data\Resources;
 interface ResourceInterface
 {
     public function getLoader();
-
     public function getResource();
-
     public function getFormat();
 
-    public function getContents();
-    public function setContents($contents);
+    public function getLoaded();
+    public function setLoaded($contents);
 
-    public function getArray();
-    public function setArray(array $array);
+    public function getUnserialized();
+    public function setUnserialized(array $array);
+
+    public function getNormalized();
+    public function setNormalized($object);
 }
