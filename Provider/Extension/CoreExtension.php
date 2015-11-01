@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Extension;
+namespace Fuz\GenyBundle\Provider\Extension;
 
 use Fuz\GenyBundle\Data\Resources\Type;
 use Fuz\GenyBundle\Data\Resources\Option;

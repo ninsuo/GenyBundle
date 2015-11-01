@@ -10,7 +10,7 @@ class ExtensionCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('geny')) {
+        if (!$container->has('geny.extension')) {
             return;
         }
 

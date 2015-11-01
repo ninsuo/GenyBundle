@@ -2,14 +2,18 @@ parameters:
     geny.class: Fuz\GenyBundle\Services\Environment
     geny.base.class: Fuz\GenyBundle\Base\BaseService
     geny.context.class: Fuz\GenyBundle\Data\Context
-    geny.extension.class: Fuz\GenyBundle\Services\Extension
-    geny.extension.core.class: Fuz\GenyBundle\Extension\CoreExtension
-    geny.loader.class: Fuz\GenyBundle\Services\Loader
-    geny.loader.file.class: Fuz\GenyBundle\Loader\FileLoader
-    geny.unserializer.class: Fuz\GenyBundle\Services\Unserializer
-    geny.unserializer.json.class: Fuz\GenyBundle\Unserializer\JsonUnserializer
+    geny.extension.class: Fuz\GenyBundle\Provider\Extension
+    geny.extension.core.class: Fuz\GenyBundle\Provider\Extension\CoreExtension
+    geny.loader.class: Fuz\GenyBundle\Provider\Loader
+    geny.loader.file.class: Fuz\GenyBundle\Provider\Loader\FileLoader
+    geny.unserializer.class: Fuz\GenyBundle\Provider\Unserializer
+    geny.unserializer.json.class: Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer
+    geny.normalizer.class: Fuz\GenyBundle\Provider\Normalizer
+    geny.normalizer.form.class: Fuz\GenyBundle\Provider\Normalizer\Form
+    geny.normalizer.type.class: Fuz\GenyBundle\Provider\Normalizer\Type
+    geny.normalizer.option.class: Fuz\GenyBundle\Provider\Normalizer\Option
+    geny.normalizer.validator.class: Fuz\GenyBundle\Provider\Normalizer\Validator
     geny.provider.class: Fuz\GenyBundle\Services\Provider
-    geny.normalizer.class: Fuz\GenyBundle\Services\Normalizer
     geny.builder.class: Fuz\GenyBundle\Services\Builder
     geny.validator.class: Fuz\GenyBundle\Services\Validator
     geny.initializer.class: Fuz\GenyBundle\Services\Initializer
@@ -62,15 +66,39 @@ services:
         tags:
             - { name: geny.unserializer }
 
+    geny.normalizer:
+        class: %geny.normalizer.class%
+        parent: geny.base
+        arguments: []
+
+    geny.normalizer.form:
+        class: %geny.normalizer.form.class%
+        parent: geny.base
+        tags:
+            - { name: geny.normalizer }
+
+    geny.normalizer.type:
+        class: %geny.normalizer.type.class%
+        parent: geny.base
+        tags:
+            - { name: geny.normalizer }
+
+    geny.normalizer.option:
+        class: %geny.normalizer.option.class%
+        parent: geny.base
+        tags:
+            - { name: geny.normalizer }
+
+    geny.normalizer.validator:
+        class: %geny.normalizer.validator.class%
+        parent: geny.base
+        tags:
+            - { name: geny.normalizer }
+
     geny.provider:
         class: %geny.provider.class%
         parent: geny.base
         arguments: []
-
-    geny.normalizer:
-        class: %geny.normalizer.class%
-        parent: geny.base
-        arguments: [@geny.context]
 
     geny.builder:
         class: %geny.builder.class%

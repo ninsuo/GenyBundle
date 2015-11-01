@@ -1,10 +1,10 @@
 <?php
 
-namespace Fuz\GenyBundle\Services;
+namespace Fuz\GenyBundle\Provider;
 
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\UnserializerException;
-use Fuz\GenyBundle\Unserializer\UnserializerInterface;
+use Fuz\GenyBundle\Provider\Unserializer\UnserializerInterface;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
 class Unserializer extends BaseService

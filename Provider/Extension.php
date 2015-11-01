@@ -1,10 +1,10 @@
 <?php
 
-namespace Fuz\GenyBundle\Services;
+namespace Fuz\GenyBundle\Provider;
 
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\ExtensionException;
-use Fuz\GenyBundle\Extension\ExtensionInterface;
+use Fuz\GenyBundle\Provider\Extension\ExtensionInterface;
 
 class Extension extends BaseService
 {

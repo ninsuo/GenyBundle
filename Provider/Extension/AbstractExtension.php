@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Extension;
+namespace Fuz\GenyBundle\Provider\Extension;
 
 abstract class AbstractExtension implements ExtensionInterface
 {

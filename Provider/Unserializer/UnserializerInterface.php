@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Unserializer;
+namespace Fuz\GenyBundle\Provider\Unserializer;
 
 interface UnserializerInterface
 {

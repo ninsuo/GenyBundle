@@ -4,6 +4,10 @@ namespace Fuz\GenyBundle\Services;
 
 use Fuz\GenyBundle\Data\Resources\Form;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
+use Fuz\GenyBundle\Provider\Extension;
+use Fuz\GenyBundle\Provider\Loader;
+use Fuz\GenyBundle\Provider\Unserializer;
+use Fuz\GenyBundle\Provider\Normalizer;
 
 class Environment
 {
