@@ -4,10 +4,11 @@ namespace Fuz\GenyBundle\Services;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Entity\Form;
 use Fuz\GenyBundle\Exception\BuilderException;
 
-class Builder
+class Builder extends BaseService
 {
     protected $formFactory;
 

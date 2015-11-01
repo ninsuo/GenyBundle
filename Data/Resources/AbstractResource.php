@@ -10,6 +10,8 @@ abstract class AbstractResource implements ResourceInterface
 
     protected $loaded       = null;
     protected $unserialized = null;
+    protected $normalized   = null;
+
     protected $type         = null;
     protected $validator    = null;
 
@@ -73,6 +75,17 @@ abstract class AbstractResource implements ResourceInterface
     public function setUnserialized(array $array)
     {
         $this->unserialized = $array;
+        return $this;
+    }
+
+    public function getNormalized()
+    {
+        return $this->normalized;
+    }
+
+    public function setNormalized($object)
+    {
+        $this->normalized = $object;
         return $this;
     }
 

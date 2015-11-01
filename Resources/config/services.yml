@@ -9,10 +9,10 @@ parameters:
     geny.unserializer.class: Fuz\GenyBundle\Provider\Unserializer
     geny.unserializer.json.class: Fuz\GenyBundle\Provider\Unserializer\JsonUnserializer
     geny.normalizer.class: Fuz\GenyBundle\Provider\Normalizer
-    geny.normalizer.form.class: Fuz\GenyBundle\Provider\Normalizer\Form
-    geny.normalizer.type.class: Fuz\GenyBundle\Provider\Normalizer\Type
-    geny.normalizer.option.class: Fuz\GenyBundle\Provider\Normalizer\Option
-    geny.normalizer.validator.class: Fuz\GenyBundle\Provider\Normalizer\Validator
+    geny.normalizer.form.class: Fuz\GenyBundle\Provider\Normalizer\FormNormalizer
+    geny.normalizer.type.class: Fuz\GenyBundle\Provider\Normalizer\TypeNormalizer
+    geny.normalizer.option.class: Fuz\GenyBundle\Provider\Normalizer\OptionNormalizer
+    geny.normalizer.validator.class: Fuz\GenyBundle\Provider\Normalizer\ValidatorNormalizer
     geny.provider.class: Fuz\GenyBundle\Services\Provider
     geny.builder.class: Fuz\GenyBundle\Services\Builder
     geny.validator.class: Fuz\GenyBundle\Services\Validator
@@ -22,7 +22,7 @@ parameters:
 services:
     geny:
         class: %geny.class%
-        arguments: [@geny.normalizer, @geny.builder, @geny.initializer, @geny.validator]
+        arguments: [@geny.extension, @geny.loader, @geny.unserializer, @geny.normalizer, @geny.builder, @geny.validator, @geny.initializer]
 
     geny.base:
         class: %geny.base.class%
@@ -108,7 +108,7 @@ services:
     geny.validator:
         class: %geny.validator.class%
         parent: geny.base
-        arguments: [@geny.agent]
+        arguments: []
 
     geny.initializer:
         class: %geny.initializer.class%

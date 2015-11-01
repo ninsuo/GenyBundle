@@ -3,9 +3,10 @@
 namespace Fuz\GenyBundle\Services;
 
 use Symfony\Component\Form\FormInterface;
+use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Entity\Form;
 
-class Initializer
+class Initializer extends BaseService
 {
 
     public function initialize(FormInterface $type, Form $form, $scope = 0)

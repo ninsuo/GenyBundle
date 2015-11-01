@@ -2,18 +2,10 @@
 
 namespace Fuz\GenyBundle\Services;
 
-use Fuz\GenyBundle\Agent\Agent;
-use Fuz\GenyBundle\Entity\Form;
+use Fuz\GenyBundle\Base\BaseService;
 
-class Validator
+class Validator extends BaseService
 {
-
-    protected $agent;
-
-    public function __construct(Agent $agent)
-    {
-        $this->agent = $agent;
-    }
 
     public function validate($resource, $parameters) {
 

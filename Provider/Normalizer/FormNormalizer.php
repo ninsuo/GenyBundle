@@ -15,7 +15,7 @@ class FormNormalizer extends BaseService implements NormalizerInterface
 
     public function supports($class)
     {
-        return self::CLASS_NAME === get_class($class);
+        return self::CLASS_NAME === $class;
     }
 
     public function getName()

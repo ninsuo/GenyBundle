@@ -22,7 +22,7 @@ class Unserializer extends BaseService
         }
 
         $format = $resource->getFormat();
-        $contents = $resource->getContents();
+        $contents = $resource->getLoaded();
 
         foreach ($this->unserializers as $unserializer) {
             if ($unserializer->supports($format)) {
