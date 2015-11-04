@@ -2,15 +2,13 @@
 
 namespace Fuz\GenyBundle\Provider\Normalizer;
 
-use Fuz\GenyBundle\Base\BaseService;
-
-class FormNormalizer extends BaseService implements NormalizerInterface
+class FormNormalizer extends BaseFormNormalizer implements NormalizerInterface
 {
     const CLASS_NAME = 'Fuz\GenyBundle\Data\Resources\Form';
 
     public function normalize($resource)
     {
-
+        return $this->normalizeForm($resource);
     }
 
     public function supports($class)

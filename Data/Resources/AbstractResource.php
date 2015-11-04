@@ -4,6 +4,11 @@ namespace Fuz\GenyBundle\Data\Resources;
 
 abstract class AbstractResource implements ResourceInterface
 {
+    const STATE_PENDING    = 'pending';
+    const STATE_INPROGRESS = 'in progress';
+    const STATE_INCOMPLETE = 'incomplete';
+    const STATE_NORMALIZED = 'done';
+
     protected $loader;
     protected $resource;
     protected $format;
@@ -14,6 +19,8 @@ abstract class AbstractResource implements ResourceInterface
 
     protected $type         = null;
     protected $validator    = null;
+
+    protected $state        = self::PENDING;
 
     public function __construct($loader, $resource, $format)
     {
