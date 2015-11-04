@@ -8,7 +8,7 @@ use Fuz\GenyBundle\Exception\NormalizerException;
 
 abstract class BaseNormalizer extends BaseService implements NormalizerInterface
 {
-    public function validateConstraints(ResourceInterface $resource, array $required, array $optional)
+    public function validateRequirements(ResourceInterface $resource, array $required, array $optional)
     {
         $keys = array_keys($resource->getUnserialized());
 
