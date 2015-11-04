@@ -13,6 +13,10 @@ class Normalizer extends BaseService
 
     public function normalize(ResourceInterface $resource)
     {
+        if (is_null($resource->getUnserialized())) {
+            throw new NormalizerException("Resource should be unserialized before being normalized.");
+        }
+
         if (!is_null($resource->getNormalized())) {
             return $resource->getNormalized();
         }
@@ -21,10 +25,10 @@ class Normalizer extends BaseService
 
         foreach ($this->normalizers as $normalizer) {
             if ($normalizer->supports($class)) {
-                $contents = $normalizer->normalize($resource);
-                $resource->setLoaded($contents);
+                $normalized = $normalizer->normalize($resource);
+                $resource->setNormalized($normalized);
 
-                return $contents;
+                return $normalized;
             }
         }
 
