@@ -12,8 +12,10 @@ class TypeNormalizer extends BaseService implements NormalizerInterface
 
     public function normalize(ResourceInterface $resource)
     {
-        $resource->setNormalized(new Type());
+        $type = new Type();
+        $resource->setNormalized($type);
 
+        return $type;
     }
 
     public function supports($class)

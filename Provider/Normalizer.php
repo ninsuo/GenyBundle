@@ -21,10 +21,8 @@ class Normalizer extends BaseService
             return $resource->getNormalized();
         }
 
-        $class = get_class($resource);
-
         foreach ($this->normalizers as $normalizer) {
-            if ($normalizer->supports($class)) {
+            if ($normalizer->supports($resource)) {
                 $normalized = $normalizer->normalize($resource);
                 $resource->setNormalized($normalized);
 

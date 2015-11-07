@@ -43,10 +43,12 @@ class Environment
             return $form->getType();
         }
 
-        $normalized = $this->normalizeResource($form);
+        $normalized = $this->prepare($form);
+
+        \Symfony\Component\VarDumper\VarDumper::dump($normalized);
+
 
         // Loading
-
 
 
     }
@@ -56,7 +58,7 @@ class Environment
 
     }
 
-    protected function normalizeResource(ResourceInterface $resource)
+    public function prepare(ResourceInterface $resource)
     {
         $normalized = $resource->getNormalized();
         if (is_null($normalized)) {

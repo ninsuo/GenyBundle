@@ -6,7 +6,6 @@ abstract class AbstractResource implements ResourceInterface
 {
     const STATE_PENDING    = 'pending';
     const STATE_INPROGRESS = 'in progress';
-    const STATE_INCOMPLETE = 'incomplete';
     const STATE_NORMALIZED = 'done';
 
     protected $loader;
@@ -20,7 +19,7 @@ abstract class AbstractResource implements ResourceInterface
     protected $type         = null;
     protected $validator    = null;
 
-    protected $state        = self::PENDING;
+    protected $state        = self::STATE_PENDING;
 
     public function __construct($loader, $resource, $format)
     {
