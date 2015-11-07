@@ -2,7 +2,6 @@
 
 namespace Fuz\GenyBundle\Services;
 
-use Fuz\GenyBundle\Data\Resources\Form;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 use Fuz\GenyBundle\Provider\Extension;
 use Fuz\GenyBundle\Provider\Loader;
@@ -37,36 +36,44 @@ class Environment
         $this->validator    = $validator;
     }
 
-    public function getType(Form $form, $data = null)
-    {
-        if ($form->getType()) {
-            return $form->getType();
-        }
-
-        $normalized = $this->prepare($form);
-
-        \Symfony\Component\VarDumper\VarDumper::dump($normalized);
-
-
-        // Loading
-
-
-    }
-
-    public function getValidator(Form $form)
-    {
-
-    }
-
     public function prepare(ResourceInterface $resource)
     {
-        $normalized = $resource->getNormalized();
-        if (is_null($normalized)) {
-            $this->loader->load($resource);
-            $this->unserializer->unserialize($resource);
-            $normalized = $this->normalizer->normalize($resource);
+        if (ResourceInterface::STATE_INPROGRESS === $resource->getState()) {
+            return false;
         }
 
-        return $normalized;
+        if (ResourceInterface::STATE_PENDING !== $resource->getState()) {
+            return ResourceInterface::STATE_FAILED !== $resource->getState();
+        }
+
+        $resource->setState(ResourceInterface::STATE_INPROGRESS);
+
+        try
+        {
+            $this->loader->load($resource);
+            $this->unserializer->unserialize($resource);
+            $this->normalizer->normalize($resource);
+        } catch (\Exception $ex) {
+            $resource->setState(ResourceInterface::STATE_FAILED);
+
+            throw $ex;
+        }
+
+        $resource->setState(ResourceInterface::STATE_DONE);
+
+        return true;
     }
+
+    /*
+     * todo:
+     *
+        if (!$object->getType()->getNormalized()->isCompound()) {
+            throw new NormalizerException(sprintf("The 'fields' key should only used on compound fields, '%s' uses it on '%s'.", $resource, $resource->getType()->getNormalized()->getName()));
+        }
+     *
+     * we should check if 'fields' is only implemented on compound fields
+
+     *
+     */
+
 }

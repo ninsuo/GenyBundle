@@ -2,15 +2,15 @@
 
 namespace Fuz\GenyBundle\Data\Resources;
 
+use Fuz\GenyBundle\Data\Normalized\NormalizedInterface;
+
 abstract class AbstractResource implements ResourceInterface
 {
-    const STATE_PENDING    = 'pending';
-    const STATE_INPROGRESS = 'in progress';
-    const STATE_NORMALIZED = 'done';
-
     protected $loader;
     protected $resource;
     protected $format;
+
+    protected $isParent;
 
     protected $loaded       = null;
     protected $unserialized = null;
@@ -21,11 +21,12 @@ abstract class AbstractResource implements ResourceInterface
 
     protected $state        = self::STATE_PENDING;
 
-    public function __construct($loader, $resource, $format)
+    public function __construct($loader, $resource, $format, $isParent = true)
     {
         $this->loader   = $loader;
         $this->resource = $resource;
         $this->format   = $format;
+        $this->isParent = $isParent;
     }
 
     public function getLoader()
@@ -61,6 +62,11 @@ abstract class AbstractResource implements ResourceInterface
         return $this;
     }
 
+    public function isParent()
+    {
+        return $this->isParent;
+    }
+
     public function getLoaded()
     {
         return $this->loaded;
@@ -89,7 +95,7 @@ abstract class AbstractResource implements ResourceInterface
         return $this->normalized;
     }
 
-    public function setNormalized($object)
+    public function setNormalized(NormalizedInterface $object)
     {
         $this->normalized = $object;
         return $this;
@@ -114,6 +120,25 @@ abstract class AbstractResource implements ResourceInterface
     public function setValidator($validator)
     {
         $this->validator = $validator;
+        return $this;
+    }
+
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function setState($state) {
+        if (!in_array($state, [
+            self::STATE_PENDING,
+            self::STATE_INPROGRESS,
+            self::STATE_DONE,
+            self::STATE_FAILED
+        ])) {
+            throw new \LogicException(sprintf("Invalid state given: %s", $state));
+        }
+
+        $this->state = $state;
         return $this;
     }
 }

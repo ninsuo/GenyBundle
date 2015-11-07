@@ -2,7 +2,7 @@
 
 namespace Fuz\GenyBundle\Data\Normalized;
 
-class Validator extends Form
+class Validator extends Form implements NormalizedInterface
 {
 
 }

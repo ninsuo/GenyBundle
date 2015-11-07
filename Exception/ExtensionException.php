@@ -2,7 +2,7 @@
 
 namespace Fuz\GenyBundle\Exception;
 
-class ExtensionException extends \LogicException
+class ExtensionException extends BaseException
 {
 
 }

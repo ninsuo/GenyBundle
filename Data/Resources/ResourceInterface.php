@@ -2,8 +2,15 @@
 
 namespace Fuz\GenyBundle\Data\Resources;
 
+use Fuz\GenyBundle\Data\Normalized\NormalizedInterface;
+
 interface ResourceInterface
 {
+    const STATE_PENDING    = 'pending';
+    const STATE_INPROGRESS = 'in progress';
+    const STATE_DONE       = 'done';
+    const STATE_FAILED     = 'failed';
+
     /**
      * @return string
      */
@@ -40,12 +47,22 @@ interface ResourceInterface
     public function setUnserialized(array $array);
 
     /**
-     * @return ResourceInterface
+     * @return NormalizedInterface
      */
     public function getNormalized();
 
     /**
-     * @param ResourceInterface $object
+     * @param NormalizedInterface $object
      */
-    public function setNormalized($object);
+    public function setNormalized(NormalizedInterface $object);
+
+    /**
+     * @return string
+     */
+    public function getState();
+
+    /**
+     * @param string $state
+     */
+    public function setState($state);
 }

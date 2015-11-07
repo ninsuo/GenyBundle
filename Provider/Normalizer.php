@@ -13,7 +13,7 @@ class Normalizer extends BaseService
 
     public function normalize(ResourceInterface $resource)
     {
-        if (is_null($resource->getUnserialized())) {
+        if ($resource->isParent() && is_null($resource->getUnserialized())) {
             throw new NormalizerException("Resource should be unserialized before being normalized.");
         }
 

@@ -13,6 +13,10 @@ class Unserializer extends BaseService
 
     public function unserialize(ResourceInterface $resource)
     {
+        if (!$resource->isParent()) {
+            return null;
+        }
+
         if (is_null($resource->getLoaded())) {
             throw new UnserializerException("Resource should be loaded before being unserialized.");
         }

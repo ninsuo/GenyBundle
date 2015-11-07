@@ -3,10 +3,10 @@
 namespace Fuz\GenyBundle\Data\Normalized;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Fuz\GenyBundle\Data\Resources\Type;
 
-class Form
+class Form implements NormalizedInterface
 {
-
     /**
      * @var string
      */
@@ -54,6 +54,16 @@ class Form
     }
 
     /**
+     * @param string $resource
+     * @return Form
+     */
+    public function setResource($resource)
+    {
+        $this->resource = $resource;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getName()
@@ -62,11 +72,31 @@ class Form
     }
 
     /**
+     * @param string $name
+     * @return Form
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
      * @return Type
      */
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @param Type $type
+     * @return Form
+     */
+    public function setType(Type $type)
+    {
+        $this->type = $type;
+        return $this;
     }
 
     /**
@@ -99,36 +129,6 @@ class Form
     public function getData()
     {
         return $this->data;
-    }
-
-    /**
-     * @param string $resource
-     * @return Form
-     */
-    public function setResource($resource)
-    {
-        $this->resource = $resource;
-        return $this;
-    }
-
-    /**
-     * @param string $name
-     * @return Form
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @param Type $type
-     * @return Form
-     */
-    public function setType(Type $type)
-    {
-        $this->type = $type;
-        return $this;
     }
 
     /**

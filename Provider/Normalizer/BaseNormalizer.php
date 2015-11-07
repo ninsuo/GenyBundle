@@ -4,12 +4,11 @@ namespace Fuz\GenyBundle\Provider\Normalizer;
 
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
+use Fuz\GenyBundle\Exception\BaseException;
 use Fuz\GenyBundle\Exception\NormalizerException;
 
 abstract class BaseNormalizer extends BaseService implements NormalizerInterface
 {
-    protected $stack = [];
-
     public function validateRequirements(ResourceInterface $resource, array $required, array $optional)
     {
         $keys = array_keys($resource->getUnserialized());
@@ -25,5 +24,27 @@ abstract class BaseNormalizer extends BaseService implements NormalizerInterface
         if (count($unexpected)) {
             throw new NormalizerException("Unexpected key(s) are present in '%s': %s", $resource, implode(', ', $unexpected));
         }
+    }
+
+    public function normalizeName(ResourceInterface $resource)
+    {
+        $object = $resource->getNormalized();
+        $array = $resource->getUnserialized();
+
+        if (!preg_match("/^[0-9a-zA-Z_-]+$/", $array['name'])) {
+            throw new NormalizerException(sprintf("Resource '%s' has an invalid name: %s.", $resource, $array['name']));
+        }
+
+        $object->setName($array['name']);
+    }
+
+    public function throwContextException(ResourceInterface $resource, BaseException $ex)
+    {
+        return new NormalizerException(sprintf(
+           "'%s' > [%s] %s",
+           $resource,
+           substr($c = get_class($ex), strrpos($c, "\\") + 1),
+           $ex->getMessage()
+        ));
     }
 }

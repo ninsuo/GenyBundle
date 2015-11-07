@@ -2,7 +2,7 @@
 
 namespace Fuz\GenyBundle\Data\Normalized;
 
-class Type
+class Type implements NormalizedInterface
 {
     const VISIBILITY_PUBLIC  = 'public';
     const VISIBILITY_PRIVATE = 'private';
