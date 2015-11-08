@@ -11,6 +11,24 @@ class Validator extends BaseService
 {
     protected $validators = array();
 
+    public function boot(ResourceInterface $resource)
+    {
+        if (is_null($resource->getNormalized())) {
+            throw new ValidatorException("Resource should be normalized before being validated.");
+        }
+
+        foreach ($this->validators as $validator) {
+            if ($validator->supports($resource)) {
+                $constraints = $validator->boot($resource);
+                $resource->setValidator($constraints);
+
+                return $constraints;
+            }
+        }
+
+        throw new ValidatorException(sprintf("No validator found for class '%s'.", get_class($resource)));
+    }
+
     public function validate(ResourceInterface $resource)
     {
         if (is_null($resource->getNormalized())) {
@@ -19,10 +37,10 @@ class Validator extends BaseService
 
         foreach ($this->validators as $validator) {
             if ($validator->supports($resource)) {
-                $normalized = $validator->validate($resource);
-                $resource->setValidator($normalized);
 
-                return $normalized;
+                // ...
+
+                return $validator->validate($resource);
             }
         }
 

@@ -7,6 +7,7 @@ use Fuz\GenyBundle\Provider\Extension;
 use Fuz\GenyBundle\Provider\Loader;
 use Fuz\GenyBundle\Provider\Unserializer;
 use Fuz\GenyBundle\Provider\Normalizer;
+use Fuz\GenyBundle\Provider\Validator;
 
 class Environment
 {
@@ -53,7 +54,7 @@ class Environment
             $this->loader->load($resource);
             $this->unserializer->unserialize($resource);
             $this->normalizer->normalize($resource);
-            $this->validator->validate($resource);
+            $this->validator->boot($resource);
 
         } catch (\Exception $ex) {
             $resource->setState(ResourceInterface::STATE_FAILED);

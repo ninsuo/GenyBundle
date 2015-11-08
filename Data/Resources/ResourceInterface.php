@@ -3,7 +3,7 @@
 namespace Fuz\GenyBundle\Data\Resources;
 
 use Fuz\GenyBundle\Data\Normalized\NormalizedInterface;
-use Fuz\GenyBundle\Provider\Validator\ValidatorInterface;
+use Fuz\GenyBundle\Data\Constraints;
 
 interface ResourceInterface
 {
@@ -68,12 +68,12 @@ interface ResourceInterface
     public function setState($state);
 
     /**
-     * @return ValidatorInterface
+     * @return Constraints
      */
     public function getValidator();
 
     /**
-     * @param ValidatorInterface $validator
+     * @param Constraints $validator
      */
-    public function setValidator(ValidatorInterface $validator);
+    public function setValidator(Constraints $validator);
 }
