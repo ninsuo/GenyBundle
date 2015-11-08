@@ -53,6 +53,8 @@ class Environment
             $this->loader->load($resource);
             $this->unserializer->unserialize($resource);
             $this->normalizer->normalize($resource);
+            $this->validator->validate($resource);
+
         } catch (\Exception $ex) {
             $resource->setState(ResourceInterface::STATE_FAILED);
 
@@ -63,17 +65,5 @@ class Environment
 
         return true;
     }
-
-    /*
-     * todo:
-     *
-        if (!$object->getType()->getNormalized()->isCompound()) {
-            throw new NormalizerException(sprintf("The 'fields' key should only used on compound fields, '%s' uses it on '%s'.", $resource, $resource->getType()->getNormalized()->getName()));
-        }
-     *
-     * we should check if 'fields' is only implemented on compound fields
-
-     *
-     */
 
 }

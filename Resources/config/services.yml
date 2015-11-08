@@ -14,8 +14,12 @@ parameters:
     geny.normalizer.option.class: Fuz\GenyBundle\Provider\Normalizer\OptionNormalizer
     geny.normalizer.validator.class: Fuz\GenyBundle\Provider\Normalizer\ValidatorNormalizer
     geny.provider.class: Fuz\GenyBundle\Services\Provider
+    geny.validator.class: Fuz\GenyBundle\Provider\Validator
+    geny.validator.form.class: Fuz\GenyBundle\Provider\Validator\FormValidator
+    geny.validator.type.class: Fuz\GenyBundle\Provider\Validator\TypeValidator
+    geny.validator.option.class: Fuz\GenyBundle\Provider\Validator\OptionValidator
+    geny.validator.validator.class: Fuz\GenyBundle\Provider\Validator\ValidatorValidator
     geny.builder.class: Fuz\GenyBundle\Services\Builder
-    geny.validator.class: Fuz\GenyBundle\Services\Validator
     geny.initializer.class: Fuz\GenyBundle\Services\Initializer
     geny.form.type.container.class: Fuz\GenyBundle\Form\ContainerType
 
@@ -100,15 +104,39 @@ services:
         parent: geny.base
         arguments: []
 
-    geny.builder:
-        class: %geny.builder.class%
-        parent: geny.base
-        arguments: [@form.factory]
-
     geny.validator:
         class: %geny.validator.class%
         parent: geny.base
         arguments: []
+
+    geny.validator.form:
+        class: %geny.validator.form.class%
+        parent: geny.base
+        tags:
+            - { name: geny.validator }
+
+    geny.validator.type:
+        class: %geny.validator.type.class%
+        parent: geny.base
+        tags:
+            - { name: geny.validator }
+
+    geny.validator.option:
+        class: %geny.validator.option.class%
+        parent: geny.base
+        tags:
+            - { name: geny.validator }
+
+    geny.validator.validator:
+        class: %geny.validator.validator.class%
+        parent: geny.base
+        tags:
+            - { name: geny.validator }
+
+    geny.builder:
+        class: %geny.builder.class%
+        parent: geny.base
+        arguments: [@form.factory]
 
     geny.initializer:
         class: %geny.initializer.class%

@@ -3,6 +3,7 @@
 namespace Fuz\GenyBundle\Data\Resources;
 
 use Fuz\GenyBundle\Data\Normalized\NormalizedInterface;
+use Fuz\GenyBundle\Provider\Validator\ValidatorInterface;
 
 abstract class AbstractResource implements ResourceInterface
 {
@@ -117,7 +118,7 @@ abstract class AbstractResource implements ResourceInterface
         return $this->validator;
     }
 
-    public function setValidator($validator)
+    public function setValidator(ValidatorInterface $validator)
     {
         $this->validator = $validator;
         return $this;

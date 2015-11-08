@@ -16,13 +16,13 @@ class FormNormalizer extends BaseFormNormalizer implements NormalizerInterface
         return $this->normalizeForm($resource);
     }
 
-    public function supports($class)
+    public function supports($object)
     {
-        return self::CLASS_NAME === get_class($class);
+        return self::CLASS_NAME === get_class($object);
     }
 
     public function getName()
     {
-        return 'Form';
+        return 'FormNormalizer';
     }
 }

@@ -1,12 +1,13 @@
 <?php
 
-namespace Fuz\GenyBundle\Provider\Normalizer;
+namespace Fuz\GenyBundle\Provider\Validator;
 
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
-interface NormalizerInterface
+interface ValidatorInterface
 {
-    public function normalize(ResourceInterface $resource);
+    public function validate(ResourceInterface $resource);
     public function supports($object);
     public function getName();
 }
+

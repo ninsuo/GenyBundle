@@ -18,13 +18,13 @@ class ValidatorNormalizer extends BaseService implements NormalizerInterface
         return $validator;
     }
 
-    public function supports($class)
+    public function supports($object)
     {
-        return self::CLASS_NAME === get_class($class);
+        return self::CLASS_NAME === get_class($object);
     }
 
     public function getName()
     {
-        return 'Validator';
+        return 'ValidatorNormalizer';
     }
 }
