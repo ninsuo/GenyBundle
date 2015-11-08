@@ -33,7 +33,7 @@ class Provider extends BaseService
 
     public function getValidator($name) {
         foreach ($this->get('geny.extension')->getExtensions() as $extension) {
-            $validators = $extension->getOptions();
+            $validators = $extension->getValidators();
             if (array_key_exists($name, $validators)) {
                 return $validators[$name];
             }

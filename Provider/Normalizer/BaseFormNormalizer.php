@@ -54,7 +54,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
         try {
             $type = $this->get('geny.provider')->getType($array['type']);
         } catch (TypeException $ex) {
-            throw new NormalizerException(sprintf("'%s' > %s", $resource,  $ex->getMessage()));
+            throw $this->throwContextException($resource, $ex);
         }
 
         try
@@ -81,7 +81,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
             try {
                 $option = $this->get('geny.provider')->getOption($optionName);
             } catch (OptionException $ex) {
-                throw new NormalizerException(sprintf("'%s' > %s", $resource,  $ex->getMessage()));
+                throw $this->throwContextException($resource, $ex);
             }
 
             try
@@ -110,7 +110,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
             try {
                 $validator = $this->get('geny.provider')->getValidator($validatorName);
             } catch (ValidatorException $ex) {
-                throw new NormalizerException(sprintf("'%s' > %s", $resource,  $ex->getMessage()));
+                throw $this->throwContextException($resource, $ex);
             }
 
             try

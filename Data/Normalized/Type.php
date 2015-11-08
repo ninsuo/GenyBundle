@@ -2,12 +2,15 @@
 
 namespace Fuz\GenyBundle\Data\Normalized;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Type implements NormalizedInterface
 {
     const VISIBILITY_PUBLIC  = 'public';
     const VISIBILITY_PRIVATE = 'private';
-    const COMPOUND_TRUE      = "true";
-    const COMPOUND_FALSE     = "false";
+
+    const COMPOUND_TRUE  = "true";
+    const COMPOUND_FALSE = "false";
 
     /**
      * @var string
@@ -15,14 +18,34 @@ class Type implements NormalizedInterface
     protected $name;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
-    protected $supportsOptions;
+    protected $mainOptions;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
-    protected $supportsValidators;
+    protected $advancedOptions;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $specialOptions;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $mainValidators;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $advancedValidators;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $specialValidators;
 
     /**
      * @var string
@@ -36,10 +59,16 @@ class Type implements NormalizedInterface
 
     public function __construct()
     {
-        $this->supportsOptions    = array();
-        $this->supportsValidators = array();
-        $this->visibility         = self::VISIBILITY_PUBLIC;
-        $this->compound           = false;
+        $this->mainOptions     = new ArrayCollection();
+        $this->advancedOptions = new ArrayCollection();
+        $this->specialOptions  = new ArrayCollection();
+
+        $this->mainValidators     = new ArrayCollection();
+        $this->advancedValidators = new ArrayCollection();
+        $this->specialValidators  = new ArrayCollection();
+
+        $this->visibility = self::VISIBILITY_PUBLIC;
+        $this->compound   = false;
     }
 
     /**
@@ -48,38 +77,6 @@ class Type implements NormalizedInterface
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @return array
-     */
-    public function getSupportsOptions()
-    {
-        return $this->supportsOptions;
-    }
-
-    /**
-     * @return array
-     */
-    public function getSupportsValidators()
-    {
-        return $this->supportsValidators;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVisibility()
-    {
-        return $this->visibility;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isCompound()
-    {
-        return $this->compound;
     }
 
     /**
@@ -93,23 +90,59 @@ class Type implements NormalizedInterface
     }
 
     /**
-     * @param array $supportsOptions
-     * @return Type
+     * @return ArrayCollection
      */
-    public function setSupportsOptions(array $supportsOptions)
+    public function getMainOptions()
     {
-        $this->supportsOptions = $supportsOptions;
-        return $this;
+        return $this->mainOptions;
     }
 
     /**
-     * @param array $supportsValidators
-     * @return Type
+     * @return ArrayCollection
      */
-    public function setSupportsValidators(array $supportsValidators)
+    public function getAdvancedOptions()
     {
-        $this->supportsValidators = $supportsValidators;
-        return $this;
+        return $this->advancedOptions;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSpecialOptions()
+    {
+        return $this->specialOptions;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMainValidators()
+    {
+        return $this->mainValidators;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAdvancedValidators()
+    {
+        return $this->advancedValidators;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSpecialValidators()
+    {
+        return $this->specialValidators;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility()
+    {
+        return $this->visibility;
     }
 
     /**
@@ -120,6 +153,14 @@ class Type implements NormalizedInterface
     {
         $this->visibility = $visibility;
         return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isCompound()
+    {
+        return $this->compound;
     }
 
     /**

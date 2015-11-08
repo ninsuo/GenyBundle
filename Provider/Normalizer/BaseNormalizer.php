@@ -9,20 +9,24 @@ use Fuz\GenyBundle\Exception\NormalizerException;
 
 abstract class BaseNormalizer extends BaseService implements NormalizerInterface
 {
-    public function validateRequirements(ResourceInterface $resource, array $required, array $optional)
+    public function validateRequirements(ResourceInterface $resource, array $required, array $optional, array $path = array())
     {
-        $keys = array_keys($resource->getUnserialized());
+        $array = $resource->getUnserialized();
+        foreach ($path as $key) {
+            $array = $array[$key];
+        }
+        $keys = array_keys($array);
 
         // No required keys should be missing
         $missing = array_diff($required, $keys);
         if (count($missing)) {
-            throw new NormalizerException("Required key(s) are missing in '%s': %s", $resource, implode(', ', $missing));
+            throw new NormalizerException(sprintf("Required key(s) are missing in '%s': %s", $resource, implode(', ', $missing)));
         }
 
         // No unexected keys should exist
         $unexpected = array_diff($keys, $required, $optional);
         if (count($unexpected)) {
-            throw new NormalizerException("Unexpected key(s) are present in '%s': %s", $resource, implode(', ', $unexpected));
+            throw new NormalizerException(sprintf("Unexpected key(s) are present in '%s': %s", $resource, implode(', ', $unexpected)));
         }
     }
 
