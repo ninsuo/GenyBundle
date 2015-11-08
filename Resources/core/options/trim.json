@@ -1,5 +1,5 @@
 {
-    "name": "option_trim",
+    "name": "trim",
     "type": "checkbox",
     "options": {
         "label": "geny.options.trim.label"

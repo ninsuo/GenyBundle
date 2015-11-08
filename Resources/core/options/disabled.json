@@ -1,5 +1,5 @@
 {
-    "name": "option_disabled",
+    "name": "disabled",
     "type": "checkbox",
     "options": {
         "label": "geny.options.disabled.label"

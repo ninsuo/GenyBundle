@@ -1,5 +1,5 @@
 {
-    "name": "option_choices",
+    "name": "choices",
     "type": "keyvalues",
     "options": {
         "label": "geny.options.choices.label"

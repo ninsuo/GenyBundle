@@ -1,5 +1,5 @@
 {
-    "name": "option_always_empty",
+    "name": "always_empty",
     "type": "checkbox",
     "options": {
         "label": "geny.options.always_empty.label"

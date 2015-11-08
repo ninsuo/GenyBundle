@@ -1,5 +1,5 @@
 {
-    "name": "option_preferred_choices",
+    "name": "preferred_choices",
     "type": "keyvalue",
     "options": {
         "label": "geny.options.attr.label"

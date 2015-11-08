@@ -1,5 +1,5 @@
 {
-    "name": "option_grouping",
+    "name": "grouping",
     "type": "checkbox",
     "options": {
         "label": "geny.options.grouping.label"

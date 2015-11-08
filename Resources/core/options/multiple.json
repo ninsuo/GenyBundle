@@ -1,5 +1,5 @@
 {
-    "name": "option_multiple",
+    "name": "multiple",
     "type": "checkbox",
     "options": {
         "label": "geny.options.multiple.label"

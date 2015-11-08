@@ -1,5 +1,5 @@
 {
-    "name": "option_action",
+    "name": "action",
     "type": "text",
     "options": {
         "label": "geny.options.action.label"

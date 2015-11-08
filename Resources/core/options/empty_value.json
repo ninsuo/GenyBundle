@@ -1,5 +1,5 @@
 {
-    "name": "option_empty_value",
+    "name": "empty_value",
     "type": "text",
     "options": {
         "label": "geny.options.empty_value.label"

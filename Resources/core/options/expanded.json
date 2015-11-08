@@ -1,5 +1,5 @@
 {
-    "name": "option_expanded",
+    "name": "expanded",
     "type": "checkbox",
     "options": {
         "label": "geny.options.expanded.label"

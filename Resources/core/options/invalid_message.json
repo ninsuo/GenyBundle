@@ -1,5 +1,5 @@
 {
-    "name": "option_invalid_message",
+    "name": "invalid_message",
     "type": "text",
     "options": {
         "label": "geny.options.invalid_message.label"

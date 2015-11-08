@@ -1,5 +1,5 @@
 {
-    "name": "option_read_only",
+    "name": "read_only",
     "type": "checkbox",
     "options": {
         "label": "geny.options.read_only.label"

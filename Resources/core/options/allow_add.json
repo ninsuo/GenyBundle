@@ -1,5 +1,5 @@
 {
-    "name": "option_allow_add",
+    "name": "allow_add",
     "type": "checkbox",
     "options": {
         "label": "geny.options.allow_add.label"

@@ -1,5 +1,5 @@
 {
-    "name": "option_rounding_mode",
+    "name": "rounding_mode",
     "type": "choice",
     "options": {
         "label": "geny.options.rounding_mode.label",

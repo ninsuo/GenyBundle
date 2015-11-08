@@ -1,5 +1,5 @@
 {
-    "name": "option_allow_delete",
+    "name": "allow_delete",
     "type": "checkbox",
     "options": {
         "label": "geny.options.allow_delete.label"

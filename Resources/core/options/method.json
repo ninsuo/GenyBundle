@@ -1,5 +1,5 @@
 {
-    "name": "option_method",
+    "name": "method",
     "type": "choice",
     "options": {
         "label": "geny.options.method.label",

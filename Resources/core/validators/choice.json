@@ -1,5 +1,5 @@
 {
-    "name": "validator_choice",
+    "name": "choice",
     "type": "list",
     "options": {
         "label": "geny.validator.choice.label"

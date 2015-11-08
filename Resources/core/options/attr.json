@@ -1,5 +1,5 @@
 {
-    "name": "option_attr",
+    "name": "attr",
     "type": "keyvalue",
     "options": {
         "label": "geny.options.attr.label"

@@ -1,5 +1,5 @@
 {
-    "name": "option_required",
+    "name": "required",
     "type": "checkbox",
     "options": {
         "label": "geny.options.required.label"
