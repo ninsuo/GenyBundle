@@ -1,15 +1,28 @@
 {
     "name": "choice",
     "parent": "base",
-    "supports_options": [
-        "choices",
-        "empty_value",
-        "expanded",
-        "multiple",
-        "preferred_choices",
-        "read_only"
-    ],
-    "supports_validators": [
-        "choice"
-    ]
+    "supports_options": {
+        "main": [
+            "choices",
+            "empty_value"
+        ],
+        "advanced": [
+            "expanded",
+            "multiple",
+            "preferred_choices",
+            "read_only"
+        ],
+        "special": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+        ],
+        "special": [
+            "choice"
+        ]
+    }
 }
+

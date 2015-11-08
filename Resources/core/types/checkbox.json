@@ -1,9 +1,21 @@
 {
     "name": "checkbox",
     "parent": "base",
-    "supports_options": [
-        "value"
-    ],
-    "supports_validators": [
-    ]
+    "supports_options": {
+        "main": [
+            "value"
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    }
 }

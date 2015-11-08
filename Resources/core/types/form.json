@@ -1,10 +1,22 @@
 {
     "name": "form",
     "parent": "container",
-    "supports_options": [
-        "action",
-        "method"
-    ],
-    "supports_validators": [
-    ]
+    "supports_options": {
+        "main": [
+        ],
+        "advanced": [
+            "action",
+            "method"
+        ],
+        "special": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    }
 }

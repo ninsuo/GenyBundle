@@ -1,12 +1,24 @@
 {
     "name": "base",
-    "supports_options": [
-        "attr",
-        "disabled",
-        "label",
-        "label_attr"
-    ],
-    "supports_validators": [
-        "type"
-    ]
+    "supports_options": {
+        "main": [
+            "label"
+        ],
+        "advanced": [
+            "disabled",
+            "attr",
+            "label_attr"
+        ],
+        "special": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+            "type"
+        ],
+        "special": [
+        ]
+    }
 }

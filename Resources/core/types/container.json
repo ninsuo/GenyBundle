@@ -2,8 +2,20 @@
     "name": "container",
     "parent": "base",
     "compound": "true",
-    "supports_options": [
-    ],
-    "supports_validators": [
-    ]
+    "supports_options": {
+        "main": [
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    }
 }

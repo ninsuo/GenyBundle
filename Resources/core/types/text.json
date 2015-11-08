@@ -1,11 +1,23 @@
 {
     "name": "text",
     "parent": "base",
-    "supports_options": [
-        "max_length",
-        "read_only",
-        "trim"
-    ],
-    "supports_validators": [
-    ]
+    "supports_options": {
+        "main": [
+        ],
+        "advanced": [
+            "max_length",
+            "read_only",
+            "trim"
+        ],
+        "special": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    }
 }

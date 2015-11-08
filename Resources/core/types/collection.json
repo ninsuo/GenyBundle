@@ -2,10 +2,22 @@
     "name": "collection",
     "parent": "base",
     "compound": "true",
-    "supports_options": [
-        "allow_add",
-        "allow_delete"
-    ],
-    "supports_validators": [
-    ]
+    "supports_options": {
+        "main": [
+            "allow_add",
+            "allow_delete"
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+        ],
+        "special": [
+        ]
+    }
 }
