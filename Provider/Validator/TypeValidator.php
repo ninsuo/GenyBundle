@@ -3,9 +3,9 @@
 namespace Fuz\GenyBundle\Provider\Validator;
 
 use Fuz\GenyBundle\Data\Constraints;
-use Fuz\GenyBundle\Data\Resources\ResourceInterface;
+use Fuz\GenyBundle\Base\BaseService;
 
-class TypeValidator extends BaseValidator implements ValidatorInterface
+class TypeValidator extends BaseService implements ValidatorInterface
 {
     const CLASS_NAME = 'Fuz\GenyBundle\Data\Resources\Type';
 
@@ -18,7 +18,7 @@ class TypeValidator extends BaseValidator implements ValidatorInterface
 
     public function validate(ResourceInterface $resource)
     {
-
+        return [];
     }
 
     public function supports($object)

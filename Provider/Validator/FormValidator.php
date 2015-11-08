@@ -5,7 +5,7 @@ namespace Fuz\GenyBundle\Provider\Validator;
 use Fuz\GenyBundle\Data\Constraints;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
-class FormValidator extends BaseValidator implements ValidatorInterface
+class FormValidator extends BaseFormValidator implements ValidatorInterface
 {
     const CLASS_NAME = 'Fuz\GenyBundle\Data\Resources\Form';
 
