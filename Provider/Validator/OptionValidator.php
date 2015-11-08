@@ -2,24 +2,9 @@
 
 namespace Fuz\GenyBundle\Provider\Validator;
 
-use Fuz\GenyBundle\Data\Constraints;
-use Fuz\GenyBundle\Data\Resources\ResourceInterface;
-
-class OptionValidator extends BaseFormValidator implements ValidatorInterface
+class OptionValidator extends FormValidator implements ValidatorInterface
 {
     const CLASS_NAME = 'Fuz\GenyBundle\Data\Resources\Option';
-
-    public function boot(ResourceInterface $resource)
-    {
-        $constraints = new Constraints();
-
-        return $constraints;
-    }
-
-    public function validate(ResourceInterface $resource)
-    {
-
-    }
 
     public function supports($object)
     {

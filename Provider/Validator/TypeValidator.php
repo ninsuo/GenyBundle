@@ -2,8 +2,9 @@
 
 namespace Fuz\GenyBundle\Provider\Validator;
 
-use Fuz\GenyBundle\Data\Constraints;
 use Fuz\GenyBundle\Base\BaseService;
+use Fuz\GenyBundle\Data\Constraints;
+use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
 class TypeValidator extends BaseService implements ValidatorInterface
 {
