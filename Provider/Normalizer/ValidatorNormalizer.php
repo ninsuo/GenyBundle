@@ -12,8 +12,10 @@ class ValidatorNormalizer extends BaseService implements NormalizerInterface
 
     public function normalize(ResourceInterface $resource)
     {
-        $resource->setNormalized(new Validator());
+        $validator = new Validator();
+        $resource->setNormalized($validator);
 
+        return $validator;
     }
 
     public function supports($class)

@@ -12,9 +12,10 @@ class OptionNormalizer extends BaseService implements NormalizerInterface
 
     public function normalize(ResourceInterface $resource)
     {
-        $resource->setNormalized(new Option());
+        $option = new Option();
+        $resource->setNormalized($option);
 
-        
+        return $option;
     }
 
     public function supports($class)

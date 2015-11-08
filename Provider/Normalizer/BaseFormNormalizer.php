@@ -91,7 +91,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
                 throw $this->throwContextException($resource, $ex);
             }
 
-            $option->setData($data);
+            $option->getNormalized()->setData($data);
             $options->add($option);
         }
     }
@@ -120,7 +120,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
                 throw $this->throwContextException($resource, $ex);
             }
 
-            $validator->setData($data);
+            $validator->getNormalized()->setData($data);
             $validators->add($validator);
         }
     }

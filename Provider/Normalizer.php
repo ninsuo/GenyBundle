@@ -30,7 +30,7 @@ class Normalizer extends BaseService
             }
         }
 
-        throw new NormalizerException("No normalizer found for class '{$class}'.");
+        throw new NormalizerException(sprintf("No normalizer found for class '%s'.", get_class($resource)));
     }
 
     public function hasNormalizer($name)
