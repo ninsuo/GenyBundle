@@ -30,22 +30,12 @@ class Type implements NormalizedInterface
     /**
      * @var ArrayCollection
      */
-    protected $specialOptions;
-
-    /**
-     * @var ArrayCollection
-     */
     protected $mainValidators;
 
     /**
      * @var ArrayCollection
      */
     protected $advancedValidators;
-
-    /**
-     * @var ArrayCollection
-     */
-    protected $specialValidators;
 
     /**
      * @var string
@@ -61,11 +51,9 @@ class Type implements NormalizedInterface
     {
         $this->mainOptions     = new ArrayCollection();
         $this->advancedOptions = new ArrayCollection();
-        $this->specialOptions  = new ArrayCollection();
 
         $this->mainValidators     = new ArrayCollection();
         $this->advancedValidators = new ArrayCollection();
-        $this->specialValidators  = new ArrayCollection();
 
         $this->visibility = self::VISIBILITY_PUBLIC;
         $this->compound   = false;
@@ -108,14 +96,6 @@ class Type implements NormalizedInterface
     /**
      * @return ArrayCollection
      */
-    public function getSpecialOptions()
-    {
-        return $this->specialOptions;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
     public function getMainValidators()
     {
         return $this->mainValidators;
@@ -127,14 +107,6 @@ class Type implements NormalizedInterface
     public function getAdvancedValidators()
     {
         return $this->advancedValidators;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getSpecialValidators()
-    {
-        return $this->specialValidators;
     }
 
     /**

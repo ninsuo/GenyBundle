@@ -7,16 +7,12 @@
         "advanced": [
             "action",
             "method"
-        ],
-        "special": [
         ]
     },
     "supports_validators": {
         "main": [
         ],
         "advanced": [
-        ],
-        "special": [
         ]
     }
 }

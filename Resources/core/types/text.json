@@ -8,16 +8,12 @@
             "max_length",
             "read_only",
             "trim"
-        ],
-        "special": [
         ]
     },
     "supports_validators": {
         "main": [
         ],
         "advanced": [
-        ],
-        "special": [
         ]
     }
 }

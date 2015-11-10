@@ -8,8 +8,6 @@
             "disabled",
             "attr",
             "label_attr"
-        ],
-        "special": [
         ]
     },
     "supports_validators": {
@@ -17,8 +15,6 @@
         ],
         "advanced": [
             "type"
-        ],
-        "special": [
         ]
     }
 }

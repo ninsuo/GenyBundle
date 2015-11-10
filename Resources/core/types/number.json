@@ -8,16 +8,12 @@
         "advanced": [
             "rounding_mode",
             "grouping"
-        ],
-        "special": [
         ]
     },
     "supports_validators": {
         "main": [
         ],
         "advanced": [
-        ],
-        "special": [
         ]
     }
 }

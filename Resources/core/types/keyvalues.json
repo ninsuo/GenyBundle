@@ -2,8 +2,16 @@
     "name": "keyvalue",
     "parent": "base",
     "visibility": "private",
-    "supports_options": [
-    ],
-    "supports_validators": [
-    ]
+    "supports_options": {
+        "main": [
+        ],
+        "advanced": [
+        ]
+    },
+    "supports_validators": {
+        "main": [
+        ],
+        "advanced": [
+        ]
+    }
 }

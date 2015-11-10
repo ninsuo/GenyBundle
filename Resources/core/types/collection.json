@@ -8,16 +8,12 @@
             "allow_delete"
         ],
         "advanced": [
-        ],
-        "special": [
         ]
     },
     "supports_validators": {
         "main": [
         ],
         "advanced": [
-        ],
-        "special": [
         ]
     }
 }

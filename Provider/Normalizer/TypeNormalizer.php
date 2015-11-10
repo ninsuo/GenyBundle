@@ -70,20 +70,12 @@ class TypeNormalizer extends BaseNormalizer implements NormalizerInterface
             $object->getAdvancedOptions()->add($element);
         }
 
-        foreach ($parent->getSpecialOptions() as $element) {
-            $object->getSpecialOptions()->add($element);
-        }
-
         foreach ($parent->getMainValidators() as $element) {
             $object->getMainValidators()->add($element);
         }
 
         foreach ($parent->getAdvancedValidators() as $element) {
             $object->getAdvancedValidators()->add($element);
-        }
-
-        foreach ($parent->getSpecialValidators() as $element) {
-            $object->getSpecialValidators()->add($element);
         }
 
         $object->setVisibility($parent->getVisibility());
@@ -107,7 +99,7 @@ class TypeNormalizer extends BaseNormalizer implements NormalizerInterface
         $object = $resource->getNormalized();
         $array = $resource->getUnserialized();
 
-        $required = ['main', 'advanced', 'special'];
+        $required = ['main', 'advanced'];
         $optional = [];
         $this->validateRequirements($resource, $required, $optional, ["supports_{$name}s"]);
 
