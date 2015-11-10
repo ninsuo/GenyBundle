@@ -6,10 +6,18 @@ use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Data\Constraints;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 use Fuz\GenyBundle\Exception\ValidatorException;
+use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
 class FormValidator extends BaseService implements ValidatorInterface
 {
     const CLASS_NAME = 'Fuz\GenyBundle\Data\Resources\Form';
+
+    protected $converter;
+
+    public function __construct()
+    {
+        $this->converter = new CamelCaseToSnakeCaseNameConverter();
+    }
 
     public function boot(ResourceInterface $resource)
     {
@@ -25,6 +33,29 @@ class FormValidator extends BaseService implements ValidatorInterface
 
     public function validate(ResourceInterface $resource)
     {
+
+    }
+
+    protected function getConstraint($name, array $options = [])
+    {
+        $camelOptions = [];
+        foreach ($options as $key => $value) {
+            $camelOptions[$this->converter->denormalize($key)] = $value;
+        }
+
+        $camelName = ucfirst($this->converter->denormalize($name));
+
+        $class = "Symfony\\Component\\Validator\\Constraints\\{$camelName}";
+        if (class_exists($class)) {
+            return new $class($options);
+        }
+
+
+        // need a compilerpass for constraints
+        // tags:
+        //    - { name: validator.constraint_validator, alias: alias_name }
+
+        // Symfony\Component\Validator\Constraints
 
     }
 
