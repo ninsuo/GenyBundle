@@ -48,9 +48,9 @@ class CoreExtension extends AbstractExtension
                 '@FuzGenyBundle/Resources/core/types/form.json',
                 JsonUnserializer::FORMAT_JSON
             ),
-            'keyvalue' => new Type(
+            'keyvalues' => new Type(
                 FileLoader::TYPE_FILE,
-                '@FuzGenyBundle/Resources/core/types/keyvalue.json',
+                '@FuzGenyBundle/Resources/core/types/keyvalues.json',
                 JsonUnserializer::FORMAT_JSON
             ),
             'list' => new Type(

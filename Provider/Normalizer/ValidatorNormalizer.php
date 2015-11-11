@@ -2,11 +2,10 @@
 
 namespace Fuz\GenyBundle\Provider\Normalizer;
 
-use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 use Fuz\GenyBundle\Data\Normalized\Validator;
 
-class ValidatorNormalizer extends BaseService implements NormalizerInterface
+class ValidatorNormalizer extends BaseFormNormalizer implements NormalizerInterface
 {
     const CLASS_NAME = 'Fuz\GenyBundle\Data\Resources\Validator';
 
@@ -15,7 +14,7 @@ class ValidatorNormalizer extends BaseService implements NormalizerInterface
         $validator = new Validator();
         $resource->setNormalized($validator);
 
-        return $validator;
+        return $this->normalizeForm($resource);
     }
 
     public function supports($object)

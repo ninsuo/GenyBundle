@@ -2,11 +2,10 @@
 
 namespace Fuz\GenyBundle\Provider\Normalizer;
 
-use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 use Fuz\GenyBundle\Data\Normalized\Option;
 
-class OptionNormalizer extends BaseService implements NormalizerInterface
+class OptionNormalizer extends BaseFormNormalizer implements NormalizerInterface
 {
     const CLASS_NAME = 'Fuz\GenyBundle\Data\Resources\Option';
 
@@ -15,7 +14,7 @@ class OptionNormalizer extends BaseService implements NormalizerInterface
         $option = new Option();
         $resource->setNormalized($option);
 
-        return $option;
+        return $this->normalizeForm($resource);
     }
 
     public function supports($object)

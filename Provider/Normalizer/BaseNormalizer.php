@@ -45,7 +45,7 @@ abstract class BaseNormalizer extends BaseService implements NormalizerInterface
     public function throwContextException(ResourceInterface $resource, BaseException $ex)
     {
         return new NormalizerException(sprintf(
-           "'%s' > [%s] %s",
+           "'%s' < [%s] %s",
            $resource,
            substr($c = get_class($ex), strrpos($c, "\\") + 1),
            $ex->getMessage()

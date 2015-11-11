@@ -5,6 +5,7 @@ namespace Fuz\GenyBundle\Provider;
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\ExtensionException;
 use Fuz\GenyBundle\Provider\Extension\ExtensionInterface;
+use Fuz\GenyBundle\Provider\Extension\ExtensionReference;
 
 class Extension extends BaseService
 {
@@ -27,7 +28,7 @@ class Extension extends BaseService
 
     public function addExtension(ExtensionInterface $extension)
     {
-        $this->extensions[$extension->getName()] = $extension;
+        $this->extensions[$extension->getName()] = new ExtensionReference($extension);
         $this->ordered                           = false;
     }
 
