@@ -5,7 +5,7 @@ namespace Fuz\GenyBundle\Data\Normalized;
 use Doctrine\Common\Collections\ArrayCollection;
 use Fuz\GenyBundle\Data\Resources\Type;
 
-class Form implements NormalizedInterface
+class Form implements FormInterface
 {
     /**
      * @var string
@@ -25,7 +25,7 @@ class Form implements NormalizedInterface
     /**
      * @var ArrayCollection
      */
-    protected $validation;
+    protected $validators;
 
     /**
      * @var ArrayCollection
@@ -40,7 +40,7 @@ class Form implements NormalizedInterface
     public function __construct()
     {
         $this->options    = new ArrayCollection();
-        $this->validation = new ArrayCollection();
+        $this->validators = new ArrayCollection();
         $this->fields     = new ArrayCollection();
         $this->data       = null;
     }
@@ -110,9 +110,9 @@ class Form implements NormalizedInterface
     /**
      * @return ArrayCollection
      */
-    public function getValidation()
+    public function getValidators()
     {
-        return $this->validation;
+        return $this->validators;
     }
 
     /**

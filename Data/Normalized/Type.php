@@ -4,14 +4,8 @@ namespace Fuz\GenyBundle\Data\Normalized;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Type implements NormalizedInterface
+class Type implements TypeInterface
 {
-    const VISIBILITY_PUBLIC  = 'public';
-    const VISIBILITY_PRIVATE = 'private';
-
-    const COMPOUND_TRUE  = "true";
-    const COMPOUND_FALSE = "false";
-
     /**
      * @var string
      */

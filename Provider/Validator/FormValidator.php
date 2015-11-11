@@ -24,9 +24,12 @@ class FormValidator extends BaseService implements ValidatorInterface
         $this->validateCompound($resource);
 
         $constraints = new Constraints();
-
-        // ...
-
+        foreach ($resource->getNormalized()->getValidators() as $validator)
+        {
+            $constraints->getConstraints()->add(
+                $this->getConstraint($resource, $validator->getName(), $validator->getNormalized()->getData())
+            );
+        }
 
         return $constraints;
     }
@@ -36,7 +39,7 @@ class FormValidator extends BaseService implements ValidatorInterface
 
     }
 
-    protected function getConstraint($name, array $options = [])
+    protected function getConstraint(ResourceInterface $resource, $name, array $options = [])
     {
         $camelOptions = [];
         foreach ($options as $key => $value) {
@@ -45,18 +48,14 @@ class FormValidator extends BaseService implements ValidatorInterface
 
         $camelName = ucfirst($this->converter->denormalize($name));
 
-        $class = "Symfony\\Component\\Validator\\Constraints\\{$camelName}";
-        if (class_exists($class)) {
-            return new $class($options);
+        foreach ($this->getParameter('geny')['validation_constraint_namespaces'] as $namespace) {
+            $class = "{$namespace}\\{$camelName}";
+            if (class_exists($class)) {
+                return new $class($options);
+            }
         }
 
-
-        // need a compilerpass for constraints
-        // tags:
-        //    - { name: validator.constraint_validator, alias: alias_name }
-
-        // Symfony\Component\Validator\Constraints
-
+        throw new ValidatorException(sprintf("No constraint '%s' found (supported by resource %s)",$name, $resource));
     }
 
     protected function validateCompound(ResourceInterface $resource)

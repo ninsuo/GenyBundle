@@ -16,7 +16,7 @@ class TypeNormalizer extends BaseNormalizer implements NormalizerInterface
         $resource->setNormalized($type);
 
         $required = ['name'];
-        $optional = ['parent', 'compound', 'supports_options', 'supports_validators'];
+        $optional = ['parent', 'compound', 'visibility', 'supports_options', 'supports_validators'];
         $this->validateRequirements($resource, $required, $optional);
 
         $this->normalizeName($resource);
@@ -29,6 +29,10 @@ class TypeNormalizer extends BaseNormalizer implements NormalizerInterface
 
         if (isset($array['compound'])) {
             $this->normalizeCompound($resource);
+        }
+
+        if (isset($array['visibility'])) {
+            $this->normalizeVisibility($resource);
         }
 
         if (isset($array['supports_options'])) {
@@ -87,11 +91,39 @@ class TypeNormalizer extends BaseNormalizer implements NormalizerInterface
         $object = $resource->getNormalized();
         $array = $resource->getUnserialized();
 
-        if (!in_array(strtolower($array['compound']), array('false', 'true'))) {
-            throw new NormalizerException(sprintf("Compound key in type '%s' takes only 'true' or 'false' value: %s given.", $resource, $array['compound']));
+        if (!in_array(strtolower($array['compound']), [
+            Normalized\TypeInterface::COMPOUND_FALSE,
+            Normalized\TypeInterface::COMPOUND_TRUE])) {
+            throw new NormalizerException(sprintf(
+                "Compound key in type '%s' takes only '%s' or '%s' values, but %s given.",
+                $resource,
+                Normalized\TypeInterface::COMPOUND_FALSE,
+                Normalized\TypeInterface::COMPOUND_TRUE,
+                $array['compound']
+            ));
         }
 
-        $object->setCompound(strtolower($array['compound']) === 'true');
+        $object->setCompound(Normalized\TypeInterface::COMPOUND_TRUE === strtolower($array['compound']));
+    }
+
+    public function normalizeVisibility(Resources\Type $resource)
+    {
+        $object = $resource->getNormalized();
+        $array = $resource->getUnserialized();
+
+        if (!in_array(strtolower($array['visibility']), [
+            Normalized\TypeInterface::VISIBILITY_PRIVATE,
+            Normalized\TypeInterface::VISIBILITY_PUBLIC])) {
+            throw new NormalizerException(sprintf(
+                "Visibility key in type '%s' takes only '%s' or '%s' values, but %s given.",
+                $resource,
+                Normalized\Type::VISIBILITY_PRIVATE,
+                Normalized\Type::VISIBILITY_PUBLIC,
+                $array['visibility']
+            ));
+        }
+
+        $object->setVisibility($array['visibility']);
     }
 
     public function normalizeSupports(Resources\Type $resource, $name)
