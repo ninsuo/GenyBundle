@@ -24,7 +24,6 @@ class FormValidator extends BaseService implements ValidatorInterface
         $this->validateCompound($resource);
 
         $constraints = new Constraints();
-        return $constraints;
         foreach ($resource->getNormalized()->getValidators() as $validator)
         {
             $constraints->getConstraints()->add(
@@ -55,12 +54,13 @@ class FormValidator extends BaseService implements ValidatorInterface
 
         foreach ($this->getParameter('geny')['validation_constraint_namespaces'] as $namespace) {
             $class = "{$namespace}\\{$camelName}";
+
             if (class_exists($class)) {
                 return new $class($options);
             }
         }
 
-        throw new ValidatorException(sprintf("No constraint '%s' found (supported by resource %s)",$name, $resource));
+        throw new ValidatorException(sprintf("No constraint '%s' found (supported by resource %s)", $camelName, $resource));
     }
 
     protected function validateCompound(ResourceInterface $resource)

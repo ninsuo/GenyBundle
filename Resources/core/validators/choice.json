@@ -3,6 +3,7 @@
     "type": "container",
     "fields": [{
         "name": "choices",
+        "type": "list",
         "options": {
             "label": "geny.validator.choice.label"
         },

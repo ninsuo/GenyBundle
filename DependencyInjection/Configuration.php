@@ -13,16 +13,18 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('fuz_geny')
-            ->children()
-                ->arrayNode('validation_constraint_namespaces')
-                    ->prototype('scalar')
-                        ->defaultValue(array(
-                            'Symfony\\Component\\Validator\\Constraints',
-                        ))
-                    ->end()
-                ->end()
-            ->end()
+        $rootNode    = $treeBuilder->root('fuz_geny');
+
+        $rootNode
+           ->children()
+               ->arrayNode('validation_constraint_namespaces')
+                    ->defaultValue([
+                        'Symfony\\Component\\Validator\\Constraints',
+                    ])
+                   ->prototype('scalar')
+                   ->end()
+               ->end()
+           ->end()
         ->end();
 
         return $treeBuilder;
