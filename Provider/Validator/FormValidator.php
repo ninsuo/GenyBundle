@@ -3,8 +3,8 @@
 namespace Fuz\GenyBundle\Provider\Validator;
 
 use Fuz\GenyBundle\Base\BaseService;
-use Fuz\GenyBundle\Data\Constraints;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
+use Fuz\GenyBundle\Data\Validator;
 use Fuz\GenyBundle\Exception\ValidatorException;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
@@ -23,7 +23,7 @@ class FormValidator extends BaseService implements ValidatorInterface
     {
         $this->validateCompound($resource);
 
-        $constraints = new Constraints();
+        $constraints = new Validator();
         foreach ($resource->getNormalized()->getValidators() as $validator)
         {
             $constraints->getConstraints()->add(
@@ -40,7 +40,18 @@ class FormValidator extends BaseService implements ValidatorInterface
 
     public function validate(ResourceInterface $resource)
     {
+        $violations = $this->get('validator')->validate(
+           $resource->getNormalized()->getData(),
+           $resource->getValidator()->getConstraints()->toArray()
+        );
 
+        // todo: visitors here?
+
+        foreach ($violations as $violation) {
+           $resource->getValidator()->getViolations()->add($violation);
+        }
+
+        return $violations;
     }
 
     protected function getConstraint(ResourceInterface $resource, $name, array $options = [])

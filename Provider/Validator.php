@@ -19,10 +19,10 @@ class Validator extends BaseService
 
         foreach ($this->validators as $validator) {
             if ($validator->supports($resource)) {
-                $constraints = $validator->boot($resource);
-                $resource->setValidator($constraints);
+                $validator = $validator->boot($resource);
+                $resource->setValidator($validator);
 
-                return $constraints;
+                return $validator;
             }
         }
 
@@ -31,15 +31,16 @@ class Validator extends BaseService
 
     public function validate(ResourceInterface $resource)
     {
-        if (is_null($resource->getNormalized())) {
-            throw new ValidatorException("Resource should be normalized before being validated.");
+//        if (is_null($resource->getType())) {
+//            throw new ValidatorException("Type should be built before being validated.");
+//        }
+//
+        if (is_null($resource->getValidator())) {
+            $this->boot($resource);
         }
 
         foreach ($this->validators as $validator) {
             if ($validator->supports($resource)) {
-
-                // ...
-
                 return $validator->validate($resource);
             }
         }

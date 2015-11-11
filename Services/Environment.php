@@ -55,6 +55,7 @@ class Environment
             $this->unserializer->unserialize($resource);
             $this->normalizer->normalize($resource);
             $this->validator->boot($resource);
+            $this->validator->validate($resource);
 
         } catch (\Exception $ex) {
             $resource->setState(ResourceInterface::STATE_FAILED);

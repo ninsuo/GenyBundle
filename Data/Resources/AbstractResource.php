@@ -2,7 +2,8 @@
 
 namespace Fuz\GenyBundle\Data\Resources;
 
-use Fuz\GenyBundle\Data\Constraints;
+use Fuz\GenyBundle\Data\Validator;
+use Symfony\Component\Form\FormTypeInterface;
 
 abstract class AbstractResource implements ResourceInterface
 {
@@ -67,6 +68,25 @@ abstract class AbstractResource implements ResourceInterface
         return $this->isParent;
     }
 
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function setState($state) {
+        if (!in_array($state, [
+            self::STATE_PENDING,
+            self::STATE_INPROGRESS,
+            self::STATE_DONE,
+            self::STATE_FAILED
+        ])) {
+            throw new \LogicException(sprintf("Invalid state given: %s", $state));
+        }
+
+        $this->state = $state;
+        return $this;
+    }
+
     public function getLoaded()
     {
         return $this->loaded;
@@ -101,44 +121,25 @@ abstract class AbstractResource implements ResourceInterface
         return $this;
     }
 
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-
     public function getValidator()
     {
         return $this->validator;
     }
 
-    public function setValidator(Constraints $validator)
+    public function setValidator(Validator $validator)
     {
         $this->validator = $validator;
         return $this;
     }
 
-    public function getState()
+    public function getType()
     {
-        return $this->state;
+        return $this->type;
     }
 
-    public function setState($state) {
-        if (!in_array($state, [
-            self::STATE_PENDING,
-            self::STATE_INPROGRESS,
-            self::STATE_DONE,
-            self::STATE_FAILED
-        ])) {
-            throw new \LogicException(sprintf("Invalid state given: %s", $state));
-        }
-
-        $this->state = $state;
+    public function setType(FormTypeInterface $type)
+    {
+        $this->type = $type;
         return $this;
     }
 }

@@ -2,7 +2,8 @@
 
 namespace Fuz\GenyBundle\Data\Resources;
 
-use Fuz\GenyBundle\Data\Constraints;
+use Fuz\GenyBundle\Data\Validator;
+use Symfony\Component\Form\FormTypeInterface;
 
 interface ResourceInterface
 {
@@ -25,6 +26,21 @@ interface ResourceInterface
      * @return string
      */
     public function getFormat();
+
+    /**
+     * @return bool
+     */
+    public function isParent();
+
+    /**
+     * @return string
+     */
+    public function getState();
+
+    /**
+     * @param string $state
+     */
+    public function setState($state);
 
     /**
      * @return string
@@ -57,22 +73,22 @@ interface ResourceInterface
     public function setNormalized($object);
 
     /**
-     * @return string
-     */
-    public function getState();
-
-    /**
-     * @param string $state
-     */
-    public function setState($state);
-
-    /**
-     * @return Constraints
+     * @return Validator
      */
     public function getValidator();
 
     /**
-     * @param Constraints $validator
+     * @param Validator $validator
      */
-    public function setValidator(Constraints $validator);
+    public function setValidator(Validator $validator);
+
+    /**
+     * @return FormTypeInterface
+     */
+    public function getType();
+
+    /**
+     * @param FormTypeInterface $validator
+     */
+    public function setType(FormTypeInterface $validator);
 }
