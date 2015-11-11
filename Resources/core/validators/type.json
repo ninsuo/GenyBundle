@@ -1,13 +1,17 @@
 {
     "name": "type",
-    "type": "choice",
-    "options": {
-        "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"],
-        "label": "geny.validator.type.label"
-    },
-    "validation": {
-        "choice": {
-            "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"]
+    "type": "container",
+    "fields": [{
+        "name": "type",
+        "type": "choice",
+        "options": {
+            "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"],
+            "label": "geny.validator.type.label"
+        },
+        "validators": {
+            "choice": {
+                "choices": ["array", "bool", "float", "double", "integer", "null", "numeric", "object", "scalar", "string"]
+            }
         }
-    }
+    }]
 }

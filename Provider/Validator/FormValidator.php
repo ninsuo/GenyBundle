@@ -24,10 +24,15 @@ class FormValidator extends BaseService implements ValidatorInterface
         $this->validateCompound($resource);
 
         $constraints = new Constraints();
+        return $constraints;
         foreach ($resource->getNormalized()->getValidators() as $validator)
         {
             $constraints->getConstraints()->add(
-                $this->getConstraint($resource, $validator->getName(), $validator->getNormalized()->getData())
+                $this->getConstraint(
+                   $resource,
+                   $validator->getNormalized()->getName(),
+                   $validator->getNormalized()->getData()
+                )
             );
         }
 

@@ -4,7 +4,7 @@
     "options": {
         "label": "geny.options.always_empty.label"
     },
-    "validation": {
+    "validators": {
         "type": {
             "type": "bool"
         }

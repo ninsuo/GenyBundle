@@ -13,7 +13,7 @@
             "geny.options.rounding_mode.HALF_DOWN": "ROUND_HALF_DOWN"
         }
     },
-    "validation": {
+    "validators": {
         "type": {
             "type": "string"
         }

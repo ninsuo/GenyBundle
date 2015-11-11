@@ -6,7 +6,7 @@
         "choices": ["GET", "POST", "OPTIONS", "HEAD", "PUT", "DELETE", "TRACE"],
         "preferred_choices": ["GET", "POST"]
     },
-    "validation": {
+    "validators": {
         "type": {
             "type": "string"
         }

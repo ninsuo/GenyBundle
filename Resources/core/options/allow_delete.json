@@ -4,7 +4,7 @@
     "options": {
         "label": "geny.options.allow_delete.label"
     },
-    "validation": {
+    "validators": {
         "type": {
             "type": "bool"
         }

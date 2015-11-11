@@ -4,7 +4,7 @@
     "options": {
         "label": "geny.options.label.label"
     },
-    "validation": {
+    "validators": {
         "type": {
             "type": "string"
         }

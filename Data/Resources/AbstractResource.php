@@ -2,7 +2,6 @@
 
 namespace Fuz\GenyBundle\Data\Resources;
 
-use Fuz\GenyBundle\Data\Normalized\NormalizedInterface;
 use Fuz\GenyBundle\Data\Constraints;
 
 abstract class AbstractResource implements ResourceInterface
@@ -96,7 +95,7 @@ abstract class AbstractResource implements ResourceInterface
         return $this->normalized;
     }
 
-    public function setNormalized(NormalizedInterface $object)
+    public function setNormalized($object)
     {
         $this->normalized = $object;
         return $this;

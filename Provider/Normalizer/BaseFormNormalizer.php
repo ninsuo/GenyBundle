@@ -19,7 +19,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
         }
 
         $required = ['name', 'type'];
-        $optional = ['options', 'validation', 'fields', 'data'];
+        $optional = ['options', 'validators', 'fields', 'data'];
         $this->validateRequirements($resource, $required, $optional);
 
         $this->normalizeName($resource);
@@ -31,7 +31,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
             $this->normalizeOptions($resource);
         }
 
-        if (isset($array['validation'])) {
+        if (isset($array['validators'])) {
             $this->normalizeValidators($resource);
         }
 

@@ -1,12 +1,15 @@
 {
     "name": "choice",
-    "type": "list",
-    "options": {
-        "label": "geny.validator.choice.label"
-    },
-    "validation": {
-        "type": {
-            "type": "array"
+    "type": "container",
+    "fields": [{
+        "name": "choices",
+        "options": {
+            "label": "geny.validator.choice.label"
+        },
+        "validators": {
+            "type": {
+                "type": "array"
+            }
         }
-    }
+    }]
 }

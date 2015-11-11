@@ -2,7 +2,6 @@
 
 namespace Fuz\GenyBundle\Data\Resources;
 
-use Fuz\GenyBundle\Data\Normalized\NormalizedInterface;
 use Fuz\GenyBundle\Data\Constraints;
 
 interface ResourceInterface
@@ -48,14 +47,14 @@ interface ResourceInterface
     public function setUnserialized(array $array);
 
     /**
-     * @return NormalizedInterface
+     * @return FormInterface|TypeInterface
      */
     public function getNormalized();
 
     /**
-     * @param NormalizedInterface $object
+     * @param FormInterface|TypeInterface $object
      */
-    public function setNormalized(NormalizedInterface $object);
+    public function setNormalized($object);
 
     /**
      * @return string
