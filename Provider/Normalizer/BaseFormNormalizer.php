@@ -136,8 +136,9 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
 
         $fields = $object->getFields();
         foreach ($array['fields'] as $fieldName => $fieldContent) {
-            $form = new Form($resource->getLoader(), $fieldName, $resource->getFormat(), false);
-            $form->setUnserialized(array_merge(['name' => $fieldName], $fieldContent));
+            $unserialized = array_merge(['name' => $fieldName], $fieldContent);
+            $form = new Form($resource->getLoader(), $unserialized['name'], $resource->getFormat(), false);
+            $form->setUnserialized($unserialized);
 
             try
             {
