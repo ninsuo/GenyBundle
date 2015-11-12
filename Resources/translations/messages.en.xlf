@@ -23,11 +23,11 @@
         <target><![CDATA[Field's HTML attributes]]></target>
       </trans-unit>
       <trans-unit id="6">
-        <source>geny.keyvalue.key</source>
+        <source>geny.hash.key</source>
         <target><![CDATA[Key]]></target>
       </trans-unit>
       <trans-unit id="7">
-        <source>geny.keyvalue.value</source>
+        <source>geny.hash.value</source>
         <target><![CDATA[Value]]></target>
       </trans-unit>
       <trans-unit id="8">
