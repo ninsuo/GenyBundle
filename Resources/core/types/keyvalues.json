@@ -1,5 +1,5 @@
 {
-    "name": "keyvalue",
+    "name": "hash",
     "parent": "base",
     "visibility": "private",
     "supports_options": {
