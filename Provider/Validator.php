@@ -14,32 +14,30 @@ class Validator extends BaseService
 
     public function boot(ResourceInterface $resource)
     {
-        $event = new GenyEvent($resource);
+        $event      = new GenyEvent($resource);
         $dispatcher = $this->get('event_dispatcher');
 
         if (is_null($resource->getNormalized())) {
             throw new ValidatorException("Resource should be normalized before being validated.");
         }
 
-        $dispatcher->dispatch('geny.validator.pre_boot', $event);
-
         foreach ($this->validators as $validator) {
             if ($validator->supports($resource)) {
-                $validator = $validator->boot($resource);
-                $resource->setValidator($validator);
+                $dispatcher->dispatch('geny.validator.pre_boot', $event);
+                $constraints = $validator->boot($resource);
+                $resource->setValidator($constraints);
+                $dispatcher->dispatch('geny.validator.post_boot', $event);
 
-                return $validator;
+                return $constraints;
             }
         }
-
-        $dispatcher->dispatch('geny.validator.post_boot', $event);
 
         throw new ValidatorException(sprintf("No validator found for class '%s'.", get_class($resource)));
     }
 
     public function validate(ResourceInterface $resource)
     {
-        $event = new GenyEvent($resource);
+        $event      = new GenyEvent($resource);
         $dispatcher = $this->get('event_dispatcher');
 
 //        if (is_null($resource->getType())) {
@@ -50,15 +48,15 @@ class Validator extends BaseService
             $this->boot($resource);
         }
 
-        $dispatcher->dispatch('geny.validator.pre_validate', $event);
-
         foreach ($this->validators as $validator) {
             if ($validator->supports($resource)) {
-                return $validator->validate($resource);
+                $dispatcher->dispatch('geny.validator.pre_validate', $event);
+                $violations = $validator->validate($resource);
+                $dispatcher->dispatch('geny.validator.post_validate', $event);
+
+                return $violations;
             }
         }
-
-        $dispatcher->dispatch('geny.validator.post_validate', $event);
 
         throw new ValidatorException(sprintf("No validator found for class '%s'.", get_class($resource)));
     }
@@ -98,4 +96,5 @@ class Validator extends BaseService
     {
         return $this->validators;
     }
+
 }

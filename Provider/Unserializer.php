@@ -3,6 +3,7 @@
 namespace Fuz\GenyBundle\Provider;
 
 use Fuz\GenyBundle\Base\BaseService;
+use Fuz\GenyBundle\Event\GenyEvent;
 use Fuz\GenyBundle\Exception\UnserializerException;
 use Fuz\GenyBundle\Provider\Unserializer\UnserializerInterface;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
@@ -25,13 +26,18 @@ class Unserializer extends BaseService
             return $resource->getUnserialized();
         }
 
+        $event = new GenyEvent($resource);
+        $dispatcher = $this->get('event_dispatcher');
+
         $format = $resource->getFormat();
         $contents = $resource->getLoaded();
 
         foreach ($this->unserializers as $unserializer) {
             if ($unserializer->supports($format)) {
+                $dispatcher->dispatch('geny.validator.pre_unserialize', $event);
                 $array = $unserializer->unserialize($contents);
                 $resource->setUnserialized($array);
+                $dispatcher->dispatch('geny.validator.post_unserialize', $event);
 
                 return $array;
             }

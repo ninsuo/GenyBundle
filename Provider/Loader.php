@@ -5,6 +5,7 @@ namespace Fuz\GenyBundle\Provider;
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\LoaderException;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
+use Fuz\GenyBundle\Event\GenyEvent;
 use Fuz\GenyBundle\Provider\Loader\LoaderInterface;
 
 class Loader extends BaseService
@@ -21,13 +22,18 @@ class Loader extends BaseService
             return $resource->getLoaded();
         }
 
+        $event      = new GenyEvent($resource);
+        $dispatcher = $this->get('event_dispatcher');
+
         $type = $resource->getLoader();
         $data = $resource->getResource();
 
         foreach ($this->loaders as $loader) {
             if ($loader->supports($type)) {
+                $dispatcher->dispatch('geny.validator.pre_load', $event);
                 $contents = $loader->load($data);
                 $resource->setLoaded($contents);
+                $dispatcher->dispatch('geny.validator.post_load', $event);
 
                 return $contents;
             }
@@ -71,4 +77,5 @@ class Loader extends BaseService
     {
         return $this->loaders;
     }
+
 }

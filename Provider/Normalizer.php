@@ -3,6 +3,7 @@
 namespace Fuz\GenyBundle\Provider;
 
 use Fuz\GenyBundle\Base\BaseService;
+use Fuz\GenyBundle\Event\GenyEvent;
 use Fuz\GenyBundle\Exception\NormalizerException;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 use Fuz\GenyBundle\Provider\Normalizer\NormalizerInterface;
@@ -21,10 +22,15 @@ class Normalizer extends BaseService
             return $resource->getNormalized();
         }
 
+        $event = new GenyEvent($resource);
+        $dispatcher = $this->get('event_dispatcher');
+
         foreach ($this->normalizers as $normalizer) {
             if ($normalizer->supports($resource)) {
+                $dispatcher->dispatch('geny.validator.pre_normalize', $event);
                 $normalized = $normalizer->normalize($resource);
                 $resource->setNormalized($normalized);
+                $dispatcher->dispatch('geny.validator.post_normalize', $event);
 
                 return $normalized;
             }
