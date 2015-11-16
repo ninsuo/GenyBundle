@@ -1,6 +1,6 @@
 {
     "name": "choices",
-    "type": "hash",
+    "type": "list",
     "options": {
         "label": "geny.options.choices.label"
     },
