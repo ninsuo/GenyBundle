@@ -8,6 +8,7 @@ use Fuz\GenyBundle\Provider\Loader;
 use Fuz\GenyBundle\Provider\Unserializer;
 use Fuz\GenyBundle\Provider\Normalizer;
 use Fuz\GenyBundle\Provider\Validator;
+use Fuz\GenyBundle\Provider\Builder;
 
 class Environment
 {

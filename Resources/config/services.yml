@@ -19,7 +19,12 @@ parameters:
     geny.validator.type.class: Fuz\GenyBundle\Provider\Validator\TypeValidator
     geny.validator.option.class: Fuz\GenyBundle\Provider\Validator\OptionValidator
     geny.validator.validator.class: Fuz\GenyBundle\Provider\Validator\ValidatorValidator
-    geny.builder.class: Fuz\GenyBundle\Services\Builder
+    geny.builder.class: Fuz\GenyBundle\Provider\Builder
+    geny.builder.form.class: Fuz\GenyBundle\Provider\Builder\FormBuilder
+    geny.builder.type.class: Fuz\GenyBundle\Provider\Builder\TypeBuilder
+    geny.builder.option.class: Fuz\GenyBundle\Provider\Builder\OptionBuilder
+    geny.builder.validator.class: Fuz\GenyBundle\Provider\Builder\ValidatorBuilder
+
     geny.initializer.class: Fuz\GenyBundle\Services\Initializer
     geny.form.type.container.class: Fuz\GenyBundle\Form\ContainerType
 
@@ -136,7 +141,31 @@ services:
     geny.builder:
         class: %geny.builder.class%
         parent: geny.base
-        arguments: [@form.factory]
+        arguments: []
+
+    geny.builder.form:
+        class: %geny.builder.form.class%
+        parent: geny.base
+        tags:
+            - { name: geny.builder }
+
+    geny.builder.type:
+        class: %geny.builder.type.class%
+        parent: geny.base
+        tags:
+            - { name: geny.builder }
+
+    geny.builder.option:
+        class: %geny.builder.option.class%
+        parent: geny.base
+        tags:
+            - { name: geny.builder }
+
+    geny.builder.validator:
+        class: %geny.builder.validator.class%
+        parent: geny.base
+        tags:
+            - { name: geny.builder }
 
     geny.initializer:
         class: %geny.initializer.class%
