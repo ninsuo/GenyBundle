@@ -30,7 +30,7 @@ interface ResourceInterface
     /**
      * @return bool
      */
-    public function isParent();
+    public function isRoot();
 
     /**
      * @return string

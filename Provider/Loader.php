@@ -14,7 +14,7 @@ class Loader extends BaseService
 
     public function load(ResourceInterface $resource)
     {
-        if (!$resource->isParent()) {
+        if (!$resource->isRoot()) {
             return null;
         }
 

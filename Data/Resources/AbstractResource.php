@@ -11,7 +11,7 @@ abstract class AbstractResource implements ResourceInterface
     protected $resource;
     protected $format;
 
-    protected $isParent;
+    protected $isRoot;
 
     protected $loaded       = null;
     protected $unserialized = null;
@@ -22,12 +22,12 @@ abstract class AbstractResource implements ResourceInterface
 
     protected $state        = self::STATE_PENDING;
 
-    public function __construct($loader, $resource, $format, $isParent = true)
+    public function __construct($loader, $resource, $format, $isRoot = true)
     {
         $this->loader   = $loader;
         $this->resource = $resource;
         $this->format   = $format;
-        $this->isParent = $isParent;
+        $this->isRoot   = $isRoot;
     }
 
     public function getLoader()
@@ -63,9 +63,9 @@ abstract class AbstractResource implements ResourceInterface
         return $this;
     }
 
-    public function isParent()
+    public function isRoot()
     {
-        return $this->isParent;
+        return $this->isRoot;
     }
 
     public function getState()
