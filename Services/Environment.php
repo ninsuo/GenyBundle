@@ -25,8 +25,8 @@ class Environment
                                 Loader       $loader,
                                 Unserializer $unserializer,
                                 Normalizer   $normalizer,
-                                Builder      $builder,
                                 Validator    $validator,
+                                Builder      $builder,
                                 Initializer  $initializer)
     {
         $this->extension    = $extension;
@@ -57,6 +57,7 @@ class Environment
             $this->normalizer->normalize($resource);
             $this->validator->boot($resource);
             $this->validator->validate($resource);
+            $this->builder->build($resource);
 
         } catch (\Exception $ex) {
             $resource->setState(ResourceInterface::STATE_FAILED);

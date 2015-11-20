@@ -31,7 +31,7 @@ parameters:
 services:
     geny:
         class: %geny.class%
-        arguments: [@geny.extension, @geny.loader, @geny.unserializer, @geny.normalizer, @geny.builder, @geny.validator, @geny.initializer]
+        arguments: [@geny.extension, @geny.loader, @geny.unserializer, @geny.normalizer, @geny.validator, @geny.builder, @geny.initializer]
 
     geny.base:
         class: %geny.base.class%

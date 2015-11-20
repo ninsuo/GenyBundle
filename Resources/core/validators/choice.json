@@ -1,16 +1,13 @@
 {
     "name": "choice",
-    "type": "container",
-    "fields": [{
-        "name": "choices",
-        "type": "list",
-        "options": {
-            "label": "geny.validator.choice.label"
-        },
-        "validators": {
-            "type": {
-                "type": "array"
-            }
+    "type": "list",
+    "options": {
+        "type": "text",
+        "label": "geny.validator.choice.label"
+    },
+    "validators": {
+        "type": {
+            "type": "array"
         }
-    }]
+    }
 }

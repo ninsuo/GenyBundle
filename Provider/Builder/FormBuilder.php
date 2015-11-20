@@ -12,6 +12,22 @@ class FormBuilder extends BaseService implements BuilderInterface
 
     public function build(ResourceInterface $resource)
     {
+        $object = $resource->getNormalized();
+
+        if ($object->getType()->getNormalized()->isCompound()) {
+            $root = $this->get('form.factory')->createNamedBuilder(
+               $object->getName(),
+               $form->getType()->getName(),
+               null,
+               $form->getOptions()
+            );
+            foreach ($form->getFields() as $field) {
+                $root->add($this->createBuilder($field));
+            }
+        } else {
+
+        }
+
         // @form.factory
 
     }
