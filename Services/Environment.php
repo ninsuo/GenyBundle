@@ -50,15 +50,14 @@ class Environment
 
         $resource->setState(ResourceInterface::STATE_INPROGRESS);
 
-        try
-        {
+        try {
             $this->loader->load($resource);
             $this->unserializer->unserialize($resource);
             $this->normalizer->normalize($resource);
             $this->validator->boot($resource);
+            // initialize
             $this->validator->validate($resource);
             $this->builder->build($resource);
-
         } catch (\Exception $ex) {
             $resource->setState(ResourceInterface::STATE_FAILED);
 

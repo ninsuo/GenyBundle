@@ -45,8 +45,6 @@ class FormValidator extends BaseService implements ValidatorInterface
            $resource->getValidator()->getConstraints()->toArray()
         );
 
-        // todo: visitors here?
-
         foreach ($violations as $violation) {
            $resource->getValidator()->getViolations()->add($violation);
         }

@@ -17,7 +17,7 @@ abstract class AbstractResource implements ResourceInterface
     protected $unserialized = null;
     protected $normalized   = null;
 
-    protected $type         = null;
+    protected $form         = null;
     protected $validator    = null;
 
     protected $state        = self::STATE_PENDING;

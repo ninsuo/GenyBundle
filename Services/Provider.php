@@ -6,6 +6,7 @@ use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Exception\TypeException;
 use Fuz\GenyBundle\Exception\OptionException;
 use Fuz\GenyBundle\Exception\ValidatorException;
+use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
 class Provider extends BaseService
 {
@@ -13,7 +14,11 @@ class Provider extends BaseService
         foreach ($this->get('geny.extension')->getExtensions() as $extension) {
             $types = $extension->getTypes();
             if (array_key_exists($name, $types)) {
-                return $types[$name];
+                if (ResourceInterface::STATE_DONE === $types[$name]->getState()) {
+                    return clone $types[$name];
+                } else {
+                    return $types[$name];
+                }
             }
         }
 
