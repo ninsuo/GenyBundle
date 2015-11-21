@@ -194,6 +194,11 @@ class CoreExtension extends AbstractExtension
                 '@FuzGenyBundle/Resources/core/options/trim.json',
                 JsonUnserializer::FORMAT_JSON
             ),
+            'type' => new Option(
+                FileLoader::TYPE_FILE,
+                '@FuzGenyBundle/Resources/core/options/type.json',
+                JsonUnserializer::FORMAT_JSON
+            ),
             'value' => new Option(
                 FileLoader::TYPE_FILE,
                 '@FuzGenyBundle/Resources/core/options/value.json',

@@ -28,12 +28,12 @@ class Builder extends BaseService
         foreach ($this->builders as $builder) {
             if ($builder->supports($resource)) {
                 $dispatcher->dispatch('geny.validator.pre_build', $event);
-                if (!is_null($type = $builder->build($resource))) {
-                    $resource->setType($type);
+                if (!is_null($form = $builder->build($resource))) {
+                    $resource->setForm($form);
                 }
                 $dispatcher->dispatch('geny.validator.post_build', $event);
 
-                return $type;
+                return $form;
             }
         }
 

@@ -36,7 +36,7 @@ class ContainerType extends AbstractType
      */
     public function getName()
     {
-        return 'container';
+        return 'geny_container';
     }
 
 }

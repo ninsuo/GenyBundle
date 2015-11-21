@@ -3,7 +3,7 @@
 namespace Fuz\GenyBundle\Data\Resources;
 
 use Fuz\GenyBundle\Data\Validator;
-use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Form\FormInterface;
 
 interface ResourceInterface
 {
@@ -83,12 +83,12 @@ interface ResourceInterface
     public function setValidator(Validator $validator);
 
     /**
-     * @return FormTypeInterface
+     * @return FormInterface
      */
-    public function getType();
+    public function getForm();
 
     /**
-     * @param FormTypeInterface $validator
+     * @param FormInterface $form
      */
-    public function setType(FormTypeInterface $validator);
+    public function setForm(FormInterface $form);
 }

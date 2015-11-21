@@ -5,7 +5,6 @@ namespace Fuz\GenyBundle\Provider\Builder;
 use Fuz\GenyBundle\Base\BaseService;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 use Fuz\GenyBundle\Data\Resources\Option;
-use Fuz\GenyBundle\Exception\BuilderException;
 
 class FormBuilder extends BaseService implements BuilderInterface
 {
@@ -25,6 +24,8 @@ class FormBuilder extends BaseService implements BuilderInterface
             $root = $factory->createNamedBuilder('root');
             $root->add($this->createBuilder($resource));
         }
+
+        return $root->getForm();
     }
 
     protected function createBuilder(ResourceInterface $resource)
@@ -32,17 +33,23 @@ class FormBuilder extends BaseService implements BuilderInterface
         $object = $resource->getNormalized();
         $factory = $this->get('form.factory');
 
+        $options = array_map(function(Option $option) {
+            return [
+                $option->getNormalized()->getName() => $option->getNormalized()->getData()
+            ];
+        }, $object->getOptions()->toArray());
+
+        $registry = $this->get('form.registry');
+        $type     = $object->getType()->getNormalized()->getName();
+        if ($registry->hasType("geny_{$type}")) {
+            $type = "geny_{$type}";
+        }
+
         return $factory->createNamedBuilder(
             $object->getName(),
-            $object->getType()->getNormalized()->getName(),
+            $type,
             null,
-            array_merge(
-                array_map(function(Option $option) {
-                    return [
-                       $option->getNormalized()->getName() => $option->getNormalized()->getData()
-                    ];
-                }, $object->getOptions()->toArray())
-            )
+            $options ? call_user_func_array('array_merge', $options) : []
         );
     }
 

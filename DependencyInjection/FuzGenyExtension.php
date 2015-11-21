@@ -14,7 +14,6 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class FuzGenyExtension extends Extension
 {
-
     /**
      * {@inheritdoc}
      */
@@ -27,6 +26,6 @@ class FuzGenyExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $loader->load('form.yml');
     }
-
 }

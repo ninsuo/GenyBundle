@@ -53,7 +53,7 @@ class HashType extends AbstractType
      */
     public function getName()
     {
-        return 'hash';
+        return 'geny_hash';
     }
 
 }

@@ -3,7 +3,7 @@
 namespace Fuz\GenyBundle\Data\Resources;
 
 use Fuz\GenyBundle\Data\Validator;
-use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractResource implements ResourceInterface
 {
@@ -132,14 +132,14 @@ abstract class AbstractResource implements ResourceInterface
         return $this;
     }
 
-    public function getType()
+    public function getForm()
     {
-        return $this->type;
+        return $this->form;
     }
 
-    public function setType(FormTypeInterface $type)
+    public function setForm(FormInterface $form)
     {
-        $this->type = $type;
+        $this->form = $form;
         return $this;
     }
 }

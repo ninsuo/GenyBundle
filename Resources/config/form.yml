@@ -1,0 +1,23 @@
+parameters:
+    geny.form.type.container.class: Fuz\GenyBundle\Form\Type\ContainerType
+    geny.form.type.hash.class: Fuz\GenyBundle\Form\Type\HashType
+    geny.form.type.list.class: Fuz\GenyBundle\Form\Type\ListType
+
+services:
+    geny.form.type.container:
+        class: %geny.form.type.container.class%
+        arguments: []
+        tags:
+          - { name: form.type, alias: geny_container }
+
+    geny.form.type.hash:
+        class: %geny.form.type.hash.class%
+        arguments: []
+        tags:
+          - { name: form.type, alias: geny_hash }
+
+    geny.form.type.list:
+        class: %geny.form.type.list.class%
+        arguments: []
+        tags:
+          - { name: form.type, alias: geny_list }

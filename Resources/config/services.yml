@@ -24,9 +24,7 @@ parameters:
     geny.builder.type.class: Fuz\GenyBundle\Provider\Builder\TypeBuilder
     geny.builder.option.class: Fuz\GenyBundle\Provider\Builder\OptionBuilder
     geny.builder.validator.class: Fuz\GenyBundle\Provider\Builder\ValidatorBuilder
-
     geny.initializer.class: Fuz\GenyBundle\Services\Initializer
-    geny.form.type.container.class: Fuz\GenyBundle\Form\ContainerType
 
 services:
     geny:
@@ -171,9 +169,3 @@ services:
         class: %geny.initializer.class%
         parent: geny.base
         arguments: []
-
-    geny.form.type.container:
-        class: %geny.form.type.container.class%
-        arguments: []
-        tags:
-          - { name: form.type, alias: container }

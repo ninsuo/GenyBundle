@@ -55,6 +55,6 @@ class ListType extends AbstractType
      */
     public function getName()
     {
-        return 'list';
+        return 'geny_list';
     }
 }
