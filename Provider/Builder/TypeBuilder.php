@@ -11,7 +11,7 @@ class TypeBuilder extends BaseService implements BuilderInterface
 
     public function build(ResourceInterface $resource)
     {
-        return null;
+        return;
     }
 
     public function supports($object)

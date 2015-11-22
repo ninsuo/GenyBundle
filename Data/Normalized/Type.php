@@ -62,12 +62,13 @@ class Type implements TypeInterface
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return Type
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -112,12 +113,13 @@ class Type implements TypeInterface
     }
 
     /**
-     * @param string $visibility
+     * @param  string $visibility
      * @return Type
      */
     public function setVisibility($visibility)
     {
         $this->visibility = $visibility;
+
         return $this;
     }
 
@@ -130,12 +132,13 @@ class Type implements TypeInterface
     }
 
     /**
-     * @param boolean $compound
+     * @param  boolean $compound
      * @return Type
      */
     public function setCompound($compound)
     {
         $this->compound = $compound;
+
         return $this;
     }
 }

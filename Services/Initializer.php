@@ -8,7 +8,6 @@ use Fuz\GenyBundle\Entity\Form;
 
 class Initializer extends BaseService
 {
-
     public function initialize(FormInterface $type, Form $form, $scope = 0)
     {
         if (false === $form->getType()->isCompound()) {
@@ -19,6 +18,7 @@ class Initializer extends BaseService
                 return;
             }
             $type->setData($form->getData());
+
             return;
         }
 
@@ -29,5 +29,4 @@ class Initializer extends BaseService
             $this->initialize($child, $field, $scope + 1);
         }
     }
-
 }

@@ -54,12 +54,13 @@ class Form implements FormInterface
     }
 
     /**
-     * @param string $resource
+     * @param  string $resource
      * @return Form
      */
     public function setResource($resource)
     {
         $this->resource = $resource;
+
         return $this;
     }
 
@@ -72,12 +73,13 @@ class Form implements FormInterface
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return Form
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -90,12 +92,13 @@ class Form implements FormInterface
     }
 
     /**
-     * @param Type $type
+     * @param  Type $type
      * @return Form
      */
     public function setType(Type $type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -132,12 +135,13 @@ class Form implements FormInterface
     }
 
     /**
-     * @param mixed $data
+     * @param  mixed $data
      * @return Form
      */
     public function setData($data)
     {
         $this->data = $data;
+
         return $this;
     }
 }

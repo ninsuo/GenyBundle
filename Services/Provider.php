@@ -10,7 +10,8 @@ use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 
 class Provider extends BaseService
 {
-    public function getType($name) {
+    public function getType($name)
+    {
         foreach ($this->get('geny.extension')->getExtensions() as $extension) {
             $types = $extension->getTypes();
             if (array_key_exists($name, $types)) {
@@ -25,7 +26,8 @@ class Provider extends BaseService
         throw new TypeException("Type '{$name}' not found.");
     }
 
-    public function getOption($name) {
+    public function getOption($name)
+    {
         foreach ($this->get('geny.extension')->getExtensions() as $extension) {
             $options = $extension->getOptions();
             if (array_key_exists($name, $options)) {
@@ -36,7 +38,8 @@ class Provider extends BaseService
         throw new OptionException("Option '{$name}' not found.");
     }
 
-    public function getValidator($name) {
+    public function getValidator($name)
+    {
         foreach ($this->get('geny.extension')->getExtensions() as $extension) {
             $validators = $extension->getValidators();
             if (array_key_exists($name, $validators)) {

@@ -15,7 +15,7 @@ class Loader extends BaseService
     public function load(ResourceInterface $resource)
     {
         if (!$resource->isRoot()) {
-            return null;
+            return;
         }
 
         if (!is_null($resource->getLoaded())) {
@@ -77,5 +77,4 @@ class Loader extends BaseService
     {
         return $this->loaders;
     }
-
 }

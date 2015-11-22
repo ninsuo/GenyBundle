@@ -11,4 +11,3 @@ interface ValidatorInterface
     public function supports($object);
     public function getName();
 }
-

@@ -6,7 +6,6 @@ class Option extends AbstractResource
 {
     public function __toString()
     {
-        return 'Option:' . $this->getResource();
+        return 'Option:'.$this->getResource();
     }
 }
-

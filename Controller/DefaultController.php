@@ -9,7 +9,6 @@ use Fuz\GenyBundle\Base\BaseController;
 
 class DefaultController extends BaseController
 {
-
     /**
      * @Route("/bob", name="xxx")
      * @Template()
@@ -17,5 +16,4 @@ class DefaultController extends BaseController
     public function indexAction(Request $request)
     {
     }
-
 }

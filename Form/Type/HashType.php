@@ -55,5 +55,4 @@ class HashType extends AbstractType
     {
         return 'geny_hash';
     }
-
 }

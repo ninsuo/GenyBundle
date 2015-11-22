@@ -48,7 +48,7 @@ class Extension extends BaseService
     public function getExtensions()
     {
         if (!$this->ordered) {
-            usort($this->extensions, function(ExtensionInterface $a, ExtensionInterface $b) {
+            usort($this->extensions, function (ExtensionInterface $a, ExtensionInterface $b) {
                 return $a->getPriority() == $b->getPriority() ? 0 : $a->getPriority() > $b->getPriority() ? 1 : -1;
             });
             $this->ordered = true;

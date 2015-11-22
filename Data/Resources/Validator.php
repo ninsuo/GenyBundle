@@ -6,7 +6,6 @@ class Validator extends AbstractResource
 {
     public function __toString()
     {
-        return 'Validator:' . $this->getResource();
+        return 'Validator:'.$this->getResource();
     }
 }
-

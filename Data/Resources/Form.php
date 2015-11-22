@@ -6,7 +6,6 @@ class Form extends AbstractResource
 {
     public function __toString()
     {
-        return 'Form:' . $this->getResource();
+        return 'Form:'.$this->getResource();
     }
 }
-

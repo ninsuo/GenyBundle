@@ -6,7 +6,6 @@ class Type extends AbstractResource
 {
     public function __toString()
     {
-        return 'Type:' . $this->getResource();
+        return 'Type:'.$this->getResource();
     }
 }
-

@@ -15,7 +15,7 @@ class Unserializer extends BaseService
     public function unserialize(ResourceInterface $resource)
     {
         if (!$resource->isRoot()) {
-            return null;
+            return;
         }
 
         if (is_null($resource->getLoaded())) {

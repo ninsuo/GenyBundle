@@ -15,7 +15,7 @@ class Builder extends BaseService
     public function build(ResourceInterface $resource)
     {
         if (!$resource->isRoot()) {
-            return null;
+            return;
         }
 
         if (is_null($resource->getNormalized())) {

@@ -1,5 +1,5 @@
 <?php
-require_once("../../GenyBundle-demo/vendor/autoload.php");
+require_once "../../GenyBundle-demo/vendor/autoload.php";
 
 $converter = new Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter();
 
@@ -42,14 +42,11 @@ foreach ($glob as $file) {
     echo json_encode($json, JSON_PRETTY_PRINT), PHP_EOL;
 }
 
-
-
 $index = 42;
 foreach ($trans as $key) {
-
-echo '
+    echo '
       <trans-unit id="'.$index.'">
-        <source>'. $key .'</source>
+        <source>'.$key.'</source>
         <target><![CDATA[]]></target>
       </trans-unit>';
     $index++;

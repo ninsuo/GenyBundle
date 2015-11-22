@@ -58,8 +58,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
             throw $this->throwContextException($resource, $ex);
         }
 
-        try
-        {
+        try {
             $this->get('geny')->prepare($type);
         } catch (BaseException $ex) {
             throw $this->throwContextException($resource, $ex);

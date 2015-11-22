@@ -33,7 +33,7 @@ class FormBuilder extends BaseService implements BuilderInterface
         $object = $resource->getNormalized();
         $factory = $this->get('form.factory');
 
-        $options = array_map(function(DataAssociation $option) {
+        $options = array_map(function (DataAssociation $option) {
             return [
                 $option->getResource()->getNormalized()->getName() => $option->getData()
             ];

@@ -38,6 +38,7 @@ abstract class AbstractResource implements ResourceInterface
     public function setLoader($loader)
     {
         $this->loader = $loader;
+
         return $this;
     }
 
@@ -49,6 +50,7 @@ abstract class AbstractResource implements ResourceInterface
     public function setResource($resource)
     {
         $this->resource = $resource;
+
         return $this;
     }
 
@@ -60,6 +62,7 @@ abstract class AbstractResource implements ResourceInterface
     public function setFormat($format)
     {
         $this->format = $format;
+
         return $this;
     }
 
@@ -73,7 +76,8 @@ abstract class AbstractResource implements ResourceInterface
         return $this->state;
     }
 
-    public function setState($state) {
+    public function setState($state)
+    {
         if (!in_array($state, [
             self::STATE_PENDING,
             self::STATE_INPROGRESS,
@@ -84,6 +88,7 @@ abstract class AbstractResource implements ResourceInterface
         }
 
         $this->state = $state;
+
         return $this;
     }
 
@@ -107,6 +112,7 @@ abstract class AbstractResource implements ResourceInterface
     public function setUnserialized(array $array)
     {
         $this->unserialized = $array;
+
         return $this;
     }
 
@@ -118,6 +124,7 @@ abstract class AbstractResource implements ResourceInterface
     public function setNormalized($object)
     {
         $this->normalized = $object;
+
         return $this;
     }
 
@@ -129,6 +136,7 @@ abstract class AbstractResource implements ResourceInterface
     public function setValidator(Validator $validator)
     {
         $this->validator = $validator;
+
         return $this;
     }
 
@@ -140,6 +148,7 @@ abstract class AbstractResource implements ResourceInterface
     public function setForm(FormInterface $form)
     {
         $this->form = $form;
+
         return $this;
     }
 }

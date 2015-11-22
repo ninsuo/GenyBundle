@@ -10,4 +10,3 @@ interface BuilderInterface
     public function supports($object);
     public function getName();
 }
-

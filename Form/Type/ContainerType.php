@@ -12,7 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ContainerType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */
@@ -38,5 +37,4 @@ class ContainerType extends AbstractType
     {
         return 'geny_container';
     }
-
 }

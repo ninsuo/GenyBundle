@@ -96,5 +96,4 @@ class Validator extends BaseService
     {
         return $this->validators;
     }
-
 }
