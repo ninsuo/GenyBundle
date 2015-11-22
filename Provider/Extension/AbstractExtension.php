@@ -8,6 +8,11 @@ abstract class AbstractExtension implements ExtensionInterface
     const PRIORITY_MEDIUM = 50;
     const PRIORITY_HIGH   = 0;
 
+    public function getForms()
+    {
+        return array();
+    }
+
     public function getTypes()
     {
         return array();

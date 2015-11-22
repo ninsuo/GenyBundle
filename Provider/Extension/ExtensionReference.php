@@ -5,6 +5,7 @@ namespace Fuz\GenyBundle\Provider\Extension;
 class ExtensionReference implements ExtensionInterface
 {
     protected $base;
+    protected $forms;
     protected $types;
     protected $options;
     protected $validators;
@@ -12,9 +13,15 @@ class ExtensionReference implements ExtensionInterface
     public function __construct(ExtensionInterface $base)
     {
         $this->base       = $base;
+        $this->forms      = $base->getForms();
         $this->types      = $base->getTypes();
         $this->options    = $base->getOptions();
         $this->validators = $base->getValidators();
+    }
+
+    public function getForms()
+    {
+        return $this->forms;
     }
 
     public function getTypes()
