@@ -7,8 +7,8 @@ use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractResource implements ResourceInterface
 {
-    protected $loader;
     protected $resource;
+    protected $loader;
     protected $format;
 
     protected $isRoot;
@@ -22,24 +22,12 @@ abstract class AbstractResource implements ResourceInterface
 
     protected $state        = self::STATE_PENDING;
 
-    public function __construct($loader, $resource, $format, $isRoot = true)
+    public function __construct($resource, $loader, $format, $isRoot = true)
     {
-        $this->loader   = $loader;
         $this->resource = $resource;
+        $this->loader   = $loader;
         $this->format   = $format;
         $this->isRoot   = $isRoot;
-    }
-
-    public function getLoader()
-    {
-        return $this->loader;
-    }
-
-    public function setLoader($loader)
-    {
-        $this->loader = $loader;
-
-        return $this;
     }
 
     public function getResource()
@@ -50,6 +38,18 @@ abstract class AbstractResource implements ResourceInterface
     public function setResource($resource)
     {
         $this->resource = $resource;
+
+        return $this;
+    }
+
+    public function getLoader()
+    {
+        return $this->loader;
+    }
+
+    public function setLoader($loader)
+    {
+        $this->loader = $loader;
 
         return $this;
     }

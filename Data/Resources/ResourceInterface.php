@@ -15,12 +15,12 @@ interface ResourceInterface
     /**
      * @return string
      */
-    public function getLoader();
+    public function getResource();
 
     /**
      * @return string
      */
-    public function getResource();
+    public function getLoader();
 
     /**
      * @return string
