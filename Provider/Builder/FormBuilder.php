@@ -3,8 +3,8 @@
 namespace Fuz\GenyBundle\Provider\Builder;
 
 use Fuz\GenyBundle\Base\BaseService;
+use Fuz\GenyBundle\Data\DataAssociation;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
-use Fuz\GenyBundle\Data\Resources\Option;
 
 class FormBuilder extends BaseService implements BuilderInterface
 {
@@ -33,9 +33,9 @@ class FormBuilder extends BaseService implements BuilderInterface
         $object = $resource->getNormalized();
         $factory = $this->get('form.factory');
 
-        $options = array_map(function(Option $option) {
+        $options = array_map(function(DataAssociation $option) {
             return [
-                $option->getNormalized()->getName() => $option->getNormalized()->getData()
+                $option->getResource()->getNormalized()->getName() => $option->getData()
             ];
         }, $object->getOptions()->toArray());
 

@@ -2,6 +2,7 @@
 
 namespace Fuz\GenyBundle\Provider\Normalizer;
 
+use Fuz\GenyBundle\Data\DataAssociation;
 use Fuz\GenyBundle\Data\Resources\ResourceInterface;
 use Fuz\GenyBundle\Data\Resources\Form;
 use Fuz\GenyBundle\Exception\NormalizerException;
@@ -84,15 +85,13 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
                 throw $this->throwContextException($resource, $ex);
             }
 
-            try
-            {
+            try {
                 $this->get('geny')->prepare($option);
             } catch (BaseException $ex) {
                 throw $this->throwContextException($resource, $ex);
             }
 
-            $option->getNormalized()->setData($data);
-            $options->add($option);
+            $options->add(new DataAssociation($option, $data));
         }
     }
 
@@ -113,15 +112,13 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
                 throw $this->throwContextException($resource, $ex);
             }
 
-            try
-            {
+            try {
                 $this->get('geny')->prepare($validator);
             } catch (BaseException $ex) {
                 throw $this->throwContextException($resource, $ex);
             }
 
-            $validator->getNormalized()->setData($data);
-            $validators->add($validator);
+            $validators->add(new DataAssociation($validator, $data));
         }
     }
 
@@ -140,8 +137,7 @@ abstract class BaseFormNormalizer extends BaseNormalizer implements NormalizerIn
             $form = new Form($resource->getLoader(), $unserialized['name'], $resource->getFormat(), false);
             $form->setUnserialized($unserialized);
 
-            try
-            {
+            try {
                 $this->get('geny')->prepare($form);
             } catch (BaseException $ex) {
                 throw $this->throwContextException($resource, $ex);

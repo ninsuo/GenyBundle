@@ -29,8 +29,8 @@ class FormValidator extends BaseService implements ValidatorInterface
             $constraints->getConstraints()->add(
                 $this->getConstraint(
                    $resource,
-                   $validator->getNormalized()->getName(),
-                   $validator->getNormalized()->getData()
+                   $validator->getResource()->getNormalized()->getName(),
+                   $validator->getData()
                 )
             );
         }
