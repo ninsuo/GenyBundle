@@ -1,0 +1,18 @@
+parameters:
+    geny.type.text.class: GenyBundle\Provider\Type\Text
+    geny.type.choice.class: GenyBundle\Provider\Type\Choice
+
+services:
+    geny.type.text:
+        class: %geny.type.text.class%
+        parent: geny.base
+        arguments: []
+        tags:
+            - { name: geny.type }
+
+    geny.type.choice:
+        class: %geny.type.choice.class%
+        parent: geny.base
+        arguments: []
+        tags:
+            - { name: geny.type }

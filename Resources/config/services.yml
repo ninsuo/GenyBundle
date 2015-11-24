@@ -1,6 +1,7 @@
 parameters:
     geny.class: GenyBundle\Services\Environment
     geny.base.class: GenyBundle\Base\BaseService
+    geny.type.class: GenyBundle\Provider\Type
 
 services:
     geny:
@@ -13,7 +14,7 @@ services:
         calls:
           - [setContainer, [@service_container]]
 
-#    geny.extension:
-#        class: %geny.extension.class%
-#        parent: geny.base
-#        arguments: []
+    geny.type:
+        class: %geny.type.class%
+        parent: geny.base
+        arguments: []
