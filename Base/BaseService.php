@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Base;
+namespace GenyBundle\Base;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 

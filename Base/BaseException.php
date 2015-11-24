@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\Exception;
+namespace GenyBundle\Base;
 
 class BaseException extends \LogicException
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\DependencyInjection;
+namespace GenyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class FuzGenyExtension extends Extension
+class GenyExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -26,6 +26,5 @@ class FuzGenyExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        $loader->load('form.yml');
     }
 }

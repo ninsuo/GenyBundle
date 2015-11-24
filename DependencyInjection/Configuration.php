@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\GenyBundle\DependencyInjection;
+namespace GenyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -13,19 +13,8 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('fuz_geny');
+        $rootNode    = $treeBuilder->root('geny');
 
-        $rootNode
-           ->children()
-               ->arrayNode('validation_constraint_namespaces')
-                    ->defaultValue([
-                        'Symfony\\Component\\Validator\\Constraints',
-                    ])
-                   ->prototype('scalar')
-                   ->end()
-               ->end()
-           ->end()
-        ->end();
 
         return $treeBuilder;
     }

@@ -33,7 +33,7 @@ php composer.phar require ninsuo/GenyBundle
         $bundles = array(
 
             // ...
-            new Fuz\GenyBundle\FuzGenyBundle(),
+            new GenyBundle\GenyBundle(),
         );
     }
 ```
@@ -42,7 +42,7 @@ php composer.phar require ninsuo/GenyBundle
 
 ```yml
 geny:
-    resource: "@FuzGenyBundle/Controller/"
+    resource: "@GenyBundle/Controller/"
     type:     annotation
     prefix:   /geny
 ```
