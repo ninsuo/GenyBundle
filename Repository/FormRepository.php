@@ -5,7 +5,7 @@ namespace GenyBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * FormRpository.
+ * FormRepository.
  */
 class FormRepository extends EntityRepository
 {

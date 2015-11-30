@@ -18,6 +18,7 @@
         "symfony/http-kernel": "^2.7",
         "symfony/config": "^2.7",
         "symfony/dependency-injection": "^2.7",
-        "symfony/translation": "^2.7"
+        "symfony/translation": "^2.7",
+        "jms/serializer": "^1.0"
    }
 }

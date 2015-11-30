@@ -5,8 +5,8 @@ namespace GenyBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * ItemRepository.
+ * TypeRepository.
  */
-class ItemRepository extends EntityRepository
+class TypeRepository extends EntityRepository
 {
 }
