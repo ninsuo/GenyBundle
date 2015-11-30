@@ -7,13 +7,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use GenyBundle\Base\BaseController;
 
-class DefaultController extends BaseController
+class BuilderController extends BaseController
 {
     /**
-     * @Route("/bob", name="xxx")
+     * @Route("/builder/new", name="geny_builder_new")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function newAction(Request $request)
     {
+
+
+
     }
 }

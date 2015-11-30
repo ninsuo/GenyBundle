@@ -30,5 +30,10 @@ class Text extends BaseService implements TypeInterface
     {
         return 'text';
     }
+
+    public function getDescription()
+    {
+        return 'geny.field.text.description';
+    }
 }
 

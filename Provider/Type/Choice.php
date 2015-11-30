@@ -30,5 +30,10 @@ class Choice extends BaseService implements TypeInterface
     {
         return 'choice';
     }
+
+    public function getDescription()
+    {
+        return 'geny.field.choice.description';
+    }
 }
 

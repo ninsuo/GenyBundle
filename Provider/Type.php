@@ -9,7 +9,6 @@ use GenyBundle\Provider\Type\TypeInterface;
 class Type extends BaseService
 {
     protected $types = array();
-    protected $ordered    = true;
 
     public function hasType($name)
     {
@@ -28,13 +27,11 @@ class Type extends BaseService
     public function addType(TypeInterface $type)
     {
         $this->types[$type->getName()] = new TypeReference($type);
-        $this->ordered                           = false;
     }
 
     public function removeType($name)
     {
         unset($this->types[$name]);
-        $this->ordered = false;
     }
 
     public function setTypes(array $types)
@@ -46,6 +43,6 @@ class Type extends BaseService
 
     public function getTypes()
     {
-       return $this->types;
+        return $this->types;
     }
 }

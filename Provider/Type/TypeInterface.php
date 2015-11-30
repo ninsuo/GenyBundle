@@ -9,5 +9,6 @@ interface TypeInterface
     public function getConstraintsType();
     public function getConstraintsData();
     public function getName();
+    public function getDescription();
 }
 

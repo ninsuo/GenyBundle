@@ -2,6 +2,8 @@ parameters:
     geny.class: GenyBundle\Services\Environment
     geny.base.class: GenyBundle\Base\BaseService
     geny.type.class: GenyBundle\Provider\Type
+    geny.type.text.class: GenyBundle\Provider\Type\Text
+    geny.type.choice.class: GenyBundle\Provider\Type\Choice
 
 services:
     geny:
@@ -18,3 +20,18 @@ services:
         class: %geny.type.class%
         parent: geny.base
         arguments: []
+
+    geny.type.text:
+        class: %geny.type.text.class%
+        parent: geny.base
+        arguments: []
+        tags:
+          - geny.type
+
+    geny.type.choice:
+        class: %geny.type.choice.class%
+        parent: geny.base
+        arguments: []
+        tags:
+          - geny.type
+
