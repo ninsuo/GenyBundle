@@ -1,6 +1,6 @@
 <?php
 
-namespace GenyBundle\Data;
+namespace GenyBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
