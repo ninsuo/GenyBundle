@@ -8,7 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * @ORM\Table(name="form")
+ * @ORM\Table(
+ *      name="geny_form",
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="form_name_idx", columns={"name"})}
+ * )
  * @ORM\Entity(repositoryClass="GenyBundle\Repository\FormRepository")
  * @ORM\ChangeTrackingPolicy("DEFERRED_EXPLICIT")
  * @Serializer\ExclusionPolicy("NONE")
@@ -29,6 +32,8 @@ class Form
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=32)
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 1, max = 32)
      * @Serializer\Type("string")
      */
     protected $name;
@@ -37,6 +42,7 @@ class Form
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=128)
+     * @Assert\Length(min = 0, max = 128)
      * @Serializer\Type("string")
      */
     protected $title;

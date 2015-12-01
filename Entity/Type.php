@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * @ORM\Table(name="type")
+ * @ORM\Table(name="geny_type")
  * @ORM\Entity(repositoryClass="GenyBundle\Repository\TypeRepository")
  * @ORM\ChangeTrackingPolicy("DEFERRED_EXPLICIT")
  * @Serializer\ExclusionPolicy("NONE")
@@ -36,6 +36,8 @@ class Type
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=32)
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 1, max = 32)
      * @Serializer\Type("string")
      */
     protected $name;
@@ -44,7 +46,8 @@ class Type
      * @var array
      *
      * @ORM\Column(name="data", type="json_array")
-     * @Serializer\Type("string")
+     * @Assert\Type("array")
+     * @Serializer\Type("array")
      */
     protected $data;
 
@@ -52,7 +55,8 @@ class Type
      * @var array
      *
      * @ORM\Column(name="options", type="json_array")
-     * @Serializer\Type("string")
+     * @Assert\Type("array")
+     * @Serializer\Type("array")
      */
     protected $options;
 
@@ -60,7 +64,8 @@ class Type
      * @var array
      *
      * @ORM\Column(name="constraints", type="json_array")
-     * @Serializer\Type("string")
+     * @Assert\Type("array")
+     * @Serializer\Type("array")
      */
     protected $constraints;
 

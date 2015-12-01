@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * @ORM\Table(name="field")
+ * @ORM\Table(name="geny_field")
  * @ORM\Entity(repositoryClass="GenyBundle\Repository\FieldRepository")
  * @ORM\ChangeTrackingPolicy("DEFERRED_EXPLICIT")
  * @Serializer\ExclusionPolicy("NONE")
@@ -37,6 +37,8 @@ class Field
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=32)
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 1, max = 32)
      * @Serializer\Type("string")
      */
     protected $name;
@@ -54,7 +56,8 @@ class Field
     /**
      * @var string
      *
-     * @ORM\Column(name="label", type="string", length=128)
+     * @ORM\Column(name="label", type="string", length=160)
+     * @Assert\Length(min = 0, max = 160)
      * @Serializer\Type("string")
      */
     protected $label;
@@ -62,7 +65,8 @@ class Field
     /**
      * @var string
      *
-     * @ORM\Column(name="hint", type="string", length=128)
+     * @ORM\Column(name="hint", type="string", length=255)
+     * @Assert\Length(min = 0, max = 255)
      * @Serializer\Type("string")
      */
     protected $hint;
@@ -71,6 +75,7 @@ class Field
      * @var string
      *
      * @ORM\Column(name="required", type="boolean")
+     * @Assert\Type("boolean")
      * @Serializer\Type("boolean")
      */
     protected $required;
