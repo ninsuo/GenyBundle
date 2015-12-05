@@ -2,16 +2,16 @@
 
 namespace GenyBundle\Provider\Type;
 
-class Choice extends AbstractType
+class Form extends AbstractType
 {
     public function getName()
     {
         return 'choice';
     }
 
-    public function getDescription()
+    public function isInternal()
     {
-        return 'geny.field.choice.description';
+        return true;
     }
 }
 
