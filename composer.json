@@ -1,10 +1,10 @@
 {
-   "name": "ninsuo/GenyBundle",
+   "name": "ninsuo/geny-bundle",
    "license": "MIT",
-   "type": "library",
+   "type": "symfony-bundle",
    "description": "Provides UIs to create, render and validate forms",
    "autoload": {
-      "psr-4": { "Fuz\\GenyBundle\\": "" }
+      "psr-4": { "GenyBundle\\": "" }
    },
    "require": {
         "php": ">=5.4",

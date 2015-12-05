@@ -2,6 +2,7 @@
 
 namespace GenyBundle\Repository;
 
+use GenyBundle\Entity\Form;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -9,4 +10,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class FormRepository extends EntityRepository
 {
+
 }
+

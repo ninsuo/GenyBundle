@@ -2,6 +2,6 @@
 
 namespace GenyBundle\Services;
 
-class Environment
+class Geny
 {
 }
