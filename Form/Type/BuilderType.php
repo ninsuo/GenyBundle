@@ -2,12 +2,12 @@
 
 namespace GenyBundle\Form\Type;
 
+use GenyBundle\Base\BaseType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
 
-class BuilderType extends AbstractType
+class BuilderType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -16,7 +16,8 @@ class BuilderType extends AbstractType
                'attr'       => array(
                    'placeholder' => 'geny.form.builder.title.placeholder',
                ),
-               'empty_data' => 'geny.form.builder.title.default',
+               'empty_data' => $this->get('translator')->trans('geny.form.builder.title.default', array(), 'geny'),
+               'label'      => 'geny.form.builder.title.label',
                'required'   => true,
            ))
            ->add('description', Type\TextareaType::class, array(
@@ -24,6 +25,7 @@ class BuilderType extends AbstractType
                    'placeholder' => 'geny.form.builder.description.placeholder',
                ),
                'empty_data' => null,
+               'label'      => 'geny.form.builder.description.label',
                'required'   => false,
            ))
         ;

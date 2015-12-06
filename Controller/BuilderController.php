@@ -19,27 +19,71 @@ class BuilderController extends BaseController
      *     name = "geny_builder_render",
      *     requirements = {
      *         "id" = "^\d+$"
-     *     },
-     *     condition="request.isMasterRequest() or not request.isXmlHttpRequest()"
+     *     }
      * )
      * @Method({"GET"})
      * @Template()
      */
-    public function renderAction($id)
+    public function renderAction(Request $request, $id)
     {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
         $entity = $this
            ->getDoctrine()
            ->getRepository('GenyBundle:Form')
-           ->find($id);
+           ->retrieveForm($id);
 
         if (is_null($entity)) {
-            throw new $this->createNotFoundException();
+            throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm(BuilderType::class, $entity);
+        return [
+            'entity' => $entity,
+        ];
+    }
+
+    /**
+     * Renders the main configuration form.
+     *
+     * @Route(
+     *     "/builder/render/main/{id}",
+     *     name = "geny_builder_render_main",
+     *     requirements = {
+     *         "id" = "^\d+$"
+     *     }
+     * )
+     * @Template()
+     */
+    public function renderMainAction(Request $request, $id)
+    {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity = $this
+           ->getDoctrine()
+           ->getRepository('GenyBundle:Form')
+           ->retrieveForm($id);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+        $main = $this->createForm(BuilderType::class, $entity);
+
+        $main->handleRequest($request);
+        if ($main->isValid()) {
+            $this
+               ->getDoctrine()
+               ->getRepository('GenyBundle:Form')
+               ->saveForm($entity);
+        }
 
         return [
-            'form' => $form->createView(),
+            'entity' => $entity,
+            'main'   => $main->createView(),
         ];
     }
 }

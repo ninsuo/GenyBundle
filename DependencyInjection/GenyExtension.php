@@ -25,6 +25,8 @@ class GenyExtension extends Extension
         $container->setParameter('geny', $config);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('bases.yml');
         $loader->load('services.yml');
+        $loader->load('types.yml');
     }
 }

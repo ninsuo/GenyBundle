@@ -1,37 +1,10 @@
 parameters:
-    geny.class: GenyBundle\Services\Environment
-    geny.base.class: GenyBundle\Base\BaseService
-    geny.type.class: GenyBundle\Provider\Type
-    geny.type.text.class: GenyBundle\Provider\Type\Text
-    geny.type.choice.class: GenyBundle\Provider\Type\Choice
+    geny.form.type.builder.class: GenyBundle\Form\Type\BuilderType
 
 services:
-    geny:
-        class: %geny.class%
-        arguments: [@geny.extension, @geny.loader, @geny.unserializer, @geny.normalizer, @geny.validator, @geny.builder, @geny.initializer]
-
-    geny.base:
-        class: %geny.base.class%
-        abstract: true
-        calls:
-          - [setContainer, [@service_container]]
-
-    geny.type:
-        class: %geny.type.class%
-        parent: geny.base
-        arguments: []
-
-    geny.type.text:
-        class: %geny.type.text.class%
-        parent: geny.base
+    geny.form.type.builder:
+        class: %geny.form.type.builder.class%
+        parent: geny.base.type
         arguments: []
         tags:
-          - geny.type
-
-    geny.type.choice:
-        class: %geny.type.choice.class%
-        parent: geny.base
-        arguments: []
-        tags:
-          - geny.type
-
+            - { name: form.type }

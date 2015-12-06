@@ -3,8 +3,9 @@
 namespace GenyBundle\Base;
 
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\Form\AbstractType;
 
-abstract class BaseService
+abstract class BaseType extends AbstractType
 {
     use ContainerAwareTrait;
 

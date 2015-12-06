@@ -1,0 +1,18 @@
+{# GenyBundle:Renderer:render.html.twig #}
+
+{% extends 'GenyBundle:Renderer:base.html.twig' %}
+
+{% block content %}
+
+<fieldset>
+    <legend>{{ entity.title }}</legend>
+
+    {% if entity.description %}
+        <p>{{ entity.description|nl2br }}</p>
+    {% endif %}
+
+
+
+</fieldset>
+
+{% endblock %}

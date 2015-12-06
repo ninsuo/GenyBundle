@@ -28,6 +28,6 @@ abstract class BaseController extends Controller
 
     public function trans($property, array $parameters = array())
     {
-        return $this->container->get('translator')->trans($property, $parameters);
+        return $this->get('translator')->trans($property, $parameters);
     }
 }
