@@ -2,11 +2,11 @@
 
 namespace GenyBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use GenyBundle\Base\BaseRepository;
 
 /**
  * TypeRepository.
  */
-class TypeRepository extends EntityRepository
+class TypeRepository extends BaseRepository
 {
 }

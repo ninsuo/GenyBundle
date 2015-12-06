@@ -1,0 +1,18 @@
+{# GenyBundle:Builder:formEditor.html.twig #}
+
+{%
+    set ajax = {
+        'class': 'domajax change',
+        'data-endpoint': path('geny_builder_form_editor', {id: id}),
+        'data-input': '#form-' ~ id,
+        'data-output': '#form-' ~ id,
+    }
+%}
+
+{{ form_start(form) }}
+
+{{ form_row(form.title, {attr: form.vars.attr|merge(ajax)}) }}
+
+{{ form_row(form.description, {attr: form.vars.attr|merge(ajax)}) }}
+
+{{ form_end(form) }}

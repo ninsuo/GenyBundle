@@ -1,23 +1,15 @@
 {# GenyBundle:Builder:render.html.twig #}
 
-{% extends 'GenyBundle::base.html.twig' %}
+<div id="form-{{ entity.id }}">
+    {{ render(controller('GenyBundle:Builder:formEditor', {id: entity.id})) }}
+</div>
 
-{% block content %}
+<div id="fields-{{ entity.id }}">
+    {{ include('GenyBundle:Builder:renderFields.html.twig', {entity: entity}) }}
+</div>
 
-    <div id="main-{{ entity.id }}">
-        {{ render(controller('GenyBundle:Builder:mainForm', {id: entity.id})) }}
-    </div>
+<hr/>
 
-    <div id="fields-{{ entity.id }}">
-        {% for field in entity.fields %}
-
-        {% endfor %}
-    </div>
-
-    <hr/>
-
-    <div id="add-{{ entity.id }}">
-        {{ render(controller('GenyBundle:Builder:addField', {id: entity.id})) }}
-    </div>
-
-{% endblock %}
+<div id="add-{{ entity.id }}">
+    {{ render(controller('GenyBundle:Builder:addField', {id: entity.id})) }}
+</div>

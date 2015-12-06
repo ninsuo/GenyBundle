@@ -2,11 +2,15 @@
 
 namespace GenyBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use GenyBundle\Base\BaseRepository;
 
 /**
  * FieldRepository.
  */
-class FieldRepository extends EntityRepository
+class FieldRepository extends BaseRepository
 {
+    public function createField($id, $type)
+    {
+
+    }
 }

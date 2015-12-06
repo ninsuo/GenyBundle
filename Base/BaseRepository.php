@@ -2,10 +2,10 @@
 
 namespace GenyBundle\Base;
 
+use Doctrine\ORM\EntityRepository;
 use GenyBundle\Traits\ContainerTrait;
-use Symfony\Component\Form\AbstractType;
 
-abstract class BaseType extends AbstractType
+abstract class BaseRepository extends EntityRepository
 {
     use ContainerTrait;
 }

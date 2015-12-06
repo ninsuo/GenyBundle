@@ -3,12 +3,12 @@
 namespace GenyBundle\Repository;
 
 use GenyBundle\Entity\Form;
-use Doctrine\ORM\EntityRepository;
+use GenyBundle\Base\BaseRepository;
 
 /**
  * FormRepository.
  */
-class FormRepository extends EntityRepository
+class FormRepository extends BaseRepository
 {
     protected $forms = array();
 
