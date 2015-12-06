@@ -31,6 +31,7 @@ class FormRepository extends EntityRepository
     {
         $this->_em->persist($entity);
         $this->_em->flush($entity);
+
         $this->forms[$entity->getId()] = $entity;
 
         return $this;

@@ -9,9 +9,33 @@ class Choice extends AbstractType
         return 'choice';
     }
 
+    public function getTypeClass()
+    {
+
+    }
+
     public function getDescription()
     {
-        return 'geny.field.choice.description';
+        return 'geny.type.choice.description';
+    }
+
+    public function getOptionsType()
+    {
+    }
+
+    public function getDefaultOptions()
+    {
+
+    }
+
+    public function getConstraintsType()
+    {
+
+    }
+
+    public function getDefaultConstraints()
+    {
+
     }
 }
 

@@ -26,7 +26,7 @@ class Type extends BaseService
 
     public function addType(TypeInterface $type)
     {
-        $this->types[$type->getName()] = new TypeReference($type);
+        $this->types[$type->getName()] = $type;
     }
 
     public function removeType($name)

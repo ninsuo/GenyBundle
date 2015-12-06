@@ -1,16 +1,12 @@
 {# GenyBundle:Builder:render.html.twig #}
 
-{% extends 'GenyBundle:Builder:base.html.twig' %}
+{% extends 'GenyBundle::base.html.twig' %}
 
-{% block main %}
+{% block content %}
 
     <div id="main-{{ entity.id }}">
-        {{ render(controller('GenyBundle:Builder:renderMain', {id: entity.id})) }}
+        {{ render(controller('GenyBundle:Builder:mainForm', {id: entity.id})) }}
     </div>
-
-{% endblock %}
-
-{% block fields %}
 
     <div id="fields-{{ entity.id }}">
         {% for field in entity.fields %}
@@ -18,12 +14,10 @@
         {% endfor %}
     </div>
 
-{% endblock %}
-
-{% block add %}
+    <hr/>
 
     <div id="add-{{ entity.id }}">
-        <input type="button" class="" value="add" />
+        {{ render(controller('GenyBundle:Builder:addField', {id: entity.id})) }}
     </div>
 
 {% endblock %}

@@ -9,9 +9,33 @@ class Text extends AbstractType
         return 'text';
     }
 
+    public function getTypeClass()
+    {
+
+    }
+
     public function getDescription()
     {
-        return 'geny.field.text.description';
+        return 'geny.type.text.description';
+    }
+
+    public function getOptionsType()
+    {
+    }
+
+    public function getDefaultOptions()
+    {
+
+    }
+
+    public function getConstraintsType()
+    {
+
+    }
+
+    public function getDefaultConstraints()
+    {
+
     }
 }
 

@@ -18,10 +18,23 @@
         <source>geny.form.builder.description.label</source>
         <target><![CDATA[Description]]></target>
       </trans-unit>
-      <trans-unit id="4">
+      <trans-unit id="5">
         <source>geny.form.builder.description.placeholder</source>
         <target><![CDATA[Description (optional)]]></target>
       </trans-unit>
+      <trans-unit id="6">
+        <source>geny.builder.add_field.label</source>
+        <target><![CDATA[Add a new field]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>geny.type.text.description</source>
+        <target><![CDATA[Short answer]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>geny.type.choice.description</source>
+        <target><![CDATA[Multiple choice]]></target>
+      </trans-unit>
+
 
     </body>
   </file>

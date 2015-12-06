@@ -1,0 +1,22 @@
+{# GenyBundle:Builder:addField.html.twig #}
+
+{% extends 'GenyBundle::base.html.twig' %}
+
+{% block content %}
+
+    {%
+        set ajax = {
+            'class': 'domajax change',
+            'data-endpoint': path('geny_builder_add_field', {id: id}),
+            'data-input': '#add-' ~ id,
+            'data-output': '#fields-' ~ id,
+        }
+    %}
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.type, {attr: form.vars.attr|merge(ajax)}) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}
