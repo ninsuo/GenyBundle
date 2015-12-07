@@ -7,7 +7,7 @@ interface TypeInterface
     public function getName();
     public function getDescription();
 
-    public function getDataType();
+    public function getDataType($name, array $options = null, array $data = null);
     public function getDefaultData();
 
     public function getOptionsType();
