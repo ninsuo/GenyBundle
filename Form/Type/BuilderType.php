@@ -14,18 +14,18 @@ class BuilderType extends BaseType
         $builder
            ->add('title', Type\TextType::class, [
                'attr'       => [
-                   'placeholder' => 'geny.form.builder.title.placeholder',
+                   'placeholder' => 'geny.builder.title.placeholder',
                ],
-               'empty_data' => $this->get('translator')->trans('geny.form.builder.title.default', [], 'geny'),
-               'label'      => 'geny.form.builder.title.label',
+               'empty_data' => $this->get('translator')->trans('geny.builder.title.default', [], 'geny'),
+               'label'      => 'geny.builder.title.label',
                'required'   => true,
            ])
            ->add('description', Type\TextareaType::class, [
                'attr'       => [
-                   'placeholder' => 'geny.form.builder.description.placeholder',
+                   'placeholder' => 'geny.builder.description.placeholder',
                ],
                'empty_data' => null,
-               'label'      => 'geny.form.builder.description.label',
+               'label'      => 'geny.builder.description.label',
                'required'   => false,
            ])
         ;

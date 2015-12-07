@@ -3,27 +3,27 @@
   <file source-language="zz" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>geny.form.builder.title.label</source>
+        <source>geny.builder.title.label</source>
         <target><![CDATA[Title]]></target>
       </trans-unit>
       <trans-unit id="2">
-        <source>geny.form.builder.title.placeholder</source>
+        <source>geny.builder.title.placeholder</source>
         <target><![CDATA[Please choose a form title]]></target>
       </trans-unit>
       <trans-unit id="3">
-        <source>geny.form.builder.title.default</source>
+        <source>geny.builder.title.default</source>
         <target><![CDATA[Untitled form]]></target>
       </trans-unit>
       <trans-unit id="4">
-        <source>geny.form.builder.description.label</source>
+        <source>geny.builder.description.label</source>
         <target><![CDATA[Description]]></target>
       </trans-unit>
       <trans-unit id="5">
-        <source>geny.form.builder.description.placeholder</source>
+        <source>geny.builder.description.placeholder</source>
         <target><![CDATA[Description (optional)]]></target>
       </trans-unit>
       <trans-unit id="6">
-        <source>geny.form.builder.add_field.label</source>
+        <source>geny.builder.add_field.label</source>
         <target><![CDATA[Add a new field]]></target>
       </trans-unit>
       <trans-unit id="7">

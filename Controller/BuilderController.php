@@ -150,7 +150,7 @@ class BuilderController extends BaseController
                    new Constraints\Choice(['choices' => $types])
                ],
                'data'               => '',
-               'label'              => 'geny.form.builder.add_field.label',
+               'label'              => 'geny.builder.add_field.label',
                'required'           => false,
                'translation_domain' => 'geny',
            ])
