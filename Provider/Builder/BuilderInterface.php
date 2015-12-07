@@ -1,8 +1,8 @@
 <?php
 
-namespace GenyBundle\Provider\Type;
+namespace GenyBundle\Provider\Builder;
 
-interface TypeInterface
+interface BuilderInterface
 {
     public function getName();
     public function getDescription();

@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 use GenyBundle\Base\BaseController;
-use GenyBundle\Entity\Form;
 use GenyBundle\Form\Type\BuilderType;
 
 class BuilderController extends BaseController
@@ -138,8 +137,8 @@ class BuilderController extends BaseController
         }
 
         $types = array();
-        foreach ($this->get('geny.type')->getTypes() as $type) {
-            $types[$type->getDescription()] = $type->getName();
+        foreach ($this->get('geny.builder')->getBuilders() as $builder) {
+            $types[$builder->getDescription()] = $builder->getName();
         }
 
         $form = $this

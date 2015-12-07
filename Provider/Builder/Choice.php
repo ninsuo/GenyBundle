@@ -1,29 +1,29 @@
 <?php
 
-namespace GenyBundle\Provider\Type;
+namespace GenyBundle\Provider\Builder;
 
 use Symfony\Component\Form\Extension\Core\Type;
 
-class Text extends AbstractType
+class Choice extends AbstractBuilder
 {
     public function getName()
     {
-        return 'text';
+        return 'choice';
     }
 
     public function getDescription()
     {
-        return 'geny.type.text.description';
+        return 'geny.builders.choice.description';
     }
 
     public function getDataType($name, array $options = null, array $data = null)
     {
-        return $this->getDataCoreType(Type\TextType::class, $name, $options, $data);
+        return $this->getDataCoreType(Type\ChoiceType::class, $name, $options, $data);
     }
 
     public function getDefaultData()
     {
-        return $this->get('translator')->trans('geny.type.text.default', [], 'geny');
+
     }
 
     public function getOptionsType()

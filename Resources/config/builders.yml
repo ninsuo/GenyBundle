@@ -1,0 +1,24 @@
+parameters:
+    geny.builder.class: GenyBundle\Provider\Builder
+    geny.builder.text.class: GenyBundle\Provider\Builder\Text
+    geny.builder.choice.class: GenyBundle\Provider\Builder\Choice
+
+services:
+    geny.builder:
+        class: %geny.builder.class%
+        parent: geny.base.service
+        arguments: []
+
+    geny.builder.text:
+        class: %geny.builder.text.class%
+        parent: geny.base.service
+        arguments: []
+        tags:
+            - { name: geny.builder }
+
+    geny.builder.choice:
+        class: %geny.builder.choice.class%
+        parent: geny.base.service
+        arguments: []
+        tags:
+            - { name: geny.builder }

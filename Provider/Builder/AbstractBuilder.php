@@ -1,10 +1,10 @@
 <?php
 
-namespace GenyBundle\Provider\Type;
+namespace GenyBundle\Provider\Builder;
 
 use GenyBundle\Base\BaseService;
 
-abstract class AbstractType extends BaseService implements TypeInterface
+abstract class AbstractBuilder extends BaseService implements BuilderInterface
 {
     public function getDataCoreType($type, $name, array $options = null, array $data = null)
     {

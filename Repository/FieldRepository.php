@@ -19,7 +19,7 @@ class FieldRepository extends BaseRepository
         $field->setForm($form);
         $field->setName($this->get('translator')->trans('geny.builder.field.name', [], 'geny'));
 
-        $builder = $this->get('geny.type')->getType($typeName);
+        $builder = $this->get('geny.builder')->getBuilder($typeName);
 
         $type = new Type();
         $type->setField($field);

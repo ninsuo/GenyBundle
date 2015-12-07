@@ -11,6 +11,6 @@ class GenyBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new DependencyInjection\Compiler\TypeCompilerPass());
+        $container->addCompilerPass(new DependencyInjection\Compiler\BuilderCompilerPass());
     }
 }

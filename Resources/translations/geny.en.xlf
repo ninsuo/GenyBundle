@@ -27,11 +27,11 @@
         <target><![CDATA[Add a new field]]></target>
       </trans-unit>
       <trans-unit id="7">
-        <source>geny.type.text.description</source>
+        <source>geny.builders.text.description</source>
         <target><![CDATA[Short answer]]></target>
       </trans-unit>
       <trans-unit id="8">
-        <source>geny.type.choice.description</source>
+        <source>geny.builders.choice.description</source>
         <target><![CDATA[Multiple choice]]></target>
       </trans-unit>
       <trans-unit id="9">
@@ -47,7 +47,7 @@
         <target><![CDATA[Hint]]></target>
       </trans-unit>
       <trans-unit id="12">
-        <source>geny.type.text.default</source>
+        <source>geny.builders.text.default</source>
         <target><![CDATA[Default text]]></target>
       </trans-unit>
 
