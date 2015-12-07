@@ -47,6 +47,7 @@ class Form
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Field", mappedBy="form", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
      * @Assert\Valid()
      * @Serializer\Type("ArrayCollection<GenyBundle\Entity\Field>")
      */

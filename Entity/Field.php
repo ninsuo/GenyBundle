@@ -25,6 +25,14 @@ class Field
     protected $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     * @Serializer\Type("string")
+     */
+    protected $position;
+
+    /**
      * @var Form
      *
      * @ORM\ManyToOne(targetEntity="Form", inversedBy="fields")
@@ -90,6 +98,18 @@ class Field
         return $this->id;
     }
 
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
     public function getForm()
     {
         return $this->form;
@@ -98,6 +118,7 @@ class Field
     public function setForm($form)
     {
         $this->form = $form;
+
         return $this;
     }
 

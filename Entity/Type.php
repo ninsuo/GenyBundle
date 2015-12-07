@@ -1,4 +1,4 @@
-<?php
+<?php //
 
 namespace GenyBundle\Entity;
 
@@ -71,9 +71,9 @@ class Type
 
     public function __construct()
     {
-        $this->data        = array();
-        $this->options     = array();
-        $this->constraints = array();
+        $this->data        = [];
+        $this->options     = [];
+        $this->constraints = [];
     }
 
     public function getId()

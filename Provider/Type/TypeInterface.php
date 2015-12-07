@@ -5,8 +5,10 @@ namespace GenyBundle\Provider\Type;
 interface TypeInterface
 {
     public function getName();
-    public function getTypeClass();
     public function getDescription();
+
+    public function getDataType();
+    public function getDefaultData();
 
     public function getOptionsType();
     public function getDefaultOptions();

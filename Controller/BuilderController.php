@@ -151,7 +151,7 @@ class BuilderController extends BaseController
                    new Constraints\Choice(['choices' => $types])
                ],
                'data'               => '',
-               'label'              => 'geny.builder.add_field.label',
+               'label'              => 'geny.form.builder.add_field.label',
                'required'           => false,
                'translation_domain' => 'geny',
            ])
@@ -162,7 +162,7 @@ class BuilderController extends BaseController
             $this
                ->getDoctrine()
                ->getRepository('GenyBundle:Field')
-               ->createField($id, $form->getData()['type']);
+               ->createField($entity, $form->getData()['type']);
         }
 
         $response = $this->render('GenyBundle:Builder:addField.html.twig', [

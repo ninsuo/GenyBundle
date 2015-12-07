@@ -2,6 +2,8 @@
 
 namespace GenyBundle\Provider\Type;
 
+use Symfony\Component\Form\Extension\Core\Type;
+
 class Choice extends AbstractType
 {
     public function getName()
@@ -9,14 +11,19 @@ class Choice extends AbstractType
         return 'choice';
     }
 
-    public function getTypeClass()
+    public function getDescription()
+    {
+        return 'geny.type.choice.description';
+    }
+
+    public function getDataType()
     {
 
     }
 
-    public function getDescription()
+    public function getDefaultData()
     {
-        return 'geny.type.choice.description';
+
     }
 
     public function getOptionsType()
