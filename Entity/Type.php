@@ -46,10 +46,6 @@ class Type
      * @var array
      *
      * @ORM\Column(name="data", type="json_array", nullable=true)
-     *
-     * todo: type mixed here
-     *
-     * @Assert\Type("array")
      * @Serializer\Type("array")
      */
     protected $data;
@@ -142,5 +138,22 @@ class Type
         $this->constraints = $constraints;
 
         return $this;
+    }
+
+    /**
+     * @Serializer\PreSerialize
+     */
+    public function preSerialize()
+    {
+        $this->data = array($this->data);
+    }
+
+    /**
+     * @Serializer\PostSerialize
+     * @Serializer\PostDeserialize
+     */
+    public function postDeserialize()
+    {
+        $this->data = reset($this->data);
     }
 }
