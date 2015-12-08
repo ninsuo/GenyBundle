@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints;
 use GenyBundle\Base\BaseController;
 use GenyBundle\Form\Type\BuilderType;
@@ -85,7 +86,7 @@ class BuilderController extends BaseController
      * Renders one form field editor.
      *
      * @Route(
-     *     "/builder/field-editor/{id}",
+     *     "/builder/field-editor/{formId}/{fieldId}",
      *     name = "geny_builder_field_editor",
      *     requirements = {
      *         "form_id"  = "^\d+$",
@@ -149,18 +150,24 @@ class BuilderController extends BaseController
             $this->get('geny.repository.field')->createField($entity, $form->getData()['type']);
         }
 
-        $response = $this->render('GenyBundle:Builder:addField.html.twig', [
+        $addField = $this->get('templating')->render('GenyBundle:Builder:addField.html.twig', [
             'id'   => $id,
             'form' => $form->createView(),
         ]);
 
         if ($request->isXmlHttpRequest()) {
+            $renderFields = $this
+               ->get('templating')
+               ->render('GenyBundle:Builder:renderFields.html.twig', [
+                   'entity' => $entity
+               ]);
+
             return new JsonResponse([
-                'add-field' => $response,
-                'fields'    => $this->render('GenyBundle:Builder:renderFields', ['id' => $id]),
+                'add-field' => $addField,
+                'fields'    => $renderFields,
             ]);
         }
 
-        return $response;
+        return new Response($addField);
     }
 }

@@ -2,6 +2,6 @@
 
 {% for field in entity.fields %}
 
-    {{ render(controller('GenyBundle:Builder:fieldEditor', {form_id: entity.id, field_id: field.id})) }}
+    {{ render(controller('GenyBundle:Builder:fieldEditor', {formId: entity.id, fieldId: field.id})) }}
 
 {% endfor %}
