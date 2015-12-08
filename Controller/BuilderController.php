@@ -33,10 +33,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this
-           ->getDoctrine()
-           ->getRepository('GenyBundle:Form')
-           ->retrieveForm($id);
+        $entity = $this->get('geny.repository.form')->retrieveForm($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
@@ -65,10 +62,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this
-           ->getDoctrine()
-           ->getRepository('GenyBundle:Form')
-           ->retrieveForm($id);
+        $entity = $this->get('geny.repository.form')->retrieveForm($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
@@ -78,10 +72,7 @@ class BuilderController extends BaseController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $this
-               ->getDoctrine()
-               ->getRepository('GenyBundle:Form')
-               ->saveForm($entity);
+            $this->get('geny.repository.form')->saveForm($entity);
         }
 
         return [
@@ -127,10 +118,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this
-           ->getDoctrine()
-           ->getRepository('GenyBundle:Form')
-           ->retrieveForm($id);
+        $entity = $this->get('geny.repository.form')->retrieveForm($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
@@ -158,10 +146,7 @@ class BuilderController extends BaseController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $this
-               ->getDoctrine()
-               ->getRepository('GenyBundle:Field')
-               ->createField($entity, $form->getData()['type']);
+            $this->get('geny.repository.field')->createField($entity, $form->getData()['type']);
         }
 
         $response = $this->render('GenyBundle:Builder:addField.html.twig', [

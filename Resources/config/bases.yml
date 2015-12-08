@@ -1,23 +1,23 @@
 parameters:
-    geny.base.controller.class: GenyBundle\Base\BaseController
-    geny.base.service.class: GenyBundle\Base\BaseService
-    geny.base.type.class: GenyBundle\Base\BaseType
+    geny.base.controller.class: 'GenyBundle\Base\BaseController'
+    geny.base.service.class: 'GenyBundle\Base\BaseService'
+    geny.base.type.class: 'GenyBundle\Base\BaseType'
 
 services:
     geny.base.controller:
-        class: %geny.base.controller.class%
+        class: '%geny.base.controller.class%'
         abstract: true
         calls:
-          - [setContainer, [@service_container]]
+          - [setContainer, ['@service_container']]
 
     geny.base.service:
-        class: %geny.base.service.class%
+        class: '%geny.base.service.class%'
         abstract: true
         calls:
-          - [setContainer, [@service_container]]
+          - [setContainer, ['@service_container']]
 
     geny.base.type:
-        class: %geny.base.type.class%
+        class: '%geny.base.type.class%'
         abstract: true
         calls:
-          - [setContainer, [@service_container]]
+          - [setContainer, ['@service_container']]

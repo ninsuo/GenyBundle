@@ -1,0 +1,20 @@
+parameters:
+    geny.entity.field: 'GenyBundle:Field'
+    geny.entity.form: 'GenyBundle:Form'
+    geny.entity.type: 'GenyBundle:Type'
+
+services:
+    geny.repository.field:
+        class: 'GenyBundle\Repository\FieldRepository'
+        factory: ['@geny.factory.repository', getRepository]
+        arguments: ['@service_container', '%geny.entity.field%']
+
+    geny.repository.form:
+        class: 'GenyBundle\Repository\FormRepository'
+        factory: ['@geny.factory.repository', getRepository]
+        arguments: ['@service_container', '%geny.entity.form%']
+
+    geny.repository.type:
+        class: 'GenyBundle\Repository\TypeRepository'
+        factory: ['@geny.factory.repository', getRepository]
+        arguments: ['@service_container', '%geny.entity.type%']

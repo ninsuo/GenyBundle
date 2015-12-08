@@ -45,7 +45,10 @@ class Type
     /**
      * @var array
      *
-     * @ORM\Column(name="data", type="json_array")
+     * @ORM\Column(name="data", type="json_array", nullable=true)
+     *
+     * todo: type mixed here
+     *
      * @Assert\Type("array")
      * @Serializer\Type("array")
      */
@@ -54,7 +57,7 @@ class Type
     /**
      * @var array
      *
-     * @ORM\Column(name="options", type="json_array")
+     * @ORM\Column(name="options", type="json_array", nullable=true)
      * @Assert\Type("array")
      * @Serializer\Type("array")
      */
@@ -63,7 +66,7 @@ class Type
     /**
      * @var array
      *
-     * @ORM\Column(name="constraints", type="json_array")
+     * @ORM\Column(name="constraints", type="json_array", nullable=true)
      * @Assert\Type("array")
      * @Serializer\Type("array")
      */
@@ -110,7 +113,7 @@ class Type
         return $this->data;
     }
 
-    public function setData(array $data)
+    public function setData($data = null)
     {
         $this->data = $data;
 
@@ -122,7 +125,7 @@ class Type
         return $this->options;
     }
 
-    public function setOptions(array $options)
+    public function setOptions(array $options = null)
     {
         $this->options = $options;
 
@@ -134,7 +137,7 @@ class Type
         return $this->constraints;
     }
 
-    public function setConstraints(array $constraints)
+    public function setConstraints(array $constraints = null)
     {
         $this->constraints = $constraints;
 
