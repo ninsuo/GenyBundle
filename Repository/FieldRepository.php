@@ -5,7 +5,6 @@ namespace GenyBundle\Repository;
 use GenyBundle\Base\BaseRepository;
 use GenyBundle\Entity\Field;
 use GenyBundle\Entity\Form;
-use GenyBundle\Entity\Type;
 
 /**
  * FieldRepository.
@@ -14,21 +13,16 @@ class FieldRepository extends BaseRepository
 {
     public function createField(Form $form, $typeName)
     {
+        $builder = $this->get('geny.builder')->getBuilder($typeName);
+
         $field = new Field();
         $field->setPosition($form->getFields()->count() + 1);
         $field->setForm($form);
         $field->setName($this->get('translator')->trans('geny.builder.field.name', [], 'geny'));
-
-        $builder = $this->get('geny.builder')->getBuilder($typeName);
-
-        $type = new Type();
-        $type->setField($field);
-        $type->setName($typeName);
-        $type->setData($builder->getDefaultData());
-        $type->setOptions($builder->getDefaultOptions());
-        $type->setConstraints($builder->getDefaultConstraints());
-
-        $field->setType($type);
+        $field->setType($typeName);
+        $field->setData($builder->getDefaultData());
+        $field->setOptions($builder->getDefaultOptions());
+        $field->setConstraints($builder->getDefaultConstraints());
         $field->setLabel($this->get('translator')->trans('geny.builder.field.label', [], 'geny'));
         $field->setHint($this->get('translator')->trans('geny.builder.field.hint', [], 'geny'));
         $field->setRequired(true);

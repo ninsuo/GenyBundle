@@ -52,14 +52,40 @@ class Field
     protected $name;
 
     /**
-     * @var Type
+     * @var string
      *
-     * @ORM\OneToOne(targetEntity="Type", mappedBy="field", cascade={"all"})
-     * @Assert\Type(type="GenyBundle\Entity\Type")
-     * @Assert\Valid()
-     * @Serializer\Type("GenyBundle\Entity\Type")
+     * @ORM\Column(name="type", type="string", length=32)
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 1, max = 32)
+     * @Serializer\Type("string")
      */
     protected $type;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="data", type="json_array", nullable=true)
+     * @Serializer\Type("array")
+     */
+    protected $data;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="options", type="json_array", nullable=true)
+     * @Assert\Type("array")
+     * @Serializer\Type("array")
+     */
+    protected $options;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="constraints", type="json_array", nullable=true)
+     * @Assert\Type("array")
+     * @Serializer\Type("array")
+     */
+    protected $constraints;
 
     /**
      * @var string
@@ -90,7 +116,9 @@ class Field
 
     public function __construct()
     {
-        $this->type = new Type();
+        $this->data        = [];
+        $this->options     = [];
+        $this->constraints = [];
     }
 
     public function getId()
@@ -146,6 +174,42 @@ class Field
         return $this;
     }
 
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setData($data = null)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    public function setOptions(array $options = null)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    public function getConstraints()
+    {
+        return $this->constraints;
+    }
+
+    public function setConstraints(array $constraints = null)
+    {
+        $this->constraints = $constraints;
+
+        return $this;
+    }
+
     public function getLabel()
     {
         return $this->label;
@@ -180,5 +244,22 @@ class Field
         $this->required = $required;
 
         return $this;
+    }
+
+    /**
+     * @Serializer\PreSerialize
+     */
+    public function preSerialize()
+    {
+        $this->data = array($this->data);
+    }
+
+    /**
+     * @Serializer\PostSerialize
+     * @Serializer\PostDeserialize
+     */
+    public function postDeserialize()
+    {
+        $this->data = reset($this->data);
     }
 }
