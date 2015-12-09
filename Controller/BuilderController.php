@@ -2,16 +2,16 @@
 
 namespace GenyBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use GenyBundle\Base\BaseController;
+use GenyBundle\Form\Type\BuilderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints;
-use GenyBundle\Base\BaseController;
-use GenyBundle\Form\Type\BuilderType;
 
 class BuilderController extends BaseController
 {
@@ -77,7 +77,7 @@ class BuilderController extends BaseController
         }
 
         return [
-            'id'   => $id,
+            'id' => $id,
             'form' => $form->createView(),
         ];
     }
@@ -133,14 +133,14 @@ class BuilderController extends BaseController
         $form = $this
            ->createFormBuilder()
            ->add('type', Type\ChoiceType::class, [
-               'choices'            => $types,
-               'choices_as_values'  => true,
-               'constraints'        => [
-                   new Constraints\Choice(['choices' => $types])
+               'choices' => $types,
+               'choices_as_values' => true,
+               'constraints' => [
+                   new Constraints\Choice(['choices' => $types]),
                ],
-               'data'               => '',
-               'label'              => 'geny.builder.add_field.label',
-               'required'           => false,
+               'data' => '',
+               'label' => 'geny.builder.add_field.label',
+               'required' => false,
                'translation_domain' => 'geny',
            ])
            ->getForm();
@@ -151,7 +151,7 @@ class BuilderController extends BaseController
         }
 
         $addField = $this->get('templating')->render('GenyBundle:Builder:addField.html.twig', [
-            'id'   => $id,
+            'id' => $id,
             'form' => $form->createView(),
         ]);
 
@@ -159,12 +159,12 @@ class BuilderController extends BaseController
             $renderFields = $this
                ->get('templating')
                ->render('GenyBundle:Builder:renderFields.html.twig', [
-                   'entity' => $entity
+                   'entity' => $entity,
                ]);
 
             return new JsonResponse([
                 'add-field' => $addField,
-                'fields'    => $renderFields,
+                'fields' => $renderFields,
             ]);
         }
 

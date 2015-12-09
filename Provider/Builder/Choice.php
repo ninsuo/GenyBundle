@@ -23,7 +23,6 @@ class Choice extends AbstractBuilder
 
     public function getDefaultData()
     {
-
     }
 
     public function getOptionsType()
@@ -32,17 +31,13 @@ class Choice extends AbstractBuilder
 
     public function getDefaultOptions()
     {
-
     }
 
     public function getConstraintsType()
     {
-
     }
 
     public function getDefaultConstraints()
     {
-
     }
 }
-

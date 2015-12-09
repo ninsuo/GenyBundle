@@ -32,17 +32,13 @@ class Text extends AbstractBuilder
 
     public function getDefaultOptions()
     {
-
     }
 
     public function getConstraintsType()
     {
-
     }
 
     public function getDefaultConstraints()
     {
-
     }
 }
-

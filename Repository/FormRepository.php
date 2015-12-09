@@ -2,8 +2,8 @@
 
 namespace GenyBundle\Repository;
 
-use GenyBundle\Entity\Form;
 use GenyBundle\Base\BaseRepository;
+use GenyBundle\Entity\Form;
 
 /**
  * FormRepository.

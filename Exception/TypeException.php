@@ -6,5 +6,4 @@ use GenyBundle\Base\BaseException;
 
 class TypeException extends BaseException
 {
-
 }

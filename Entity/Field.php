@@ -3,8 +3,8 @@
 namespace GenyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="geny_field")
@@ -116,8 +116,8 @@ class Field
 
     public function __construct()
     {
-        $this->data        = [];
-        $this->options     = [];
+        $this->data = [];
+        $this->options = [];
         $this->constraints = [];
     }
 
