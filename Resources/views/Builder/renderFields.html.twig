@@ -1,7 +1,0 @@
-{# GenyBundle:Builder:renderFields.html.twig #}
-
-{% for field in entity.fields %}
-
-    {{ render(controller('GenyBundle:Builder:fieldEditor', {formId: entity.id, fieldId: field.id})) }}
-
-{% endfor %}

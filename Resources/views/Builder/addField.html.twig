@@ -11,6 +11,6 @@
 
 {{ form_start(form) }}
 
-{{ form_row(form.type, {attr: form.vars.attr|merge(ajax)}) }}
+{{ form_row(form.type, {attr: form.vars.attr|merge(ajax)|merge({autocomplete: 'off'})}) }}
 
 {{ form_end(form) }}

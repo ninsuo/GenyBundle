@@ -67,7 +67,7 @@ class Field
      * @ORM\Column(name="data", type="json_array", nullable=true)
      * @Serializer\Type("array")
      */
-    protected $data;
+    protected $data = [];
 
     /**
      * @var array
@@ -76,7 +76,7 @@ class Field
      * @Assert\Type("array")
      * @Serializer\Type("array")
      */
-    protected $options;
+    protected $options = [];
 
     /**
      * @var array
@@ -85,7 +85,7 @@ class Field
      * @Assert\Type("array")
      * @Serializer\Type("array")
      */
-    protected $constraints;
+    protected $constraints = [];
 
     /**
      * @var string
@@ -99,7 +99,7 @@ class Field
     /**
      * @var string
      *
-     * @ORM\Column(name="hint", type="string", length=255)
+     * @ORM\Column(name="hint", type="string", length=255, nullable=true)
      * @Assert\Length(min = 0, max = 255)
      * @Serializer\Type("string")
      */
@@ -112,14 +112,7 @@ class Field
      * @Assert\Type("boolean")
      * @Serializer\Type("boolean")
      */
-    protected $required;
-
-    public function __construct()
-    {
-        $this->data = [];
-        $this->options = [];
-        $this->constraints = [];
-    }
+    protected $required = true;
 
     public function getId()
     {

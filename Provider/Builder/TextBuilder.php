@@ -4,7 +4,7 @@ namespace GenyBundle\Provider\Builder;
 
 use Symfony\Component\Form\Extension\Core\Type;
 
-class Text extends AbstractBuilder
+class TextBuilder extends AbstractBuilder
 {
     public function getName()
     {

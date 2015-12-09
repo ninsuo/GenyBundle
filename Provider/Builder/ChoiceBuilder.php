@@ -4,7 +4,7 @@ namespace GenyBundle\Provider\Builder;
 
 use Symfony\Component\Form\Extension\Core\Type;
 
-class Choice extends AbstractBuilder
+class ChoiceBuilder extends AbstractBuilder
 {
     public function getName()
     {

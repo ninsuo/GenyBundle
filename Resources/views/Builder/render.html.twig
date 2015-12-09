@@ -5,7 +5,11 @@
 </div>
 
 <div id="fields-{{ entity.id }}">
-    {{ include('GenyBundle:Builder:renderFields.html.twig', {entity: entity}) }}
+    {% for field in entity.fields %}
+        <div id="field-{{ entity.id }}-{{ field.id }}">
+            {{ render(controller('GenyBundle:Builder:fieldEditor', {formId: entity.id, fieldId: field.id})) }}
+        </div>
+    {% endfor %}
 </div>
 
 <hr/>

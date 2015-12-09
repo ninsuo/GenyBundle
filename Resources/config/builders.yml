@@ -1,7 +1,7 @@
 parameters:
     geny.builder.class: 'GenyBundle\Provider\Builder'
-    geny.builder.text.class: 'GenyBundle\Provider\Builder\Text'
-    geny.builder.choice.class: 'GenyBundle\Provider\Builder\Choice'
+    geny.builder.text.class: 'GenyBundle\Provider\Builder\TextBuilder'
+    geny.builder.choice.class: 'GenyBundle\Provider\Builder\ChoiceBuilder'
 
 services:
     geny.builder:
