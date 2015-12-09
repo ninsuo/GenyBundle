@@ -18,7 +18,7 @@ class ChoiceBuilder extends AbstractBuilder
 
     public function getDataType($name, array $options = null, array $data = null)
     {
-        return $this->getDataCoreType(Type\ChoiceType::class, $name, $options, $data);
+        return $this->getTypeBuilder($name, Type\ChoiceType::class, $options, $data);
     }
 
     public function getDefaultData()

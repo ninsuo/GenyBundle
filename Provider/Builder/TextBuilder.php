@@ -18,7 +18,7 @@ class TextBuilder extends AbstractBuilder
 
     public function getDataType($name, array $options = null, array $data = null)
     {
-        return $this->getDataCoreType(Type\TextType::class, $name, $options, $data);
+        return $this->TypeBuilder($name, Type\TextType::class, $options, $data);
     }
 
     public function getDefaultData()
@@ -28,17 +28,29 @@ class TextBuilder extends AbstractBuilder
 
     public function getOptionsType()
     {
+        return null;
     }
 
     public function getDefaultOptions()
     {
+        return [];
     }
 
     public function getConstraintsType()
     {
+        return $this->getConstraintsBuilder()
+           ->add($this->buildConstraintEmail())
+           ->add($this->buildConstraintUrl())
+           ->add($this->buildConstraintIp())
+           ->add($this->buildConstraintUuid())
+           ->add($this->buildConstraintLength())
+           ->add($this->buildConstraintRegex())
+           ->add($this->buildConstraintExpression())
+        ;
     }
 
     public function getDefaultConstraints()
     {
+        return [];
     }
 }
