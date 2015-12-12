@@ -43,8 +43,8 @@
         <target><![CDATA[Untitled Question]]></target>
       </trans-unit>
       <trans-unit id="11">
-        <source>geny.builder.field.hint</source>
-        <target><![CDATA[Hint]]></target>
+        <source>geny.builder.field.help</source>
+        <target><![CDATA[Help]]></target>
       </trans-unit>
       <trans-unit id="12">
         <source>geny.builders.text.default</source>

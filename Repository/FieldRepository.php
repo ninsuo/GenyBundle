@@ -24,7 +24,7 @@ class FieldRepository extends BaseRepository
         $field->setOptions($builder->getDefaultOptions());
         $field->setConstraints($builder->getDefaultConstraints());
         $field->setLabel($this->get('translator')->trans('geny.builder.field.label', [], 'geny'));
-        $field->setHint($this->get('translator')->trans('geny.builder.field.hint', [], 'geny'));
+        $field->setHelp($this->get('translator')->trans('geny.builder.field.help', [], 'geny'));
         $field->setRequired(true);
 
         $form->getFields()->add($field);

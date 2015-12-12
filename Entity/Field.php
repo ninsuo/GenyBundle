@@ -99,11 +99,11 @@ class Field
     /**
      * @var string
      *
-     * @ORM\Column(name="hint", type="string", length=255, nullable=true)
+     * @ORM\Column(name="help", type="string", length=255, nullable=true)
      * @Assert\Length(min = 0, max = 255)
      * @Serializer\Type("string")
      */
-    protected $hint;
+    protected $help;
 
     /**
      * @var string
@@ -181,7 +181,10 @@ class Field
 
     public function getOptions()
     {
-        return $this->options;
+        return $this->options + [
+            'label' => $this->label,
+            'required' => $this->required
+        ];
     }
 
     public function setOptions(array $options = null)
@@ -215,14 +218,14 @@ class Field
         return $this;
     }
 
-    public function getHint()
+    public function getHelp()
     {
-        return $this->hint;
+        return $this->help;
     }
 
-    public function setHint($hint)
+    public function setHelp($help)
     {
-        $this->hint = $hint;
+        $this->help = $help;
 
         return $this;
     }

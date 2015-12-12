@@ -16,9 +16,9 @@ class TextBuilder extends AbstractBuilder
         return 'geny.builders.text.description';
     }
 
-    public function getDataType($name, array $options = null, array $data = null)
+    public function getDataType($name, array $options = null, $data = null)
     {
-        return $this->TypeBuilder($name, Type\TextType::class, $options, $data);
+        return $this->getTypeBuilder($name, Type\TextType::class, $options, $data);
     }
 
     public function getDefaultData()
@@ -38,19 +38,16 @@ class TextBuilder extends AbstractBuilder
 
     public function getConstraintsType()
     {
-        return $this->getConstraintsBuilder()
-           ->add($this->buildConstraintEmail())
-           ->add($this->buildConstraintUrl())
-           ->add($this->buildConstraintIp())
-           ->add($this->buildConstraintUuid())
-           ->add($this->buildConstraintLength())
-           ->add($this->buildConstraintRegex())
-           ->add($this->buildConstraintExpression())
-        ;
+
     }
 
-    public function getDefaultConstraints()
+    public function getDefaultConstraints($data = null)
     {
         return [];
+    }
+
+    public function normalizeConstraints($constraints)
+    {
+
     }
 }

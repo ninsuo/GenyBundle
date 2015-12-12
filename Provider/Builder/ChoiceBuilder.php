@@ -16,28 +16,36 @@ class ChoiceBuilder extends AbstractBuilder
         return 'geny.builders.choice.description';
     }
 
-    public function getDataType($name, array $options = null, array $data = null)
+    public function getDataType($name, array $options = null, $data = null)
     {
         return $this->getTypeBuilder($name, Type\ChoiceType::class, $options, $data);
     }
 
     public function getDefaultData()
     {
+        return null;
     }
 
     public function getOptionsType()
     {
+        return null;
     }
 
     public function getDefaultOptions()
     {
+        return [];
     }
 
     public function getConstraintsType()
     {
     }
 
-    public function getDefaultConstraints()
+    public function getDefaultConstraints($data = null)
     {
+    }
+
+    public function normalizeConstraints($constraints)
+    {
+
     }
 }

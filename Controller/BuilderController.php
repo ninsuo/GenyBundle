@@ -97,8 +97,22 @@ class BuilderController extends BaseController
      */
     public function fieldEditorAction($formId, $fieldId)
     {
-        return [
+        $entity = $this->get('geny.repository.field')->findOneBy([
+            'id' => $fieldId,
+            'form' => $formId,
+        ]);
 
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+        $builder = $this->get('geny.builder')->getbuilder($entity->getType());
+
+        $field = $builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData());
+
+        return [
+            'entity' => $entity,
+            'field' => $field->getForm()->createView(),
         ];
     }
 
@@ -158,7 +172,7 @@ class BuilderController extends BaseController
         if ($request->isXmlHttpRequest()) {
             $renderFields = $this
                ->get('templating')
-               ->render('GenyBundle:Builder:renderFields.html.twig', [
+               ->render('GenyBundle:Builder:fieldsEditor.html.twig', [
                    'entity' => $entity,
                ]);
 
