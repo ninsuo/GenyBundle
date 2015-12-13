@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class FieldBuilderType extends BaseType
 {
@@ -22,8 +23,25 @@ class FieldBuilderType extends BaseType
                'required'   => true,
                'constraints' => [
                    new Assert\Regex([
-                       'pattern' => '#\A[_a-zA-Z][_a-zA-Z0-9]{0,31}\Z#',
-                       'message' => $this->get('translator')->trans('geny.type.field.name.error', [], 'geny'),
+                       'pattern' => '#\A[_a-zA-Z0-9]{0,32}\Z#',
+                       'message' => $this->get('translator')->trans('geny.type.field.name.error.not_alphanumeric', [], 'geny'),
+                   ]),
+                   new Assert\Regex([
+                       'pattern' => '#\A[_a-zA-Z]#',
+                       'message' => $this->get('translator')->trans('geny.type.field.name.error.begin_by_number', [], 'geny'),
+                   ]),
+                   new Assert\Callback([
+                       'callback' => function($data, ExecutionContextInterface $context) {
+                            $object = $context->getRoot()->getData();
+                            foreach ($object->getForm()->getFields() as $field) {
+                                if ($field !== $object && $field->getName() == $data) {
+                                    $context->buildViolation($this->get('translator')->trans('geny.type.field.name.error.already_used', [], 'geny'))
+                                        ->atPath('name')
+                                        ->addViolation();
+                                    break ;
+                                }
+                            }
+                       },
                    ]),
                ],
            ])

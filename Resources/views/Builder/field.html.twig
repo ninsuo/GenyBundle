@@ -1,15 +1,19 @@
 {# GenyBundle:Builder:field.html.twig #}
 
-<div id="geny-field-readonly-{{ entity.id }}" class="geny-script-readonly">
-    {{ render(controller('GenyBundle:Builder:fieldPreview', {formId: entity.form.id, fieldId: entity.id})) }}
+{% set form_id = entity.form.id %}
+{% set field_id = entity.id %}
+
+<div
+    id="geny-field-readonly-{{ field_id }}" class="geny-script-readonly">
+    {{ render(controller('GenyBundle:Builder:fieldPreview', {formId: form_id, fieldId: field_id})) }}
 </div>
 
-<div id="geny-field-actions-{{ entity.id }}">
+<div id="geny-field-actions-{{ field_id }}">
     {# default|options|validators|delete|type #}
 </div>
 
-<div id="geny-field-details-{{ entity.id }}">
-    {{ render(controller('GenyBundle:Builder:fieldDetails', {formId: entity.form.id, fieldId: entity.id})) }}
+<div id="geny-field-details-{{ field_id }}" class="geny-script-field-handle hide">
+    {{ render(controller('GenyBundle:Builder:fieldDetails', {formId: form_id, fieldId: field_id})) }}
 </div>
 
 

@@ -188,17 +188,28 @@ class BuilderController extends BaseController
             $em->flush();
         }
 
-        if ($request->isXmlHttpRequest()) {
-            return $this->forward('GenyBundle:Builder:fieldPreview', [
-                'formId' => $formId,
-                'fieldId' => $fieldId,
-            ]);
-        }
-
-        return [
+        $context = [
             'entity' => $entity,
             'form' => $form->createView(),
         ];
+
+        if ($request->isXmlHttpRequest()) {
+
+            $json = [
+                'details' => $this->get('templating')->render('GenyBundle:Builder:fieldDetails.html.twig', $context),
+            ];
+
+            if ($form->isValid()) {
+                $json['readonly'] = $this->forward('GenyBundle:Builder:fieldPreview', [
+                    'formId' => $formId,
+                    'fieldId' => $fieldId,
+                ])->getContent();
+            }
+
+            return new JsonResponse($json);
+        }
+
+        return $context;
     }
 
     /**

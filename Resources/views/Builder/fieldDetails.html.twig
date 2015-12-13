@@ -8,7 +8,9 @@
         'class': 'domajax change',
         'data-endpoint': path('geny_builder_field_details', {formId: form_id, fieldId: field_id}),
         'data-input': '#geny-field-details-' ~ field_id,
-        'data-output': '#geny-field-readonly-' ~ field_id,
+        'data-output-json': 'readonly details',
+        'data-json-readonly': '#geny-field-readonly-' ~ field_id,
+        'data-json-details': '#geny-field-details-' ~ field_id,
     }
 %}
 

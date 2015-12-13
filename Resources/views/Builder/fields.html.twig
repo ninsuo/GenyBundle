@@ -1,7 +1,7 @@
 {# GenyBundle:Builder:fields.html.twig #}
 
 {% for field in entity.fields %}
-    <div id="geny-field-{{ field.id }}">
+    <div id="geny-field-{{ field.id }}" class="geny-script-field-toggle" data-geny-field="{{ field.id }}">
         {{ render(controller('GenyBundle:Builder:field', {formId: entity.id, fieldId: field.id})) }}
     </div>
 {% endfor %}

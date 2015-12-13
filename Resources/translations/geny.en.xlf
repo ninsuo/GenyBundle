@@ -87,8 +87,8 @@
         <target><![CDATA[Untitled Question]]></target>
       </trans-unit>
       <trans-unit id="22">
-        <source>geny.type.field.name.error</source>
-        <target><![CDATA[Name should be composed of alphanumeric characters and underscores, and should not begin by a number.]]></target>
+        <source>geny.type.field.name.error.not_alphanumeric</source>
+        <target><![CDATA[Name should be composed of alphanumeric characters and underscores.]]></target>
       </trans-unit>
       <trans-unit id="23">
         <source>geny.type.field.help.label</source>
@@ -97,6 +97,14 @@
       <trans-unit id="24">
         <source>geny.type.field.required.label</source>
         <target><![CDATA[Required]]></target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>geny.type.field.name.error.begin_by_number</source>
+        <target><![CDATA[Name should not begin by a number.]]></target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>geny.type.field.name.error.already_used</source>
+        <target><![CDATA[This name is already used by another field.]]></target>
       </trans-unit>
 
 
