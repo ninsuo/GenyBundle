@@ -11,9 +11,11 @@
             disableFields: disableFields,
         };
 
-    })( $ ); // $.symfony2
+    })( $ ); // $.geny
 
-
-    // put event listeners here
+    $('.geny-script-readonly').on('keyup keypress', function (e) {
+         e.preventDefault();
+         return false;
+    });
 
 })( jQuery );

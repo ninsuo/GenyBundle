@@ -100,10 +100,35 @@ class BuilderController extends BaseController
      */
     public function fieldAction($formId, $fieldId)
     {
-        $entity = $this->get('geny.repository.field')->findOneBy([
-            'id' => $fieldId,
-            'form' => $formId,
-        ]);
+        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+
+        return [
+            'entity' => $entity,
+        ];
+    }
+
+    /**
+     * Renders one field, so user can directly preview how
+     * it will look like.
+     *
+     * @Route(
+     *     "/builder/field-preview/{formId}/{fieldId}",
+     *     name = "geny_builder_field_preview",
+     *     requirements = {
+     *         "form_id"  = "^\d+$",
+     *         "field_id" = "^\d+$",
+     *     }
+     * )
+     * @Template()
+     */
+    public function fieldPreviewAction($formId, $fieldId)
+    {
+        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();

@@ -10,7 +10,7 @@ use GenyBundle\Entity\Form;
  */
 class FormRepository extends BaseRepository
 {
-    protected $forms = array();
+    protected $forms = [];
 
     public function retrieveForm($id)
     {

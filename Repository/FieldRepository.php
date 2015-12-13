@@ -11,6 +11,8 @@ use GenyBundle\Entity\Form;
  */
 class FieldRepository extends BaseRepository
 {
+    protected $fields = [];
+
     public function createField(Form $form, $typeName)
     {
         $builder = $this->get('geny.builder')->getBuilder($typeName);
@@ -31,5 +33,25 @@ class FieldRepository extends BaseRepository
 
         $this->_em->persist($form);
         $this->_em->flush($form);
+    }
+
+    public function retrieveField($formId, $fieldId)
+    {
+        $cacheKey = sprintf("%d-%d", $formId, $fieldId);
+
+        if (array_key_exists($cacheKey, $this->fields)) {
+            $entity = $this->fields[$cacheKey];
+        } else {
+            $entity = $this->findOneBy([
+                'id' => $fieldId,
+                'form' => $formId,
+            ]);
+
+            if (!is_null($entity)) {
+                $this->fields[$cacheKey] = $entity;
+            }
+        }
+
+        return $entity;
     }
 }

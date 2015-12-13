@@ -1,8 +1,17 @@
 {# GenyBundle:Builder:field.html.twig #}
 
-<div style="pointer-events: none;">
-    {{ form(field) }}
+<div id="geny-field-readonly-{{ entity.id }}" class="geny-script-readonly">
+    {{ render(controller('GenyBundle:Builder:fieldPreview', {formId: entity.form.id, fieldId: entity.id})) }}
 </div>
+
+<div id="geny-field-actions-{{ entity.id }}">
+    {# default|options|validators|delete #}
+</div>
+
+<div id="geny-field-form-{{ entity.id }}">
+    {# name, label, hint, readonly #}
+</div>
+
 
 {#
 

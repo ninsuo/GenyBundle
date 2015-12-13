@@ -1,17 +1,17 @@
 {# GenyBundle:Builder:render.html.twig #}
 
-<div id="form-{{ entity.id }}">
+<div id="geny-form-{{ entity.id }}">
     {{ render(controller('GenyBundle:Builder:form', {id: entity.id})) }}
 </div>
 
 <hr/>
 
-<div id="fields-{{ entity.id }}">
+<div id="geny-fields-{{ entity.id }}">
     {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
 </div>
 
 <hr/>
 
-<div id="add-field-{{ entity.id }}">
+<div id="geny-add-field-{{ entity.id }}">
     {{ render(controller('GenyBundle:Builder:addField', {id: entity.id})) }}
 </div>
