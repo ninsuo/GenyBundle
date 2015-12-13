@@ -52,15 +52,15 @@ class BuilderController extends BaseController
      * Renders the main configuration form.
      *
      * @Route(
-     *     "/builder/form-editor/{id}",
-     *     name = "geny_builder_form_editor",
+     *     "/builder/form/{id}",
+     *     name = "geny_builder_form",
      *     requirements = {
      *         "id" = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function formEditorAction(Request $request, $id)
+    public function formAction(Request $request, $id)
     {
         if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
             throw $this->createNotFoundException();
@@ -89,8 +89,8 @@ class BuilderController extends BaseController
      * Renders one form field editor.
      *
      * @Route(
-     *     "/builder/field-editor/{formId}/{fieldId}",
-     *     name = "geny_builder_field_editor",
+     *     "/builder/field/{formId}/{fieldId}",
+     *     name = "geny_builder_field",
      *     requirements = {
      *         "form_id"  = "^\d+$",
      *         "field_id" = "^\d+$",
@@ -98,7 +98,7 @@ class BuilderController extends BaseController
      * )
      * @Template()
      */
-    public function fieldEditorAction($formId, $fieldId)
+    public function fieldAction($formId, $fieldId)
     {
         $entity = $this->get('geny.repository.field')->findOneBy([
             'id' => $fieldId,
@@ -174,7 +174,7 @@ class BuilderController extends BaseController
         if ($request->isXmlHttpRequest()) {
             $renderFields = $this
                ->get('templating')
-               ->render('GenyBundle:Builder:fieldsEditor.html.twig', [
+               ->render('GenyBundle:Builder:fields.html.twig', [
                    'entity' => $entity,
                ]);
 

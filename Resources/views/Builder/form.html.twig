@@ -1,9 +1,9 @@
-{# GenyBundle:Builder:formEditor.html.twig #}
+{# GenyBundle:Builder:form.html.twig #}
 
 {%
     set ajax = {
         'class': 'domajax change',
-        'data-endpoint': path('geny_builder_form_editor', {id: id}),
+        'data-endpoint': path('geny_builder_form', {id: id}),
         'data-input': '#form-' ~ id,
         'data-output': '#form-' ~ id,
     }

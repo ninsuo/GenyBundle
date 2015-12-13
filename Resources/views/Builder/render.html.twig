@@ -1,11 +1,11 @@
 {# GenyBundle:Builder:render.html.twig #}
 
 <div id="form-{{ entity.id }}">
-    {{ render(controller('GenyBundle:Builder:formEditor', {id: entity.id})) }}
+    {{ render(controller('GenyBundle:Builder:form', {id: entity.id})) }}
 </div>
 
 <div id="fields-{{ entity.id }}">
-    {{ include('GenyBundle:Builder:fieldsEditor.html.twig', {entity: entity}) }}
+    {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
 </div>
 
 <hr/>
