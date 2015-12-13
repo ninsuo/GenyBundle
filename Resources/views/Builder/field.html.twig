@@ -8,8 +8,8 @@
     {# default|options|validators|delete #}
 </div>
 
-<div id="geny-field-form-{{ entity.id }}">
-    {# name, label, hint, readonly #}
+<div id="geny-field-details-{{ entity.id }}">
+    {{ render(controller('GenyBundle:Builder:fieldDetails', {formId: entity.form.id, fieldId: entity.id})) }}
 </div>
 
 

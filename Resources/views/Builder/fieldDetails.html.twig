@@ -1,0 +1,52 @@
+{# GenyBundle:Builder:fieldDetails.html.twig #}
+
+{% set form_id = entity.form.id %}
+{% set field_id = entity.id %}
+
+{%
+    set ajax = {
+        'class': 'domajax change',
+        'data-endpoint': path('geny_builder_field_details', {formId: form_id, fieldId: field_id}),
+        'data-input': '#geny-field-details-' ~ field_id,
+        'data-output': '#geny-field-readonly-' ~ field_id,
+    }
+%}
+
+<div class="well">
+
+    {{ form_start(form) }}
+
+    <div class="form-group form-inline">
+
+        {{
+            form_row(form.name, {
+                attr: form.name.vars.attr|merge(ajax)
+            })
+        }}
+
+        <div class="pull-right">
+
+            {{
+                form_row(form.required, {
+                    attr: form.required.vars.attr|merge(ajax)
+                })
+            }}
+
+        </div>
+    </div>
+
+    {{
+        form_row(form.label, {
+            attr: form.label.vars.attr|merge(ajax)
+        })
+    }}
+
+    {{
+        form_row(form.help, {
+            attr: form.help.vars.attr|merge(ajax)
+        })
+    }}
+
+    {{ form_end(form) }}
+
+</div>

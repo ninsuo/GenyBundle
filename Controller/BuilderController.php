@@ -4,6 +4,7 @@ namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
 use GenyBundle\Traits\FormTrait;
+use GenyBundle\Form\Type\FieldBuilderType;
 use GenyBundle\Form\Type\FormBuilderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -106,7 +107,6 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-
         return [
             'entity' => $entity,
         ];
@@ -141,6 +141,42 @@ class BuilderController extends BaseController
         return [
             'entity' => $entity,
             'field' => $form->getForm()->createView(),
+        ];
+    }
+
+    /**
+     * Renders the field details form.
+     *
+     * @Route(
+     *     "/builder/field-details/{formId}/{fieldId}",
+     *     name = "geny_builder_field_details",
+     *     requirements = {
+     *         "form_id"  = "^\d+$",
+     *         "field_id" = "^\d+$",
+     *     }
+     * )
+     * @Template()
+     */
+    public function fieldDetailsAction(Request $request, $formId, $fieldId)
+    {
+        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+        $form = $this
+           ->getBuilder(sprintf("field-%d", $fieldId), FieldBuilderType::class, [], $entity)
+           ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            // save field
+        }
+
+        return [
+            'entity' => $entity,
+            'form' => $form->createView(),
         ];
     }
 

@@ -182,8 +182,11 @@ class Field
     public function getOptions()
     {
         return $this->options + [
-            'label' => $this->label,
-            'required' => $this->required
+            'label'    => $this->label,
+            'required' => $this->required,
+            'attr'     => array_merge(isset($this->options['attr']) ? $this->options['attr'] : [], [
+                'help_text' => $this->help,
+            ]),
         ];
     }
 

@@ -62,6 +62,44 @@
         <source>geny.type.form.submit.default</source>
         <target><![CDATA[Submit]]></target>
       </trans-unit>
+      <trans-unit id="16">
+        <source>geny.type.field.name.placeholder</source>
+        <target><![CDATA[field name]]></target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>geny.type.field.name.label</source>
+        <target><![CDATA[Field name]]></target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>geny.type.field.name.default</source>
+        <target><![CDATA[field]]></target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>geny.type.field.label.placeholder</source>
+        <target><![CDATA[Question]]></target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>geny.type.field.label.label</source>
+        <target><![CDATA[Field label]]></target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>geny.type.field.label.default</source>
+        <target><![CDATA[Untitled Question]]></target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>geny.type.field.name.error</source>
+        <target><![CDATA[Name should be composed of alphanumeric characters and underscores, and should not begin by a number.]]></target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>geny.type.field.help.label</source>
+        <target><![CDATA[Help text (optional)]]></target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>geny.type.field.required.label</source>
+        <target><![CDATA[Required]]></target>
+      </trans-unit>
+
+
     </body>
   </file>
 </xliff>
