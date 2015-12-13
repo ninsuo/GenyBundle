@@ -99,8 +99,12 @@ class BuilderController extends BaseController
      * )
      * @Template()
      */
-    public function fieldAction($formId, $fieldId)
+    public function fieldAction(Request $request, $formId, $fieldId)
     {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
         $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
 
         if (is_null($entity)) {
@@ -126,8 +130,12 @@ class BuilderController extends BaseController
      * )
      * @Template()
      */
-    public function fieldPreviewAction($formId, $fieldId)
+    public function fieldPreviewAction(Request $request, $formId, $fieldId)
     {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
         $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
 
         if (is_null($entity)) {
@@ -159,6 +167,10 @@ class BuilderController extends BaseController
      */
     public function fieldDetailsAction(Request $request, $formId, $fieldId)
     {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
         $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
 
         if (is_null($entity)) {
@@ -171,7 +183,16 @@ class BuilderController extends BaseController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            // save field
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+        }
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->forward('GenyBundle:Builder:fieldPreview', [
+                'formId' => $formId,
+                'fieldId' => $fieldId,
+            ]);
         }
 
         return [
