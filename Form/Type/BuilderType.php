@@ -28,7 +28,15 @@ class BuilderType extends BaseType
                'label' => 'geny.builder.description.label',
                'required' => false,
            ])
-        ;
+           ->add('submit', Type\TextType::class, [
+               'attr' => [
+                   'placeholder' => 'geny.builder.submit.placeholder',
+               ],
+               'empty_data' => $this->get('translator')->trans('geny.builder.submit.default', [], 'geny'),
+               'label' => 'geny.builder.submit.label',
+               'required' => true,
+           ])
+       ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

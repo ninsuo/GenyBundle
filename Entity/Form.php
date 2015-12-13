@@ -53,6 +53,15 @@ class Form
      */
     protected $fields;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="submit", type="text")
+     * @Assert\Length(min = 1, max = 64)
+     * @Serializer\Type("string")
+     */
+    protected $submit;
+
     public function __construct()
     {
         $this->fields = new ArrayCollection();
@@ -90,5 +99,15 @@ class Form
     public function getFields()
     {
         return $this->fields;
+    }
+
+    public function getSubmit()
+    {
+        return $this->submit;
+    }
+
+    public function setSubmit($submit)
+    {
+        $this->submit = $submit;
     }
 }

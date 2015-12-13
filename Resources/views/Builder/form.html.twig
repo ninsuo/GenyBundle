@@ -11,8 +11,10 @@
 
 {{ form_start(form) }}
 
-{{ form_row(form.title, {attr: form.vars.attr|merge(ajax)}) }}
+{{ form_row(form.title, {attr: form.title.vars.attr|merge(ajax)}) }}
 
-{{ form_row(form.description, {attr: form.vars.attr|merge(ajax)}) }}
+{{ form_row(form.description, {attr: form.description.vars.attr|merge(ajax)}) }}
+
+{{ form_row(form.submit, {attr: form.submit.vars.attr|merge(ajax)}) }}
 
 {{ form_end(form) }}

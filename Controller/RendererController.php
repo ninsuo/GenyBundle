@@ -44,6 +44,7 @@ class RendererController extends BaseController
             $builder = $this->get('geny.builder')->getbuilder($field->getType());
             $form->add($builder->getDataType($field->getName(), $field->getOptions(), $field->getData()));
         }
+        $form->add($this->getBuilder(sprintf("submit", $id), Type\SubmitType::class, ['label' => $entity->getSubmit()]));
 
         return [
             'entity' => $entity,

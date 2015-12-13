@@ -50,8 +50,18 @@
         <source>geny.builders.text.default</source>
         <target><![CDATA[Default text]]></target>
       </trans-unit>
-
-
+      <trans-unit id="13">
+        <source>geny.builder.submit.placeholder</source>
+        <target><![CDATA[Submit]]></target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>geny.builder.submit.label</source>
+        <target><![CDATA[Submit button's label]]></target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>geny.builder.submit.default</source>
+        <target><![CDATA[Submit]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
