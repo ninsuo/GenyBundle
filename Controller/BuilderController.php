@@ -193,7 +193,7 @@ class BuilderController extends BaseController
             'form' => $form->createView(),
         ];
 
-        if ($request->isXmlHttpRequest()) {
+        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
 
             $json = [
                 'details' => $this->get('templating')->render('GenyBundle:Builder:fieldDetails.html.twig', $context),
@@ -264,7 +264,7 @@ class BuilderController extends BaseController
             'form' => $form->createView(),
         ]);
 
-        if ($request->isXmlHttpRequest()) {
+        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
             $renderFields = $this
                ->get('templating')
                ->render('GenyBundle:Builder:fields.html.twig', [

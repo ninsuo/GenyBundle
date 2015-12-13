@@ -13,23 +13,14 @@
 
     })( $ ); // $.geny
 
-    $('.geny-script-readonly').off('keyup keypress');
-    $('.geny-script-readonly').on('keyup keypress', function (e) {
+    $('body').off('keyup keypress', '.geny-script-readonly');
+    $('body').on('keyup keypress', '.geny-script-readonly', function (e) {
          e.preventDefault();
          return false;
     });
 
-//    $('.geny-script-field-toggle').off('mouseenter');
-//    $('.geny-script-field-toggle').on('mouseenter', function (e) {
-//        $(this).css('border-left', '1px solid grey');
-//    });
-//
-//    $('.geny-script-field-toggle').off('mouseleave');
-//    $('.geny-script-field-toggle').on('mouseleave', function (e) {
-//        $(this).css('border-left', 'none');
-//    });
-
-    $('.geny-script-field-toggle').on('click', function (e) {
+    $('body').off('click', '.geny-script-field-toggle');
+    $('body').on('click', '.geny-script-field-toggle', function (e) {
         $('.geny-script-field-handle').addClass('hide');
         $('#geny-field-details-' + $(this).data('geny-field')).removeClass('hide');
     });
