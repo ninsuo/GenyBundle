@@ -4,7 +4,7 @@ namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
 use GenyBundle\Traits\FormTrait;
-use GenyBundle\Form\Type\BuilderType;
+use GenyBundle\Form\Type\FormBuilderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -72,7 +72,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm(BuilderType::class, $entity);
+        $form = $this->createForm(FormBuilderType::class, $entity);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -180,7 +180,7 @@ class BuilderController extends BaseController
                'constraints' => [
                    new Constraints\Choice(['choices' => $types]),
                ],
-               'label' => 'geny.builder.add_field.label',
+               'label' => 'geny.type.form.add_field.label',
                'required' => false,
                'translation_domain' => 'geny',
            ])

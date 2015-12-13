@@ -28,6 +28,7 @@ class GenyExtension extends Extension
         $loader->load('bases.yml');
         $loader->load('builders.yml');
         $loader->load('repositories.yml');
+        $loader->load('types.yml');
         $loader->load('services.yml');
     }
 }

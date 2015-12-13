@@ -1,13 +1,13 @@
 parameters:
     geny.factory.repository.class: 'GenyBundle\Factory\RepositoryFactory'
-    geny.form.type.builder.class: 'GenyBundle\Form\Type\BuilderType'
+    geny.form.type.form_builder.class: 'GenyBundle\Form\Type\FormBuilderType'
 
 services:
     geny.factory.repository:
         class: '%geny.factory.repository.class%'
 
-    geny.form.type.builder:
-        class: '%geny.form.type.builder.class%'
+    geny.form.type.form_builder:
+        class: '%geny.form.type.form_builder.class%'
         parent: geny.base.type
         arguments: []
         tags:
