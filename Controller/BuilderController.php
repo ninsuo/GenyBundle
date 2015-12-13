@@ -3,6 +3,7 @@
 namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
+use GenyBundle\Traits\FormTrait;
 use GenyBundle\Form\Type\BuilderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,6 +16,8 @@ use Symfony\Component\Validator\Constraints;
 
 class BuilderController extends BaseController
 {
+    use FormTrait;
+
     /**
      * Renders a form builder.
      *
@@ -107,12 +110,12 @@ class BuilderController extends BaseController
         }
 
         $builder = $this->get('geny.builder')->getbuilder($entity->getType());
-
-        $field = $builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData());
+        $form = $this->getBuilder(sprintf("read-only-%s", $fieldId), Type\FormType::class, [], null);
+        $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
         return [
             'entity' => $entity,
-            'field' => $field->getForm()->createView(),
+            'field' => $form->getForm()->createView(),
         ];
     }
 
@@ -152,7 +155,6 @@ class BuilderController extends BaseController
                'constraints' => [
                    new Constraints\Choice(['choices' => $types]),
                ],
-               'data' => '',
                'label' => 'geny.builder.add_field.label',
                'required' => false,
                'translation_domain' => 'geny',

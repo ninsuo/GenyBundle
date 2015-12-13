@@ -4,13 +4,20 @@
     set ajax = {
         'class': 'domajax change',
         'data-endpoint': path('geny_builder_add_field', {id: id}),
-        'data-input': '#add-' ~ id,
-        'data-output': '#fields-' ~ id,
+        'data-input': '#add-field-' ~ id,
+        'data-output-json': 'add-field fields',
+        'data-json-add-field': '#add-field-' ~ id,
+        'data-json-fields': '#fields-' ~ id,
     }
 %}
 
 {{ form_start(form) }}
 
-{{ form_row(form.type, {attr: form.vars.attr|merge(ajax)|merge({autocomplete: 'off'})}) }}
+{{
+    form_row(form.type, {
+        value: '',
+        attr: form.vars.attr|merge(ajax)|merge({autocomplete: 'off'})
+    })
+}}
 
 {{ form_end(form) }}
