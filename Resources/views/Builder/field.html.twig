@@ -1,11 +1,8 @@
 {# GenyBundle:Builder:field.html.twig #}
 
-{{ form_start(field) }}
-
-{{ form_label(attribute(field, entity.name)) }}
-
 <div style="pointer-events: none;">
-    {{ form_widget(attribute(field, entity.name)) }}
+
+{{ form(field) }}
+
 </div>
 
-{{ form_end(field) }}

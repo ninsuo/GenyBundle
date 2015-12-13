@@ -110,7 +110,7 @@ class BuilderController extends BaseController
         }
 
         $builder = $this->get('geny.builder')->getbuilder($entity->getType());
-        $form = $this->getBuilder(sprintf("read-only-%s", $fieldId), Type\FormType::class, [], null);
+        $form = $this->getBuilder(sprintf("read-only-%d", $fieldId), Type\FormType::class, [], null);
         $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
         return [
