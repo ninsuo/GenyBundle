@@ -4,6 +4,8 @@
     {{ render(controller('GenyBundle:Builder:form', {id: entity.id})) }}
 </div>
 
+<hr/>
+
 <div id="fields-{{ entity.id }}">
     {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
 </div>

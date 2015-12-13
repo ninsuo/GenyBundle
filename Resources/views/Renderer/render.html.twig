@@ -4,7 +4,7 @@
     <legend>{{ entity.title }}</legend>
 
     {% if entity.description %}
-        <p>{{ entity.description|nl2br }}</p>
+        <p class="well">{{ entity.description|nl2br }}</p>
     {% endif %}
 
     {{ form(form) }}
