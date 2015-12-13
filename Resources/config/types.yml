@@ -1,0 +1,18 @@
+parameters:
+    geny.form.type.form_builder.class: 'GenyBundle\Form\Type\FormBuilderType'
+    geny.form.type.field_builder.class: 'GenyBundle\Form\Type\FieldBuilderType'
+
+services:
+    geny.form.type.form_builder:
+        class: '%geny.form.type.form_builder.class%'
+        parent: geny.base.type
+        arguments: []
+        tags:
+            - { name: form.type }
+
+    geny.form.type.field_builder:
+        class: '%geny.form.type.field_builder.class%'
+        parent: geny.base.type
+        arguments: []
+        tags:
+            - { name: form.type }
