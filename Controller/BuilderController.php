@@ -80,10 +80,16 @@ class BuilderController extends BaseController
             $this->get('geny.repository.form')->saveForm($entity);
         }
 
-        return [
+        $context = [
             'id' => $id,
             'form' => $form->createView(),
         ];
+
+        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
+            return new JsonResponse($context);
+        }
+
+        return $context;
     }
 
     /**
@@ -189,21 +195,20 @@ class BuilderController extends BaseController
         }
 
         $context = [
-            'entity' => $entity,
-            'form' => $form->createView(),
+            'entity'  => $entity,
+            'form'    => $form->createView(),
+            'formId'  => $formId,
+            'fieldId' => $fieldId,
         ];
 
         if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
 
-            $json = [
-                'details' => $this->get('templating')->render('GenyBundle:Builder:fieldDetails.html.twig', $context),
-            ];
+            $json = [];
 
             if ($form->isValid()) {
-                $json['readonly'] = $this->forward('GenyBundle:Builder:fieldPreview', [
-                    'formId' => $formId,
-                    'fieldId' => $fieldId,
-                ])->getContent();
+                $json['readonly'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+            } else {
+                $json['details'] = $this->get('templating')->render('GenyBundle:Builder:fieldDetails.html.twig', $context);
             }
 
             return new JsonResponse($json);

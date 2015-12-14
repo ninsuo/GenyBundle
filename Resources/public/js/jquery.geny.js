@@ -15,7 +15,6 @@
 
     var body = $('body');
 
-    // domAjax requirement
     if (body.length === 0) {
         throw "Document must have <body> / </body> tags.";
     }
@@ -29,7 +28,11 @@
     body.off('click', '.geny-script-field-toggle');
     body.on('click', '.geny-script-field-toggle', function (e) {
         $('.geny-script-field-handle').addClass('hide');
-        $('#geny-field-details-' + $(this).data('geny-field')).removeClass('hide');
+        $('.geny-script-field-settings').removeClass('hide');
+
+        var field_id = $(this).data('geny-field');
+        $('#geny-field-details-' + field_id).removeClass('hide');
+        $('#geny-field-settings-' + field_id).addClass('hide');
     });
 
 })( jQuery );
