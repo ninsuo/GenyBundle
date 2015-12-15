@@ -3,7 +3,7 @@
 {% set form_id = entity.form.id %}
 {% set field_id = entity.id %}
 
-<div id="geny-field-settings-{{ entity.id }}" style="margin-bottom: 3px;" class="pull-right geny-script-field-settings">
+<div id="geny-field-settings-{{ entity.id }}" style="margin-bottom: 3px;" class="pull-right geny-script-display-settings">
     <button class="btn btn-sm btn-default">
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
     </button>
@@ -14,6 +14,6 @@
     {{ render(controller('GenyBundle:Builder:fieldPreview', {formId: form_id, fieldId: field_id})) }}
 </div>
 
-<div id="geny-field-details-{{ field_id }}" class="geny-script-field-handle hide">
+<div id="geny-field-details-{{ field_id }}" class="geny-script-display-handle hide">
     {{ render(controller('GenyBundle:Builder:fieldDetails', {formId: form_id, fieldId: field_id})) }}
 </div>

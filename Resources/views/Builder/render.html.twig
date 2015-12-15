@@ -2,11 +2,17 @@
 
 <fieldset>
 
-    <div id="geny-title-{{ entity.id }}">
+    <div id="geny-settings-{{ entity.id }}" style="position: relative; top: -7px;" class="pull-right geny-script-display-settings">
+        <button class="btn btn-sm btn-default geny-script-display-button" data-geny-target="#geny-title-{{ entity.id }}">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div id="geny-title-{{ entity.id }}" class="geny-script-display-toggle" data-geny-field="#" data-geny-form="{{ entity.id }}">
         {{ render(controller('GenyBundle:Builder:formTitle', {id: entity.id})) }}
     </div>
 
-    <div id="geny-form-{{ entity.id }}">
+    <div id="geny-form-{{ entity.id }}" class="geny-script-display-handle hide">
         {{ render(controller('GenyBundle:Builder:form', {id: entity.id})) }}
     </div>
 
