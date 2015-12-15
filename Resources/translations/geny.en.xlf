@@ -106,6 +106,30 @@
         <source>geny.type.field.name.error.already_used</source>
         <target><![CDATA[This name is already used by another field.]]></target>
       </trans-unit>
+      <trans-unit id="27">
+        <source>geny.view.field_default.button</source>
+        <target><![CDATA[Default value]]></target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>geny.view.field_default.title</source>
+        <target><![CDATA[Default value for field %name%]]></target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>geny.view.field_options.button</source>
+        <target><![CDATA[Options]]></target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>geny.view.field_options.title</source>
+        <target><![CDATA[Options for field %name%]]></target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>geny.view.field_validation.button</source>
+        <target><![CDATA[Validation]]></target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>geny.view.field_validation.title</source>
+        <target><![CDATA[Validation for field %name%]]></target>
+      </trans-unit>
 
 
     </body>

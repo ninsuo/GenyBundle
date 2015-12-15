@@ -1,0 +1,30 @@
+{# GenyBundle:Builder:fieldOptions.html.twig #}
+
+<button class="btn btn-default" data-toggle="modal" data-target="#options-modal-{{ fieldId }}">
+    <span class="glyphicon glyphicon-cog"></span> {{ 'geny.view.field_options.button' | trans({}, 'geny') }}
+</button>
+
+{% import 'GenyBundle::macros.html.twig' as macros %}
+
+{% set body %}
+
+    <div class="text-left">
+
+        <p>blah blah</p>
+
+    </div>
+
+{% endset %}
+
+{% set footer %}
+
+{% endset %}
+
+{{
+    macros.modal(
+        'options-modal-' ~ fieldId,
+        'geny.view.field_options.title' | trans({'%name%': entity.name}, 'geny'),
+        body,
+        footer
+    )
+}}

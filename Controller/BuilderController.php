@@ -93,7 +93,7 @@ class BuilderController extends BaseController
     }
 
     /**
-     * Renders one form field editor.
+     * Renders one form field editor (name, label, help & required options).
      *
      * @Route(
      *     "/builder/field/{formId}/{fieldId}",
@@ -123,7 +123,7 @@ class BuilderController extends BaseController
     }
 
     /**
-     * Renders one field, so user can directly preview how
+     * Renders one readonly field, so user can directly preview how
      * it will look like.
      *
      * @Route(
@@ -159,8 +159,6 @@ class BuilderController extends BaseController
     }
 
     /**
-     * Renders the field details form.
-     *
      * @Route(
      *     "/builder/field-details/{formId}/{fieldId}",
      *     name = "geny_builder_field_details",
@@ -215,6 +213,105 @@ class BuilderController extends BaseController
         }
 
         return $context;
+    }
+
+    /**
+     * @Route(
+     *     "/builder/field-default/{formId}/{fieldId}",
+     *     name = "geny_builder_field_default",
+     *     requirements = {
+     *         "form_id"  = "^\d+$",
+     *         "field_id" = "^\d+$",
+     *     }
+     * )
+     * @Template()
+     */
+    public function fieldDefaultAction(Request $request, $formId, $fieldId)
+    {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+
+
+
+        return [
+            'entity'  => $entity,
+            'formId'  => $formId,
+            'fieldId' => $fieldId,
+        ];
+    }
+
+   /**
+     * @Route(
+     *     "/builder/field-options/{formId}/{fieldId}",
+     *     name = "geny_builder_field_options",
+     *     requirements = {
+     *         "form_id"  = "^\d+$",
+     *         "field_id" = "^\d+$",
+     *     }
+     * )
+     * @Template()
+     */
+    public function fieldOptionsAction(Request $request, $formId, $fieldId)
+    {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+
+
+
+        return [
+            'entity'  => $entity,
+            'formId'  => $formId,
+            'fieldId' => $fieldId,
+        ];
+    }
+
+   /**
+     * @Route(
+     *     "/builder/field-validation/{formId}/{fieldId}",
+     *     name = "geny_builder_field_validation",
+     *     requirements = {
+     *         "form_id"  = "^\d+$",
+     *         "field_id" = "^\d+$",
+     *     }
+     * )
+     * @Template()
+     */
+    public function fieldValidationAction(Request $request, $formId, $fieldId)
+    {
+        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+
+
+
+        return [
+            'entity'  => $entity,
+            'formId'  => $formId,
+            'fieldId' => $fieldId,
+        ];
     }
 
     /**

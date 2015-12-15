@@ -51,4 +51,16 @@
 
     {{ form_end(form) }}
 
+    <span id="geny-field-default-{{ field_id }}">
+        {{ render(controller('GenyBundle:Builder:fieldDefault', {formId: form_id, fieldId: field_id})) }}
+    </span>
+
+    <span id="geny-field-options-{{ field_id }}">
+        {{ render(controller('GenyBundle:Builder:fieldOptions', {formId: form_id, fieldId: field_id})) }}
+    </span>
+
+    <span id="geny-field-validation-{{ field_id }}">
+        {{ render(controller('GenyBundle:Builder:fieldValidation', {formId: form_id, fieldId: field_id})) }}
+    </span>
+
 </div>
