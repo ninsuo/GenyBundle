@@ -86,12 +86,45 @@ class BuilderController extends BaseController
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-
-            // @TODO can't tab on fields, remove and use same way as fields
-            return new JsonResponse([
-               'form' => $this->get('templating')->render('GenyBundle:Builder:form.html.twig', $context),
-            ]);
+            $json = [];
+            if ($form->isValid()) {
+                $json['title'] = $this->forward('GenyBundle:Builder:formTitle', ['id' => $id])->getContent();
+            } else {
+                $json['form'] = $this->get('templating')->render('GenyBundle:Builder:form.html.twig', $context);
+            }
+            return new JsonResponse($json);
         }
+
+        return $context;
+    }
+
+    /**
+     * Renders the main configuration form.
+     *
+     * @Route(
+     *     "/builder/form-title/{id}",
+     *     name = "geny_builder_form_title",
+     *     requirements = {
+     *         "id" = "^\d+$"
+     *     }
+     * )
+     * @Template()
+     */
+    public function formTitleAction(Request $request, $id)
+    {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity = $this->get('geny.repository.form')->retrieveForm($id);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+        $context = [
+            'entity' => $entity,
+        ];
 
         return $context;
     }

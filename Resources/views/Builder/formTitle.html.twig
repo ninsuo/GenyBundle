@@ -1,0 +1,8 @@
+{# GenyBundle:Builder:formTitle.html.twig #}
+
+<legend>{{ entity.title }}</legend>
+
+{% if entity.description %}
+    <p class="well">{{ entity.description|nl2br }}</p>
+{% endif %}
+

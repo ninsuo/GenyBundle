@@ -1,17 +1,25 @@
 {# GenyBundle:Builder:render.html.twig #}
 
-<div id="geny-form-{{ entity.id }}">
-    {{ render(controller('GenyBundle:Builder:form', {id: entity.id})) }}
-</div>
+<fieldset>
 
-<hr/>
+    <div id="geny-title-{{ entity.id }}">
+        {{ render(controller('GenyBundle:Builder:formTitle', {id: entity.id})) }}
+    </div>
 
-<div id="geny-fields-{{ entity.id }}">
-    {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
-</div>
+    <div id="geny-form-{{ entity.id }}">
+        {{ render(controller('GenyBundle:Builder:form', {id: entity.id})) }}
+    </div>
 
-<hr/>
+    <hr/>
 
-<div id="geny-add-field-{{ entity.id }}">
-    {{ render(controller('GenyBundle:Builder:addField', {id: entity.id})) }}
-</div>
+    <div id="geny-fields-{{ entity.id }}">
+        {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
+    </div>
+
+    <hr/>
+
+    <div id="geny-add-field-{{ entity.id }}">
+        {{ render(controller('GenyBundle:Builder:addField', {id: entity.id})) }}
+    </div>
+
+</fieldset>
