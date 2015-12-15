@@ -46,14 +46,10 @@
         <source>geny.builder.field.help</source>
         <target><![CDATA[Help]]></target>
       </trans-unit>
-
-      <!-- useless -->
       <trans-unit id="12">
-        <source>geny.builders.text.default</source>
-        <target><![CDATA[Default text]]></target>
+        <source>geny.view.field_options.save.title</source>
+        <target><![CDATA[Apply]]></target>
       </trans-unit>
-
-
       <trans-unit id="13">
         <source>geny.type.form.submit.placeholder</source>
         <target><![CDATA[Submit]]></target>
@@ -149,6 +145,18 @@
       <trans-unit id="36">
         <source>geny.view.field_default.save.value</source>
         <target><![CDATA[Save]]></target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>geny.view.field_options.save.value</source>
+        <target><![CDATA[Apply]]></target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>geny.view.field_validation.save.title</source>
+        <target><![CDATA[Apply]]></target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>geny.view.field_validation.save.value</source>
+        <target><![CDATA[Apply]]></target>
       </trans-unit>
 
 
