@@ -19,8 +19,8 @@
         throw "Document must have <body> / </body> tags.";
     }
 
-    body.off('keyup keypress', '.geny-script-readonly');
-    body.on('keyup keypress', '.geny-script-readonly', function (e) {
+    body.off('keyup keypress', '.geny-script-preview');
+    body.on('keyup keypress', '.geny-script-preview', function (e) {
          e.preventDefault();
          return false;
     });

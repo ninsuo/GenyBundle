@@ -23,8 +23,8 @@
         class="btn btn-primary domajax click"
         data-endpoint="{{ path('geny_builder_field_default', {formId: formId, fieldId: fieldId}) }}"
         data-input="#geny-field-default-{{ fieldId }}"
-        data-output-json="readonly default"
-        data-json-readonly="#geny-field-readonly-{{ fieldId }}"
+        data-output-json="preview default"
+        data-json-preview="#geny-field-preview-{{ fieldId }}"
         data-json-default="#geny-field-default-{{ fieldId }}"
         data-dismiss="modal"
         title="{{ 'geny.view.field_default.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_default.save.value' | trans({}, 'geny') }}</button>

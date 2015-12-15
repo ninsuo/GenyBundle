@@ -4,7 +4,7 @@
 {% set field_id = entity.id %}
 
 <div
-    id="geny-field-readonly-{{ field_id }}" class="geny-script-readonly">
+    id="geny-field-preview-{{ field_id }}" class="geny-script-preview">
     {{ render(controller('GenyBundle:Builder:fieldPreview', {formId: form_id, fieldId: field_id})) }}
 </div>
 

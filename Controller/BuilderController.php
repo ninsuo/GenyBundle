@@ -153,7 +153,7 @@ class BuilderController extends BaseController
         }
 
         $builder = $this->get('geny.builder')->getbuilder($entity->getType());
-        $form = $this->getBuilder(sprintf("geny-read-only-%d", $fieldId), Type\FormType::class, [], null);
+        $form = $this->getBuilder(sprintf("geny-preview-%d", $fieldId), Type\FormType::class, [], null);
         $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
         return [
@@ -208,7 +208,7 @@ class BuilderController extends BaseController
             $json = [];
 
             if ($form->isValid()) {
-                $json['readonly'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+                $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
             } else {
                 $json['details'] = $this->get('templating')->render('GenyBundle:Builder:fieldDetails.html.twig', $context);
             }
@@ -272,7 +272,7 @@ class BuilderController extends BaseController
 
         if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
             if ($form->isValid()) {
-                $json['readonly'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+                $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
             } else {
                 $json['default'] = $this->get('templating')->render('GenyBundle:Builder:fieldDefault.html.twig', $context);
             }
