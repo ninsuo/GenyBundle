@@ -73,7 +73,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm(FormBuilderType::class, $entity);
+        $form = $this->getBuilder(sprintf("geny-form-%d", $id), FormBuilderType::class, [], $entity)->getForm();
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -86,7 +86,11 @@ class BuilderController extends BaseController
         ];
 
         if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
-            return new JsonResponse($context);
+
+            // @TODO can't tab on fields, remove and use same way as fields
+            return new JsonResponse([
+               'form' => $this->get('templating')->render('GenyBundle:Builder:form.html.twig', $context),
+            ]);
         }
 
         return $context;
@@ -99,8 +103,8 @@ class BuilderController extends BaseController
      *     "/builder/field/{formId}/{fieldId}",
      *     name = "geny_builder_field",
      *     requirements = {
-     *         "form_id"  = "^\d+$",
-     *         "field_id" = "^\d+$",
+     *         "formId"  = "^\d+$",
+     *         "fieldId" = "^\d+$",
      *     }
      * )
      * @Template()
@@ -130,8 +134,8 @@ class BuilderController extends BaseController
      *     "/builder/field-preview/{formId}/{fieldId}",
      *     name = "geny_builder_field_preview",
      *     requirements = {
-     *         "form_id"  = "^\d+$",
-     *         "field_id" = "^\d+$",
+     *         "formId"  = "^\d+$",
+     *         "fieldId" = "^\d+$",
      *     }
      * )
      * @Template()
@@ -149,7 +153,7 @@ class BuilderController extends BaseController
         }
 
         $builder = $this->get('geny.builder')->getbuilder($entity->getType());
-        $form = $this->getBuilder(sprintf("read-only-%d", $fieldId), Type\FormType::class, [], null);
+        $form = $this->getBuilder(sprintf("geny-read-only-%d", $fieldId), Type\FormType::class, [], null);
         $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
         return [
@@ -163,8 +167,8 @@ class BuilderController extends BaseController
      *     "/builder/field-details/{formId}/{fieldId}",
      *     name = "geny_builder_field_details",
      *     requirements = {
-     *         "form_id"  = "^\d+$",
-     *         "field_id" = "^\d+$",
+     *         "formId"  = "^\d+$",
+     *         "fieldId" = "^\d+$",
      *     }
      * )
      * @Template()
@@ -182,7 +186,7 @@ class BuilderController extends BaseController
         }
 
         $form = $this
-           ->getBuilder(sprintf("field-%d", $fieldId), FieldBuilderType::class, [], $entity)
+           ->getBuilder(sprintf("geny-field-%d", $fieldId), FieldBuilderType::class, [], $entity)
            ->getForm();
 
         $form->handleRequest($request);
@@ -220,8 +224,8 @@ class BuilderController extends BaseController
      *     "/builder/field-default/{formId}/{fieldId}",
      *     name = "geny_builder_field_default",
      *     requirements = {
-     *         "form_id"  = "^\d+$",
-     *         "field_id" = "^\d+$",
+     *         "formId"  = "^\d+$",
+     *         "fieldId" = "^\d+$",
      *     }
      * )
      * @Template()
@@ -238,14 +242,45 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
+        $builder = $this->get('geny.builder')->getbuilder($entity->getType());
+        $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $fieldId), Type\FormType::class, [], null);
+        $formBuilder->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
+        $form = $formBuilder->getForm();
 
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            if (array_key_exists($entity->getName(), $form->getData())) {
+                $data = $form->getData()[$entity->getName()];
+            } else {
+                $data = $builder->getDefaultData();
+            }
+            $entity->setData($data);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+        }
 
-        return [
-            'entity'  => $entity,
+        $context = [
+            'entity' => $entity,
+            'form' => $form->createView(),
             'formId'  => $formId,
             'fieldId' => $fieldId,
         ];
+
+        $json = [];
+
+        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
+            if ($form->isValid()) {
+                $json['readonly'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+            } else {
+                $json['default'] = $this->get('templating')->render('GenyBundle:Builder:fieldDefault.html.twig', $context);
+            }
+
+            return new JsonResponse($json);
+        }
+
+        return $context;
     }
 
    /**
@@ -253,8 +288,8 @@ class BuilderController extends BaseController
      *     "/builder/field-options/{formId}/{fieldId}",
      *     name = "geny_builder_field_options",
      *     requirements = {
-     *         "form_id"  = "^\d+$",
-     *         "field_id" = "^\d+$",
+     *         "formId"  = "^\d+$",
+     *         "fieldId" = "^\d+$",
      *     }
      * )
      * @Template()
@@ -286,8 +321,8 @@ class BuilderController extends BaseController
      *     "/builder/field-validation/{formId}/{fieldId}",
      *     name = "geny_builder_field_validation",
      *     requirements = {
-     *         "form_id"  = "^\d+$",
-     *         "field_id" = "^\d+$",
+     *         "formId"  = "^\d+$",
+     *         "fieldId" = "^\d+$",
      *     }
      * )
      * @Template()

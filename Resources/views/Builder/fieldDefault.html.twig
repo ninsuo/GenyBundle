@@ -1,6 +1,6 @@
 {# GenyBundle:Builder:fieldDefault.html.twig #}
 
-<button class="btn btn-default" data-toggle="modal" data-target="#default-modal-{{ fieldId }}">
+<button class="btn btn-default" data-toggle="modal" data-target="#geny-default-modal-{{ fieldId }}">
     <span class="glyphicon glyphicon-pencil"></span> {{ 'geny.view.field_default.button' | trans({}, 'geny') }}
 </button>
 
@@ -8,9 +8,9 @@
 
 {% set body %}
 
-    <div class="text-left">
+    <div id="geny-field-default-{{ fieldId }}" class="text-left">
 
-        <p>blah blah</p>
+        {{ form(form) }}
 
     </div>
 
@@ -18,11 +18,22 @@
 
 {% set footer %}
 
+    <button
+        type="button"
+        class="btn btn-primary domajax click"
+        data-endpoint="{{ path('geny_builder_field_default', {formId: formId, fieldId: fieldId}) }}"
+        data-input="#geny-field-default-{{ fieldId }}"
+        data-output-json="readonly default"
+        data-json-readonly="#geny-field-readonly-{{ fieldId }}"
+        data-json-default="#geny-field-default-{{ fieldId }}"
+        data-dismiss="modal"
+        title="{{ 'geny.view.field_default.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_default.save.value' | trans({}, 'geny') }}</button>
+
 {% endset %}
 
 {{
     macros.modal(
-        'default-modal-' ~ fieldId,
+        'geny-default-modal-' ~ fieldId,
         'geny.view.field_default.title' | trans({'%name%': entity.name}, 'geny'),
         body,
         footer

@@ -1,16 +1,16 @@
 {# GenyBundle:Builder:fieldDetails.html.twig #}
 
-{% set form_id = entity.form.id %}
-{% set field_id = entity.id %}
+{% set formId = entity.form.id %}
+{% set fieldId = entity.id %}
 
 {%
     set ajax = {
         'class': 'domajax change',
-        'data-endpoint': path('geny_builder_field_details', {formId: form_id, fieldId: field_id}),
-        'data-input': '#geny-field-details-' ~ field_id,
+        'data-endpoint': path('geny_builder_field_details', {formId: formId, fieldId: fieldId}),
+        'data-input': '#geny-field-details-' ~ fieldId,
         'data-output-json': 'readonly details',
-        'data-json-readonly': '#geny-field-readonly-' ~ field_id,
-        'data-json-details': '#geny-field-details-' ~ field_id,
+        'data-json-readonly': '#geny-field-readonly-' ~ fieldId,
+        'data-json-details': '#geny-field-details-' ~ fieldId,
     }
 %}
 
@@ -51,16 +51,16 @@
 
     {{ form_end(form) }}
 
-    <span id="geny-field-default-{{ field_id }}">
-        {{ render(controller('GenyBundle:Builder:fieldDefault', {formId: form_id, fieldId: field_id})) }}
+    <span id="geny-field-default-container-{{ fieldId }}">
+        {{ render(controller('GenyBundle:Builder:fieldDefault', {formId: formId, fieldId: fieldId})) }}
     </span>
 
-    <span id="geny-field-options-{{ field_id }}">
-        {{ render(controller('GenyBundle:Builder:fieldOptions', {formId: form_id, fieldId: field_id})) }}
+    <span id="geny-field-options-container-{{ fieldId }}">
+        {{ render(controller('GenyBundle:Builder:fieldOptions', {formId: formId, fieldId: fieldId})) }}
     </span>
 
-    <span id="geny-field-validation-{{ field_id }}">
-        {{ render(controller('GenyBundle:Builder:fieldValidation', {formId: form_id, fieldId: field_id})) }}
+    <span id="geny-field-validation-container-{{ fieldId }}">
+        {{ render(controller('GenyBundle:Builder:fieldValidation', {formId: formId, fieldId: fieldId})) }}
     </span>
 
 </div>

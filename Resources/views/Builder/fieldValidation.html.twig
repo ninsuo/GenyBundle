@@ -1,6 +1,6 @@
 {# GenyBundle:Builder:fieldValidation.html.twig #}
 
-<button class="btn btn-default" data-toggle="modal" data-target="#validation-modal-{{ fieldId }}">
+<button class="btn btn-default" data-toggle="modal" data-target="#geny-validation-modal-{{ fieldId }}">
     <span class="glyphicon glyphicon-ok"></span> {{ 'geny.view.field_validation.button' | trans({}, 'geny') }}
 </button>
 
@@ -22,7 +22,7 @@
 
 {{
     macros.modal(
-        'validation-modal-' ~ fieldId,
+        'geny-validation-modal-' ~ fieldId,
         'geny.view.field_validation.title' | trans({'%name%': entity.name}, 'geny'),
         body,
         footer

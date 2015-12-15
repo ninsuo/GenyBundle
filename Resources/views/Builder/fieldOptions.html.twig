@@ -1,6 +1,6 @@
 {# GenyBundle:Builder:fieldOptions.html.twig #}
 
-<button class="btn btn-default" data-toggle="modal" data-target="#options-modal-{{ fieldId }}">
+<button class="btn btn-default" data-toggle="modal" data-target="#geny-options-modal-{{ fieldId }}">
     <span class="glyphicon glyphicon-cog"></span> {{ 'geny.view.field_options.button' | trans({}, 'geny') }}
 </button>
 
@@ -22,7 +22,7 @@
 
 {{
     macros.modal(
-        'options-modal-' ~ fieldId,
+        'geny-options-modal-' ~ fieldId,
         'geny.view.field_options.title' | trans({'%name%': entity.name}, 'geny'),
         body,
         footer

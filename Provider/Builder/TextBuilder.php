@@ -23,7 +23,7 @@ class TextBuilder extends AbstractBuilder
 
     public function getDefaultData()
     {
-        return $this->get('translator')->trans('geny.builders.text.default', [], 'geny');
+        return null;
     }
 
     public function getOptionsType()

@@ -12,7 +12,14 @@
                     {{ body }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" title="Close the window">Close</button>
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                        title="{{ 'geny.modal.close.title' | trans({}, 'geny') }}">
+                        {{ 'geny.modal.close.value' | trans({}, 'geny') }}
+                    </button>
+
                     {% if footer %}
                         {{ footer }}
                     {% endif %}
