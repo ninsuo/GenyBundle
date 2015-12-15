@@ -128,11 +128,38 @@
         )
     }}
 
-
     {# Validation button #}
 
-    <span id="geny-field-validation-container-{{ fieldId }}">
-        {{ render(controller('GenyBundle:Builder:fieldValidation', {formId: formId, fieldId: fieldId})) }}
-    </span>
+    <button class="btn btn-default" data-toggle="modal" data-target="#geny-validation-modal-{{ fieldId }}">
+        <span class="glyphicon glyphicon-ok"></span> {{ 'geny.view.field_validation.button' | trans({}, 'geny') }}
+    </button>
+
+    {% set body %}
+        <div id="geny-field-validation-{{ fieldId }}" class="text-left">
+            {{ render(controller('GenyBundle:Builder:fieldValidation', {formId: formId, fieldId: fieldId})) }}
+        </div>
+    {% endset %}
+
+    {% set footer %}
+        <button
+            type="button"
+            class="btn btn-primary domajax click"
+            data-endpoint="{{ path('geny_builder_field_options', {formId: formId, fieldId: fieldId}) }}"
+            data-input="#geny-field-validation-{{ fieldId }}"
+            data-output-json="preview default"
+            data-json-preview="#geny-field-preview-{{ fieldId }}"
+            data-json-default="#geny-field-default-{{ fieldId }}"
+            data-dismiss="modal"
+            title="{{ 'geny.view.field_options.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_options.save.value' | trans({}, 'geny') }}</button>
+    {% endset %}
+
+    {{
+        macros.modal(
+            'geny-options-modal-' ~ fieldId,
+            'geny.view.field_options.title' | trans({'%name%': entity.name}, 'geny'),
+            body,
+            footer
+        )
+    }}
 
 </div>
