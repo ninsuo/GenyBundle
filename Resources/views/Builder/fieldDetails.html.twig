@@ -144,19 +144,19 @@
         <button
             type="button"
             class="btn btn-primary domajax click"
-            data-endpoint="{{ path('geny_builder_field_options', {formId: formId, fieldId: fieldId}) }}"
+            data-endpoint="{{ path('geny_builder_field_validation', {formId: formId, fieldId: fieldId}) }}"
             data-input="#geny-field-validation-{{ fieldId }}"
             data-output-json="preview default"
             data-json-preview="#geny-field-preview-{{ fieldId }}"
             data-json-default="#geny-field-default-{{ fieldId }}"
             data-dismiss="modal"
-            title="{{ 'geny.view.field_options.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_options.save.value' | trans({}, 'geny') }}</button>
+            title="{{ 'geny.view.field_validation.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_validation.save.value' | trans({}, 'geny') }}</button>
     {% endset %}
 
     {{
         macros.modal(
-            'geny-options-modal-' ~ fieldId,
-            'geny.view.field_options.title' | trans({'%name%': entity.name}, 'geny'),
+            'geny-validation-modal-' ~ fieldId,
+            'geny.view.field_validation.title' | trans({'%name%': entity.name}, 'geny'),
             body,
             footer
         )
