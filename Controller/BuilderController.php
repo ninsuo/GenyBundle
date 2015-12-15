@@ -209,6 +209,7 @@ class BuilderController extends BaseController
 
             if ($form->isValid()) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+                $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
             } else {
                 $json['details'] = $this->get('templating')->render('GenyBundle:Builder:fieldDetails.html.twig', $context);
             }

@@ -7,49 +7,54 @@
     set ajax = {
         'class': 'domajax change',
         'data-endpoint': path('geny_builder_field_details', {formId: formId, fieldId: fieldId}),
-        'data-input': '#geny-field-details-' ~ fieldId,
-        'data-output-json': 'readonly details',
-        'data-json-readonly': '#geny-field-readonly-' ~ fieldId,
+        'data-input': '#geny-field-details-form-' ~ fieldId,
+        'data-output-json': 'preview details default',
+        'data-json-preview': '#geny-field-preview-' ~ fieldId,
         'data-json-details': '#geny-field-details-' ~ fieldId,
+        'data-json-default': '#geny-field-default-' ~ fieldId,
     }
 %}
 
 <div class="well">
 
-    {{ form_start(form) }}
+    <div id="geny-field-details-form-{{ fieldId }}">
 
-    <div class="form-group form-inline">
+        {{ form_start(form) }}
 
-        {{
-            form_row(form.name, {
-                attr: form.name.vars.attr|merge(ajax)
-            })
-        }}
-
-        <div class="pull-right">
+        <div class="form-group form-inline">
 
             {{
-                form_row(form.required, {
-                    attr: form.required.vars.attr|merge(ajax)
+                form_row(form.name, {
+                    attr: form.name.vars.attr|merge(ajax)
                 })
             }}
 
+            <div class="pull-right">
+
+                {{
+                    form_row(form.required, {
+                        attr: form.required.vars.attr|merge(ajax)
+                    })
+                }}
+
+            </div>
         </div>
+
+        {{
+            form_row(form.label, {
+                attr: form.label.vars.attr|merge(ajax)
+            })
+        }}
+
+        {{
+            form_row(form.help, {
+                attr: form.help.vars.attr|merge(ajax)
+            })
+        }}
+
+        {{ form_end(form) }}
+
     </div>
-
-    {{
-        form_row(form.label, {
-            attr: form.label.vars.attr|merge(ajax)
-        })
-    }}
-
-    {{
-        form_row(form.help, {
-            attr: form.help.vars.attr|merge(ajax)
-        })
-    }}
-
-    {{ form_end(form) }}
 
     <span id="geny-field-default-container-{{ fieldId }}">
         {{ render(controller('GenyBundle:Builder:fieldDefault', {formId: formId, fieldId: fieldId})) }}
