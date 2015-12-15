@@ -25,6 +25,14 @@
          return false;
     });
 
+    body.off('keyup keypress', '.geny-script-no-submit');
+    body.on('keyup keypress', '.geny-script-no-submit', function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
     body.off('click', '.geny-script-field-toggle');
     body.on('click', '.geny-script-field-toggle', function (e) {
         $('.geny-script-field-handle').addClass('hide');

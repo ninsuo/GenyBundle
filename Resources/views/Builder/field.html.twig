@@ -14,10 +14,6 @@
     {{ render(controller('GenyBundle:Builder:fieldPreview', {formId: form_id, fieldId: field_id})) }}
 </div>
 
-<div id="geny-field-actions-{{ field_id }}">
-    {# default|options|validators|delete|type #}
-</div>
-
 <div id="geny-field-details-{{ field_id }}" class="geny-script-field-handle hide">
     {{ render(controller('GenyBundle:Builder:fieldDetails', {formId: form_id, fieldId: field_id})) }}
 </div>

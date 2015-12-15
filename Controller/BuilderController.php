@@ -34,7 +34,7 @@ class BuilderController extends BaseController
      */
     public function renderAction(Request $request, $id)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -63,7 +63,7 @@ class BuilderController extends BaseController
      */
     public function formAction(Request $request, $id)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -85,7 +85,7 @@ class BuilderController extends BaseController
             'form' => $form->createView(),
         ];
 
-        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && $this->isAjax($request)) {
 
             // @TODO can't tab on fields, remove and use same way as fields
             return new JsonResponse([
@@ -111,7 +111,7 @@ class BuilderController extends BaseController
      */
     public function fieldAction(Request $request, $formId, $fieldId)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -142,7 +142,7 @@ class BuilderController extends BaseController
      */
     public function fieldPreviewAction(Request $request, $formId, $fieldId)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -175,7 +175,7 @@ class BuilderController extends BaseController
      */
     public function fieldDetailsAction(Request $request, $formId, $fieldId)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -203,7 +203,7 @@ class BuilderController extends BaseController
             'fieldId' => $fieldId,
         ];
 
-        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && $this->isAjax($request)) {
 
             $json = [];
 
@@ -233,7 +233,7 @@ class BuilderController extends BaseController
      */
     public function fieldDefaultAction(Request $request, $formId, $fieldId)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -271,7 +271,7 @@ class BuilderController extends BaseController
 
         $json = [];
 
-        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && $this->isAjax($request)) {
             if ($form->isValid()) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
             } else {
@@ -297,7 +297,7 @@ class BuilderController extends BaseController
      */
     public function fieldOptionsAction(Request $request, $formId, $fieldId)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -330,7 +330,7 @@ class BuilderController extends BaseController
      */
     public function fieldValidationAction(Request $request, $formId, $fieldId)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -363,7 +363,7 @@ class BuilderController extends BaseController
      */
     public function addFieldAction(Request $request, $id)
     {
-        if ('/_fragment' !== $request->getPathInfo() && !$request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
@@ -402,7 +402,7 @@ class BuilderController extends BaseController
             'form' => $form->createView(),
         ]);
 
-        if ('/_fragment' !== $request->getPathInfo() && $request->isXmlHttpRequest()) {
+        if (!$this->isFragment($request) && $this->isAjax($request)) {
             $renderFields = $this
                ->get('templating')
                ->render('GenyBundle:Builder:fields.html.twig', [
