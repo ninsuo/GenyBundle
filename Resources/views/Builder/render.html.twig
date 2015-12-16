@@ -1,31 +1,33 @@
 {# GenyBundle:Builder:render.html.twig #}
 
+{% set id = entity.id %}
+
 <fieldset>
 
-    <div id="geny-settings-{{ entity.id }}" style="position: relative; top: -7px;" class="pull-right geny-script-display-settings">
-        <button class="btn btn-sm btn-default geny-script-display-button" data-geny-target="#geny-title-{{ entity.id }}">
+    <div id="geny-settings-{{ id }}" style="position: relative; top: -7px;" class="pull-right geny-script-display-settings">
+        <button class="btn btn-sm btn-default geny-script-display-button" data-geny-target="#geny-title-{{ id }}">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
         </button>
     </div>
 
-    <div id="geny-title-{{ entity.id }}" class="geny-script-display-toggle" data-geny-field="#" data-geny-form="{{ entity.id }}">
-        {{ render(controller('GenyBundle:Builder:formTitle', {id: entity.id})) }}
+    <div id="geny-title-{{ id }}" class="geny-script-display-toggle" data-geny-field="#" data-geny-form="{{ id }}">
+        {{ render(controller('GenyBundle:Builder:formTitle', {id: id})) }}
     </div>
 
-    <div id="geny-form-{{ entity.id }}" class="geny-script-display-handle hide">
-        {{ render(controller('GenyBundle:Builder:form', {id: entity.id})) }}
+    <div id="geny-form-{{ id }}" class="geny-script-display-handle hide">
+        {{ render(controller('GenyBundle:Builder:form', {id: id})) }}
     </div>
 
     <hr/>
 
-    <div id="geny-fields-{{ entity.id }}">
+    <div id="geny-fields-{{ id }}">
         {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
     </div>
 
     <hr/>
 
-    <div id="geny-add-field-{{ entity.id }}">
-        {{ render(controller('GenyBundle:Builder:addField', {id: entity.id})) }}
+    <div id="geny-add-field-{{ id }}">
+        {{ render(controller('GenyBundle:Builder:addField', {id: id})) }}
     </div>
 
 </fieldset>
