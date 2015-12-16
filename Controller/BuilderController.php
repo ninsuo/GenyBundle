@@ -157,7 +157,8 @@ class BuilderController extends BaseController
         }
 
         return [
-            'entity' => $entity,
+            'formId' => $formId,
+            'fieldId' => $fieldId,
         ];
     }
 
