@@ -81,15 +81,17 @@ class BuilderController extends BaseController
         }
 
         $context = [
-            'id' => $id,
-            'form' => $form->createView(),
+            'id'      => $id,
+            'form'    => $form->createView(),
+            'isValid' => $form->isValid(),
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
             $json = [];
             if ($form->isValid()) {
                 $json['title'] = $this->forward('GenyBundle:Builder:formTitle', ['id' => $id])->getContent();
-            } else {
+            }
+            if (!$form->isValid() || $request->request->get('geny-force-reload')) {
                 $json['form'] = $this->get('templating')->render('GenyBundle:Builder:form.html.twig', $context);
             }
             return new JsonResponse($json);
@@ -186,12 +188,12 @@ class BuilderController extends BaseController
         }
 
         $builder = $this->get('geny.builder')->getbuilder($entity->getType());
-        $form = $this->getBuilder(sprintf("geny-preview-%d", $fieldId), Type\FormType::class, [], null);
+        $form    = $this->getBuilder(sprintf("geny-preview-%d", $fieldId), Type\FormType::class, [], null);
         $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
         return [
             'entity' => $entity,
-            'field' => $form->getForm()->createView(),
+            'field'  => $form->getForm()->createView(),
         ];
     }
 
@@ -234,6 +236,7 @@ class BuilderController extends BaseController
             'form'    => $form->createView(),
             'formId'  => $formId,
             'fieldId' => $fieldId,
+            'isValid' => $form->isValid(),
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
@@ -243,7 +246,8 @@ class BuilderController extends BaseController
             if ($form->isValid()) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
                 $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
-            } else {
+            }
+            if (!$form->isValid() || $request->request->get('geny-force-reload')) {
                 $json['details'] = $this->get('templating')->render('GenyBundle:Builder:fieldDetails.html.twig', $context);
             }
 
@@ -276,7 +280,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $builder = $this->get('geny.builder')->getbuilder($entity->getType());
+        $builder     = $this->get('geny.builder')->getbuilder($entity->getType());
         $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $fieldId), Type\FormType::class, [], null);
         $formBuilder->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
@@ -296,8 +300,8 @@ class BuilderController extends BaseController
         }
 
         $context = [
-            'entity' => $entity,
-            'form' => $form->createView(),
+            'entity'  => $entity,
+            'form'    => $form->createView(),
             'formId'  => $formId,
             'fieldId' => $fieldId,
         ];
@@ -317,7 +321,7 @@ class BuilderController extends BaseController
         return $context;
     }
 
-   /**
+    /**
      * @Route(
      *     "/builder/field-options/{formId}/{fieldId}",
      *     name = "geny_builder_field_options",
@@ -350,7 +354,7 @@ class BuilderController extends BaseController
         ];
     }
 
-   /**
+    /**
      * @Route(
      *     "/builder/field-validation/{formId}/{fieldId}",
      *     name = "geny_builder_field_validation",
@@ -414,13 +418,13 @@ class BuilderController extends BaseController
         $form = $this
            ->createFormBuilder()
            ->add('type', Type\ChoiceType::class, [
-               'choices' => $types,
-               'choices_as_values' => true,
-               'constraints' => [
+               'choices'            => $types,
+               'choices_as_values'  => true,
+               'constraints'        => [
                    new Constraints\Choice(['choices' => $types]),
                ],
-               'label' => 'geny.type.form.add_field.label',
-               'required' => false,
+               'label'              => 'geny.type.form.add_field.label',
+               'required'           => false,
                'translation_domain' => 'geny',
            ])
            ->getForm();
@@ -431,20 +435,18 @@ class BuilderController extends BaseController
         }
 
         $addField = $this->get('templating')->render('GenyBundle:Builder:addField.html.twig', [
-            'id' => $id,
+            'id'   => $id,
             'form' => $form->createView(),
         ]);
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-            $renderFields = $this
-               ->get('templating')
-               ->render('GenyBundle:Builder:fields.html.twig', [
-                   'entity' => $entity,
-               ]);
+            $renderFields = $this->get('templating')->render('GenyBundle:Builder:fields.html.twig', [
+                'entity' => $entity,
+            ]);
 
             return new JsonResponse([
                 'add-field' => $addField,
-                'fields' => $renderFields,
+                'fields'    => $renderFields,
             ]);
         }
 

@@ -12,6 +12,8 @@
         'class': 'domajax change',
         'data-endpoint': path('geny_builder_field_details', {formId: formId, fieldId: fieldId}),
         'data-input': '#geny-field-details-form-' ~ fieldId,
+        'data-input-attr': 'geny-force-reload',
+        'data-geny-force-reload': not isValid,
         'data-output-json': 'preview details default',
         'data-json-preview': '#geny-field-preview-' ~ fieldId,
         'data-json-details': '#geny-field-details-' ~ fieldId,

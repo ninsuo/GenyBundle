@@ -5,6 +5,8 @@
         'class': 'domajax change',
         'data-endpoint': path('geny_builder_form', {id: id}),
         'data-input': '#geny-form-' ~ id,
+        'data-input-attr': 'geny-force-reload',
+        'data-geny-force-reload': not isValid,
         'data-output-json': 'form title',
         'data-json-form': '#geny-form-' ~ id,
         'data-json-title': '#geny-title-' ~ id,
