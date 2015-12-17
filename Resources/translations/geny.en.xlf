@@ -51,15 +51,15 @@
         <target><![CDATA[Apply]]></target>
       </trans-unit>
       <trans-unit id="13">
-        <source>geny.type.form.submit.placeholder</source>
+        <source>geny.type.submit.submit.placeholder</source>
         <target><![CDATA[Submit]]></target>
       </trans-unit>
       <trans-unit id="14">
-        <source>geny.type.form.submit.label</source>
+        <source>geny.type.submit.submit.label</source>
         <target><![CDATA[Submit button's label]]></target>
       </trans-unit>
       <trans-unit id="15">
-        <source>geny.type.form.submit.default</source>
+        <source>geny.type.submit.submit.default</source>
         <target><![CDATA[Submit]]></target>
       </trans-unit>
       <trans-unit id="16">

@@ -7,9 +7,10 @@
         'data-input': '#geny-form-' ~ id,
         'data-input-attr': 'geny-force-reload',
         'data-geny-force-reload': not isValid,
-        'data-output-json': 'form title',
+        'data-output-json': 'form title submit',
         'data-json-form': '#geny-form-' ~ id,
         'data-json-title': '#geny-title-' ~ id,
+        'data-json-submit': '#geny-submit-' ~ id,
         'data-lock': '',
     }
 %}
@@ -21,8 +22,6 @@
     {{ form_row(form.title, {attr: form.title.vars.attr|merge(ajax)}) }}
 
     {{ form_row(form.description, {attr: form.description.vars.attr|merge(ajax)}) }}
-
-    {{ form_row(form.submit, {attr: form.submit.vars.attr|merge(ajax)}) }}
 
     {{ form_end(form) }}
 

@@ -28,14 +28,6 @@ class FormBuilderType extends BaseType
                'label'      => 'geny.type.form.description.label',
                'required'   => false,
            ])
-           ->add('submit', Type\TextType::class, [
-               'attr'       => [
-                   'placeholder' => 'geny.type.form.submit.placeholder',
-               ],
-               'empty_data' => $this->get('translator')->trans('geny.type.form.submit.default', [], 'geny'),
-               'label'      => 'geny.type.form.submit.label',
-               'required'   => true,
-           ])
         ;
     }
 

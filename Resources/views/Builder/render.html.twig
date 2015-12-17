@@ -24,6 +24,10 @@
         {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
     </div>
 
+    <div id="geny-submit-{{ id }}" class="geny-script-display-toggle" data-geny-field="@">
+        {{ render(controller('GenyBundle:Builder:formSubmit', {id: id})) }}
+    </div>
+
     <hr/>
 
     <div id="geny-add-field-{{ id }}">

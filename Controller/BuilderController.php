@@ -6,6 +6,7 @@ use GenyBundle\Base\BaseController;
 use GenyBundle\Traits\FormTrait;
 use GenyBundle\Form\Type\FieldBuilderType;
 use GenyBundle\Form\Type\FormBuilderType;
+use GenyBundle\Form\Type\SubmitBuilderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -20,8 +21,6 @@ class BuilderController extends BaseController
     use FormTrait;
 
     /**
-     * Renders a form builder.
-     *
      * @Route(
      *     "/builder/render/{id}",
      *     name = "geny_builder_render",
@@ -50,8 +49,6 @@ class BuilderController extends BaseController
     }
 
     /**
-     * Renders the main configuration form.
-     *
      * @Route(
      *     "/builder/form/{id}",
      *     name = "geny_builder_form",
@@ -90,6 +87,7 @@ class BuilderController extends BaseController
             $json = [];
             if ($form->isValid()) {
                 $json['title'] = $this->forward('GenyBundle:Builder:formTitle', ['id' => $id])->getContent();
+                $json['submit'] = $this->forward('GenyBundle:Builder:formSubmit', ['id' => $id])->getContent();
             }
             if (!$form->isValid() || $request->request->get('geny-force-reload')) {
                 $json['form'] = $this->get('templating')->render('GenyBundle:Builder:form.html.twig', $context);
@@ -101,8 +99,6 @@ class BuilderController extends BaseController
     }
 
     /**
-     * Renders the main configuration form.
-     *
      * @Route(
      *     "/builder/form-title/{id}",
      *     name = "geny_builder_form_title",
@@ -188,7 +184,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $builder = $this->get('geny.builder')->getbuilder($entity->getType());
+        $builder = $this->get('geny.builder')->getBuilder($entity->getType());
         $form    = $this->getBuilder(sprintf("geny-preview-%d", $fieldId), Type\FormType::class, [], null);
         $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
@@ -281,7 +277,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $builder     = $this->get('geny.builder')->getbuilder($entity->getType());
+        $builder     = $this->get('geny.builder')->getBuilder($entity->getType());
         $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $fieldId), Type\FormType::class, [], null);
         $formBuilder->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
@@ -389,8 +385,48 @@ class BuilderController extends BaseController
     }
 
     /**
-     * Renders the "add field" form.
-     *
+     * @Route(
+     *     "/builder/form-submit/{id}",
+     *     name = "geny_builder_form_submit",
+     *     requirements = {
+     *         "id" = "^\d+$"
+     *     }
+     * )
+     * @Template()
+     */
+    public function formSubmitAction(Request $request, $id)
+    {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity = $this->get('geny.repository.form')->retrieveForm($id);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+        $form = $this->getBuilder(sprintf("geny-submit-form-%d", $id), SubmitBuilderType::class, [], $entity)->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $this->get('geny.repository.form')->saveForm($entity);
+        }
+
+        $button = $this->getBuilder(sprintf("geny-submit-preview-%d", $id), Type\FormType::class, [], null);
+        $button->add($this->getBuilder("submit", Type\SubmitType::class, ['label' => $entity->getSubmit()]));
+
+        $context = [
+            'id'     => $id,
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'button' => $button->getForm()->createView(),
+        ];
+
+        return $context;
+    }
+
+    /**
      * @Route(
      *     "/builder/add-field/{id}",
      *     name = "geny_builder_add_field",

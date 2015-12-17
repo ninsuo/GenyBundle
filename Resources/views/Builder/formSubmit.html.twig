@@ -1,0 +1,34 @@
+{# GenyBundle:Builder:formSubmit.html.twig #}
+
+
+<div id="geny-submit-settings-{{ id }}" style="margin-bottom: 3px;" class="pull-right geny-script-display-settings">
+    <button class="btn btn-sm btn-default geny-script-display-button" data-geny-target="#geny-submit-{{ id }}">
+        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+    </button>
+</div>
+
+<div class="geny-script-preview">
+
+    {{ form(button) }}
+
+</div>
+
+{%
+    set ajax = {
+        'class': 'domajax change',
+        'data-endpoint': path('geny_builder_form_submit', {id: id}),
+        'data-input': '#geny-submit-form-' ~ id,
+        'data-output': '#geny-submit-' ~ id,
+        'data-lock': '',
+    }
+%}
+
+<div id="geny-submit-form-{{ id }}" class="geny-script-no-submit geny-script-display-handle hide">
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.submit, {attr: form.submit.vars.attr|merge(ajax)}) }}
+
+    {{ form_end(form) }}
+
+</div>
