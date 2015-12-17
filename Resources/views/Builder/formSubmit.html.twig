@@ -1,8 +1,12 @@
 {# GenyBundle:Builder:formSubmit.html.twig #}
 
 
-<div id="geny-submit-settings-{{ id }}" style="margin-bottom: 3px;" class="pull-right geny-script-display-settings">
-    <button class="btn btn-sm btn-default geny-script-display-button" data-geny-target="#geny-submit-{{ id }}">
+<div
+    id="geny-submit-button-{{ id }}"
+    style="margin-bottom: 3px;"
+    class="pull-right geny-script-visibility-button"
+    data-geny-target="#geny-submit-{{ id }}">
+    <button class="btn btn-sm btn-default">
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
     </button>
 </div>
@@ -23,7 +27,7 @@
     }
 %}
 
-<div id="geny-submit-form-{{ id }}" class="geny-script-no-submit geny-script-display-handle hide">
+<div id="geny-submit-form-{{ id }}" class="geny-script-no-submit geny-script-visibility-form hide">
 
     {{ form_start(form) }}
 
