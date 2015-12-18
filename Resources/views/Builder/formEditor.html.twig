@@ -1,0 +1,47 @@
+{# GenyBundle:Builder:editor.html.twig #}
+
+<fieldset>
+
+    <div
+        id="geny-form-button-{{ id }}"
+        style="position: relative; top: -7px;"
+        class="pull-right geny-script-visibility-button"
+        data-geny-target="#geny-title-{{ id }}">
+        <button class="btn btn-sm btn-default">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div
+        id="geny-title-{{ id }}"
+        class="geny-script-visibility-clicks-area"
+        data-geny-button="#geny-form-button-{{ id }}"
+        data-geny-form="#geny-form-{{ id }}">
+        {{ render(controller('GenyBundle:Builder:formTitle', {id: id})) }}
+    </div>
+
+    <div id="geny-form-{{ id }}" class="geny-script-visibility-form hide">
+        {{ render(controller('GenyBundle:Builder:form', {id: id})) }}
+    </div>
+
+    <hr/>
+
+    <div id="geny-fields-{{ id }}">
+        {{ include('GenyBundle:Builder:fields.html.twig', {entity: entity}) }}
+    </div>
+
+    <div
+        id="geny-submit-{{ id }}"
+        class="geny-script-visibility-clicks-area"
+        data-geny-button="#geny-submit-button-{{ id }}"
+        data-geny-form="#geny-submit-form-{{ id }}">
+        {{ render(controller('GenyBundle:Builder:formSubmit', {id: id})) }}
+    </div>
+
+    <hr/>
+
+    <div id="geny-add-field-{{ id }}">
+        {{ render(controller('GenyBundle:Builder:addField', {id: id})) }}
+    </div>
+
+</fieldset>

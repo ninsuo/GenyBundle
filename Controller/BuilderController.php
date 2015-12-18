@@ -120,11 +120,36 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $context = [
+        return [
             'entity' => $entity,
         ];
+    }
 
-        return $context;
+    /**
+     * @Route(
+     *     "/builder/form-preview/{id}",
+     *     name = "geny_builder_form_preview",
+     *     requirements = {
+     *         "id" = "^\d+$"
+     *     }
+     * )
+     * @Template()
+     */
+    public function formPreviewAction(Request $request, $id)
+    {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity = $this->get('geny.repository.form')->retrieveForm($id);
+
+        if (is_null($entity)) {
+            throw $this->createNotFoundException();
+        }
+
+        return [
+            'id' => $id,
+        ];
     }
 
     /**
