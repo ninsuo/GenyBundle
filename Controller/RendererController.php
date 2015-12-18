@@ -36,7 +36,7 @@ class RendererController extends BaseController
             throw $this->createNotFoundException($ex->getMessage());
         }
 
-        $form = $this->get('geny')->getForm($id);
+        $form = $this->get('geny')->getForm($entity);
 
         return [
             'entity' => $entity,
