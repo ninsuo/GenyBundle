@@ -1,7 +1,20 @@
 parameters:
+    geny.class: 'GenyBundle\Services\Geny'
+    geny.twig.extension.class: 'GenyBundle\Twig\Extension\GenyExtension'
     geny.factory.repository.class: 'GenyBundle\Factory\RepositoryFactory'
 
 services:
+    geny:
+        class: '%geny.class%'
+        parent: geny.base.service
+
+    geny.twig.extension:
+        class: '%geny.twig.extension.class%'
+        arguments: ['@geny']
+        parent: geny.base.twig.extension
+        tags:
+            - { name: twig.extension }
+
     geny.factory.repository:
         class: '%geny.factory.repository.class%'
 

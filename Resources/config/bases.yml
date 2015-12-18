@@ -2,6 +2,7 @@ parameters:
     geny.base.controller.class: 'GenyBundle\Base\BaseController'
     geny.base.service.class: 'GenyBundle\Base\BaseService'
     geny.base.type.class: 'GenyBundle\Base\BaseType'
+    geny.base.twig.extension.class: 'GenyBundle\Base\BaseTwigExtension'
 
 services:
     geny.base.controller:
@@ -18,6 +19,12 @@ services:
 
     geny.base.type:
         class: '%geny.base.type.class%'
+        abstract: true
+        calls:
+          - [setContainer, ['@service_container']]
+
+    geny.base.twig.extension:
+        class: '%geny.base.twig.extension.class%'
         abstract: true
         calls:
           - [setContainer, ['@service_container']]

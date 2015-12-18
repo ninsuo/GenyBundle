@@ -3,17 +3,14 @@
 namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
-use GenyBundle\Traits\FormTrait;
+use GenyBundle\Exception\FormNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\HttpFoundation\Request;
 
 class RendererController extends BaseController
 {
-    use FormTrait;
-
     /**
      * Renders a form created using the builder.
      *
@@ -22,33 +19,28 @@ class RendererController extends BaseController
      *     name = "geny_renderer_render",
      *     requirements = {
      *         "id" = "^\d+$"
-     *     },
-     *     condition="request.isMasterRequest() or not request.isXmlHttpRequest()"
+     *     }
      * )
      * @Method({"GET"})
      * @Template()
      */
-    public function renderAction($id)
+    public function renderAction(Request $request, $id)
     {
-        $entity = $this
-           ->getDoctrine()
-           ->getRepository('GenyBundle:Form')
-           ->find($id);
-
-        if (is_null($entity)) {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
-        $form = $this->getBuilder(sprintf("form-%d", $id), Type\FormType::class, [], null);
-        foreach ($entity->getFields() as $field) {
-            $builder = $this->get('geny.builder')->getbuilder($field->getType());
-            $form->add($builder->getDataType($field->getName(), $field->getOptions(), $field->getData()));
+        try {
+            $entity = $this->get('geny')->getEntity($id);
+        } catch (FormNotFoundException $ex) {
+            throw $this->createNotFoundException($ex->getMessage());
         }
-        $form->add($this->getBuilder(sprintf("submit", $id), Type\SubmitType::class, ['label' => $entity->getSubmit()]));
+
+        $form = $this->get('geny')->getForm($id);
 
         return [
             'entity' => $entity,
-            'form' => $form->getForm()->createView(),
+            'form' => $form->createView(),
         ];
     }
 }
