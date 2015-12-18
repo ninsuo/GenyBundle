@@ -14,10 +14,7 @@ class Geny extends BaseService
 
     public function getEntity($id)
     {
-        $entity = $this
-           ->get('doctrine')
-           ->getRepository('GenyBundle:Form')
-           ->find($id);
+        $entity = $this->get('geny.repository.form')->retrieveForm($id);
 
         if (is_null($entity)) {
             throw new FormNotFoundException($id);
