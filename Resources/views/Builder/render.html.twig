@@ -4,7 +4,7 @@
 
 <div>
     <ul class="nav nav-tabs geny-script-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#geny-form-editor-{{ id }}" aria-controls="home" role="tab" data-toggle="tab">Editor!!!</a></li>
+        <li role="presentation" class="active"><a href="#geny-form-editor-{{ id }}" aria-controls="home" role="tab" data-toggle="tab">{{ 'geny.view.tabs.editor' | trans({}, 'geny') }}</a></li>
         <li role="presentation">
             <a
                 href="#geny-form-preview-{{ id }}"
@@ -14,7 +14,7 @@
                 data-toggle="tab"
                 data-endpoint="{{ path('geny_builder_form_preview', {id: id}) }}"
                 data-lock="#geny-form-preview-{{ id }}"
-                data-output="#geny-form-preview-{{ id }}">Preview!!!!</a>
+                data-output="#geny-form-preview-{{ id }}">{{ 'geny.view.tabs.preview' | trans({}, 'geny') }}</a>
         </li>
     </ul>
 

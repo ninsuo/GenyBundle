@@ -158,7 +158,14 @@
         <source>geny.view.field_validation.save.value</source>
         <target><![CDATA[Apply]]></target>
       </trans-unit>
-
+      <trans-unit id="40">
+        <source>geny.view.tabs.editor</source>
+        <target><![CDATA[Editor]]></target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>geny.view.tabs.preview</source>
+        <target><![CDATA[Preview]]></target>
+      </trans-unit>
 
     </body>
   </file>
