@@ -6,6 +6,7 @@ use GenyBundle\Base\BaseService;
 use GenyBundle\Exception\FormNotFoundException;
 use GenyBundle\Exception\FieldNotFoundException;
 use GenyBundle\Entity\Form;
+use GenyBundle\Entity\Field;
 use GenyBundle\Traits\FormTrait;
 use Symfony\Component\Form\Extension\Core\Type;
 
@@ -35,11 +36,7 @@ class Geny extends BaseService
 
         $form = $this->getBuilder(sprintf("form-%d", $id), Type\FormType::class, [], null);
         foreach ($entity->getFields() as $field) {
-            $builder                = $this->get('geny.builder')->getbuilder($field->getType());
-            $data                   = $builder->normalizeData($field->getData());
-            $options                = $builder->normalizeOptions($field->getOptions());
-            $options['constraints'] = $builder->normalizeConstraints($field->getConstraints());
-            $form->add($builder->getDataType($field->getName(), $options, $data));
+            $form->add($this->getField($field));
         }
         $form->add($this->getBuilder(sprintf("submit", $id), Type\SubmitType::class, ['label' => $entity->getSubmit()]));
 
@@ -48,7 +45,7 @@ class Geny extends BaseService
 
     public function getFieldEntity($id)
     {
-        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+        $entity = $this->get('geny.repository.field')->retrieveField($id);
 
         if (is_null($entity)) {
             throw new FieldNotFoundException($id);
@@ -57,5 +54,20 @@ class Geny extends BaseService
         return $entity;
     }
 
+    public function getField($id)
+    {
+        if ($id instanceof Field) {
+            $entity = $id;
+            $id     = $entity->getId();
+        } else {
+            $entity = $this->getFieldEntity($id);
+        }
 
+        $builder                = $this->get('geny.builder')->getbuilder($entity->getType());
+        $data                   = $builder->normalizeData($entity->getData());
+        $options                = $builder->normalizeOptions($entity->getOptions());
+        $options['constraints'] = $builder->normalizeConstraints($entity->getConstraints());
+
+        return $builder->getDataType($entity->getName(), $options, $data);
+    }
 }

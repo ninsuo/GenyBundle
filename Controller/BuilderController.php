@@ -4,6 +4,7 @@ namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
 use GenyBundle\Traits\FormTrait;
+use GenyBundle\Exception\FieldNotFoundException;
 use GenyBundle\Form\Type\FieldBuilderType;
 use GenyBundle\Form\Type\FormBuilderType;
 use GenyBundle\Form\Type\SubmitBuilderType;
@@ -206,13 +207,18 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $builder = $this->get('geny.builder')->getBuilder($entity->getType());
-        $form    = $this->getBuilder(sprintf("geny-preview-%d", $id), Type\FormType::class, [], null);
-        $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
+        try {
+            $field = $this->get('geny')->getField($id);
+        } catch (FieldNotFoundException $ex) {
+            throw $this->createNotFoundException();
+        }
+
+        $form = $this->getBuilder(sprintf("geny-preview-%d", $id), Type\FormType::class, [], null);
+        $form->add($field);
 
         return [
             'entity' => $entity,
-            'field'  => $form->getForm()->createView(),
+            'form'   => $form->getForm()->createView(),
         ];
     }
 
@@ -296,9 +302,14 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $builder     = $this->get('geny.builder')->getBuilder($entity->getType());
+        try {
+            $field = $this->get('geny')->getField($id);
+        } catch (FieldNotFoundException $ex) {
+            throw $this->createNotFoundException();
+        }
+
         $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $id), Type\FormType::class, [], null);
-        $formBuilder->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
+        $formBuilder->add($field);
 
         $form = $formBuilder->getForm();
 
@@ -307,6 +318,7 @@ class BuilderController extends BaseController
             if (array_key_exists($entity->getName(), $form->getData())) {
                 $data = $form->getData()[$entity->getName()];
             } else {
+                $builder = $this->get('geny.builder')->getBuilder($entity->getType());
                 $data = $builder->getDefaultData();
             }
             $entity->setData($data);
