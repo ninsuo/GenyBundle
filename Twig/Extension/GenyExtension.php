@@ -18,7 +18,7 @@ class GenyExtension extends BaseTwigExtension
         return $this
            ->get('templating')
            ->render('GenyBundle:Renderer:render.html.twig', [
-               'entity' => $this->get('geny')->getEntity($id),
+               'entity' => $this->get('geny')->getFormEntity($id),
                'form'   => $this->get('geny')->getForm($id)->createView(),
         ]);
     }
