@@ -43,9 +43,4 @@ class ChoiceBuilder extends AbstractBuilder
     public function getDefaultConstraints($data = null)
     {
     }
-
-    public function normalizeConstraints($constraints)
-    {
-
-    }
 }

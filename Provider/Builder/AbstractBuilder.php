@@ -15,6 +15,16 @@ abstract class AbstractBuilder extends BaseService implements BuilderInterface
     use ConstraintsTrait;
     use OptionsTrait;
 
+    public function normalizeOptions($options)
+    {
+        return $options;
+    }
+
+    public function normalizeConstraints($constraints)
+    {
+        return $constraints;
+    }
+
     protected function getTypeBuilder($name, $type, array $options = null, $data = null)
     {
         return $this->getBuilder($name, $type, $options ?: $this->getDefaultOptions(), $data ?: $this->getDefaultData());

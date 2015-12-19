@@ -45,9 +45,4 @@ class TextBuilder extends AbstractBuilder
     {
         return [];
     }
-
-    public function normalizeConstraints($constraints)
-    {
-
-    }
 }

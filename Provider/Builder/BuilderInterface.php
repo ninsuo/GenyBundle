@@ -15,6 +15,7 @@ interface BuilderInterface
 
     public function getOptionsType();
     public function getDefaultOptions();
+    public function normalizeOptions($options);
 
     /**
      * Returns a form builder that should allow a user to configure the
