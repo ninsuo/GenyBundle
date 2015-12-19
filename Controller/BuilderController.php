@@ -46,6 +46,7 @@ class BuilderController extends BaseController
 
         return [
             'entity' => $entity,
+            'id'     => $entity->getId(),
         ];
     }
 
