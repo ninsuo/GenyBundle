@@ -35,20 +35,14 @@ class FieldRepository extends BaseRepository
         $this->_em->flush($form);
     }
 
-    public function retrieveField($formId, $fieldId)
+    public function retrieveField($id)
     {
-        $cacheKey = sprintf("%d-%d", $formId, $fieldId);
-
-        if (array_key_exists($cacheKey, $this->fields)) {
-            $entity = $this->fields[$cacheKey];
+        if (array_key_exists($id, $this->fields)) {
+            $entity = $this->fields[$id];
         } else {
-            $entity = $this->findOneBy([
-                'id' => $fieldId,
-                'form' => $formId,
-            ]);
-
+            $entity = $this->find($id);
             if (!is_null($entity)) {
-                $this->fields[$cacheKey] = $entity;
+                $this->fields[$id] = $entity;
             }
         }
 

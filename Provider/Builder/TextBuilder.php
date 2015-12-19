@@ -26,7 +26,7 @@ class TextBuilder extends AbstractBuilder
         return null;
     }
 
-    public function getOptionsType()
+    public function getOptionsType($id)
     {
         return null;
     }

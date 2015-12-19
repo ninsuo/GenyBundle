@@ -6,6 +6,6 @@
         class="geny-script-visibility-clicks-area"
         data-geny-button="#geny-field-button-{{ field.id }}"
         data-geny-form="#geny-field-details-{{ field.id }}">
-        {{ render(controller('GenyBundle:Builder:field', {formId: entity.id, fieldId: field.id})) }}
+        {{ render(controller('GenyBundle:Builder:field', {id: field.id})) }}
     </div>
 {% endfor %}

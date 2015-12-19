@@ -26,14 +26,25 @@ class ChoiceBuilder extends AbstractBuilder
         return null;
     }
 
-    public function getOptionsType()
+    public function getOptionsType($id)
     {
-        return null;
+        return $this
+           ->getBuilder(sprintf("options-%d", $id), Type\FormType::class)
+           ->add('choices', 'collection', [
+               'entry_type' => Type\TextType::class,
+               'entry_options' => [
+                   'label' => 'Value!!!',
+               ],
+           ])
+           ->getForm()
+        ;
     }
 
     public function getDefaultOptions()
     {
-        return [];
+        return [
+            'choices_as_values' => true,
+        ];
     }
 
     public function getConstraintsType()

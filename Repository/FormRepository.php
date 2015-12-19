@@ -18,7 +18,6 @@ class FormRepository extends BaseRepository
             $entity = $this->forms[$id];
         } else {
             $entity = $this->find($id);
-
             if (!is_null($entity)) {
                 $this->forms[$id] = $entity;
             }

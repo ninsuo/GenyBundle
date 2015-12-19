@@ -15,6 +15,11 @@ abstract class AbstractBuilder extends BaseService implements BuilderInterface
     use ConstraintsTrait;
     use OptionsTrait;
 
+    public function normalizeData($data)
+    {
+        return $data;
+    }
+
     public function normalizeOptions($options)
     {
         return $options;

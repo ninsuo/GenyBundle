@@ -4,6 +4,7 @@ namespace GenyBundle\Services;
 
 use GenyBundle\Base\BaseService;
 use GenyBundle\Exception\FormNotFoundException;
+use GenyBundle\Exception\FieldNotFoundException;
 use GenyBundle\Entity\Form;
 use GenyBundle\Traits\FormTrait;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -12,7 +13,7 @@ class Geny extends BaseService
 {
     use FormTrait;
 
-    public function getEntity($id)
+    public function getFormEntity($id)
     {
         $entity = $this->get('geny.repository.form')->retrieveForm($id);
 
@@ -29,16 +30,32 @@ class Geny extends BaseService
             $entity = $id;
             $id     = $entity->getId();
         } else {
-            $entity = $this->getEntity($id);
+            $entity = $this->getFormEntity($id);
         }
 
         $form = $this->getBuilder(sprintf("form-%d", $id), Type\FormType::class, [], null);
         foreach ($entity->getFields() as $field) {
-            $builder = $this->get('geny.builder')->getbuilder($field->getType());
-            $form->add($builder->getDataType($field->getName(), $field->getOptions(), $field->getData()));
+            $builder                = $this->get('geny.builder')->getbuilder($field->getType());
+            $data                   = $builder->normalizeData($field->getData());
+            $options                = $builder->normalizeOptions($field->getOptions());
+            $options['constraints'] = $builder->normalizeConstraints($field->getConstraints());
+            $form->add($builder->getDataType($field->getName(), $options, $data));
         }
         $form->add($this->getBuilder(sprintf("submit", $id), Type\SubmitType::class, ['label' => $entity->getSubmit()]));
 
         return $form->getForm();
     }
+
+    public function getFieldEntity($id)
+    {
+        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+
+        if (is_null($entity)) {
+            throw new FieldNotFoundException($id);
+        }
+
+        return $entity;
+    }
+
+
 }

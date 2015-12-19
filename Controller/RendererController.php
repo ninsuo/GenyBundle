@@ -31,7 +31,7 @@ class RendererController extends BaseController
         }
 
         try {
-            $entity = $this->get('geny')->getEntity($id);
+            $entity = $this->get('geny')->getFormEntity($id);
         } catch (FormNotFoundException $ex) {
             throw $this->createNotFoundException($ex->getMessage());
         }

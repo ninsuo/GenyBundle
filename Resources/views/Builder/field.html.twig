@@ -1,20 +1,20 @@
 {# GenyBundle:Builder:field.html.twig #}
 
 <div
-    id="geny-field-button-{{ fieldId }}"
+    id="geny-field-button-{{ id }}"
     style="margin-bottom: 3px;"
     class="pull-right geny-script-visibility-button"
-    data-geny-target="#geny-field-{{ fieldId }}">
+    data-geny-target="#geny-field-{{ id }}">
     <button class="btn btn-sm btn-default">
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
     </button>
 </div>
 
 <div
-    id="geny-field-preview-{{ fieldId }}" class="geny-script-preview">
-    {{ render(controller('GenyBundle:Builder:fieldPreview', {formId: formId, fieldId: fieldId})) }}
+    id="geny-field-preview-{{ id }}" class="geny-script-preview">
+    {{ render(controller('GenyBundle:Builder:fieldPreview', {id: id})) }}
 </div>
 
-<div id="geny-field-details-{{ fieldId }}" class="geny-script-visibility-form hide">
-    {{ render(controller('GenyBundle:Builder:fieldDetails', {formId: formId, fieldId: fieldId})) }}
+<div id="geny-field-details-{{ id }}" class="geny-script-visibility-form hide">
+    {{ render(controller('GenyBundle:Builder:fieldDetails', {id: id})) }}
 </div>

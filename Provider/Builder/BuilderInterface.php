@@ -12,8 +12,9 @@ interface BuilderInterface
 
     public function getDataType($name, array $options = null, $data = null);
     public function getDefaultData();
+    public function normalizeData($data);
 
-    public function getOptionsType();
+    public function getOptionsType($id);
     public function getDefaultOptions();
     public function normalizeOptions($options);
 

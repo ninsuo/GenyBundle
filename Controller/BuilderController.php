@@ -86,7 +86,7 @@ class BuilderController extends BaseController
         if (!$this->isFragment($request) && $this->isAjax($request)) {
             $json = [];
             if ($form->isValid()) {
-                $json['title'] = $this->forward('GenyBundle:Builder:formTitle', ['id' => $id])->getContent();
+                $json['title']  = $this->forward('GenyBundle:Builder:formTitle', ['id' => $id])->getContent();
                 $json['submit'] = $this->forward('GenyBundle:Builder:formSubmit', ['id' => $id])->getContent();
             }
             if (!$form->isValid() || $request->request->get('geny-force-reload')) {
@@ -156,30 +156,28 @@ class BuilderController extends BaseController
      * Renders one form field editor (name, label, help & required options).
      *
      * @Route(
-     *     "/builder/field/{formId}/{fieldId}",
+     *     "/builder/field/{id}",
      *     name = "geny_builder_field",
      *     requirements = {
-     *         "formId"  = "^\d+$",
-     *         "fieldId" = "^\d+$",
+     *         "id" = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function fieldAction(Request $request, $formId, $fieldId)
+    public function fieldAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+        $entity = $this->get('geny.repository.field')->retrieveField($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
         }
 
         return [
-            'formId' => $formId,
-            'fieldId' => $fieldId,
+            'id' => $id,
         ];
     }
 
@@ -188,29 +186,28 @@ class BuilderController extends BaseController
      * it will look like.
      *
      * @Route(
-     *     "/builder/field-preview/{formId}/{fieldId}",
+     *     "/builder/field-preview/{id}",
      *     name = "geny_builder_field_preview",
      *     requirements = {
-     *         "formId"  = "^\d+$",
-     *         "fieldId" = "^\d+$",
+     *         "id" = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function fieldPreviewAction(Request $request, $formId, $fieldId)
+    public function fieldPreviewAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+        $entity = $this->get('geny.repository.field')->retrieveField($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
         }
 
         $builder = $this->get('geny.builder')->getBuilder($entity->getType());
-        $form    = $this->getBuilder(sprintf("geny-preview-%d", $fieldId), Type\FormType::class, [], null);
+        $form    = $this->getBuilder(sprintf("geny-preview-%d", $id), Type\FormType::class, [], null);
         $form->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
         return [
@@ -221,29 +218,28 @@ class BuilderController extends BaseController
 
     /**
      * @Route(
-     *     "/builder/field-details/{formId}/{fieldId}",
+     *     "/builder/field-details/{id}",
      *     name = "geny_builder_field_details",
      *     requirements = {
-     *         "formId"  = "^\d+$",
-     *         "fieldId" = "^\d+$",
+     *         "id"  = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function fieldDetailsAction(Request $request, $formId, $fieldId)
+    public function fieldDetailsAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+        $entity = $this->get('geny.repository.field')->retrieveField($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
         }
 
         $form = $this
-           ->getBuilder(sprintf("geny-field-%d", $fieldId), FieldBuilderType::class, [], $entity)
+           ->getBuilder(sprintf("geny-field-%d", $id), FieldBuilderType::class, [], $entity)
            ->getForm();
 
         $form->handleRequest($request);
@@ -256,8 +252,7 @@ class BuilderController extends BaseController
         $context = [
             'entity'  => $entity,
             'form'    => $form->createView(),
-            'formId'  => $formId,
-            'fieldId' => $fieldId,
+            'id'      => $id,
             'isValid' => $form->isValid(),
         ];
 
@@ -281,29 +276,28 @@ class BuilderController extends BaseController
 
     /**
      * @Route(
-     *     "/builder/field-default/{formId}/{fieldId}",
+     *     "/builder/field-default/{id}",
      *     name = "geny_builder_field_default",
      *     requirements = {
-     *         "formId"  = "^\d+$",
-     *         "fieldId" = "^\d+$",
+     *         "id"  = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function fieldDefaultAction(Request $request, $formId, $fieldId)
+    public function fieldDefaultAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+        $entity = $this->get('geny.repository.field')->retrieveField($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
         }
 
         $builder     = $this->get('geny.builder')->getBuilder($entity->getType());
-        $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $fieldId), Type\FormType::class, [], null);
+        $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $id), Type\FormType::class, [], null);
         $formBuilder->add($builder->getDataType($entity->getName(), $entity->getOptions(), $entity->getData()));
 
         $form = $formBuilder->getForm();
@@ -322,10 +316,9 @@ class BuilderController extends BaseController
         }
 
         $context = [
-            'entity'  => $entity,
-            'form'    => $form->createView(),
-            'formId'  => $formId,
-            'fieldId' => $fieldId,
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'id'     => $id,
         ];
 
         $json = [];
@@ -345,55 +338,54 @@ class BuilderController extends BaseController
 
     /**
      * @Route(
-     *     "/builder/field-options/{formId}/{fieldId}",
+     *     "/builder/field-options/{id}",
      *     name = "geny_builder_field_options",
      *     requirements = {
-     *         "formId"  = "^\d+$",
-     *         "fieldId" = "^\d+$",
+     *         "id"  = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function fieldOptionsAction(Request $request, $formId, $fieldId)
+    public function fieldOptionsAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+        $entity = $this->get('geny.repository.field')->retrieveField($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
         }
 
+        $builder = $this->get('geny.builder')->getBuilder($entity->getType());
+
 
 
 
         return [
-            'entity'  => $entity,
-            'formId'  => $formId,
-            'fieldId' => $fieldId,
+            'entity' => $entity,
+            'id'     => $id,
         ];
     }
 
     /**
      * @Route(
-     *     "/builder/field-validation/{formId}/{fieldId}",
+     *     "/builder/field-validation/{id}",
      *     name = "geny_builder_field_validation",
      *     requirements = {
-     *         "formId"  = "^\d+$",
-     *         "fieldId" = "^\d+$",
+     *         "id"  = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function fieldValidationAction(Request $request, $formId, $fieldId)
+    public function fieldValidationAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($formId, $fieldId);
+        $entity = $this->get('geny.repository.field')->retrieveField($id);
 
         if (is_null($entity)) {
             throw $this->createNotFoundException();
@@ -403,9 +395,8 @@ class BuilderController extends BaseController
 
 
         return [
-            'entity'  => $entity,
-            'formId'  => $formId,
-            'fieldId' => $fieldId,
+            'entity' => $entity,
+            'id'     => $id,
         ];
     }
 
