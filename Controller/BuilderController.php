@@ -4,7 +4,6 @@ namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
 use GenyBundle\Traits\FormTrait;
-use GenyBundle\Exception\FieldNotFoundException;
 use GenyBundle\Form\Type\FieldBuilderType;
 use GenyBundle\Form\Type\FormBuilderType;
 use GenyBundle\Form\Type\SubmitBuilderType;
@@ -217,7 +216,10 @@ class BuilderController extends BaseController
             $em->flush();
         }
 
+        $builder = $this->get('geny.builder')->getBuilder($entity->getType());
+
         $context = [
+            'builder' => $builder,
             'entity'  => $entity,
             'form'    => $form->createView(),
             'id'      => $id,

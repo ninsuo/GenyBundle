@@ -57,9 +57,13 @@
             $(form).removeClass('hide');
         });
 
+    // toggling tabs
     $('.geny-script-tabs a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
     });
+
+    // collections initialization
+    $('.geny-collection').collection();
 
 })( jQuery );

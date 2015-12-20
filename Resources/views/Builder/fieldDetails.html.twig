@@ -96,37 +96,41 @@
 
     {# Options button #}
 
-    <button class="btn btn-default" data-toggle="modal" data-target="#geny-options-modal-{{ id }}">
-        <span class="glyphicon glyphicon-cog"></span> {{ 'geny.view.field_options.button' | trans({}, 'geny') }}
-    </button>
+    {% if builder.defaultOptions is not null %}
 
-    {% set body %}
-        <div id="geny-field-options-{{ id }}" class="text-left">
-            {{ render(controller('GenyBundle:Builder:fieldOptions', {id: id})) }}
-        </div>
-    {% endset %}
+        <button class="btn btn-default" data-toggle="modal" data-target="#geny-options-modal-{{ id }}">
+            <span class="glyphicon glyphicon-cog"></span> {{ 'geny.view.field_options.button' | trans({}, 'geny') }}
+        </button>
 
-    {% set footer %}
-        <button
-            type="button"
-            class="btn btn-primary domajax click"
-            data-endpoint="{{ path('geny_builder_field_options', {id: id}) }}"
-            data-input="#geny-field-options-{{ id }}"
-            data-output-json="preview default"
-            data-json-preview="#geny-field-preview-{{ id }}"
-            data-json-default="#geny-field-default-{{ id }}"
-            data-dismiss="modal"
-            title="{{ 'geny.view.field_options.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_options.save.value' | trans({}, 'geny') }}</button>
-    {% endset %}
+        {% set body %}
+            <div id="geny-field-options-{{ id }}" class="text-left">
+                {{ render(controller('GenyBundle:Builder:fieldOptions', {id: id})) }}
+            </div>
+        {% endset %}
 
-    {{
-        macros.modal(
-            'geny-options-modal-' ~ id,
-            'geny.view.field_options.title' | trans({'%name%': entity.name}, 'geny'),
-            body,
-            footer
-        )
-    }}
+        {% set footer %}
+            <button
+                type="button"
+                class="btn btn-primary domajax click"
+                data-endpoint="{{ path('geny_builder_field_options', {id: id}) }}"
+                data-input="#geny-field-options-{{ id }}"
+                data-output-json="preview default"
+                data-json-preview="#geny-field-preview-{{ id }}"
+                data-json-default="#geny-field-default-{{ id }}"
+                data-dismiss="modal"
+                title="{{ 'geny.view.field_options.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_options.save.value' | trans({}, 'geny') }}</button>
+        {% endset %}
+
+        {{
+            macros.modal(
+                'geny-options-modal-' ~ id,
+                'geny.view.field_options.title' | trans({'%name%': entity.name}, 'geny'),
+                body,
+                footer
+            )
+        }}
+
+    {% endif %}
 
     {# Validation button #}
 

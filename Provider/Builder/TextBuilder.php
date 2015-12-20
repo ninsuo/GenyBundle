@@ -33,7 +33,7 @@ class TextBuilder extends AbstractBuilder
 
     public function getDefaultOptions()
     {
-        return [];
+        return null;
     }
 
     public function getConstraintsType()

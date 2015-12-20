@@ -28,16 +28,7 @@ class ChoiceBuilder extends AbstractBuilder
 
     public function getOptionsType($id)
     {
-        return $this
-           ->getBuilder(sprintf("options-%d", $id), Type\FormType::class)
-           ->add('choices', 'collection', [
-               'entry_type' => Type\TextType::class,
-               'entry_options' => [
-                   'label' => 'Value!!!',
-               ],
-           ])
-           ->getForm()
-        ;
+        return null;
     }
 
     public function getDefaultOptions()

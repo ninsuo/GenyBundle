@@ -1,11 +1,13 @@
 {# GenyBundle:Renderer:render.html.twig #}
 
 <fieldset>
-    <legend>{{ entity.title }}</legend>
+    <legend>Form Test</legend>
 
-    {% if entity.description %}
-        <p class="well">{{ entity.description|nl2br }}</p>
-    {% endif %}
+    {% form_theme form '@GenyBundle/Resources/public/js/collection/jquery.collection.html.twig' %}
+
+{#
+    {% form_theme form 'GenyBundle::theme.html.twig' %}
+#}
 
     {{ form(form) }}
 
