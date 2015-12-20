@@ -6,7 +6,7 @@ use GenyBundle\Base\BaseType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CollectionEntryType extends BaseType
+class EntryType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

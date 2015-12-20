@@ -3,6 +3,7 @@
 namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
+use GenyBundle\Form\Type\EntryType;
 use GenyBundle\Traits\FormTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -31,30 +32,33 @@ class RendererController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $type = $this
-           ->get('form.factory')
-           ->createBuilder(Type\FormType::class)
-           ->add('label', Type\TextType::class, [
-               'label' => 'Key',
-           ])
-           ->add('value', Type\TextType::class, [
-               'label' => 'Value',
-           ])
-           ->getType()
-        ;
-
         $form = $this
-           ->get('form.factory')
-           ->createBuilder(Type\FormType::class)
-           ->add('hash', Type\CollectionType::class, [
-               'entry_type'    => $type,
-               'entry_options' => [],
-               'allow_add'     => true,
-               'allow_delete'  => true,
-               'prototype'     => true,
-               'required'      => false,
-               'delete_empty'  => true,
-               'attr'          => [
+           ->getBuilder(sprintf("options-%d", $id), Type\FormType::class)
+           ->add('choices', Type\CollectionType::class, [
+               'entry_type'    => EntryType::class,
+               'entry_options' => [
+                   'fields' => [
+                       [
+                           'name'    => 'label',
+                           'type'    => Type\TextType::class,
+                           'options' => [
+                               'label' => 'Choice label',
+                           ],
+                       ], [
+                           'name'    => 'value',
+                           'type'    => Type\TextType::class,
+                           'options' => [
+                               'label' => 'Choice value',
+                           ],
+                       ],
+                   ],
+               ],
+               'allow_add' => true,
+               'allow_delete' => true,
+               'prototype'    => true,
+               'required'     => false,
+               'delete_empty' => true,
+               'attr' => [
                    'class' => sprintf('geny-collection geny-options-%d', $id),
                ],
            ])
