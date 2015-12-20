@@ -3,7 +3,7 @@
 namespace GenyBundle\Provider;
 
 use GenyBundle\Base\BaseService;
-use GenyBundle\Exception\BuilderException;
+use GenyBundle\Exception\BuilderNotFoundException;
 use GenyBundle\Provider\Builder\BuilderInterface;
 
 class Builder extends BaseService
@@ -18,7 +18,7 @@ class Builder extends BaseService
     public function getBuilder($name)
     {
         if (!isset($this->builders[$name])) {
-            throw new BuilderException("Builder '{$name}' not found.");
+            throw new BuilderNotFoundException($name);
         }
 
         return $this->builders[$name];

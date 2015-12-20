@@ -4,11 +4,11 @@ namespace GenyBundle\Exception;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class FormNotFoundException extends NotFoundHttpException
+class FieldNotFoundException extends NotFoundHttpException
 {
     public function __construct($id)
     {
-        parent::__construct(sprintf("Form %d not found", $id));
+        parent::__construct(sprintf("Field %d not found", $id));
     }
 
 }

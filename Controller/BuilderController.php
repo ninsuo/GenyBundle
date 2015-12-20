@@ -38,11 +38,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.form')->retrieveForm($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
+        $entity =  $this->get('geny')->getFormEntity($id);
 
         return [
             'entity' => $entity,
@@ -66,11 +62,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.form')->retrieveForm($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
+        $entity =  $this->get('geny')->getFormEntity($id);
 
         $form = $this->getBuilder(sprintf("geny-form-%d", $id), FormBuilderType::class, [], $entity)->getForm();
 
@@ -116,11 +108,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.form')->retrieveForm($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
+        $entity =  $this->get('geny')->getFormEntity($id);
 
         return [
             'entity' => $entity,
@@ -143,20 +131,12 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.form')->retrieveForm($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
-
         return [
             'id' => $id,
         ];
     }
 
     /**
-     * Renders one form field editor (name, label, help & required options).
-     *
      * @Route(
      *     "/builder/field/{id}",
      *     name = "geny_builder_field",
@@ -169,12 +149,6 @@ class BuilderController extends BaseController
     public function fieldAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
-            throw $this->createNotFoundException();
-        }
-
-        $entity = $this->get('geny.repository.field')->retrieveField($id);
-
-        if (is_null($entity)) {
             throw $this->createNotFoundException();
         }
 
@@ -202,17 +176,8 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
-
-        try {
-            $field = $this->get('geny')->getField($id);
-        } catch (FieldNotFoundException $ex) {
-            throw $this->createNotFoundException();
-        }
+        $entity = $this->get('geny')->getFieldEntity($id);
+        $field = $this->get('geny')->getField($id);
 
         $form = $this->getBuilder(sprintf("geny-preview-%d", $id), Type\FormType::class, [], null);
         $form->add($field);
@@ -239,11 +204,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
+        $entity = $this->get('geny')->getFieldEntity($id);
 
         $form = $this
            ->getBuilder(sprintf("geny-field-%d", $id), FieldBuilderType::class, [], $entity)
@@ -297,17 +258,8 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
-
-        try {
-            $field = $this->get('geny')->getField($id);
-        } catch (FieldNotFoundException $ex) {
-            throw $this->createNotFoundException();
-        }
+        $entity = $this->get('geny')->getFieldEntity($id);
+        $field = $this->get('geny')->getField($id);
 
         $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $id), Type\FormType::class, [], null);
         $formBuilder->add($field);
@@ -365,11 +317,8 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($id);
+        $entity = $this->get('geny')->getFieldEntity($id);
 
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
 
         $builder = $this->get('geny.builder')->getBuilder($entity->getType());
 
@@ -398,12 +347,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.field')->retrieveField($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
-
+        $entity = $this->get('geny')->getFieldEntity($id);
 
 
 
@@ -429,12 +373,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.form')->retrieveForm($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
-
+        $entity =  $this->get('geny')->getFormEntity($id);
         $form = $this->getBuilder(sprintf("geny-submit-form-%d", $id), SubmitBuilderType::class, [], $entity)->getForm();
 
         $form->handleRequest($request);
@@ -470,11 +409,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny.repository.form')->retrieveForm($id);
-
-        if (is_null($entity)) {
-            throw $this->createNotFoundException();
-        }
+        $entity =  $this->get('geny')->getFormEntity($id);
 
         $types = array();
         foreach ($this->get('geny.builder')->getBuilders() as $builder) {
