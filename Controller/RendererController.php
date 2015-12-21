@@ -3,7 +3,7 @@
 namespace GenyBundle\Controller;
 
 use GenyBundle\Base\BaseController;
-use GenyBundle\Form\Type\EntryType;
+use GenyBundle\Form\Type as CustomType;
 use GenyBundle\Traits\FormTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -32,10 +32,12 @@ class RendererController extends BaseController
             throw $this->createNotFoundException();
         }
 
+        $entity = $this->get('geny')->getFormEntity($id);
+
         $form = $this
            ->getBuilder(sprintf("options-%d", $id), Type\FormType::class)
            ->add('choices', Type\CollectionType::class, [
-               'entry_type'    => EntryType::class,
+               'entry_type'    => CustomType\EntryType::class,
                'entry_options' => [
                    'fields' => [
                        [
@@ -66,6 +68,7 @@ class RendererController extends BaseController
         ;
 
         return [
+            'entity' => $entity,
             'form' => $form->createView(),
         ];
     }

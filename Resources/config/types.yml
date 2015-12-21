@@ -2,6 +2,7 @@ parameters:
     geny.form.type.field_builder.class: 'GenyBundle\Form\Type\FieldBuilderType'
     geny.form.type.form_builder.class: 'GenyBundle\Form\Type\FormBuilderType'
     geny.form.type.submit_builder.class: 'GenyBundle\Form\Type\SubmitBuilderType'
+    geny.form.extension.collection.class: 'GenyBundle\Form\Extension\CollectionTypeExtension'
 
 services:
     geny.form.type.field_builder:
@@ -24,3 +25,8 @@ services:
         arguments: []
         tags:
             - { name: form.type }
+
+    geny.form.extension.collection:
+        class: '%geny.form.extension.collection%'
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\CollectionType }

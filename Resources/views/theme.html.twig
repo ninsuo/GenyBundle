@@ -1,6 +1,12 @@
 {# GenyBundle::theme.html.twig #}
 
+{% block entry_label %}
+{% endblock %}
+
 {% block entry_widget %}
+
+    {{ form.parent.vars.allow_move }}
+
     <div class="row">
         <div class="col-md-5">
             {{ form_widget(form) }}
@@ -10,8 +16,12 @@
             <a href="#" class="collection-down btn btn-default" title="Move element down"><span class="glyphicon glyphicon-arrow-down"></span></a>
         </div>
         <div class="col-md-3">
-            <a href="#" class="collection-delete btn btn-default" title="Delete element"><span class="glyphicon glyphicon-trash"></span></a>
-            <a href="#" class="collection-add btn btn-default" title="Add element"><span class="glyphicon glyphicon-plus-sign"></span></a>
+            {% if form.parent.vars.allow_delete %}
+                <a href="#" class="collection-delete btn btn-default" title="Delete element"><span class="glyphicon glyphicon-trash"></span></a>
+            {% endif %}
+            {% if form.parent.vars.allow_add %}
+                <a href="#" class="collection-add btn btn-default" title="Add element"><span class="glyphicon glyphicon-plus-sign"></span></a>
+            {% endif %}
         </div>
         <div class="col-md-1">
             <a href="#" class="collection-duplicate btn btn-default" title="Duplicate element"><span class="glyphicon glyphicon-th-large"></span></a>
