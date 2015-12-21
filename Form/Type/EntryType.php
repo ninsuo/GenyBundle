@@ -21,4 +21,9 @@ class EntryType extends BaseType
             'fields' => [],
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return 'entry';
+    }
 }

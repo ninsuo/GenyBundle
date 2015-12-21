@@ -64,6 +64,10 @@
     });
 
     // collections initialization
-    $('.geny-collection').collection();
+    $('.geny-simple-collection').collection({
+        allow_up: false,
+        allow_down: false,
+        allow_duplicate: false
+    });
 
 })( jQuery );

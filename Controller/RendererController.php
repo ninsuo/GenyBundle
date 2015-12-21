@@ -53,13 +53,13 @@ class RendererController extends BaseController
                        ],
                    ],
                ],
-               'allow_add' => true,
+               'allow_add'    => true,
                'allow_delete' => true,
                'prototype'    => true,
                'required'     => false,
                'delete_empty' => true,
                'attr' => [
-                   'class' => sprintf('geny-collection geny-options-%d', $id),
+                   'class' => sprintf('geny-simple-collection geny-options-%d', $id),
                ],
            ])
            ->getForm()
