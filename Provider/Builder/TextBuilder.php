@@ -2,7 +2,6 @@
 
 namespace GenyBundle\Provider\Builder;
 
-use GenyBundle\Entity\Field;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -22,6 +21,8 @@ class TextBuilder extends AbstractBuilder
     {
         $type = $options['type'];
         unset($options['type']);
+
+        // add some options accourding to type
 
         return $this->getTypeBuilder($name, $type, $options, $data);
     }
@@ -75,12 +76,12 @@ class TextBuilder extends AbstractBuilder
         ];
     }
 
-    public function getConstraintsType($id)
+    public function getConstraintsType($id, $options, $data)
     {
 
     }
 
-    public function getDefaultConstraints($data = null)
+    public function getDefaultConstraints($options, $data = null)
     {
         return [];
     }

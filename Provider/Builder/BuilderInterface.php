@@ -36,7 +36,7 @@ interface BuilderInterface
      *
      * @return FormBuilderInterface
      */
-    public function getConstraintsType($id);
+    public function getConstraintsType($id, $options, $data);
 
     public function getConstraintsView();
 
