@@ -288,9 +288,9 @@ class BuilderController extends BaseController
             'id'     => $id,
         ];
 
-        $json = [];
-
         if (!$this->isFragment($request) && $this->isAjax($request)) {
+            $json = [];
+
             if ($form->isValid()) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
             } else {
@@ -325,14 +325,36 @@ class BuilderController extends BaseController
         $form    = $builder->getOptionsType($id, $data);
         $view    = $builder->getOptionsView();
 
-        // todo: validate form
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $options = $form->getData();
+            $entity->setOptions($options);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+        }
 
-        return [
+        $context = [
             'entity' => $entity,
             'id'     => $id,
             'form'   => $form->createView(),
             'view'   => $view,
         ];
+
+        if (!$this->isFragment($request) && $this->isAjax($request)) {
+            $json = [];
+
+            if ($form->isValid()) {
+                $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+                $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
+            } else {
+                $json['options'] = $this->get('templating')->render('GenyBundle:Builder:fieldOptions.html.twig', $context);
+            }
+
+            return new JsonResponse($json);
+        }
+
+        return $context;
     }
 
     /**

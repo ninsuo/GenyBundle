@@ -114,9 +114,10 @@
                 class="btn btn-primary domajax click"
                 data-endpoint="{{ path('geny_builder_field_options', {id: id}) }}"
                 data-input="#geny-field-options-{{ id }}"
-                data-output-json="preview default"
+                data-output-json="preview default options"
                 data-json-preview="#geny-field-preview-{{ id }}"
                 data-json-default="#geny-field-default-{{ id }}"
+                data-json-options="#geny-field-options-{{ id }}"
                 data-dismiss="modal"
                 title="{{ 'geny.view.field_options.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_options.save.value' | trans({}, 'geny') }}</button>
         {% endset %}
@@ -150,9 +151,10 @@
             class="btn btn-primary domajax click"
             data-endpoint="{{ path('geny_builder_field_validation', {id: id}) }}"
             data-input="#geny-field-validation-{{ id }}"
-            data-output-json="preview default"
+            data-output-json="preview default validation"
             data-json-preview="#geny-field-preview-{{ id }}"
             data-json-default="#geny-field-default-{{ id }}"
+            data-json-validation="#geny-field-validation-{{ id }}"
             data-dismiss="modal"
             title="{{ 'geny.view.field_validation.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_validation.save.value' | trans({}, 'geny') }}</button>
     {% endset %}

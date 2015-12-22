@@ -51,7 +51,6 @@ class TextBuilder extends AbstractBuilder
                'choices_as_values' => true,
                'expanded'          => true,
                'label'             => 'Field content',
-               'empty_data'        => $data['type'],
                'constraints'       => [
                    new Assert\Choice(['choices' => $types]),
                    new Assert\NotBlank(),
@@ -60,7 +59,6 @@ class TextBuilder extends AbstractBuilder
            ])
            ->add('trim', Type\CheckboxType::class, [
                'label'       => 'Clear leading and trailing whitespaces',
-               'empty_data'  => $data['trim'],
                'constraints' => [
                    new Assert\Type(['type' => 'bool']),
                ],
