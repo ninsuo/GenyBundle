@@ -166,6 +166,19 @@
         <source>geny.view.tabs.preview</source>
         <target><![CDATA[Preview]]></target>
       </trans-unit>
+      <trans-unit id="42">
+        <source>geny.builders.option.trim</source>
+        <target><![CDATA[Clear leading and trailing whitespaces]]></target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>geny.builders.option.readonly</source>
+        <target><![CDATA[Field is read-only]]></target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>geny.builders.option.disabled</source>
+        <target><![CDATA[Field is disabled]]></target>
+      </trans-unit>
+
 
     </body>
   </file>
