@@ -36,6 +36,26 @@ class RendererController extends BaseController
 
         $form = $this
            ->getBuilder(sprintf("options-%d", $id), Type\FormType::class)
+           ->add('type', Type\ChoiceType::class, [
+               'choices'           => array_flip([
+                   'Free text',
+                   'Email',
+                   'Url',
+                   'Number',
+                   'Password',
+                   'Percent',
+               ]),
+               'choices_as_values' => true,
+               'expanded' => true,
+               'label'             => 'Field content',
+           ])
+           ->add('trim', Type\CheckboxType::class, [
+               'label' => 'Clear leading and trailing whitespaces',
+           ])->getForm();
+
+        /*
+        $form = $this
+           ->getBuilder(sprintf("options-%d", $id), Type\FormType::class)
            ->add('choices', Type\CollectionType::class, [
                'entry_type'    => CustomType\EntryType::class,
                'entry_options' => [
@@ -66,6 +86,7 @@ class RendererController extends BaseController
            ])
            ->getForm()
         ;
+         */
 
         return [
             'entity' => $entity,

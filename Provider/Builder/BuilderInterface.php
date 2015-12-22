@@ -14,7 +14,8 @@ interface BuilderInterface
     public function getDefaultData();
     public function normalizeData($data);
 
-    public function getOptionsType($id);
+    public function getOptionsType($id, $data);
+    public function getOptionsView();
 
     /**
      * Returns the default options set for this field (except the
@@ -35,7 +36,9 @@ interface BuilderInterface
      *
      * @return FormBuilderInterface
      */
-    public function getConstraintsType();
+    public function getConstraintsType($id);
+
+    public function getConstraintsView();
 
     /**
      * Returns the default constraints for the given field. For a choice list

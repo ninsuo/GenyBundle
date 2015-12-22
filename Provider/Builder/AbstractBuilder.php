@@ -20,9 +20,19 @@ abstract class AbstractBuilder extends BaseService implements BuilderInterface
         return $data;
     }
 
+    public function getOptionsView()
+    {
+        return null;
+    }
+
     public function normalizeOptions($options)
     {
         return $options;
+    }
+
+    public function getConstraintsView()
+    {
+        return null;
     }
 
     public function normalizeConstraints($constraints)
@@ -32,7 +42,12 @@ abstract class AbstractBuilder extends BaseService implements BuilderInterface
 
     protected function getTypeBuilder($name, $type, array $options = null, $data = null)
     {
-        return $this->getBuilder($name, $type, $options ?: $this->getDefaultOptions(), $data ?: $this->getDefaultData());
+        return $this->getBuilder(
+           $name,
+           $type,
+           $options ?: $this->normalizeOptions($this->getDefaultOptions()),
+           $data ?: $this->normalizeOptions($this->getDefaultData())
+        );
     }
 
     protected function getConstraintsBuilder()

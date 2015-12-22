@@ -319,17 +319,17 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny')->getFieldEntity($id);
-
-
+        $entity  = $this->get('geny')->getFieldEntity($id);
         $builder = $this->get('geny.builder')->getBuilder($entity->getType());
-
-
-
+        $data    = $entity->getOptions() ? : $builder->getDefaultOptions();
+        $form    = $builder->getOptionsType($id, $data);
+        $view    = $builder->getOptionsView();
 
         return [
             'entity' => $entity,
             'id'     => $id,
+            'form'   => $form->createView(),
+            'view'   => $view,
         ];
     }
 

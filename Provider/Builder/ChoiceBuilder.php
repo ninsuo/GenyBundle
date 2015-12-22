@@ -26,7 +26,7 @@ class ChoiceBuilder extends AbstractBuilder
         return null;
     }
 
-    public function getOptionsType($id)
+    public function getOptionsType($id, $data)
     {
         return null;
     }
@@ -38,7 +38,7 @@ class ChoiceBuilder extends AbstractBuilder
         ];
     }
 
-    public function getConstraintsType()
+    public function getConstraintsType($id)
     {
     }
 

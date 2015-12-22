@@ -2,6 +2,14 @@
 
 <div class="geny-script-no-submit">
 
-    <p>blah blah</p>
+    {% if view %}
+
+        {{ include(view) }}
+
+    {% else %}
+
+        {{ form(form) }}
+
+    {% endif %}
 
 </div>
