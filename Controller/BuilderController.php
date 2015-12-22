@@ -322,7 +322,7 @@ class BuilderController extends BaseController
         $entity  = $this->get('geny')->getFieldEntity($id);
         $builder = $this->get('geny.builder')->getBuilder($entity->getType());
         $data    = $entity->getOptions() ? : $builder->getDefaultOptions();
-        $form    = $builder->getOptionsType($id, $data);
+        $form    = $builder->getOptionsType($entity, $data)->getForm();
         $view    = $builder->getOptionsView();
 
         $form->handleRequest($request);

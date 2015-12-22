@@ -63,11 +63,7 @@ class Geny extends BaseService
             $entity = $this->getFieldEntity($id);
         }
 
-        $builder                = $this->get('geny.builder')->getbuilder($entity->getType());
-        $data                   = $builder->normalizeData($entity->getData());
-        $options                = $builder->normalizeOptions($entity->getOptions());
-        $options['constraints'] = $builder->normalizeConstraints($entity->getConstraints());
-
-        return $builder->getDataType($entity->getName(), $options, $data);
+        $builder = $this->get('geny.builder')->getbuilder($entity->getType());
+        return $builder->getDataType($entity);
     }
 }

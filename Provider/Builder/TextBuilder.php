@@ -2,8 +2,10 @@
 
 namespace GenyBundle\Provider\Builder;
 
+use GenyBundle\Entity\Field;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class TextBuilder extends AbstractBuilder
 {
@@ -17,14 +19,19 @@ class TextBuilder extends AbstractBuilder
         return 'geny.builders.text.description';
     }
 
-    public function getDataType($name, array $options = null, $data = null)
+    public function getDataType(Field $entity)
     {
+        $name                   = $entity->getName();
+        $data                   = $entity->getData();
+        $options                = $entity->getOptions();
+        $options['constraints'] = $entity->getConstraints();
+
         $type = $options['type'];
         unset($options['type']);
 
         // add some options accourding to type
 
-        return $this->getTypeBuilder($name, $type, $options, $data);
+        return $this->getBuilder($name, $type, $options, $data);
     }
 
     public function getDefaultData()
@@ -32,7 +39,7 @@ class TextBuilder extends AbstractBuilder
         return null;
     }
 
-    public function getOptionsType($id, $data)
+    public function getOptionsType(Field $entity, $data)
     {
         // TODO PUT TRANSLATIONS IN THE OTHER FILE
 
@@ -46,26 +53,35 @@ class TextBuilder extends AbstractBuilder
         ];
 
         return $this
-           ->getBuilder(sprintf("options-%d", $id), Type\FormType::class, [], $data)
-           ->add('type', Type\ChoiceType::class, [
-               'choices'           => $types,
-               'choices_as_values' => true,
-               'expanded'          => true,
-               'label'             => 'Field content',
-               'constraints'       => [
-                   new Assert\Choice(['choices' => $types]),
-                   new Assert\NotBlank(),
-               ],
-               'required' => true,
-           ])
-           ->add('trim', Type\CheckboxType::class, [
-               'label'       => 'Clear leading and trailing whitespaces',
-               'constraints' => [
-                   new Assert\Type(['type' => 'bool']),
-               ],
-               'required' => false,
-           ])
-           ->getForm();
+            ->getBuilder(sprintf("options-%d", $entity->getId()), Type\FormType::class, [
+                'constraints' => [
+                    new Assert\Callback([
+                        'callback' => function($data, ExecutionContextInterface $context) use ($entity) {
+                           if ($entity->getOptions()['type'] !== $data['type']) {
+                               $entity->setData($this->getDefaultData());
+                           }
+                        },
+                    ]),
+                ],
+            ], $data)
+            ->add('type', Type\ChoiceType::class, [
+                'choices'           => $types,
+                'choices_as_values' => true,
+                'expanded'          => true,
+                'label'             => 'Field content',
+                'constraints'       => [
+                    new Assert\Choice(['choices' => $types]),
+                    new Assert\NotBlank(),
+                ],
+                'required'          => true,
+            ])
+            ->add('trim', Type\CheckboxType::class, [
+                'label'       => 'Clear leading and trailing whitespaces',
+                'constraints' => [
+                    new Assert\Type(['type' => 'bool']),
+                ],
+                'required'    => false,
+            ]);
     }
 
     public function getDefaultOptions()
@@ -76,12 +92,12 @@ class TextBuilder extends AbstractBuilder
         ];
     }
 
-    public function getConstraintsType($id, $options, $data)
+    public function getConstraintsType(Field $entity, $data)
     {
 
     }
 
-    public function getDefaultConstraints($options, $data = null)
+    public function getDefaultConstraints()
     {
         return [];
     }

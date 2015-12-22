@@ -3,6 +3,8 @@
 namespace GenyBundle\Provider\Builder;
 
 use Symfony\Component\Form\Extension\Core\Type;
+use Symfony\Component\Validator\Constraints as Assert;
+use GenyBundle\Entity\Field;
 
 class ChoiceBuilder extends AbstractBuilder
 {
@@ -16,9 +18,14 @@ class ChoiceBuilder extends AbstractBuilder
         return 'geny.builders.choice.description';
     }
 
-    public function getDataType($name, array $options = null, $data = null)
+    public function getDataType(Field $entity)
     {
-        return $this->getTypeBuilder($name, Type\ChoiceType::class, $options, $data);
+        $name                   = $entity->getName();
+        $data                   = $entity->getData();
+        $options                = $entity->getOptions();
+        $options['constraints'] = $entity->getConstraints();
+
+        return $this->getBuilder($name, Type\ChoiceType::class, $options, $data);
     }
 
     public function getDefaultData()
@@ -26,7 +33,7 @@ class ChoiceBuilder extends AbstractBuilder
         return null;
     }
 
-    public function getOptionsType($id, $data)
+    public function getOptionsType(Field $entity, $data)
     {
         return null;
     }
@@ -38,11 +45,11 @@ class ChoiceBuilder extends AbstractBuilder
         ];
     }
 
-    public function getConstraintsType($id)
+    public function getConstraintsType(Field $entity, $data)
     {
     }
 
-    public function getDefaultConstraints($data = null)
+    public function getDefaultConstraints()
     {
     }
 }
