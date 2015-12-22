@@ -325,6 +325,8 @@ class BuilderController extends BaseController
         $form    = $builder->getOptionsType($id, $data);
         $view    = $builder->getOptionsView();
 
+        // todo: validate form
+
         return [
             'entity' => $entity,
             'id'     => $id,
