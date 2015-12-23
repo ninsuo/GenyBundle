@@ -178,6 +178,15 @@
         <source>geny.builders.option.disabled</source>
         <target><![CDATA[Field is disabled]]></target>
       </trans-unit>
+      <trans-unit id="45">
+        <source>geny.builders.constraint.expression</source>
+        <target><![CDATA[Expression]]></target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>geny.builders.constraint.expression.help</source>
+        <target><![CDATA[Example: (value > 10 and value < 30 and not value == 20) or value == 42]]></target>
+      </trans-unit>
+
 
 
     </body>

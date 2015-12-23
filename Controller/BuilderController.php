@@ -373,14 +373,42 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity = $this->get('geny')->getFieldEntity($id);
+        $entity  = $this->get('geny')->getFieldEntity($id);
+        $builder = $this->get('geny.builder')->getBuilder($entity->getType());
+        $data    = $entity->getConstraints() ? : $builder->getDefaultConstraints();
+        $form    = $builder->getConstraintsType($entity, $data)->getForm();
+        $view    = $builder->getConstraintsView();
 
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $constraints = $form->getData();
+            $entity->setConstraints($constraints);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+        }
 
-
-        return [
+        $context = [
             'entity' => $entity,
             'id'     => $id,
+            'form'   => $form->createView(),
+            'view'   => $view,
         ];
+
+        if (!$this->isFragment($request) && $this->isAjax($request)) {
+            $json = [];
+
+            if ($form->isValid()) {
+                $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+                $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
+            } else {
+                $json['constraints'] = $this->get('templating')->render('GenyBundle:Builder:fieldConstraints.html.twig', $context);
+            }
+
+            return new JsonResponse($json);
+        }
+
+        return $context;
     }
 
     /**

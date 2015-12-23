@@ -20,10 +20,17 @@ class TextBuilder extends AbstractBuilder
 
     public function getDataType(Field $entity)
     {
-        $name                   = $entity->getName();
-        $data                   = $entity->getData();
-        $options                = $entity->getOptions();
-        $options['constraints'] = $entity->getConstraints();
+        $name        = $entity->getName();
+        $data        = $entity->getData();
+        $options     = $entity->getOptions();
+        $validators  = $entity->getConstraints();
+        $constraints = [];
+
+        if ($validators['expression']) {
+            $constraints[] = new Assert\Expression($validators['expression']);
+        }
+
+        $options['constraints'] = $constraints;
 
         if ($options['readonly']) {
             $options['attr']['readonly'] = $options['readonly'];
@@ -64,11 +71,26 @@ class TextBuilder extends AbstractBuilder
 
     public function getConstraintsType(Field $entity, $data)
     {
+        $builder = $this
+            ->getBuilder(sprintf("constraints-%d", $entity->getId()), Type\FormType::class, [
+                'translation_domain' => 'geny',
+            ], $data);
 
+        $this
+           ->addExpressionConstraint($builder);
+
+        return $builder;
     }
 
     public function getDefaultConstraints()
     {
-        return [];
+        // expression
+        // regexes
+
+
+        return [
+            'expression' => null,
+            'regexes' => [],
+        ];
     }
 }
