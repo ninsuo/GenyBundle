@@ -269,7 +269,9 @@ class BuilderController extends BaseController
         $form = $formBuilder->getForm();
 
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        $isValid = $form->isValid();
+
+        if ($isValid) {
             if (array_key_exists($entity->getName(), $form->getData())) {
                 $data = $form->getData()[$entity->getName()];
             } else {
@@ -289,9 +291,9 @@ class BuilderController extends BaseController
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-            $json = [];
+            $json = ['isValid' => $isValid];
 
-            if ($form->isValid()) {
+            if ($isValid) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
             } else {
                 $json['default'] = $this->get('templating')->render('GenyBundle:Builder:fieldDefault.html.twig', $context);
@@ -326,7 +328,9 @@ class BuilderController extends BaseController
         $view    = $builder->getOptionsView();
 
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        $isValid = $form->isValid();
+
+        if ($isValid) {
             $options = $form->getData();
             $entity->setOptions($options);
             $em = $this->getDoctrine()->getManager();
@@ -342,9 +346,9 @@ class BuilderController extends BaseController
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-            $json = [];
+            $json = ['isValid' => $isValid];
 
-            if ($form->isValid()) {
+            if ($isValid) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
                 $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
             } else {
@@ -380,7 +384,9 @@ class BuilderController extends BaseController
         $view    = $builder->getConstraintsView();
 
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        $isValid = $form->isValid();
+
+        if ($isValid) {
             $constraints = $form->getData();
             $entity->setConstraints($constraints);
             $em = $this->getDoctrine()->getManager();
@@ -396,13 +402,13 @@ class BuilderController extends BaseController
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-            $json = [];
+            $json = ['isValid' => $isValid];
 
-            if ($form->isValid()) {
+            if ($isValid) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
                 $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
             } else {
-                $json['constraints'] = $this->get('templating')->render('GenyBundle:Builder:fieldConstraints.html.twig', $context);
+                $json['validation'] = $this->get('templating')->render('GenyBundle:Builder:fieldValidation.html.twig', $context);
             }
 
             return new JsonResponse($json);

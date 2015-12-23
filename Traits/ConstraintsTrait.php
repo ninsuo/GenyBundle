@@ -24,7 +24,10 @@ trait ConstraintsTrait
                                     'value' => 42,
                                 ]);
                             } catch (\Exception $ex) {
-                                // todo
+                                $class = get_class($ex);
+                                $context->buildViolation(sprintf("[%s] %s", substr($class, strrpos($class, '\\') + 1), $ex->getMessage()))
+                                    ->atPath('expression')
+                                    ->addViolation();
                             }
                        },
                    ]),

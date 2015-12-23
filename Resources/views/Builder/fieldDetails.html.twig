@@ -81,7 +81,8 @@
             data-output-json="preview default"
             data-json-preview="#geny-field-preview-{{ id }}"
             data-json-default="#geny-field-default-{{ id }}"
-            data-dismiss="modal"
+            data-lock="#geny-field-default-{{ id }}"
+            data-script-success="if (response.isValid) { $('#geny-default-modal-{{ id }}').modal('hide'); };"
             title="{{ 'geny.view.field_default.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_default.save.value' | trans({}, 'geny') }}</button>
     {% endset %}
 
@@ -118,7 +119,8 @@
                 data-json-preview="#geny-field-preview-{{ id }}"
                 data-json-default="#geny-field-default-{{ id }}"
                 data-json-options="#geny-field-options-{{ id }}"
-                data-dismiss="modal"
+                data-lock="#geny-field-options-{{ id }}"
+                data-script-success="if (response.isValid) { $('#geny-options-modal-{{ id }}').modal('hide'); };"
                 title="{{ 'geny.view.field_options.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_options.save.value' | trans({}, 'geny') }}</button>
         {% endset %}
 
@@ -155,7 +157,8 @@
             data-json-preview="#geny-field-preview-{{ id }}"
             data-json-default="#geny-field-default-{{ id }}"
             data-json-validation="#geny-field-validation-{{ id }}"
-            data-dismiss="modal"
+            data-lock="#geny-field-validation-{{ id }}"
+            data-script-success="if (response.isValid) { $('#geny-validation-modal-{{ id }}').modal('hide'); };"
             title="{{ 'geny.view.field_validation.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_validation.save.value' | trans({}, 'geny') }}</button>
     {% endset %}
 
