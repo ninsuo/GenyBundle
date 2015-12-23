@@ -8,6 +8,12 @@
 
     {% else %}
 
+        {%
+            form_theme form
+                '@GenyBundle/Resources/public/js/collection/jquery.collection.html.twig'
+                'GenyBundle::theme.html.twig'
+        %}
+
         {{ form(form) }}
 
     {% endif %}

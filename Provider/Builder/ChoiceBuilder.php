@@ -45,11 +45,19 @@ class ChoiceBuilder extends AbstractBuilder
         ];
     }
 
+    public function normalizeOptions(Field $entity)
+    {
+    }
+
     public function getConstraintsType(Field $entity, $data)
     {
     }
 
     public function getDefaultConstraints()
+    {
+    }
+
+    public function normalizeConstraints(Field $entity)
     {
     }
 }

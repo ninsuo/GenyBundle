@@ -22,20 +22,8 @@ class TextBuilder extends AbstractBuilder
     {
         $name        = $entity->getName();
         $data        = $entity->getData();
-        $options     = $entity->getOptions();
-        $validators  = $entity->getConstraints();
-        $constraints = [];
-
-        if ($validators['expression']) {
-            $constraints[] = new Assert\Expression($validators['expression']);
-        }
-
-        $options['constraints'] = $constraints;
-
-        if ($options['readonly']) {
-            $options['attr']['readonly'] = $options['readonly'];
-        }
-        unset($options['readonly']);
+        $options     = $this->normalizeOptions($entity);
+        $options['constraints'] = $this->normalizeConstraints($entity);
 
         return $this->getBuilder($name, Type\TextType::class, $options, $data);
     }
@@ -69,6 +57,18 @@ class TextBuilder extends AbstractBuilder
         ];
     }
 
+    public function normalizeOptions(Field $entity)
+    {
+        $options = $entity->getOptions();
+
+        if ($options['readonly']) {
+            $options['attr']['readonly'] = $options['readonly'];
+        }
+        unset($options['readonly']);
+
+        return $options;
+    }
+
     public function getConstraintsType(Field $entity, $data)
     {
         $builder = $this
@@ -77,6 +77,7 @@ class TextBuilder extends AbstractBuilder
             ], $data);
 
         $this
+           ->addRegexesConstraint($builder)
            ->addExpressionConstraint($builder);
 
         return $builder;
@@ -84,13 +85,25 @@ class TextBuilder extends AbstractBuilder
 
     public function getDefaultConstraints()
     {
-        // expression
-        // regexes
-
-
         return [
-            'expression' => null,
             'regexes' => [],
+            'expression' => null,
         ];
+    }
+
+    public function normalizeConstraints(Field $entity)
+    {
+        $constraints = $entity->getConstraints();
+        $normalized = [];
+
+        foreach ($constraints['regexes'] as $regex) {
+            $normalized[] = new Assert\Regex($regex);
+        }
+
+        if ($constraints['expression']) {
+            $normalized[] = new Assert\Expression($constraints['expression']);
+        }
+
+        return $normalized;
     }
 }

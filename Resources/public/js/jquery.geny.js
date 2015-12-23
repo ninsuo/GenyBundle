@@ -1,17 +1,22 @@
 ;(function( $ ) {
 
-//    $.geny = (function ($) {
-//
-//        var disableFields = function (formId) {
-//
-//
-//        }; // disableFields
-//
-//        return {
-//            disableFields: disableFields,
-//        };
-//
-//    })( $ ); // $.geny
+    $.geny = (function ($) {
+
+        var initCollections = function () {
+            if ($('.geny-collection').length > 0) {
+                $('.geny-collection').collection({
+                    allow_up: false,
+                    allow_down: false,
+                    allow_duplicate: false
+                });
+            }
+        }; // initCollections
+
+        return {
+            initCollections: initCollections
+        };
+
+    })( $ ); // $.geny
 
     var body = $('body');
 
@@ -64,10 +69,6 @@
     });
 
     // collections initialization
-    $('.geny-simple-collection').collection({
-        allow_up: false,
-        allow_down: false,
-        allow_duplicate: false
-    });
+    $.geny.initCollections();
 
 })( jQuery );

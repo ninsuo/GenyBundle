@@ -27,6 +27,8 @@ interface BuilderInterface
      */
     public function getDefaultOptions();
 
+    public function normalizeOptions(Field $entity);
+
     /**
      * Returns a form builder that should allow a user to configure the
      * constraints he wants to apply to the field..
@@ -46,4 +48,13 @@ interface BuilderInterface
      * @return array|Constraint|null
      */
     public function getDefaultConstraints();
+
+    /**
+     * Converts the constraints data given into an array of constraints
+     * that will be compatible with the symfony validator.
+     *
+     * @param Field $entity
+     * @return array
+     */
+    public function normalizeConstraints(Field $entity);
 }

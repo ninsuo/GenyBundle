@@ -180,11 +180,23 @@
       </trans-unit>
       <trans-unit id="45">
         <source>geny.builders.constraint.expression</source>
-        <target><![CDATA[Expression]]></target>
+        <target><![CDATA[Expression language]]></target>
       </trans-unit>
       <trans-unit id="46">
         <source>geny.builders.constraint.expression.help</source>
         <target><![CDATA[Example: (value > 10 and value < 30 and not value == 20) or value == 42]]></target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>geny.builders.constraint.regexes</source>
+        <target><![CDATA[Regular expressions]]></target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>geny.builders.constraint.regexes.pattern</source>
+        <target><![CDATA[Pattern:]]></target>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>geny.builders.constraint.regexes.error</source>
+        <target><![CDATA[This pattern is invalid.]]></target>
       </trans-unit>
 
 
