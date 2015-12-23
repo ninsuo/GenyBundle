@@ -363,15 +363,15 @@ class BuilderController extends BaseController
 
     /**
      * @Route(
-     *     "/builder/field-validation/{id}",
-     *     name = "geny_builder_field_validation",
+     *     "/builder/field-constraints/{id}",
+     *     name = "geny_builder_field_constraints",
      *     requirements = {
      *         "id"  = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function fieldValidationAction(Request $request, $id)
+    public function fieldConstraintsAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
@@ -408,7 +408,7 @@ class BuilderController extends BaseController
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
                 $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
             } else {
-                $json['validation'] = $this->get('templating')->render('GenyBundle:Builder:fieldValidation.html.twig', $context);
+                $json['constraints'] = $this->get('templating')->render('GenyBundle:Builder:fieldConstraints.html.twig', $context);
             }
 
             return new JsonResponse($json);

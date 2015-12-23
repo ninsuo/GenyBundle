@@ -123,12 +123,12 @@
         <target><![CDATA[Options for field %name%]]></target>
       </trans-unit>
       <trans-unit id="31">
-        <source>geny.view.field_validation.button</source>
+        <source>geny.view.field_constraints.button</source>
         <target><![CDATA[Validation]]></target>
       </trans-unit>
       <trans-unit id="32">
-        <source>geny.view.field_validation.title</source>
-        <target><![CDATA[Validation for field %name%]]></target>
+        <source>geny.view.field_constraints.title</source>
+        <target><![CDATA[Constraints for field %name%]]></target>
       </trans-unit>
       <trans-unit id="33">
         <source>geny.modal.close.title</source>
@@ -151,11 +151,11 @@
         <target><![CDATA[Apply]]></target>
       </trans-unit>
       <trans-unit id="38">
-        <source>geny.view.field_validation.save.title</source>
+        <source>geny.view.field_constraints.save.title</source>
         <target><![CDATA[Apply]]></target>
       </trans-unit>
       <trans-unit id="39">
-        <source>geny.view.field_validation.save.value</source>
+        <source>geny.view.field_constraints.save.value</source>
         <target><![CDATA[Apply]]></target>
       </trans-unit>
       <trans-unit id="40">
