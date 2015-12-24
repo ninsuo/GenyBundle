@@ -513,4 +513,31 @@ class BuilderController extends BaseController
 
         return new Response($addField);
     }
+
+    /**
+     * @Route(
+     *     "/builder/field-delete/{id}",
+     *     name = "geny_builder_field_delete",
+     *     requirements = {
+     *         "id" = "^\d+$"
+     *     }
+     * )
+     */
+    public function fieldDeleteAction(Request $request, $id)
+    {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
+
+        $field = $this->get('geny')->getFieldEntity($id);
+        $form  = $field->getForm();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($field);
+        $em->flush($field);
+
+        return $this->render('GenyBundle:Builder:fields.html.twig', [
+            'entity' => $form,
+        ]);
+    }
 }

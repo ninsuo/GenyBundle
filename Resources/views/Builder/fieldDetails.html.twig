@@ -171,4 +171,19 @@
         )
     }}
 
+    {# Delete button #}
+
+    <div class="pull-right">
+        <button
+            type="button"
+            class="btn btn-default domajax click"
+            data-endpoint="{{ path('geny_builder_field_delete', {id: id}) }}"
+            data-output="#geny-fields-{{ entity.form.id }}"
+            data-lock="#geny-field-constraints-{{ id }}"
+            data-confirm="{{ 'geny.view.field_delete.confirm' | trans({'%name%': entity.name}, 'geny') }}"
+            title="{{ 'geny.view.field_delete.title' | trans({'%name%': entity.name}, 'geny') }}">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </div>
+
 </div>

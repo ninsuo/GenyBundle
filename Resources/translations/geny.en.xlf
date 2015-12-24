@@ -198,7 +198,14 @@
         <source>geny.builders.constraint.regexes.error</source>
         <target><![CDATA[This pattern is invalid.]]></target>
       </trans-unit>
-
+      <trans-unit id="50">
+        <source>geny.view.field_delete.confirm</source>
+        <target><![CDATA[Do you really want to remove the "%name%" field?]]></target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>geny.view.field_delete.title</source>
+        <target><![CDATA[Delete the "%name%" field]]></target>
+      </trans-unit>
 
 
     </body>
