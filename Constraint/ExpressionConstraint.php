@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use GenyBundle\Entity\Field;
 
 class ExpressionConstraint implements ConstraintInterface
 {
@@ -22,14 +23,14 @@ class ExpressionConstraint implements ConstraintInterface
         $normalized = [];
         $constraints = $entity->getConstraints();
 
-        if (array_key_exists('expression', $constraints) && $constraints['expression']) {
+        if (isset($constraints['expression'])) {
             $normalized[] = new Assert\Expression($constraints['expression']);
         }
 
         return $normalized;
     }
 
-    public function getBuilder(FormBuilderInterface $builder, Field $entity, $data = null)
+    public function build(FormBuilderInterface $builder, Field $entity, $data = null)
     {
         $builder
            ->add('expression', Type\TextareaType::class, [
@@ -59,7 +60,5 @@ class ExpressionConstraint implements ConstraintInterface
                    'help_text' => 'geny.builders.constraint.expression.help',
                ],
         ]);
-
-        return $this;
     }
 }

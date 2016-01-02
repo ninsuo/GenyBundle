@@ -2,9 +2,10 @@
 
 namespace GenyBundle\Provider\Builder;
 
-use Symfony\Component\Form\Extension\Core\Type;
-use Symfony\Component\Validator\Constraints as Assert;
 use GenyBundle\Entity\Field;
+use GenyBundle\Option;
+use GenyBundle\Constraint;
+use Symfony\Component\Form\Extension\Core\Type;
 
 class ChoiceBuilder extends AbstractBuilder
 {
@@ -18,46 +19,27 @@ class ChoiceBuilder extends AbstractBuilder
         return 'geny.builders.choice.description';
     }
 
-    public function getDataType(Field $entity)
+    public function getDataType(Field $entity, $name, array $options, $data)
     {
-        $name                   = $entity->getName();
-        $data                   = $entity->getData();
-        $options                = $entity->getOptions();
-        $options['constraints'] = $entity->getConstraints();
-
         return $this->getBuilder($name, Type\ChoiceType::class, $options, $data);
     }
 
-    public function getDefaultData()
+    public function getDefaultData(Field $entity)
     {
         return null;
     }
 
-    public function getOptionsType(Field $entity, $data)
-    {
-        return null;
-    }
-
-    public function getDefaultOptions()
+    public function supportsOptions(Field $entity)
     {
         return [
-            'choices_as_values' => true,
+          //  Option\ChoicesOption::class,
         ];
     }
 
-    public function normalizeOptions(Field $entity)
+    public function supportsConstraints(Field $entity)
     {
-    }
-
-    public function getConstraintsType(Field $entity, $data)
-    {
-    }
-
-    public function getDefaultConstraints()
-    {
-    }
-
-    public function normalizeConstraints(Field $entity)
-    {
+        return [
+         //   Option\ChoicesConstraint::class,
+        ];
     }
 }

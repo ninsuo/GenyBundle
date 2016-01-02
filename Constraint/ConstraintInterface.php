@@ -9,5 +9,5 @@ interface ConstraintInterface
 {
     public function getDefault(Field $entity);
     public function normalize(Field $entity);
-    public function getBuilder(FormBuilderInterface $builder, Field $entity, $data = null);
+    public function build(FormBuilderInterface $builder, Field $entity, $data = null);
 }

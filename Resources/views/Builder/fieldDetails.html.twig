@@ -97,7 +97,7 @@
 
     {# Options button #}
 
-    {% if builder.defaultOptions is not null %}
+    {% if builder.supportsOptions(entity)|length %}
 
         <button class="btn btn-default" data-toggle="modal" data-target="#geny-options-modal-{{ id }}">
             <span class="glyphicon glyphicon-cog"></span> {{ 'geny.view.field_options.button' | trans({}, 'geny') }}
@@ -137,39 +137,43 @@
 
     {# Validation button #}
 
-    <button class="btn btn-default" data-toggle="modal" data-target="#geny-constraints-modal-{{ id }}">
-        <span class="glyphicon glyphicon-ok"></span> {{ 'geny.view.field_constraints.button' | trans({}, 'geny') }}
-    </button>
+    {% if builder.supportsConstraints(entity)|length %}
 
-    {% set body %}
-        <div id="geny-field-constraints-{{ id }}" class="text-left">
-            {{ render(controller('GenyBundle:Builder:fieldConstraints', {id: id})) }}
-        </div>
-    {% endset %}
+        <button class="btn btn-default" data-toggle="modal" data-target="#geny-constraints-modal-{{ id }}">
+            <span class="glyphicon glyphicon-ok"></span> {{ 'geny.view.field_constraints.button' | trans({}, 'geny') }}
+        </button>
 
-    {% set footer %}
-        <button
-            type="button"
-            class="btn btn-primary domajax click"
-            data-endpoint="{{ path('geny_builder_field_constraints', {id: id}) }}"
-            data-input="#geny-field-constraints-{{ id }}"
-            data-output-json="preview default constraints"
-            data-json-preview="#geny-field-preview-{{ id }}"
-            data-json-default="#geny-field-default-{{ id }}"
-            data-json-constraints="#geny-field-constraints-{{ id }}"
-            data-lock="#geny-field-constraints-{{ id }}"
-            data-script-success="if (response.isValid) { $('#geny-constraints-modal-{{ id }}').modal('hide'); };"
-            title="{{ 'geny.view.field_constraints.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_constraints.save.value' | trans({}, 'geny') }}</button>
-    {% endset %}
+        {% set body %}
+            <div id="geny-field-constraints-{{ id }}" class="text-left">
+                {{ render(controller('GenyBundle:Builder:fieldConstraints', {id: id})) }}
+            </div>
+        {% endset %}
 
-    {{
-        macros.modal(
-            'geny-constraints-modal-' ~ id,
-            'geny.view.field_constraints.title' | trans({'%name%': entity.name}, 'geny'),
-            body,
-            footer
-        )
-    }}
+        {% set footer %}
+            <button
+                type="button"
+                class="btn btn-primary domajax click"
+                data-endpoint="{{ path('geny_builder_field_constraints', {id: id}) }}"
+                data-input="#geny-field-constraints-{{ id }}"
+                data-output-json="preview default constraints"
+                data-json-preview="#geny-field-preview-{{ id }}"
+                data-json-default="#geny-field-default-{{ id }}"
+                data-json-constraints="#geny-field-constraints-{{ id }}"
+                data-lock="#geny-field-constraints-{{ id }}"
+                data-script-success="if (response.isValid) { $('#geny-constraints-modal-{{ id }}').modal('hide'); };"
+                title="{{ 'geny.view.field_constraints.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_constraints.save.value' | trans({}, 'geny') }}</button>
+        {% endset %}
+
+        {{
+            macros.modal(
+                'geny-constraints-modal-' ~ id,
+                'geny.view.field_constraints.title' | trans({'%name%': entity.name}, 'geny'),
+                body,
+                footer
+            )
+        }}
+
+    {% endif %}
 
     {# Delete button #}
 

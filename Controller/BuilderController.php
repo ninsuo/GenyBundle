@@ -276,7 +276,7 @@ class BuilderController extends BaseController
                 $data = $form->getData()[$entity->getName()];
             } else {
                 $builder = $this->get('geny.builder')->getBuilder($entity->getType());
-                $data = $builder->getDefaultData();
+                $data = $builder->getDefaultData($entity);
             }
             $entity->setData($data);
             $em = $this->getDoctrine()->getManager();
@@ -322,10 +322,9 @@ class BuilderController extends BaseController
         }
 
         $entity  = $this->get('geny')->getFieldEntity($id);
-        $builder = $this->get('geny.builder')->getBuilder($entity->getType());
-        $data    = $entity->getOptions() ? : $builder->getDefaultOptions();
-        $form    = $builder->getOptionsType($entity, $data)->getForm();
-        $view    = $builder->getOptionsView();
+        $builder = $this->get('geny')->getBuilder($entity);
+        $data    = $this->get('geny')->getOptionsData($builder, $entity);
+        $form    = $this->get('geny')->getOptionsType($builder, $entity, $data);
 
         $form->handleRequest($request);
         $isValid = $form->isValid();
@@ -342,7 +341,6 @@ class BuilderController extends BaseController
             'entity' => $entity,
             'id'     => $id,
             'form'   => $form->createView(),
-            'view'   => $view,
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
@@ -378,10 +376,9 @@ class BuilderController extends BaseController
         }
 
         $entity  = $this->get('geny')->getFieldEntity($id);
-        $builder = $this->get('geny.builder')->getBuilder($entity->getType());
-        $data    = $entity->getConstraints() ? : $builder->getDefaultConstraints();
-        $form    = $builder->getConstraintsType($entity, $data)->getForm();
-        $view    = $builder->getConstraintsView();
+        $builder = $this->get('geny')->getBuilder($entity);
+        $data    = $this->get('geny')->getConstraintsData($builder, $entity);
+        $form    = $this->get('geny')->getConstraintsType($builder, $entity, $data);
 
         $form->handleRequest($request);
         $isValid = $form->isValid();
@@ -398,7 +395,6 @@ class BuilderController extends BaseController
             'entity' => $entity,
             'id'     => $id,
             'form'   => $form->createView(),
-            'view'   => $view,
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
@@ -465,9 +461,9 @@ class BuilderController extends BaseController
      */
     public function addFieldAction(Request $request, $id)
     {
-        if (!$this->isFragment($request) && !$this->isAjax($request)) {
-            throw $this->createNotFoundException();
-        }
+//        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+//            throw $this->createNotFoundException();
+//        }
 
         $entity =  $this->get('geny')->getFormEntity($id);
 

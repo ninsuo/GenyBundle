@@ -2,6 +2,11 @@
 
 namespace GenyBundle\Constraint;
 
+use GenyBundle\Entity\Field;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type;
+use Symfony\Component\Validator\Constraints as Assert;
+
 class RegexesConstraint implements ConstraintInterface
 {
     public function getDefault(Field $entity)
@@ -14,7 +19,7 @@ class RegexesConstraint implements ConstraintInterface
         $normalized = [];
         $constraints = $entity->getconstraints();
 
-        if (array_key_exists('regexes', $constraints)) {
+        if (isset($constraints['regexes'])) {
             foreach ($constraints['regexes'] as $regex) {
                 $normalized[] = new Assert\Regex($regex);
             }
@@ -23,7 +28,7 @@ class RegexesConstraint implements ConstraintInterface
         return $normalized;
     }
 
-    public function getBuilder(FormBuilderInterface $builder, Field $entity, $data = null)
+    public function build(FormBuilderInterface $builder, Field $entity, $data = null)
     {
         $builder
            ->add('regexes', Type\CollectionType::class, [
@@ -53,7 +58,5 @@ class RegexesConstraint implements ConstraintInterface
                    'class' => 'geny-collection',
                ],
            ]);
-
-        return $this;
     }
 }

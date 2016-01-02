@@ -22,9 +22,9 @@ class FieldRepository extends BaseRepository
         $field->setForm($form);
         $field->setName(sprintf("%s_%d", $this->get('translator')->trans('geny.builder.field.name', [], 'geny'), $field->getPosition()));
         $field->setType($typeName);
-        $field->setData($builder->getDefaultData());
-        $field->setOptions($builder->getDefaultOptions());
-        $field->setConstraints($builder->getDefaultConstraints());
+        $field->setData($builder->getDefaultData($field));
+        $field->setOptions(null);
+        $field->setConstraints(null);
         $field->setLabel($this->get('translator')->trans('geny.builder.field.label', [], 'geny'));
         $field->setHelp($this->get('translator')->trans('geny.builder.field.help', [], 'geny'));
         $field->setRequired(true);

@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Field
 {
+
     /**
      * @var int
      *
@@ -181,13 +182,7 @@ class Field
 
     public function getOptions()
     {
-        return $this->options + [
-            'label'    => $this->label,
-            'required' => $this->required,
-            'attr'     => array_merge(isset($this->options['attr']) ? $this->options['attr'] : [], [
-                'help_text' => $this->help,
-            ]),
-        ];
+        return $this->options;
     }
 
     public function setOptions(array $options = null)
@@ -233,7 +228,7 @@ class Field
         return $this;
     }
 
-    public function getRequired()
+    public function isRequired()
     {
         return $this->required;
     }
@@ -261,4 +256,5 @@ class Field
     {
         $this->data = reset($this->data);
     }
+
 }

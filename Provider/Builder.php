@@ -8,7 +8,7 @@ use GenyBundle\Provider\Builder\BuilderInterface;
 
 class Builder extends BaseService
 {
-    protected $builders = array();
+    protected $builders = [];
 
     public function hasBuilder($name)
     {
