@@ -269,7 +269,8 @@ class BuilderController extends BaseController
         $form = $formBuilder->getForm();
 
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        $isSubmitted = $form->isSubmitted();
+        if ($isSubmitted) {
             if (array_key_exists($entity->getName(), $form->getData())) {
                 $data = $form->getData()[$entity->getName()];
             } else {
@@ -289,7 +290,11 @@ class BuilderController extends BaseController
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-            $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+            if ($isSubmitted) {
+                $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
+            } else {
+                $json['default'] = $this->get('templating')->render('GenyBundle:Builder:fieldDefault.html.twig', $context);
+            }
             return new JsonResponse($json);
         }
 
