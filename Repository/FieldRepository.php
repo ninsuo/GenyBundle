@@ -48,4 +48,14 @@ class FieldRepository extends BaseRepository
 
         return $entity;
     }
+
+    public function saveField(Field $entity)
+    {
+        $this->_em->persist($entity);
+        $this->_em->flush();
+
+        $this->fields[$entity->getId()] = $entity;
+
+        return $this;
+    }
 }

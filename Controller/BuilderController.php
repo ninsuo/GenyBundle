@@ -211,9 +211,7 @@ class BuilderController extends BaseController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $this->get('geny.repository.field')->saveField($entity);
         }
 
         $builder = $this->get('geny.builder')->getBuilder($entity->getType());
@@ -278,9 +276,7 @@ class BuilderController extends BaseController
                 $data    = $builder->getDefaultData($entity);
             }
             $entity->setData($data);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $this->get('geny.repository.field')->saveField($entity);
         }
 
         $context = [
@@ -328,9 +324,7 @@ class BuilderController extends BaseController
         if ($isValid) {
             $options = $form->getData();
             $entity->setOptions($options);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $this->get('geny.repository.field')->saveField($entity);
         }
 
         $context = [
@@ -381,9 +375,7 @@ class BuilderController extends BaseController
         if ($isValid) {
             $constraints = $form->getData();
             $entity->setConstraints($constraints);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $this->get('geny.repository.field')->saveField($entity);
         }
 
         $context = [

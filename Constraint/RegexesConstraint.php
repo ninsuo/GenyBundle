@@ -6,6 +6,7 @@ use GenyBundle\Entity\Field;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class RegexesConstraint implements ConstraintInterface
 {

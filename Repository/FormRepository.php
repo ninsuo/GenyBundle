@@ -29,7 +29,7 @@ class FormRepository extends BaseRepository
     public function saveForm(Form $entity)
     {
         $this->_em->persist($entity);
-        $this->_em->flush($entity);
+        $this->_em->flush();
 
         $this->forms[$entity->getId()] = $entity;
 
