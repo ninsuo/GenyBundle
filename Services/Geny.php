@@ -72,9 +72,9 @@ class Geny extends BaseService
 
         $name                   = $entity->getName();
         $builder                = $this->getBuilder($entity);
-        $options                = $this->getOptionsData($builder, $entity);
+        $options                = $this->getOptionsData($builder, $entity, true);
         $data                   = $entity->getData();
-        $options['constraints'] = $this->getConstraintsData($builder, $entity);
+        $options['constraints'] = $this->getConstraintsData($builder, $entity, true);
 
         return $builder->getDataType($entity, $name, $options, $data);
     }
@@ -84,21 +84,27 @@ class Geny extends BaseService
         return $this->get('geny.builder')->getBuilder($entity->getType());
     }
 
-    public function getOptionsData(BuilderInterface $builder, Field $entity)
+    public function getOptionsData(BuilderInterface $builder, Field $entity, $normalize = false)
     {
         $config  = $entity->getOptions();
-        $options = [];
         foreach ($builder->supportsOptions($entity) as $optionClass) {
             $option = $this->getCachedObject($optionClass);
-
             foreach ($option->getDefault($entity) as $key => $value) {
                 if (!isset($config[$key])) {
                     $config[$key] = $value;
                 }
             }
-            $entity->setOptions($config);
+        }
+        $entity->setOptions($config);
 
-            $test = $option->normalize($entity, $options);
+        if (!$normalize) {
+            return $entity->getOptions();
+        }
+
+        $options = [];
+        foreach ($builder->supportsOptions($entity) as $optionClass) {
+            $option = $this->getCachedObject($optionClass);
+            $test   = $option->normalize($entity, $options);
             if (is_array($test)) {
                 $options = $test;
             }
@@ -130,21 +136,27 @@ class Geny extends BaseService
         return $type->getForm();
     }
 
-    public function getConstraintsData(BuilderInterface $builder, Field $entity)
+    public function getConstraintsData(BuilderInterface $builder, Field $entity, $normalize = false)
     {
-        $config  = $entity->getConstraints();
-        $constraints = [];
+        $config = $entity->getConstraints();
         foreach ($builder->supportsConstraints($entity) as $constraintClass) {
             $constraint = $this->getCachedObject($constraintClass);
-
             foreach ($constraint->getDefault($entity) as $key => $value) {
                 if (!isset($config[$key])) {
                     $config[$key] = $value;
                 }
             }
-            $entity->setConstraints($config);
+        }
+        $entity->setConstraints($config);
 
-            $test = $constraint->normalize($entity, $constraints);
+        if (!$normalize) {
+            return $entity->getConstraints();
+        }
+
+        $constraints = [];
+        foreach ($builder->supportsConstraints($entity) as $constraintClass) {
+            $constraint = $this->getCachedObject($constraintClass);
+            $test       = $constraint->normalize($entity, $constraints);
             if (is_array($test)) {
                 $constraints += $test;
             }
