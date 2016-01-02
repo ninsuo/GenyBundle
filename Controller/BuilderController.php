@@ -269,14 +269,12 @@ class BuilderController extends BaseController
         $form = $formBuilder->getForm();
 
         $form->handleRequest($request);
-        $isValid = $form->isValid();
-
-        if ($isValid) {
+        if ($form->isSubmitted()) {
             if (array_key_exists($entity->getName(), $form->getData())) {
                 $data = $form->getData()[$entity->getName()];
             } else {
-                $builder = $this->get('geny.builder')->getBuilder($entity->getType());
-                $data = $builder->getDefaultData($entity);
+                $builder = $this->get('geny')->getBuilder($entity);
+                $data    = $builder->getDefaultData($entity);
             }
             $entity->setData($data);
             $em = $this->getDoctrine()->getManager();
@@ -291,14 +289,7 @@ class BuilderController extends BaseController
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-            $json = ['isValid' => $isValid];
-
-            if ($isValid) {
-                $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
-            } else {
-                $json['default'] = $this->get('templating')->render('GenyBundle:Builder:fieldDefault.html.twig', $context);
-            }
-
+            $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
             return new JsonResponse($json);
         }
 
