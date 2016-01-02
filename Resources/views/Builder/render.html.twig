@@ -12,6 +12,7 @@
                 data-toggle="tab"
                 data-endpoint="{{ path('geny_builder_form_preview', {id: id}) }}"
                 data-lock="#geny-form-preview-{{ id }}"
+                data-callback-success="$.geny.initCollections"
                 data-output="#geny-form-preview-{{ id }}">{{ 'geny.view.tabs.preview' | trans({}, 'geny') }}</a>
         </li>
     </ul>

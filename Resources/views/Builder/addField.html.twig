@@ -9,6 +9,7 @@
         'data-json-add-field': '#geny-add-field-' ~ id,
         'data-json-fields': '#geny-fields-' ~ id,
         'data-script-before': 'if ($("#' ~ form.type.vars.id ~'").val() === "") return false;',
+        'data-callback-success': '$.geny.initCollections',
     }
 %}
 

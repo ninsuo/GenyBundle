@@ -3,13 +3,15 @@
     $.geny = (function ($) {
 
         var initCollections = function () {
-            if ($('.geny-collection').length > 0) {
-                $('.geny-collection').collection({
-                    allow_up: false,
-                    allow_down: false,
-                    allow_duplicate: false
-                });
-            }
+            setTimeout(function() {
+                if ($('.geny-collection').length > 0) {
+                    $('.geny-collection').collection({
+                        allow_up: false,
+                        allow_down: false,
+                        allow_duplicate: false
+                    });
+                }
+            }, 0);
         }; // initCollections
 
         return {

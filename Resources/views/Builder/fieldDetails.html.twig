@@ -15,6 +15,7 @@
         'data-json-preview': '#geny-field-preview-' ~ id,
         'data-json-details': '#geny-field-details-' ~ id,
         'data-json-default': '#geny-field-default-' ~ id,
+        'data-callback-success': '$.geny.initCollections',
         'data-lock': '',
     }
 %}
@@ -82,6 +83,7 @@
             data-json-preview="#geny-field-preview-{{ id }}"
             data-lock="#geny-field-default-{{ id }}"
             data-script-success="$('#geny-default-modal-{{ id }}').modal('hide');"
+            data-callback-success="$.geny.initCollections"
             title="{{ 'geny.view.field_default.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_default.save.value' | trans({}, 'geny') }}</button>
     {% endset %}
 
@@ -120,6 +122,7 @@
                 data-json-options="#geny-field-options-{{ id }}"
                 data-lock="#geny-field-options-{{ id }}"
                 data-script-success="if (response.isValid) { $('#geny-options-modal-{{ id }}').modal('hide'); };"
+                data-callback-success="$.geny.initCollections"
                 title="{{ 'geny.view.field_options.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_options.save.value' | trans({}, 'geny') }}</button>
         {% endset %}
 
@@ -160,6 +163,7 @@
                 data-json-constraints="#geny-field-constraints-{{ id }}"
                 data-lock="#geny-field-constraints-{{ id }}"
                 data-script-success="if (response.isValid) { $('#geny-constraints-modal-{{ id }}').modal('hide'); };"
+                data-callback-success="$.geny.initCollections"
                 title="{{ 'geny.view.field_constraints.save.title' | trans({}, 'geny') }}">{{ 'geny.view.field_constraints.save.value' | trans({}, 'geny') }}</button>
         {% endset %}
 
@@ -182,6 +186,7 @@
             class="btn btn-default domajax click"
             data-endpoint="{{ path('geny_builder_field_delete', {id: id}) }}"
             data-output="#geny-fields-{{ entity.form.id }}"
+            data-callback-success="$.geny.initCollections"
             data-lock="#geny-field-constraints-{{ id }}"
             data-confirm="{{ 'geny.view.field_delete.confirm' | trans({'%name%': entity.name}, 'geny') }}"
             title="{{ 'geny.view.field_delete.title' | trans({'%name%': entity.name}, 'geny') }}">
