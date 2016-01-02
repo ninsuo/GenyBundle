@@ -342,11 +342,10 @@ class BuilderController extends BaseController
         if (!$this->isFragment($request) && $this->isAjax($request)) {
             $json = ['isValid' => $isValid];
 
+            $json['options'] = $this->get('templating')->render('GenyBundle:Builder:fieldOptions.html.twig', $context);
             if ($isValid) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
                 $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
-            } else {
-                $json['options'] = $this->get('templating')->render('GenyBundle:Builder:fieldOptions.html.twig', $context);
             }
 
             return new JsonResponse($json);
@@ -396,11 +395,10 @@ class BuilderController extends BaseController
         if (!$this->isFragment($request) && $this->isAjax($request)) {
             $json = ['isValid' => $isValid];
 
+            $json['constraints'] = $this->get('templating')->render('GenyBundle:Builder:fieldConstraints.html.twig', $context);
             if ($isValid) {
                 $json['preview'] = $this->forward('GenyBundle:Builder:fieldPreview', $context)->getContent();
                 $json['default'] = json_decode($this->forward('GenyBundle:Builder:fieldDefault', $context)->getContent())->default;
-            } else {
-                $json['constraints'] = $this->get('templating')->render('GenyBundle:Builder:fieldConstraints.html.twig', $context);
             }
 
             return new JsonResponse($json);
@@ -457,9 +455,9 @@ class BuilderController extends BaseController
      */
     public function addFieldAction(Request $request, $id)
     {
-//        if (!$this->isFragment($request) && !$this->isAjax($request)) {
-//            throw $this->createNotFoundException();
-//        }
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
 
         $entity =  $this->get('geny')->getFormEntity($id);
 

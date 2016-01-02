@@ -33,6 +33,8 @@ class ChoiceBuilder extends AbstractBuilder
     {
         return [
           //  Option\ChoicesOption::class,
+
+            // choices_as_values => true
         ];
     }
 
