@@ -8,7 +8,10 @@
                     $('.geny-collection').collection({
                         allow_up: false,
                         allow_down: false,
-                        allow_duplicate: false
+                        allow_duplicate: false,
+                        add: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>',
+                        delete: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>',
+                        init_with_n_elements: 1
                     });
                 }
             }, 0);
