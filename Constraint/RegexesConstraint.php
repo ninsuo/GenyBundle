@@ -22,7 +22,8 @@ class RegexesConstraint implements ConstraintInterface
 
         if (isset($constraints['regexes'])) {
             foreach ($constraints['regexes'] as $regex) {
-                $normalized[] = new Assert\Regex($regex);
+                $escaped = str_replace('#', '\#', $regex);
+                $normalized[] = new Assert\Regex(sprintf("#%s#", $escaped));
             }
         }
 
@@ -39,7 +40,8 @@ class RegexesConstraint implements ConstraintInterface
                    'constraints' => [
                         new Assert\Callback([
                             'callback' => function ($data, ExecutionContextInterface $context) {
-                                if (false === @preg_match(sprintf("/%s/", $data), "")) {
+                                $escaped = str_replace('#', '\#', $data);
+                                if (false === @preg_match(sprintf("#%s#", $escaped), "")) {
                                     $context
                                         ->buildViolation($this->get('translator')->trans('geny.builders.constraint.regexes.error', [], 'geny'))
                                         ->atPath('expression')

@@ -1,3 +1,9 @@
 {# GenyBundle:Builder:formPreview.html.twig #}
 
-{{ form_geny(id) }}
+{{ geny_form(id, form) }}
+
+{% if data|default(false) %}
+
+    <pre>{{ data | json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+
+{% endif %}

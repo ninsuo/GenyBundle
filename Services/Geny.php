@@ -26,7 +26,7 @@ class Geny extends BaseService
         return $entity;
     }
 
-    public function getForm($id)
+    public function getForm($id, array $options = array())
     {
         if ($id instanceof Form) {
             $entity = $id;
@@ -35,16 +35,26 @@ class Geny extends BaseService
             $entity = $this->getFormEntity($id);
         }
 
-        $form = $this->get('form.factory')->createNamedBuilder(sprintf("form-%d", $id), Type\FormType::class, []);
+        $form = $this->get('form.factory')->createNamedBuilder(
+           $formName = sprintf("form-%d", $id),
+           Type\FormType::class,
+           null,
+           array_key_exists($formName, $options) ? $options[$formName] : []
+        );
+
         foreach ($entity->getFields() as $field) {
-            $form->add($this->getField($field));
+            $overloadOptions = array_key_exists($name = $field->getName(), $options) ? $options[$name] : [];
+            $form->add($this->getField($field, $overloadOptions));
         }
 
         $form->add($this->get('form.factory')->createNamedBuilder(
-           sprintf("submit-%d", $id),
+           $submitName = sprintf("submit-%d", $id),
            Type\SubmitType::class,
            null,
-           ['label' => $entity->getSubmit()]
+           array_merge_recursive(
+               ['label' => $entity->getSubmit()],
+               array_key_exists($submitName, $options) ? $options[$submitName] : []
+           )
         ));
 
         return $form->getForm();
@@ -61,7 +71,7 @@ class Geny extends BaseService
         return $entity;
     }
 
-    public function getField($id)
+    public function getField($id, array $overloadOptions = array())
     {
         if ($id instanceof Field) {
             $entity = $id;
@@ -76,7 +86,7 @@ class Geny extends BaseService
         $data                   = $entity->getData();
         $options['constraints'] = $this->getConstraintsData($builder, $entity, true);
 
-        return $builder->getDataType($entity, $name, $options, $data);
+        return $builder->getDataType($entity, $name, array_merge_recursive($options, $overloadOptions), $data);
     }
 
     public function getBuilder(Field $entity)
@@ -110,13 +120,13 @@ class Geny extends BaseService
             }
         }
 
-        return $options + [
+        return array_merge_recursive($options, [
             'label'    => $entity->getLabel(),
             'required' => $entity->isRequired(),
-            'attr'     => array_merge(isset($options['attr']) ? $options['attr'] : [], [
+            'attr'     => [
                 'help_text' => $entity->getHelp(),
-            ]),
-        ];
+            ],
+        ]);
     }
 
     public function getOptionsType(BuilderInterface $builder, Field $entity, $data)

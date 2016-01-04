@@ -130,8 +130,35 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
+        $options = [
+            sprintf("form-%d", $id) => [
+                'attr' => [
+                    'id' => sprintf('geny-form-preview-content-%d', $id),
+                ],
+            ],
+            sprintf("submit-%d", $id) => [
+                'attr' => [
+                    'class' => 'domajax',
+                    'data-endpoint' => $this->generateUrl('geny_builder_form_preview', ['id' => $id]),
+                    'data-input' => sprintf('#geny-form-preview-content-%d', $id),
+                    'data-lock' => sprintf('#geny-form-preview-content-%d', $id),
+                    'data-output' => sprintf('#geny-form-preview-%d', $id),
+                ],
+            ],
+        ];
+
+        $form = $this->get('geny')->getForm($id, $options);
+        $form->handleRequest($request);
+
+        $data = null;
+        if ($form->isValid()) {
+            $data = $form->getData();
+        }
+
         return [
-            'id' => $id,
+            'id'   => $id,
+            'form' => $form->createView(),
+            'data' => $data,
         ];
     }
 
