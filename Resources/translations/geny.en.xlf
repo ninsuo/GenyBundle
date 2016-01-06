@@ -206,8 +206,14 @@
         <source>geny.view.field_delete.title</source>
         <target><![CDATA[Delete the "%name%" field]]></target>
       </trans-unit>
-
-
+      <trans-unit id="52">
+        <source>geny.view.field_move_up.title</source>
+        <target><![CDATA[Move field "%name%" up]]></target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>geny.view.field_move_down.title</source>
+        <target><![CDATA[Move field "%name%" down]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -525,6 +525,24 @@ class BuilderController extends BaseController
 
     /**
      * @Route(
+     *     "/builder/field-move/{id}/{position}",
+     *     name = "geny_builder_field_move",
+     *     requirements = {
+     *         "id" = "^\d+$",
+     *         "position" = "^\d+$"
+     *     }
+     * )
+     */
+    public function fieldMoveAction(Request $request, $id, $position)
+    {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
+
+    }
+
+    /**
+     * @Route(
      *     "/builder/field-delete/{id}",
      *     name = "geny_builder_field_delete",
      *     requirements = {

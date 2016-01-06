@@ -178,16 +178,38 @@
 
     {% endif %}
 
-    {# Delete button #}
-
     <div class="pull-right">
+
+
+        {# Move up button #}
         <button
             type="button"
             class="btn btn-default domajax click"
+            data-endpoint="{{ path('geny_builder_field_move', {id: id, position: entity.position - 1}) }}"
+            data-output="#geny-fields-{{ entity.form.id }}"
+            data-callback-success="$.geny.initCollections"
+            title="{{ 'geny.view.field_move_up.title' | trans({'%name%': entity.name}, 'geny') }}">
+            <span class="glyphicon glyphicon-arrow-up"></span>
+        </button>
+
+        {# Move down button #}
+        <button
+            type="button"
+            class="btn btn-default domajax click"
+            data-endpoint="{{ path('geny_builder_field_move', {id: id, position: entity.position + 1}) }}"
+            data-output="#geny-fields-{{ entity.form.id }}"
+            data-callback-success="$.geny.initCollections"
+            title="{{ 'geny.view.field_move_down.title' | trans({'%name%': entity.name}, 'geny') }}">
+            <span class="glyphicon glyphicon-arrow-down"></span>
+        </button>
+
+        {# Delete button #}
+        <button
+            type="button"
+            class="btn btn-danger domajax click"
             data-endpoint="{{ path('geny_builder_field_delete', {id: id}) }}"
             data-output="#geny-fields-{{ entity.form.id }}"
             data-callback-success="$.geny.initCollections"
-            data-lock="#geny-field-constraints-{{ id }}"
             data-confirm="{{ 'geny.view.field_delete.confirm' | trans({'%name%': entity.name}, 'geny') }}"
             title="{{ 'geny.view.field_delete.title' | trans({'%name%': entity.name}, 'geny') }}">
             <span class="glyphicon glyphicon-trash"></span>
