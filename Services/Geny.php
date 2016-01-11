@@ -15,9 +15,9 @@ class Geny extends BaseService
 {
     protected $cache = [];
 
-    public function getFormEntity($id)
+    public function getFormEntity($id, $cached = true)
     {
-        $entity = $this->get('geny.repository.form')->retrieveForm($id);
+        $entity = $this->get('geny.repository.form')->retrieveForm($id, $cached);
 
         if (is_null($entity)) {
             throw new FormNotFoundException($id);
@@ -60,9 +60,9 @@ class Geny extends BaseService
         return $form->getForm();
     }
 
-    public function getFieldEntity($id)
+    public function getFieldEntity($id, $cached = true)
     {
-        $entity = $this->get('geny.repository.field')->retrieveField($id);
+        $entity = $this->get('geny.repository.field')->retrieveField($id, $cached);
 
         if (is_null($entity)) {
             throw new FieldNotFoundException($id);

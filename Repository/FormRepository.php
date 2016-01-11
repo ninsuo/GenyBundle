@@ -12,12 +12,12 @@ class FormRepository extends BaseRepository
 {
     protected $forms = [];
 
-    public function retrieveForm($id)
+    public function retrieveForm($id, $cached = true)
     {
-        if (array_key_exists($id, $this->forms)) {
+        if ($cached && array_key_exists($id, $this->forms)) {
             $entity = $this->forms[$id];
         } else {
-            $entity = $this->find($id);
+            $entity = $this->findOneById($id);
             if (!is_null($entity)) {
                 $this->forms[$id] = $entity;
             }

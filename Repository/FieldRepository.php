@@ -35,12 +35,12 @@ class FieldRepository extends BaseRepository
         $this->_em->flush($form);
     }
 
-    public function retrieveField($id)
+    public function retrieveField($id, $cached = true)
     {
-        if (array_key_exists($id, $this->fields)) {
+        if ($cached && array_key_exists($id, $this->fields)) {
             $entity = $this->fields[$id];
         } else {
-            $entity = $this->find($id);
+            $entity = $this->findOneById($id);
             if (!is_null($entity)) {
                 $this->fields[$id] = $entity;
             }
@@ -57,5 +57,56 @@ class FieldRepository extends BaseRepository
         $this->fields[$entity->getId()] = $entity;
 
         return $this;
+    }
+
+    public function moveTo(Form $form, Field $field, $position)
+    {
+        $array = $form->getFields()->toArray();
+        usort($array, function($a, $b) {
+            return $a->getPosition() > $b->getPosition() ? 1 : -1;
+        });
+
+        $oldIndex = array_search($field, $array, true);
+        if (false === $oldIndex) {
+            return 0;
+        }
+
+        if ($array[$oldIndex]->getPosition() === $position) {
+            return 0;
+        }
+
+        if ($position < 1) {
+            $position = 1;
+        } else if ($position > $count = count($array)) {
+            $position = $count;
+        }
+
+        $newIndex = $position - 1;
+
+        $changes = 0;
+        if ($oldIndex < $newIndex) {
+            for ($i = $oldIndex + 1; $i <= $newIndex; $i++) {
+                $array[$i]->setPosition($i);
+                $changes++;
+                $this->_em->persist($array[$i]);
+            }
+        } else {
+            for ($i = $oldIndex - 1; $i >= $newIndex; $i--) {
+                $array[$i]->setPosition($i + 2);
+                $changes++;
+                $this->_em->persist($array[$i]);
+            }
+        }
+
+        $field->setPosition($position);
+        $this->_em->persist($field);
+
+        $this->_em->flush();
+
+        foreach ($array as $element) {
+            $form->getFields()->set($element->getPosition() - 1, $element);
+        }
+
+        return $changes;
     }
 }

@@ -164,6 +164,29 @@ class BuilderController extends BaseController
 
     /**
      * @Route(
+     *     "/builder/fields/{id}",
+     *     name = "geny_builder_fields",
+     *     requirements = {
+     *         "id" = "^\d+$"
+     *     }
+     * )
+     * @Template()
+     */
+    public function fieldsAction(Request $request, $id)
+    {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity =  $this->get('geny')->getFormEntity($id, false);
+
+        return [
+            'entity' => $entity,
+        ];
+    }
+
+    /**
+     * @Route(
      *     "/builder/field/{id}",
      *     name = "geny_builder_field",
      *     requirements = {
@@ -539,6 +562,14 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
+        $field = $this->get('geny')->getFieldEntity($id);
+        $form  = $field->getForm();
+
+        $this->get('geny.repository.field')->moveTo($form, $field, $position);
+
+        return $this->forward('GenyBundle:Builder:fields', [
+            'id' => $form->getId(),
+        ]);
     }
 
     /**
