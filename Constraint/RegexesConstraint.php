@@ -36,7 +36,7 @@ class RegexesConstraint implements ConstraintInterface
            ->add('regexes', Type\CollectionType::class, [
                'entry_type'    => Type\TextType::class,
                'entry_options' => [
-                   'label' => 'geny.builders.constraint.regexes.pattern',
+                   'label' => 'geny.builders.constraint.regexes',
                    'constraints' => [
                         new Assert\Callback([
                             'callback' => function ($data, ExecutionContextInterface $context) {
@@ -51,7 +51,7 @@ class RegexesConstraint implements ConstraintInterface
                         ]),
                    ],
                ],
-               'label' => 'geny.builders.constraint.regexes',
+               'label'        => ' ',
                'allow_add'    => true,
                'allow_delete' => true,
                'prototype'    => true,

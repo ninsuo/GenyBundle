@@ -180,7 +180,7 @@
       </trans-unit>
       <trans-unit id="45">
         <source>geny.builders.constraint.expression</source>
-        <target><![CDATA[Expression language]]></target>
+        <target><![CDATA[Expression language:]]></target>
       </trans-unit>
       <trans-unit id="46">
         <source>geny.builders.constraint.expression.help</source>
@@ -188,11 +188,11 @@
       </trans-unit>
       <trans-unit id="47">
         <source>geny.builders.constraint.regexes</source>
-        <target><![CDATA[Regular expressions]]></target>
+        <target><![CDATA[Regular expression:]]></target>
       </trans-unit>
       <trans-unit id="48">
-        <source>geny.builders.constraint.regexes.pattern</source>
-        <target><![CDATA[Pattern:]]></target>
+        <source></source>
+        <target><![CDATA[]]></target>
       </trans-unit>
       <trans-unit id="49">
         <source>geny.builders.constraint.regexes.error</source>
@@ -214,6 +214,34 @@
         <source>geny.view.field_move_down.title</source>
         <target><![CDATA[Move field "%name%" down]]></target>
       </trans-unit>
+      <trans-unit id="54">
+        <source>geny.builders.email.description</source>
+        <target><![CDATA[Email]]></target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>geny.builders.url.description</source>
+        <target><![CDATA[URL]]></target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>geny.builders.constraint.email.check_mx</source>
+        <target><![CDATA[Check for MX record validity]]></target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>geny.builders.constraint.email.check_mx.help</source>
+        <target><![CDATA[Email will be considered wrong if there are no MX record for the given domain name.]]></target>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>geny.builders.constraint.email.check_host</source>
+        <target><![CDATA[Check for MX or A or AAAA record validity]]></target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>geny.builders.constraint.email.check_host.help</source>
+        <target><![CDATA[Email will be considered wrong if host can't be resolved.]]></target>
+      </trans-unit>
+
+
+      <!-- 48 is available -->
+
     </body>
   </file>
 </xliff>

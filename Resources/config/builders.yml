@@ -1,6 +1,8 @@
 parameters:
     geny.builder.class: 'GenyBundle\Provider\Builder'
     geny.builder.text.class: 'GenyBundle\Provider\Builder\TextBuilder'
+    geny.builder.email.class: 'GenyBundle\Provider\Builder\EmailBuilder'
+    geny.builder.url.class: 'GenyBundle\Provider\Builder\UrlBuilder'
     geny.builder.choice.class: 'GenyBundle\Provider\Builder\ChoiceBuilder'
 
 services:
@@ -11,6 +13,20 @@ services:
 
     geny.builder.text:
         class: '%geny.builder.text.class%'
+        parent: geny.base.service
+        arguments: []
+        tags:
+            - { name: geny.builder }
+
+    geny.builder.email:
+        class: '%geny.builder.email.class%'
+        parent: geny.base.service
+        arguments: []
+        tags:
+            - { name: geny.builder }
+
+    geny.builder.url:
+        class: '%geny.builder.url.class%'
         parent: geny.base.service
         arguments: []
         tags:
