@@ -11,54 +11,54 @@ use GenyBundle\Entity\Field;
 
 class UrlConstraint implements ConstraintInterface
 {
-
-    /* todo */
-
     public function getDefault(Field $entity)
     {
         return [
+            'url_protocols' => "http\nhttps",
+            'url_check_dns' => false,
         ];
     }
 
     public function normalize(Field $entity)
     {
-//        $constraints = $entity->getConstraints();
-//
-//        $checkMx = false;
-//        if (isset($constraints['email_check_mx'])) {
-//            $checkMx = $constraints['email_check_mx'];
-//        }
-//
-//        $checkHost = false;
-//        if (isset($constraints['email_check_host'])) {
-//            $checkHost = $constraints['email_check_host'];
-//        }
-//
-//        return [
-//            new Assert\Email([
-//                'checkMX'   => $checkMx,
-//                'checkHost' => $checkHost,
-//            ]),
-//        ];
+        $defaults = $this->getDefault($entity);
+        $constraints = $entity->getConstraints();
+
+        $protocols = explode("\n", $defaults['url_protocols']);
+        if (isset($constraints['url_protocols'])) {
+            $protocols = explode("\n", $constraints['url_protocols']);
+        }
+
+        $checkDns = $defaults['url_check_dns'];
+        if (isset($constraints['url_check_dns'])) {
+            $checkDns = $constraints['url_check_dns'];
+        }
+
+        return [
+            new Assert\Url([
+                'protocols' => $protocols,
+                'checkDNS'  => $checkDns,
+            ]),
+        ];
     }
 
     public function build(FormBuilderInterface $builder, Field $entity, $data = null)
     {
-//        $builder
-//           ->add('email_check_mx', Type\CheckboxType::class, [
-//               'required'    => false,
-//               'label'       => 'geny.builders.constraint.email.check_mx',
-//               'attr' => [
-//                   'help_text' => 'geny.builders.constraint.email.check_mx.help',
-//               ],
-//           ])
-//           ->add('email_check_host', Type\CheckboxType::class, [
-//               'required'    => false,
-//               'label'       => 'geny.builders.constraint.email.check_host',
-//               'attr' => [
-//                   'help_text' => 'geny.builders.constraint.email.check_host.help',
-//               ],
-//           ])
-//       ;
+        $builder
+           ->add('url_protocols', Type\TextareaType::class, [
+               'required'    => false,
+               'label'       => 'geny.builders.constraint.url.protocols',
+               'attr' => [
+                   'help_text' => 'geny.builders.constraint.url.protocols.help',
+               ],
+           ])
+           ->add('url_check_dns', Type\CheckboxType::class, [
+               'required'    => false,
+               'label'       => 'geny.builders.constraint.url.check_dns',
+               'attr' => [
+                   'help_text' => 'geny.builders.constraint.url.check_dns.help',
+               ],
+           ])
+       ;
     }
 }

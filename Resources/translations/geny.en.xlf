@@ -191,8 +191,8 @@
         <target><![CDATA[Regular expression:]]></target>
       </trans-unit>
       <trans-unit id="48">
-        <source></source>
-        <target><![CDATA[]]></target>
+        <source>geny.builders.constraint.url.protocols</source>
+        <target><![CDATA[Allowed protocols:]]></target>
       </trans-unit>
       <trans-unit id="49">
         <source>geny.builders.constraint.regexes.error</source>
@@ -238,9 +238,18 @@
         <source>geny.builders.constraint.email.check_host.help</source>
         <target><![CDATA[Email will be considered wrong if host can't be resolved.]]></target>
       </trans-unit>
-
-
-      <!-- 48 is available -->
+      <trans-unit id="60">
+        <source>geny.builders.constraint.url.protocols.help</source>
+        <target><![CDATA[One protocol per line.]]></target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>geny.builders.constraint.url.check_dns</source>
+        <target><![CDATA[Check for domain name existance]]></target>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>geny.builders.constraint.url.check_dns.help</source>
+        <target><![CDATA[URL will be refused if the domain name can't be resolved.]]></target>
+      </trans-unit>
 
     </body>
   </file>

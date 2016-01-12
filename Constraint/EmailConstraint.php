@@ -21,14 +21,15 @@ class EmailConstraint implements ConstraintInterface
 
     public function normalize(Field $entity)
     {
+        $defaults = $this->getDefault($entity);
         $constraints = $entity->getConstraints();
 
-        $checkMx = false;
+        $checkMx = $defaults['email_check_mx'];
         if (isset($constraints['email_check_mx'])) {
             $checkMx = $constraints['email_check_mx'];
         }
 
-        $checkHost = false;
+        $checkHost = $defaults['email_check_host'];
         if (isset($constraints['email_check_host'])) {
             $checkHost = $constraints['email_check_host'];
         }
