@@ -11,7 +11,7 @@ use GenyBundle\Entity\Field;
 
 class EmailConstraint implements ConstraintInterface
 {
-    public function getDefault(Field $entity)
+    public function getDefaults(Field $entity)
     {
         return [
             'email_check_mx'   => false,
@@ -21,7 +21,7 @@ class EmailConstraint implements ConstraintInterface
 
     public function normalize(Field $entity)
     {
-        $defaults = $this->getDefault($entity);
+        $defaults = $this->getDefaults($entity);
         $constraints = $entity->getConstraints();
 
         $checkMx = $defaults['email_check_mx'];

@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class TrimOption implements OptionInterface
 {
-    public function getDefault(Field $entity)
+    public function getDefaults(Field $entity)
     {
         return [
             'trim' => true,

@@ -11,7 +11,7 @@ use GenyBundle\Entity\Field;
 
 class UrlConstraint implements ConstraintInterface
 {
-    public function getDefault(Field $entity)
+    public function getDefaults(Field $entity)
     {
         return [
             'url_protocols' => "http\nhttps",
@@ -21,7 +21,7 @@ class UrlConstraint implements ConstraintInterface
 
     public function normalize(Field $entity)
     {
-        $defaults = $this->getDefault($entity);
+        $defaults = $this->getDefaults($entity);
         $constraints = $entity->getConstraints();
 
         $protocols = explode("\n", $defaults['url_protocols']);

@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class RegexesConstraint implements ConstraintInterface
 {
-    public function getDefault(Field $entity)
+    public function getDefaults(Field $entity)
     {
         return [];
     }

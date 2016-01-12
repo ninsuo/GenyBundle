@@ -99,7 +99,7 @@ class Geny extends BaseService
         $config  = $entity->getOptions();
         foreach ($builder->supportsOptions($entity) as $optionClass) {
             $option = $this->getCachedObject($optionClass);
-            foreach ($option->getDefault($entity) as $key => $value) {
+            foreach ($option->getDefaults($entity) as $key => $value) {
                 if (!isset($config[$key])) {
                     $config[$key] = $value;
                 }
@@ -151,7 +151,7 @@ class Geny extends BaseService
         $config = $entity->getConstraints();
         foreach ($builder->supportsConstraints($entity) as $constraintClass) {
             $constraint = $this->getCachedObject($constraintClass);
-            foreach ($constraint->getDefault($entity) as $key => $value) {
+            foreach ($constraint->getDefaults($entity) as $key => $value) {
                 if (!isset($config[$key])) {
                     $config[$key] = $value;
                 }

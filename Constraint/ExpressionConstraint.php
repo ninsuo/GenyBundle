@@ -11,7 +11,7 @@ use GenyBundle\Entity\Field;
 
 class ExpressionConstraint implements ConstraintInterface
 {
-    public function getDefault(Field $entity)
+    public function getDefaults(Field $entity)
     {
         return [
             'expression' => null,

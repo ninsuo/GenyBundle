@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class ReadonlyOption implements OptionInterface
 {
-    public function getDefault(Field $entity)
+    public function getDefaults(Field $entity)
     {
         return [
             'readonly' => false,
