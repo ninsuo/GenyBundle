@@ -1,5 +1,67 @@
 {# GenyBundle:Builder:addField.html.twig #}
 
+{% import 'GenyBundle::macros.html.twig' as macros %}
+
+<div class="text-center">
+    <button class="btn btn-success" data-toggle="modal" data-target="#geny-add-field-modal-{{ id }}">
+        <span class="glyphicon glyphicon-plus"></span> {{ 'geny.type.form.add_field.label' | trans({}, 'geny') }}
+    </button>
+    <div>&nbsp;</div>
+</div>
+
+{% set body %}
+
+<div>
+    <ul class="nav nav-tabs geny-script-tabs" role="tablist">
+        {% set index = 0 %}
+        {% for title, fields in categories %}
+
+            <li role="presentation" {% if index == 0 %}class="active"{% endif %}>
+                <a href="#geny-add-field-{{ id }}-{{ index }}" aria-controls="home" role="tab" data-toggle="tab">{{ title | trans({}, 'geny') }}</a>
+            </li>
+
+            {% set index = index + 1 %}
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content">
+
+        {% set index = 0 %}
+        {% for title, fields in categories %}
+
+            <div role="tabpanel" class="tab-pane fade {% if index == 0 %}in active{% endif %}" id="geny-add-field-{{ id }}-{{ index }}" style="padding-top: 15px;">
+
+                {% for field in fields %}
+
+                    <div>
+                        <p>{{ field.builder.description | trans({}, 'geny') }}</p>
+                        {{ form_widget(form[field.name]) }}
+                    </div>
+
+                    <hr/>
+
+                {% endfor %}
+
+            </div>
+
+            {% set index = index + 1 %}
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endset %}
+
+{{
+    macros.modal(
+        'geny-add-field-modal-' ~ id,
+        'geny.type.form.add_field.label' | trans({}, 'geny'),
+        body
+    )
+}}
+
+
+{#
 {%
     set ajax = {
         'class': 'domajax change',
@@ -23,3 +85,4 @@
 }}
 
 {{ form_end(form) }}
+#}

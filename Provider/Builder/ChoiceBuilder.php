@@ -19,6 +19,11 @@ class ChoiceBuilder extends AbstractBuilder
         return 'geny.builders.choice.description';
     }
 
+    public function getCategory()
+    {
+        return 'geny.builders.category.choice';
+    }
+
     public function getDataType(Field $entity, $name, array $options, $data)
     {
         return $this->getBuilder($name, Type\ChoiceType::class, $options, $data);

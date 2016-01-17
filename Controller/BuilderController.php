@@ -494,6 +494,7 @@ class BuilderController extends BaseController
      *         "id" = "^\d+$"
      *     }
      * )
+     * @Template()
      */
     public function addFieldAction(Request $request, $id)
     {
@@ -501,6 +502,33 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
+        $form = $this->getBuilder(sprintf("geny-add-field-%d", $id), Type\FormType::class, [], null);
+
+        $n = 0;
+        $categories = array();
+        foreach ($this->get('geny.builder')->getBuilders() as $builder) {
+            $preview = $this->get('geny.repository.field')->createFilledField($builder);
+            $name    = sprintf('geny-demo-%d-%d', $id, $n++);
+
+            $form->add(
+               $name,
+               $this->get('geny')->getField($preview)
+            );
+
+            $categories[$builder->getCategory()][] = [
+                'builder' => $builder,
+                'name'    => $name,
+            ];
+        }
+
+        return [
+            'id'         => $id,
+            'categories' => $categories,
+            'form'       => $form->createView(),
+        ];
+
+
+        /*
         $entity =  $this->get('geny')->getFormEntity($id);
 
         $types = array();
@@ -544,6 +572,7 @@ class BuilderController extends BaseController
         }
 
         return new Response($addField);
+         */
     }
 
     /**

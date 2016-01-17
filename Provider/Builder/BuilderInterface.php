@@ -8,6 +8,7 @@ interface BuilderInterface
 {
     public function getName();
     public function getDescription();
+    public function getCategory();
 
     public function getDataType(Field $entity, $name, array $options, $data);
     public function getDefaultData(Field $entity);

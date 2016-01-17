@@ -5,6 +5,7 @@ namespace GenyBundle\Repository;
 use GenyBundle\Base\BaseRepository;
 use GenyBundle\Entity\Field;
 use GenyBundle\Entity\Form;
+use GenyBundle\Provider\Builder\BuilderInterface;
 
 /**
  * FieldRepository.
@@ -16,12 +17,25 @@ class FieldRepository extends BaseRepository
     public function createField(Form $form, $typeName)
     {
         $builder = $this->get('geny.builder')->getBuilder($typeName);
+        $field   = $this->createFilledField($builder, $form);
 
+        $form->getFields()->add($field);
+
+        $this->_em->persist($form);
+        $this->_em->flush($form);
+    }
+
+    public function createFilledField(BuilderInterface $builder, Form $form = null)
+    {
         $field = new Field();
-        $field->setPosition($form->getFields()->count() + 1);
-        $field->setForm($form);
+
+        if ($form) {
+            $field->setPosition($form->getFields()->count() + 1);
+            $field->setForm($form);
+        }
+
         $field->setName(sprintf("%s_%d", $this->get('translator')->trans('geny.builder.field.name', [], 'geny'), $field->getPosition()));
-        $field->setType($typeName);
+        $field->setType($builder->getName());
         $field->setData($builder->getDefaultData($field));
         $field->setOptions(null);
         $field->setConstraints(null);
@@ -29,10 +43,7 @@ class FieldRepository extends BaseRepository
         $field->setHelp($this->get('translator')->trans('geny.builder.field.help', [], 'geny'));
         $field->setRequired(true);
 
-        $form->getFields()->add($field);
-
-        $this->_em->persist($form);
-        $this->_em->flush($form);
+        return $field;
     }
 
     public function retrieveField($id, $cached = true)

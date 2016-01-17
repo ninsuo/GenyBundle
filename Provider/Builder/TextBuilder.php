@@ -19,6 +19,11 @@ class TextBuilder extends AbstractBuilder
         return 'geny.builders.text.description';
     }
 
+    public function getCategory()
+    {
+        return 'geny.builders.category.text';
+    }
+
     public function getDataType(Field $entity, $name, array $options, $data)
     {
         return $this->getBuilder($name, Type\TextType::class, $options, $data);

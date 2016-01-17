@@ -250,6 +250,14 @@
         <source>geny.builders.constraint.url.check_dns.help</source>
         <target><![CDATA[URL will be refused if the domain name can't be resolved.]]></target>
       </trans-unit>
+      <trans-unit id="63">
+        <source>geny.builders.category.text</source>
+        <target><![CDATA[Simple text]]></target>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>geny.builders.category.choice</source>
+        <target><![CDATA[Choice]]></target>
+      </trans-unit>
 
     </body>
   </file>
