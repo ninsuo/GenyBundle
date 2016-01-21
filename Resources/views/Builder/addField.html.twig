@@ -35,7 +35,7 @@
 
                     <div>
                         <p>{{ field.builder.description | trans({}, 'geny') }}</p>
-                        {{ form_widget(form[field.name]) }}
+                        {{ form_widget(attribute(form, field.name)) }}
                     </div>
 
                     <hr/>

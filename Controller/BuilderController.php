@@ -507,12 +507,11 @@ class BuilderController extends BaseController
         $n = 0;
         $categories = array();
         foreach ($this->get('geny.builder')->getBuilders() as $builder) {
-            $preview = $this->get('geny.repository.field')->createFilledField($builder);
             $name    = sprintf('geny-demo-%d-%d', $id, $n++);
+            $preview = $this->get('geny.repository.field')->createFilledField($builder, null, $name);
 
             $form->add(
-               $name,
-               $this->get('geny')->getField($preview)
+                $this->get('geny')->getField($preview)
             );
 
             $categories[$builder->getCategory()][] = [
@@ -524,7 +523,7 @@ class BuilderController extends BaseController
         return [
             'id'         => $id,
             'categories' => $categories,
-            'form'       => $form->createView(),
+            'form'       => $form->getForm()->createView(),
         ];
 
 

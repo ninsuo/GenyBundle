@@ -25,16 +25,20 @@ class FieldRepository extends BaseRepository
         $this->_em->flush($form);
     }
 
-    public function createFilledField(BuilderInterface $builder, Form $form = null)
+    public function createFilledField(BuilderInterface $builder, Form $form = null, $name = null)
     {
         $field = new Field();
 
         if ($form) {
             $field->setPosition($form->getFields()->count() + 1);
             $field->setForm($form);
+            $field->setName(sprintf("%s_%d", $this->get('translator')->trans('geny.builder.field.name', [], 'geny'), $field->getPosition()));
         }
 
-        $field->setName(sprintf("%s_%d", $this->get('translator')->trans('geny.builder.field.name', [], 'geny'), $field->getPosition()));
+        if ($name) {
+            $field->setName($name);
+        }
+
         $field->setType($builder->getName());
         $field->setData($builder->getDefaultData($field));
         $field->setOptions(null);
