@@ -38,7 +38,9 @@
                         {{ form_widget(attribute(form, field.name)) }}
                     </div>
 
-                    <hr/>
+                    {% if not loop.last %}
+                        <hr/>
+                    {% endif %}
 
                 {% endfor %}
 
