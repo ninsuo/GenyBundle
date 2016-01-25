@@ -17,8 +17,17 @@
             }, 0);
         }; // initCollections
 
+        var fieldCreated = function (elem) {
+            var toggle = $(elem.data('geny-toggle'));
+            toggle.removeClass('hide');
+            setTimeout(function() {
+                toggle.addClass('hide');
+            }, 3000);
+        }; // fieldCreated
+
         return {
-            initCollections: initCollections
+            initCollections: initCollections,
+            fieldCreated:    fieldCreated
         };
 
     })( $ ); // $.geny

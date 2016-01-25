@@ -2,7 +2,9 @@
 
 namespace GenyBundle\Exception;
 
-class BuilderNotFoundException extends \LogicException
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+class BuilderNotFoundException extends NotFoundHttpException
 {
     public function __construct($name)
     {

@@ -262,6 +262,10 @@
         <source>geny.type.form.field_chooser.button</source>
         <target><![CDATA[Add]]></target>
       </trans-unit>
+      <trans-unit id="66">
+        <source>geny.type.form.field_chooser.confirm</source>
+        <target><![CDATA[Field added successfully.]]></target>
+      </trans-unit>
 
 
 

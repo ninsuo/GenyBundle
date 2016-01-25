@@ -525,67 +525,29 @@ class BuilderController extends BaseController
             'categories' => $categories,
             'form'       => $form->getForm()->createView(),
         ];
-
-
-        /*
-        $entity =  $this->get('geny')->getFormEntity($id);
-
-        $types = array();
-        foreach ($this->get('geny.builder')->getBuilders() as $builder) {
-            $types[$builder->getDescription()] = $builder->getName();
-        }
-
-        $form = $this
-           ->createFormBuilder()
-           ->add('type', Type\ChoiceType::class, [
-               'choices'            => $types,
-               'choices_as_values'  => true,
-               'constraints'        => [
-                   new Constraints\Choice(['choices' => $types]),
-               ],
-               'label'              => 'geny.type.form.add_field.label',
-               'required'           => false,
-               'translation_domain' => 'geny',
-           ])
-           ->getForm();
-
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $this->get('geny.repository.field')->createField($entity, $form->getData()['type']);
-        }
-
-        $addField = $this->get('templating')->render('GenyBundle:Builder:addField.html.twig', [
-            'id'   => $id,
-            'form' => $form->createView(),
-        ]);
-
-        if (!$this->isFragment($request) && $this->isAjax($request)) {
-            $renderFields = $this->get('templating')->render('GenyBundle:Builder:fields.html.twig', [
-                'entity' => $entity,
-            ]);
-
-            return new JsonResponse([
-                'add-field' => $addField,
-                'fields'    => $renderFields,
-            ]);
-        }
-
-        return new Response($addField);
-         */
     }
 
   /**
      * @Route(
-     *     "/builder/add-field/{id}/{name}",
+     *     "/builder/add-field/{id}/{type}",
      *     name = "geny_builder_add_field",
      *     requirements = {
      *         "id" = "^\d+$"
      *     }
      * )
-     * @Template()
      */
-    public function addFieldAction(Request $request, $id)
+    public function addFieldAction(Request $request, $id, $type)
     {
+        if (!$this->isFragment($request) && !$this->isAjax($request)) {
+            throw $this->createNotFoundException();
+        }
+
+        $entity =  $this->get('geny')->getFormEntity($id);
+        $this->get('geny.repository.field')->createField($entity, $type);
+
+        return $this->forward('GenyBundle:Builder:fields', [
+            'id' => $id,
+        ]);
     }
 
     /**

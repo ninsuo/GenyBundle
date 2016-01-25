@@ -31,7 +31,7 @@
 
             <div role="tabpanel" class="tab-pane fade {% if index == 0 %}in active{% endif %}" id="geny-add-field-{{ id }}-{{ index }}" style="padding-top: 15px;">
 
-                {% for field in fields %}
+                {% for n, field in fields %}
 
                     <div>
                         <p>{{ field.builder.description | trans({}, 'geny') }}</p>
@@ -40,9 +40,20 @@
 
                     <br/>
 
+                    <div class="text-center">
+                        <div id="geny-added-field-{{ id }}-{{ n }}" class="alert alert-success hide">
+                            {{ 'geny.type.form.field_chooser.confirm' | trans({}, 'geny') }}
+                        </div>
+                    </div>
+
                     <div class="text-right">
                         <button
-                            class="btn btn-primary"
+                            class="btn btn-primary domajax click"
+                            data-endpoint="{{ path('geny_builder_add_field', {id: id, type: field.builder.name}) }}"
+                            data-output="#geny-fields-{{ id }}"
+                            data-lock="#geny-fields-{{ id }}"
+                            data-callback-success="$.geny.fieldCreated"
+                            data-geny-toggle="#geny-added-field-{{ id }}-{{ n }}"
                             >{{ 'geny.type.form.field_chooser.button' | trans({}, 'geny') }}</button>
                     </div>
 
