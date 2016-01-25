@@ -1,10 +1,10 @@
-{# GenyBundle:Builder:addField.html.twig #}
+{# GenyBundle:Builder:fieldChooser.html.twig #}
 
 {% import 'GenyBundle::macros.html.twig' as macros %}
 
 <div class="text-center">
-    <button class="btn btn-success" data-toggle="modal" data-target="#geny-add-field-modal-{{ id }}">
-        <span class="glyphicon glyphicon-plus"></span> {{ 'geny.type.form.add_field.label' | trans({}, 'geny') }}
+    <button class="btn btn-success" data-toggle="modal" data-target="#geny-field-chooser-modal-{{ id }}">
+        <span class="glyphicon glyphicon-plus"></span> {{ 'geny.type.form.field_chooser.label' | trans({}, 'geny') }}
     </button>
     <div>&nbsp;</div>
 </div>
@@ -43,7 +43,7 @@
                     <div class="text-right">
                         <button
                             class="btn btn-primary"
-                            >Add</button>
+                            >{{ 'geny.type.form.field_chooser.button' | trans({}, 'geny') }}</button>
                     </div>
 
                     {% if not loop.last %}
@@ -64,35 +64,8 @@
 
 {{
     macros.modal(
-        'geny-add-field-modal-' ~ id,
-        'geny.type.form.add_field.label' | trans({}, 'geny'),
+        'geny-field-chooser-modal-' ~ id,
+        'geny.type.form.field_chooser.label' | trans({}, 'geny'),
         body
     )
 }}
-
-
-{#
-{%
-    set ajax = {
-        'class': 'domajax change',
-        'data-endpoint': path('geny_builder_add_field', {id: id}),
-        'data-input': '#geny-add-field-' ~ id,
-        'data-output-json': 'add-field fields',
-        'data-json-add-field': '#geny-add-field-' ~ id,
-        'data-json-fields': '#geny-fields-' ~ id,
-        'data-script-before': 'if ($("#' ~ form.type.vars.id ~'").val() === "") return false;',
-        'data-callback-success': '$.geny.initCollections',
-    }
-%}
-
-{{ form_start(form) }}
-
-{{
-    form_row(form.type, {
-        value: '',
-        attr: form.type.vars.attr|merge(ajax)|merge({autocomplete: 'off'})
-    })
-}}
-
-{{ form_end(form) }}
-#}

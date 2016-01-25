@@ -488,15 +488,15 @@ class BuilderController extends BaseController
 
     /**
      * @Route(
-     *     "/builder/add-field/{id}",
-     *     name = "geny_builder_add_field",
+     *     "/builder/field-chooser/{id}",
+     *     name = "geny_builder_field_chooser",
      *     requirements = {
      *         "id" = "^\d+$"
      *     }
      * )
      * @Template()
      */
-    public function addFieldAction(Request $request, $id)
+    public function fieldChooserAction(Request $request, $id)
     {
         if (!$this->isFragment($request) && !$this->isAjax($request)) {
             throw $this->createNotFoundException();
@@ -572,6 +572,20 @@ class BuilderController extends BaseController
 
         return new Response($addField);
          */
+    }
+
+  /**
+     * @Route(
+     *     "/builder/add-field/{id}/{name}",
+     *     name = "geny_builder_add_field",
+     *     requirements = {
+     *         "id" = "^\d+$"
+     *     }
+     * )
+     * @Template()
+     */
+    public function addFieldAction(Request $request, $id)
+    {
     }
 
     /**

@@ -23,7 +23,7 @@
         <target><![CDATA[Description (optional)]]></target>
       </trans-unit>
       <trans-unit id="6">
-        <source>geny.type.form.add_field.label</source>
+        <source>geny.type.form.field_chooser.label</source>
         <target><![CDATA[Add a new field]]></target>
       </trans-unit>
       <trans-unit id="7">
@@ -258,6 +258,12 @@
         <source>geny.builders.category.choice</source>
         <target><![CDATA[Choice]]></target>
       </trans-unit>
+      <trans-unit id="65">
+        <source>geny.type.form.field_chooser.button</source>
+        <target><![CDATA[Add]]></target>
+      </trans-unit>
+
+
 
     </body>
   </file>
