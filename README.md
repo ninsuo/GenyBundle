@@ -4,7 +4,7 @@ Goal of this bundle is to provide:
 - a user interface to create forms
 - a user interface to render and validate those forms
 
-# WARNING: under development! POCs, etc.
+# WARNING: under development! POCs, etc...
 
 ## What is it?
 
