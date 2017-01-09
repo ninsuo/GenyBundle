@@ -12,8 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\ChangeTrackingPolicy("DEFERRED_EXPLICIT")
  * @Serializer\ExclusionPolicy("NONE")
  */
-class Field
-{
+class Field {
 
     /**
      * @var int
@@ -115,126 +114,109 @@ class Field
      */
     protected $required = true;
 
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function getPosition()
-    {
+    public function getPosition() {
         return $this->position;
     }
 
-    public function setPosition($position)
-    {
+    public function setPosition($position) {
         $this->position = $position;
 
         return $this;
     }
 
-    public function getForm()
-    {
+    public function getForm() {
         return $this->form;
     }
 
-    public function setForm($form)
-    {
+    public function setForm($form) {
         $this->form = $form;
 
         return $this;
     }
 
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getData()
-    {
-        return $this->data;
+    public function getData() {
+        if ($this->type == "checkbox") {
+            return (boolean) $this->data;
+        } else {
+            return $this->data;
+        }
     }
 
-    public function setData($data = null)
-    {
+    public function setData($data = null) {
         $this->data = $data;
 
         return $this;
     }
 
-    public function getOptions()
-    {
+    public function getOptions() {
         return $this->options;
     }
 
-    public function setOptions(array $options = null)
-    {
+    public function setOptions(array $options = null) {
         $this->options = $options;
 
         return $this;
     }
 
-    public function getConstraints()
-    {
+    public function getConstraints() {
         return $this->constraints;
     }
 
-    public function setConstraints(array $constraints = null)
-    {
+    public function setConstraints(array $constraints = null) {
         $this->constraints = $constraints;
 
         return $this;
     }
 
-    public function getLabel()
-    {
+    public function getLabel() {
         return $this->label;
     }
 
-    public function setLabel($label)
-    {
+    public function setLabel($label) {
         $this->label = $label;
 
         return $this;
     }
 
-    public function getHelp()
-    {
+    public function getHelp() {
         return $this->help;
     }
 
-    public function setHelp($help)
-    {
+    public function setHelp($help) {
         $this->help = $help;
 
         return $this;
     }
 
-    public function isRequired()
-    {
+    public function isRequired() {
         return $this->required;
     }
 
-    public function setRequired($required)
-    {
+    public function setRequired($required) {
         $this->required = $required;
 
         return $this;
@@ -243,8 +225,7 @@ class Field
     /**
      * @Serializer\PreSerialize
      */
-    public function preSerialize()
-    {
+    public function preSerialize() {
         $this->data = array($this->data);
     }
 
@@ -252,8 +233,7 @@ class Field
      * @Serializer\PostSerialize
      * @Serializer\PostDeserialize
      */
-    public function postDeserialize()
-    {
+    public function postDeserialize() {
         $this->data = reset($this->data);
     }
 
