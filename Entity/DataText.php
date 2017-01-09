@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DataText
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="GenyBundle\Entity\DataTextRepository")
+ * @ORM\Entity(repositoryClass="GenyBundle\Repository\DataTextRepository")
  */
 class DataText
 {
