@@ -161,6 +161,8 @@ class Field {
     public function getData() {
         if ($this->type == "checkbox") {
             return (boolean) $this->data;
+        } else if ($this->type == "textarea" && !$this->data) {           
+            return ""; // Return an empty string. Error otherwise
         } else {
             return $this->data;
         }
