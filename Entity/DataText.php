@@ -7,11 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DataText
  *
- * @ORM\Table()
+ * @ORM\Table("geny_data_text")
  * @ORM\Entity(repositoryClass="GenyBundle\Repository\DataTextRepository")
  */
-class DataText
-{
+class DataText {
+
     /**
      * @var integer
      *
@@ -22,11 +22,19 @@ class DataText
     private $id;
 
     /**
+     * @var Field
+     *
+     * @ORM\ManyToOne(targetEntity="Field", inversedBy="datatexts")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="cascade")
+     */
+    protected $field;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="geny_data_text", type="string", length=255)
+     * @ORM\Column(name="text", type="string", length=255)
      */
-    private $genyDataText;
+    private $text;
 
     /**
      * @var \DateTime
@@ -42,39 +50,45 @@ class DataText
      */
     private $createdAt;
 
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-    /**
-     * Set genyDataText
-     *
-     * @param string $genyDataText
-     *
-     * @return DataText
-     */
-    public function setGenyDataText($genyDataText)
-    {
-        $this->genyDataText = $genyDataText;
+    public function getField() {
+        return $this->field;
+    }
+
+    public function setField($field) {
+        $this->field = $field;
 
         return $this;
     }
 
     /**
-     * Get genyDataText
+     * Set text
+     *
+     * @param string $text
+     *
+     * @return text
+     */
+    public function setText($text) {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
      *
      * @return string
      */
-    public function getGenyDataText()
-    {
-        return $this->genyDataText;
+    public function getText() {
+        return $this->text;
     }
 
     /**
@@ -84,8 +98,7 @@ class DataText
      *
      * @return DataText
      */
-    public function setUpdatedAt($updatedAt)
-    {
+    public function setUpdatedAt($updatedAt) {
         $this->updatedAt = $updatedAt;
 
         return $this;
@@ -96,8 +109,7 @@ class DataText
      *
      * @return \DateTime
      */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updatedAt;
     }
 
@@ -108,8 +120,7 @@ class DataText
      *
      * @return DataText
      */
-    public function setCreatedAt($createdAt)
-    {
+    public function setCreatedAt($createdAt) {
         $this->createdAt = $createdAt;
 
         return $this;
@@ -120,9 +131,8 @@ class DataText
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->createdAt;
     }
-}
 
+}
