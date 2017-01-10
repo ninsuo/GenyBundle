@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DataText
  *
- * @ORM\Table("geny_data_text")
- * @ORM\Entity(repositoryClass="GenyBundle\Repository\DataTextRepository")
+ * @ORM\Table("geny_data")
+ * @ORM\Entity(repositoryClass="GenyBundle\Repository\DataRepository")
  */
-class DataText {
+class Data {
 
     /**
      * @var integer
@@ -20,22 +20,16 @@ class DataText {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
+    
+        /**
      * @var FieldID
      *
-     * @ORM\ManyToOne(targetEntity="Data", inversedBy="datatexts")
-     * @ORM\JoinColumn(name="$data_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\ManyToOne(targetEntity="Field", inversedBy="datas")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="cascade")
      */
-    protected $data_id;
+    protected $field_id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="text", type="string", length=255)
-     */
-    private $text;
-
+    
     /**
      * @var \DateTime
      *
@@ -58,49 +52,27 @@ class DataText {
     public function getId() {
         return $this->id;
     }
-
-    /**
-     * Get data_id
+    
+        /**
+     * Get field_id
      *
      * @return integer
      */
-    public function getDataID() {
-        return $this->data_id;
+    public function getFieldID() {
+        return $this->field_id;
     }
 
     /**
-     * Set data_id
+     * Set field_id
      *
-     * @param integer $data_id
+     * @param integer $field_id
      *
-     * @return DataText
+     * @return Data
      */
-    public function setDataID($data_id) {
-        $this->data_id = $data_id;
+    public function setFieldID($field_id) {
+        $this->field_id = $field_id;
         
         return $this;
-    }
-
-    /**
-     * Set text
-     *
-     * @param string $text
-     *
-     * @return DataText
-     */
-    public function setText($text) {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    /**
-     * Get text
-     *
-     * @return string
-     */
-    public function getText() {
-        return $this->text;
     }
 
     /**
