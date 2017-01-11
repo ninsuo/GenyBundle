@@ -25,7 +25,7 @@ class DataText {
      * @var FieldID
      *
      * @ORM\ManyToOne(targetEntity="Data", inversedBy="datatexts")
-     * @ORM\JoinColumn(name="$data_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\JoinColumn(name="data_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $data_id;
 

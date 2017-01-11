@@ -22,7 +22,13 @@ class Data {
     private $id;
 
     /**
-     * @var FieldID
+     * @var integer
+     *
+     * @ORM\Column(name="set_id", type="integer", nullable=true)
+     */
+    private $set_id;
+    /**
+     * @var Field
      *
      * @ORM\ManyToOne(targetEntity="Field", inversedBy="datas")
      * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="cascade")
@@ -55,6 +61,28 @@ class Data {
     public function getId() {
         return $this->id;
     }
+    
+     /**
+     * Get set_id
+     *
+     * @return integer
+     */
+    public function getSetID() {
+        return $this->set_id;
+    }
+
+    /**
+     * Set set_id
+     *
+     * @param integer $set_id
+     *
+     * @return Data
+     */
+    public function setSetID($set_id) {
+        $this->set_id = $set_id;
+
+        return $this;
+    }
 
     /**
      * Get field_id
@@ -68,12 +96,12 @@ class Data {
     /**
      * Set field_id
      *
-     * @param integer $field_id
+     * @param Field $field
      *
      * @return Data
      */
-    public function setFieldID($field_id) {
-        $this->field_id = $field_id;
+    public function setFieldID($field) {
+        $this->field_id = $field;
 
         return $this;
     }
