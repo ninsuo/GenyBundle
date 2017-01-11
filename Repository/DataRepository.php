@@ -1,6 +1,6 @@
 <?php
 
-namespace GenyBundle\Entity;
+namespace GenyBundle\Repository;
 
 /**
  * DataTextRepository
