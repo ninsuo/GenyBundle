@@ -50,6 +50,10 @@ class DataText {
      */
     private $createdAt;
 
+    public function __construct() {
+        $this->createdAt = new \Datetime();
+    }
+
     /**
      * Get id
      *
@@ -77,7 +81,7 @@ class DataText {
      */
     public function setDataID($data_id) {
         $this->data_id = $data_id;
-        
+
         return $this;
     }
 

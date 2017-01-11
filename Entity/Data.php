@@ -20,8 +20,8 @@ class Data {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-        /**
+
+    /**
      * @var FieldID
      *
      * @ORM\ManyToOne(targetEntity="Field", inversedBy="datas")
@@ -29,7 +29,6 @@ class Data {
      */
     protected $field_id;
 
-    
     /**
      * @var \DateTime
      *
@@ -44,6 +43,10 @@ class Data {
      */
     private $createdAt;
 
+    public function __construct() {
+        $this->createdAt = new \Datetime();
+    }
+
     /**
      * Get id
      *
@@ -52,8 +55,8 @@ class Data {
     public function getId() {
         return $this->id;
     }
-    
-        /**
+
+    /**
      * Get field_id
      *
      * @return integer
@@ -71,7 +74,7 @@ class Data {
      */
     public function setFieldID($field_id) {
         $this->field_id = $field_id;
-        
+
         return $this;
     }
 
