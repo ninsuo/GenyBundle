@@ -22,14 +22,6 @@ class DataText {
     private $id;
 
     /**
-     * @var FieldID
-     *
-     * @ORM\ManyToOne(targetEntity="Data", inversedBy="datatexts")
-     * @ORM\JoinColumn(name="data_id", referencedColumnName="id", onDelete="cascade")
-     */
-    protected $data_id;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=255)
@@ -61,28 +53,6 @@ class DataText {
      */
     public function getId() {
         return $this->id;
-    }
-
-    /**
-     * Get data_id
-     *
-     * @return integer
-     */
-    public function getDataID() {
-        return $this->data_id;
-    }
-
-    /**
-     * Set data_id
-     *
-     * @param integer $data_id
-     *
-     * @return DataText
-     */
-    public function setDataID($data_id) {
-        $this->data_id = $data_id;
-
-        return $this;
     }
 
     /**

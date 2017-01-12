@@ -5,7 +5,7 @@ namespace GenyBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DataText
+ * Data
  *
  * @ORM\Table("geny_data")
  * @ORM\Entity(repositoryClass="GenyBundle\Repository\DataRepository")
@@ -27,13 +27,22 @@ class Data {
      * @ORM\Column(name="set_id", type="integer", nullable=true)
      */
     private $set_id;
+    
     /**
      * @var Field
      *
-     * @ORM\ManyToOne(targetEntity="Field", inversedBy="datas")
+     * @ORM\ManyToOne(targetEntity="Field")
      * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $field_id;
+    
+     /**
+     * @var DataTextID
+     *
+     * @ORM\OneToOne(targetEntity="DataText")
+     * @ORM\JoinColumn(name="data_text_id", referencedColumnName="id", onDelete="cascade")
+     */
+    protected $data_text_id;
 
     /**
      * @var \DateTime
@@ -102,6 +111,28 @@ class Data {
      */
     public function setFieldID($field) {
         $this->field_id = $field;
+
+        return $this;
+    }
+    
+        /**
+     * Get data_id
+     *
+     * @return integer
+     */
+    public function getDataTextID() {
+        return $this->data_text_id;
+    }
+
+    /**
+     * Set data_id
+     *
+     * @param integer $data_id
+     *
+     * @return DataText
+     */
+    public function setDataTextID($data_text_id) {
+        $this->data_text_id = $data_text_id;
 
         return $this;
     }
