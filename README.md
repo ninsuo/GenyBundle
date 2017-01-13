@@ -80,3 +80,5 @@ class AppKernel extends Kernel
 ## Usage
 
 ## How does it work?
+
+For now, only the text input really works ! Well, more or less...
