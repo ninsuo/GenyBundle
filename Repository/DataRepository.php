@@ -21,7 +21,7 @@ class DataRepository extends \Doctrine\ORM\EntityRepository {
     
     public function dataSetList($form_id){
         
-                $results = $this->_em->createQuery('SELECT d FROM GenyBundle:Data d LEFT JOIN d.field_id f LEFT JOIN f.form form WHERE form.id = :id GROUP BY d.set_id')
+                $results = $this->_em->createQuery('SELECT d FROM GenyBundle:Data d LEFT JOIN d.field_id f LEFT JOIN f.form form WHERE form.id = :id ORDER BY d.id ASC')
                 ->setParameter('id', $form_id)
                 ->getResult();
 
