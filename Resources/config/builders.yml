@@ -6,6 +6,7 @@ parameters:
     geny.builder.choice.class: 'GenyBundle\Provider\Builder\ChoiceBuilder'
     geny.builder.checkbox.class: 'GenyBundle\Provider\Builder\CheckboxBuilder'
     geny.builder.textarea.class: 'GenyBundle\Provider\Builder\TextareaBuilder'
+    geny.builder.file.class: 'GenyBundle\Provider\Builder\FileBuilder'
 
 services:
     geny.builder:
@@ -50,6 +51,13 @@ services:
             
     geny.builder.textarea:
         class: '%geny.builder.textarea.class%'
+        parent: geny.base.service
+        arguments: []
+        tags:
+            - { name: geny.builder }
+            
+    geny.builder.file:
+        class: '%geny.builder.file.class%'
         parent: geny.base.service
         arguments: []
         tags:
