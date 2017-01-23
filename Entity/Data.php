@@ -23,11 +23,13 @@ class Data {
     private $id;
 
     /**
-     * @var integer
+     * @var Form
      *
-     * @ORM\Column(name="set_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Form", inversedBy="datas")
+     * @ORM\JoinColumn(name="form_id", referencedColumnName="id", onDelete="cascade")
+     * @Serializer\Exclude
      */
-    private $setId;
+    protected $form;
 
     /**
      * @var array
@@ -66,29 +68,29 @@ class Data {
     }
 
     /**
-     * Get set_id
+     * Get form
      *
-     * @return integer
+     * @return Form
      */
-    public function getSetID() {
-        return $this->set_id;
+    public function getForm() {
+        return $this->form;
     }
 
     /**
-     * Set set_id
+     * Set form
      *
-     * @param integer $set_id
+     * @param Form $form
      *
      * @return Data
      */
-    public function setSetID($set_id) {
-        $this->setId = $set_id;
+    public function setForm($form) {
+        $this->form = $form;
 
         return $this;
     }
 
     /**
-     * Set data
+     * Get data
      *
      * @return array
      */
@@ -101,7 +103,7 @@ class Data {
      *
      * @param array $data
      *
-     * @return array
+     * @return Data
      */
     public function setData($data = null) {
         $this->data = $data;
