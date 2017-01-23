@@ -282,14 +282,6 @@
                 <source>geny.builders.textarea.description</source>
                 <target><![CDATA[To create textarea]]></target>
             </trans-unit>
-            <trans-unit id="71">
-                <source>geny.builders.category.file</source>
-                <target><![CDATA[File]]></target>
-            </trans-unit>
-            <trans-unit id="72">
-                <source>geny.builders.file.description</source>
-                <target><![CDATA[To create file uploader]]></target>
-            </trans-unit>
         </body>
     </file>
 </xliff>
