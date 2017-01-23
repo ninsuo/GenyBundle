@@ -55,10 +55,3 @@ services:
         arguments: []
         tags:
             - { name: geny.builder }
-            
-    geny.builder.file:
-        class: '%geny.builder.file.class%'
-        parent: geny.base.service
-        arguments: []
-        tags:
-            - { name: geny.builder }
