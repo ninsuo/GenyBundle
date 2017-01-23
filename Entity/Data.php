@@ -3,6 +3,7 @@
 namespace GenyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Data
@@ -26,23 +27,16 @@ class Data {
      *
      * @ORM\Column(name="set_id", type="integer", nullable=true)
      */
-    private $set_id;
-    
+    private $setId;
+
     /**
-     * @var Field
+     * @var array
      *
-     * @ORM\ManyToOne(targetEntity="Field")
-     * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\Column(name="data", type="json_array", nullable=true)
+     * 
+     * @Serializer\Type("array")
      */
-    protected $field_id;
-    
-     /**
-     * @var DataTextID
-     *
-     * @ORM\OneToOne(targetEntity="DataText")
-     * @ORM\JoinColumn(name="data_text_id", referencedColumnName="id", onDelete="cascade")
-     */
-    protected $data_text_id;
+    protected $data = [];
 
     /**
      * @var \DateTime
@@ -70,8 +64,8 @@ class Data {
     public function getId() {
         return $this->id;
     }
-    
-     /**
+
+    /**
      * Get set_id
      *
      * @return integer
@@ -88,51 +82,29 @@ class Data {
      * @return Data
      */
     public function setSetID($set_id) {
-        $this->set_id = $set_id;
+        $this->setId = $set_id;
 
         return $this;
     }
 
     /**
-     * Get field_id
+     * Set data
      *
-     * @return integer
+     * @return array
      */
-    public function getFieldID() {
-        return $this->field_id;
+    public function getData() {
+        return $this->data;
     }
 
     /**
-     * Set field_id
+     * Set set_id
      *
-     * @param Field $field
+     * @param array $data
      *
-     * @return Data
+     * @return array
      */
-    public function setFieldID($field) {
-        $this->field_id = $field;
-
-        return $this;
-    }
-    
-        /**
-     * Get data_id
-     *
-     * @return integer
-     */
-    public function getDataTextID() {
-        return $this->data_text_id;
-    }
-
-    /**
-     * Set data_id
-     *
-     * @param integer $data_id
-     *
-     * @return DataText
-     */
-    public function setDataTextID($data_text_id) {
-        $this->data_text_id = $data_text_id;
+    public function setData($data = null) {
+        $this->data = $data;
 
         return $this;
     }
@@ -142,7 +114,7 @@ class Data {
      *
      * @param \DateTime $updatedAt
      *
-     * @return DataText
+     * @return Data
      */
     public function setUpdatedAt($updatedAt) {
         $this->updatedAt = $updatedAt;
