@@ -23,9 +23,11 @@ class DataRepository extends \Doctrine\ORM\EntityRepository {
         while (list($key, $value) = each($data_data)) {
             $field = $this->_em->getRepository('GenyBundle:Field')->findOneBy(array('name' => $key, 'form' => $form));
             $label = $field->getLabel();
+            $type = $field->getType();
             $data_field[$i]['value'] = $value;
             $data_field[$i]['field_name'] = $value;
             $data_field[$i]['field_label'] = $label;
+            $data_field[$i]['type'] = $type;
             $i++;
         }
 
