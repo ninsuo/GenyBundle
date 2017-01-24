@@ -106,6 +106,7 @@ class Data {
      * @return Data
      */
     public function setData($data = null) {
+        $this->updatedAt = new \Datetime();
         $this->data = $data;
 
         return $this;
