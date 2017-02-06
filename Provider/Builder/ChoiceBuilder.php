@@ -4,7 +4,6 @@ namespace GenyBundle\Provider\Builder;
 
 use GenyBundle\Entity\Field;
 use GenyBundle\Option;
-use GenyBundle\Constraint;
 use Symfony\Component\Form\Extension\Core\Type;
 
 class ChoiceBuilder extends AbstractBuilder
@@ -31,7 +30,7 @@ class ChoiceBuilder extends AbstractBuilder
 
     public function getDefaultData(Field $entity)
     {
-        return null;
+        return;
     }
 
     public function supportsOptions(Field $entity)

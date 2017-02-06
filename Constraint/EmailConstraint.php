@@ -5,8 +5,6 @@ namespace GenyBundle\Constraint;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use GenyBundle\Entity\Field;
 
 class EmailConstraint implements ConstraintInterface
@@ -14,7 +12,7 @@ class EmailConstraint implements ConstraintInterface
     public function getDefaults(Field $entity)
     {
         return [
-            'email_check_mx'   => false,
+            'email_check_mx' => false,
             'email_check_host' => false,
         ];
     }
@@ -36,7 +34,7 @@ class EmailConstraint implements ConstraintInterface
 
         return [
             new Assert\Email([
-                'checkMX'   => $checkMx,
+                'checkMX' => $checkMx,
                 'checkHost' => $checkHost,
             ]),
         ];
@@ -46,15 +44,15 @@ class EmailConstraint implements ConstraintInterface
     {
         $builder
            ->add('email_check_mx', Type\CheckboxType::class, [
-               'required'    => false,
-               'label'       => 'geny.builders.constraint.email.check_mx',
+               'required' => false,
+               'label' => 'geny.builders.constraint.email.check_mx',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.email.check_mx.help',
                ],
            ])
            ->add('email_check_host', Type\CheckboxType::class, [
-               'required'    => false,
-               'label'       => 'geny.builders.constraint.email.check_host',
+               'required' => false,
+               'label' => 'geny.builders.constraint.email.check_host',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.email.check_host.help',
                ],

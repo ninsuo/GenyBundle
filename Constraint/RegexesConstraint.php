@@ -23,7 +23,7 @@ class RegexesConstraint implements ConstraintInterface
         if (isset($constraints['regexes'])) {
             foreach ($constraints['regexes'] as $regex) {
                 $escaped = str_replace('#', '\#', $regex);
-                $normalized[] = new Assert\Regex(sprintf("#%s#", $escaped));
+                $normalized[] = new Assert\Regex(sprintf('#%s#', $escaped));
             }
         }
 
@@ -34,28 +34,28 @@ class RegexesConstraint implements ConstraintInterface
     {
         $builder
            ->add('regexes', Type\CollectionType::class, [
-               'entry_type'    => Type\TextType::class,
+               'entry_type' => Type\TextType::class,
                'entry_options' => [
                    'label' => 'geny.builders.constraint.regexes',
                    'constraints' => [
                         new Assert\Callback([
                             'callback' => function ($data, ExecutionContextInterface $context) {
                                 $escaped = str_replace('#', '\#', $data);
-                                if (false === @preg_match(sprintf("#%s#", $escaped), "")) {
+                                if (false === @preg_match(sprintf('#%s#', $escaped), '')) {
                                     $context
                                         ->buildViolation($this->get('translator')->trans('geny.builders.constraint.regexes.error', [], 'geny'))
                                         ->atPath('expression')
                                         ->addViolation();
                                 }
-                            }
+                            },
                         ]),
                    ],
                ],
-               'label'        => ' ',
-               'allow_add'    => true,
+               'label' => ' ',
+               'allow_add' => true,
                'allow_delete' => true,
-               'prototype'    => true,
-               'required'     => false,
+               'prototype' => true,
+               'required' => false,
                'delete_empty' => true,
                'attr' => [
                    'class' => 'geny-collection',

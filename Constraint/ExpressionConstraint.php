@@ -34,12 +34,12 @@ class ExpressionConstraint implements ConstraintInterface
     {
         $builder
            ->add('expression', Type\TextareaType::class, [
-               'label'       => 'geny.builders.constraint.expression',
+               'label' => 'geny.builders.constraint.expression',
                'constraints' => [
                    new Assert\Callback([
                        'callback' => function ($data, ExecutionContextInterface $context) {
                             if (is_null($data) || '' === $data) {
-                                return ;
+                                return;
                             }
                             $eval = new ExpressionLanguage();
                             try {
@@ -48,14 +48,14 @@ class ExpressionConstraint implements ConstraintInterface
                                 ]);
                             } catch (\Exception $ex) {
                                 $class = get_class($ex);
-                                $context->buildViolation(sprintf("[%s] %s", substr($class, strrpos($class, '\\') + 1), $ex->getMessage()))
+                                $context->buildViolation(sprintf('[%s] %s', substr($class, strrpos($class, '\\') + 1), $ex->getMessage()))
                                     ->atPath('expression')
                                     ->addViolation();
                             }
                        },
                    ]),
                ],
-               'required'    => false,
+               'required' => false,
                'attr' => [
                    'help_text' => 'geny.builders.constraint.expression.help',
                ],

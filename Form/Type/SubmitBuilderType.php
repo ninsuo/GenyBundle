@@ -13,12 +13,12 @@ class SubmitBuilderType extends BaseType
     {
         $builder
            ->add('submit', Type\TextType::class, [
-               'attr'       => [
+               'attr' => [
                    'placeholder' => 'geny.type.submit.submit.placeholder',
                ],
                'empty_data' => $this->get('translator')->trans('geny.type.submit.submit.default', [], 'geny'),
-               'label'      => 'geny.type.submit.submit.label',
-               'required'   => true,
+               'label' => 'geny.type.submit.submit.label',
+               'required' => true,
            ])
         ;
     }
@@ -26,7 +26,7 @@ class SubmitBuilderType extends BaseType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'         => 'GenyBundle\Entity\Form',
+            'data_class' => 'GenyBundle\Entity\Form',
             'translation_domain' => 'geny',
         ]);
     }

@@ -5,8 +5,6 @@ namespace GenyBundle\Constraint;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use GenyBundle\Entity\Field;
 
 class UrlConstraint implements ConstraintInterface
@@ -37,7 +35,7 @@ class UrlConstraint implements ConstraintInterface
         return [
             new Assert\Url([
                 'protocols' => $protocols,
-                'checkDNS'  => $checkDns,
+                'checkDNS' => $checkDns,
             ]),
         ];
     }
@@ -46,15 +44,15 @@ class UrlConstraint implements ConstraintInterface
     {
         $builder
            ->add('url_protocols', Type\TextareaType::class, [
-               'required'    => false,
-               'label'       => 'geny.builders.constraint.url.protocols',
+               'required' => false,
+               'label' => 'geny.builders.constraint.url.protocols',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.url.protocols.help',
                ],
            ])
            ->add('url_check_dns', Type\CheckboxType::class, [
-               'required'    => false,
-               'label'       => 'geny.builders.constraint.url.check_dns',
+               'required' => false,
+               'label' => 'geny.builders.constraint.url.check_dns',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.url.check_dns.help',
                ],

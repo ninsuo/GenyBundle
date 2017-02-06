@@ -27,6 +27,6 @@ class EmailBuilder extends TextBuilder
     {
         return array_merge([
             Constraint\EmailConstraint::class,
-        ] , parent::supportsConstraints($entity));
+        ], parent::supportsConstraints($entity));
     }
 }

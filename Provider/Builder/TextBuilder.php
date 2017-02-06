@@ -31,7 +31,7 @@ class TextBuilder extends AbstractBuilder
 
     public function getDefaultData(Field $entity)
     {
-        return null;
+        return;
     }
 
     public function supportsOptions(Field $entity)

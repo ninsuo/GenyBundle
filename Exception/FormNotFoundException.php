@@ -8,7 +8,6 @@ class FormNotFoundException extends NotFoundHttpException
 {
     public function __construct($id)
     {
-        parent::__construct(sprintf("Form %d not found", $id));
+        parent::__construct(sprintf('Form %d not found', $id));
     }
-
 }

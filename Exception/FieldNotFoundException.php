@@ -8,7 +8,6 @@ class FieldNotFoundException extends NotFoundHttpException
 {
     public function __construct($id)
     {
-        parent::__construct(sprintf("Field %d not found", $id));
+        parent::__construct(sprintf('Field %d not found', $id));
     }
-
 }

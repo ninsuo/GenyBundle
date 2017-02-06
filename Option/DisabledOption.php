@@ -31,11 +31,11 @@ class DisabledOption implements OptionInterface
     {
         $builder
            ->add('disabled', Type\CheckboxType::class, [
-               'label'       => 'geny.builders.option.disabled',
+               'label' => 'geny.builders.option.disabled',
                'constraints' => [
                    new Assert\Type(['type' => 'bool']),
                ],
-               'required'    => false,
+               'required' => false,
         ]);
     }
 }

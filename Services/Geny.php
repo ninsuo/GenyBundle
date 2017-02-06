@@ -30,13 +30,13 @@ class Geny extends BaseService
     {
         if ($id instanceof Form) {
             $entity = $id;
-            $id     = $entity->getId();
+            $id = $entity->getId();
         } else {
             $entity = $this->getFormEntity($id);
         }
 
         $form = $this->get('form.factory')->createNamedBuilder(
-           $formName = sprintf("form-%d", $id),
+           $formName = sprintf('form-%d', $id),
            Type\FormType::class,
            null,
            array_key_exists($formName, $options) ? $options[$formName] : []
@@ -48,7 +48,7 @@ class Geny extends BaseService
         }
 
         $form->add($this->get('form.factory')->createNamedBuilder(
-           $submitName = sprintf("submit-%d", $id),
+           $submitName = sprintf('submit-%d', $id),
            Type\SubmitType::class,
            null,
            array_merge_recursive(
@@ -75,15 +75,15 @@ class Geny extends BaseService
     {
         if ($id instanceof Field) {
             $entity = $id;
-            $id     = $entity->getId();
+            $id = $entity->getId();
         } else {
             $entity = $this->getFieldEntity($id);
         }
 
-        $name                   = $entity->getName();
-        $builder                = $this->getBuilder($entity);
-        $options                = $this->getOptionsData($builder, $entity, true);
-        $data                   = $entity->getData();
+        $name = $entity->getName();
+        $builder = $this->getBuilder($entity);
+        $options = $this->getOptionsData($builder, $entity, true);
+        $data = $entity->getData();
         $options['constraints'] = $this->getConstraintsData($builder, $entity, true);
 
         return $builder->getDataType($entity, $name, array_merge_recursive($options, $overloadOptions), $data);
@@ -96,7 +96,7 @@ class Geny extends BaseService
 
     public function getOptionsData(BuilderInterface $builder, Field $entity, $normalize = false)
     {
-        $config  = $entity->getOptions();
+        $config = $entity->getOptions();
         foreach ($builder->supportsOptions($entity) as $optionClass) {
             $option = $this->getCachedObject($optionClass);
             foreach ($option->getDefaults($entity) as $key => $value) {
@@ -114,16 +114,16 @@ class Geny extends BaseService
         $options = [];
         foreach ($builder->supportsOptions($entity) as $optionClass) {
             $option = $this->getCachedObject($optionClass);
-            $test   = $option->normalize($entity, $options);
+            $test = $option->normalize($entity, $options);
             if (is_array($test)) {
                 $options = $test;
             }
         }
 
         return array_merge_recursive($options, [
-            'label'    => $entity->getLabel(),
+            'label' => $entity->getLabel(),
             'required' => $entity->isRequired(),
-            'attr'     => [
+            'attr' => [
                 'help_text' => $entity->getHelp(),
             ],
         ]);
@@ -132,7 +132,7 @@ class Geny extends BaseService
     public function getOptionsType(BuilderInterface $builder, Field $entity, $data)
     {
         $type = $this->get('form.factory')->createNamedBuilder(
-           sprintf("options-%d", $entity->getId()),
+           sprintf('options-%d', $entity->getId()),
            Type\FormType::class,
            $data,
            ['translation_domain' => 'geny']
@@ -166,7 +166,7 @@ class Geny extends BaseService
         $constraints = [];
         foreach ($builder->supportsConstraints($entity) as $constraintClass) {
             $constraint = $this->getCachedObject($constraintClass);
-            $test       = $constraint->normalize($entity, $constraints);
+            $test = $constraint->normalize($entity, $constraints);
             if (is_array($test)) {
                 $constraints += $test;
             }
@@ -182,7 +182,7 @@ class Geny extends BaseService
     public function getConstraintsType(BuilderInterface $builder, Field $entity, $data)
     {
         $type = $this->get('form.factory')->createNamedBuilder(
-           sprintf("constraints-%d", $entity->getId()),
+           sprintf('constraints-%d', $entity->getId()),
            Type\FormType::class,
            $data,
            ['translation_domain' => 'geny']
@@ -205,6 +205,7 @@ class Geny extends BaseService
         $object = new $class();
 
         $this->cache[$class] = $object;
+
         return $object;
     }
 }

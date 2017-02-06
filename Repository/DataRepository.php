@@ -2,15 +2,13 @@
 
 namespace GenyBundle\Repository;
 
-use Doctrine\ORM\Query;
-
 /**
- * DataRepository
+ * DataRepository.
  */
-class DataRepository extends \Doctrine\ORM\EntityRepository {
-
-    public function dataField($id) {
-
+class DataRepository extends \Doctrine\ORM\EntityRepository
+{
+    public function dataField($id)
+    {
         $data = $this->_em->getRepository('GenyBundle:Data')
                 ->findOneById($id);
 
@@ -28,20 +26,18 @@ class DataRepository extends \Doctrine\ORM\EntityRepository {
             $data_field[$i]['field_name'] = $key;
             $data_field[$i]['field_label'] = $label;
             $data_field[$i]['type'] = $type;
-            $i++;
+            ++$i;
         }
 
         return $data_field;
     }
 
-    public function dataSet($set_id) {
-
+    public function dataSet($set_id)
+    {
         $results = $this->_em->createQuery('SELECT IDENTITY(d.field_id), IDENTITY(d.data_text_id) as data_text_id, f.name, f.label, dt.text FROM GenyBundle:Data d LEFT JOIN d.field_id f LEFT JOIN d.data_text_id dt WHERE d.set_id = :set_id')
                 ->setParameter('set_id', $set_id)
                 ->getResult();
 
-
         return $results;
     }
-
 }

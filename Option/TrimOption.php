@@ -29,11 +29,11 @@ class TrimOption implements OptionInterface
     {
         $builder
            ->add('trim', Type\CheckboxType::class, [
-               'label'       => 'geny.builders.option.trim',
+               'label' => 'geny.builders.option.trim',
                'constraints' => [
                    new Assert\Type(['type' => 'bool']),
                ],
-               'required'    => false,
+               'required' => false,
         ]);
     }
 }

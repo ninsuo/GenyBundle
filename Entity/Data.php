@@ -6,15 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Data
+ * Data.
  *
  * @ORM\Table("geny_data")
  * @ORM\Entity(repositoryClass="GenyBundle\Repository\DataRepository")
  */
-class Data {
-
+class Data
+{
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -54,58 +54,64 @@ class Data {
      */
     private $createdAt;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->createdAt = new \Datetime();
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
-     * Get form
+     * Get form.
      *
      * @return Form
      */
-    public function getForm() {
+    public function getForm()
+    {
         return $this->form;
     }
 
     /**
-     * Set form
+     * Set form.
      *
      * @param Form $form
      *
      * @return Data
      */
-    public function setForm($form) {
+    public function setForm($form)
+    {
         $this->form = $form;
 
         return $this;
     }
 
     /**
-     * Get data
+     * Get data.
      *
      * @return array
      */
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
 
     /**
-     * Set set_id
+     * Set set_id.
      *
      * @param array $data
      *
      * @return Data
      */
-    public function setData($data = null) {
+    public function setData($data = null)
+    {
         $this->updatedAt = new \Datetime();
         $this->data = $data;
 
@@ -113,47 +119,50 @@ class Data {
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
      * @return Data
      */
-    public function setUpdatedAt($updatedAt) {
+    public function setUpdatedAt($updatedAt)
+    {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
-    public function getUpdatedAt() {
+    public function getUpdatedAt()
+    {
         return $this->updatedAt;
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
      * @return DataText
      */
-    public function setCreatedAt($createdAt) {
+    public function setCreatedAt($createdAt)
+    {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->createdAt;
     }
-
 }

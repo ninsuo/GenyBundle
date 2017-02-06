@@ -13,20 +13,20 @@ class FormBuilderType extends BaseType
     {
         $builder
            ->add('title', Type\TextType::class, [
-               'attr'       => [
+               'attr' => [
                    'placeholder' => 'geny.type.form.title.placeholder',
                ],
                'empty_data' => $this->get('translator')->trans('geny.type.form.title.default', [], 'geny'),
-               'label'      => 'geny.type.form.title.label',
-               'required'   => true,
+               'label' => 'geny.type.form.title.label',
+               'required' => true,
            ])
            ->add('description', Type\TextareaType::class, [
-               'attr'       => [
+               'attr' => [
                    'placeholder' => 'geny.type.form.description.placeholder',
                ],
                'empty_data' => null,
-               'label'      => 'geny.type.form.description.label',
-               'required'   => false,
+               'label' => 'geny.type.form.description.label',
+               'required' => false,
            ])
         ;
     }
@@ -34,7 +34,7 @@ class FormBuilderType extends BaseType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'         => 'GenyBundle\Entity\Form',
+            'data_class' => 'GenyBundle\Entity\Form',
             'translation_domain' => 'geny',
         ]);
     }

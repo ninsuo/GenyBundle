@@ -22,7 +22,7 @@ class GenyExtension extends BaseTwigExtension
     {
         if ($form instanceof FormInterface) {
             $view = $form->createView();
-        } else if ($form instanceof FormView) {
+        } elseif ($form instanceof FormView) {
             $view = $form;
         } else {
             $view = $this->get('geny')->getForm($id, $options)->createView();
@@ -32,7 +32,7 @@ class GenyExtension extends BaseTwigExtension
            ->get('templating')
            ->render('GenyBundle:Renderer:render.html.twig', [
                'entity' => $this->get('geny')->getFormEntity($id),
-               'form'   => $view,
+               'form' => $view,
         ]);
     }
 

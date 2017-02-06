@@ -13,7 +13,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints;
 
 class BuilderController extends BaseController
@@ -37,11 +36,11 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity =  $this->get('geny')->getFormEntity($id);
+        $entity = $this->get('geny')->getFormEntity($id);
 
         return [
             'entity' => $entity,
-            'id'     => $entity->getId(),
+            'id' => $entity->getId(),
         ];
     }
 
@@ -61,9 +60,9 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity =  $this->get('geny')->getFormEntity($id);
+        $entity = $this->get('geny')->getFormEntity($id);
 
-        $form = $this->getBuilder(sprintf("geny-form-%d", $id), FormBuilderType::class, [], $entity)->getForm();
+        $form = $this->getBuilder(sprintf('geny-form-%d', $id), FormBuilderType::class, [], $entity)->getForm();
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -71,20 +70,21 @@ class BuilderController extends BaseController
         }
 
         $context = [
-            'id'      => $id,
-            'form'    => $form->createView(),
+            'id' => $id,
+            'form' => $form->createView(),
             'isValid' => $form->isValid(),
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
             $json = [];
             if ($form->isValid()) {
-                $json['title']  = $this->forward('GenyBundle:Builder:formTitle', ['id' => $id])->getContent();
+                $json['title'] = $this->forward('GenyBundle:Builder:formTitle', ['id' => $id])->getContent();
                 $json['submit'] = $this->forward('GenyBundle:Builder:formSubmit', ['id' => $id])->getContent();
             }
             if (!$form->isValid() || $request->request->get('geny-force-reload')) {
                 $json['form'] = $this->get('templating')->render('GenyBundle:Builder:form.html.twig', $context);
             }
+
             return new JsonResponse($json);
         }
 
@@ -107,7 +107,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity =  $this->get('geny')->getFormEntity($id);
+        $entity = $this->get('geny')->getFormEntity($id);
 
         return [
             'entity' => $entity,
@@ -131,12 +131,12 @@ class BuilderController extends BaseController
         }
 
         $options = [
-            sprintf("form-%d", $id) => [
+            sprintf('form-%d', $id) => [
                 'attr' => [
                     'id' => sprintf('geny-form-preview-content-%d', $id),
                 ],
             ],
-            sprintf("submit-%d", $id) => [
+            sprintf('submit-%d', $id) => [
                 'attr' => [
                     'class' => 'domajax',
                     'data-endpoint' => $this->generateUrl('geny_builder_form_preview', ['id' => $id]),
@@ -156,7 +156,7 @@ class BuilderController extends BaseController
         }
 
         return [
-            'id'   => $id,
+            'id' => $id,
             'form' => $form->createView(),
             'data' => $data,
         ];
@@ -178,7 +178,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity =  $this->get('geny')->getFormEntity($id, false);
+        $entity = $this->get('geny')->getFormEntity($id, false);
 
         return [
             'entity' => $entity,
@@ -228,12 +228,12 @@ class BuilderController extends BaseController
         $entity = $this->get('geny')->getFieldEntity($id);
         $field = $this->get('geny')->getField($id);
 
-        $form = $this->getBuilder(sprintf("geny-preview-%d", $id), Type\FormType::class, [], null);
+        $form = $this->getBuilder(sprintf('geny-preview-%d', $id), Type\FormType::class, [], null);
         $form->add($field);
 
         return [
             'entity' => $entity,
-            'form'   => $form->getForm()->createView(),
+            'form' => $form->getForm()->createView(),
         ];
     }
 
@@ -256,7 +256,7 @@ class BuilderController extends BaseController
         $entity = $this->get('geny')->getFieldEntity($id);
 
         $form = $this
-           ->getBuilder(sprintf("geny-field-%d", $id), FieldBuilderType::class, [], $entity)
+           ->getBuilder(sprintf('geny-field-%d', $id), FieldBuilderType::class, [], $entity)
            ->getForm();
 
         $form->handleRequest($request);
@@ -268,14 +268,13 @@ class BuilderController extends BaseController
 
         $context = [
             'builder' => $builder,
-            'entity'  => $entity,
-            'form'    => $form->createView(),
-            'id'      => $id,
+            'entity' => $entity,
+            'form' => $form->createView(),
+            'id' => $id,
             'isValid' => $form->isValid(),
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
-
             $json = [];
 
             if ($form->isValid()) {
@@ -311,7 +310,7 @@ class BuilderController extends BaseController
         $entity = $this->get('geny')->getFieldEntity($id);
         $field = $this->get('geny')->getField($id);
 
-        $formBuilder = $this->getBuilder(sprintf("geny-default-%d", $id), Type\FormType::class, [], null);
+        $formBuilder = $this->getBuilder(sprintf('geny-default-%d', $id), Type\FormType::class, [], null);
         $formBuilder->add($field);
 
         $form = $formBuilder->getForm();
@@ -323,7 +322,7 @@ class BuilderController extends BaseController
                 $data = $form->getData()[$entity->getName()];
             } else {
                 $builder = $this->get('geny')->getBuilder($entity);
-                $data    = $builder->getDefaultData($entity);
+                $data = $builder->getDefaultData($entity);
             }
             $entity->setData($data);
             $this->get('geny.repository.field')->saveField($entity);
@@ -331,8 +330,8 @@ class BuilderController extends BaseController
 
         $context = [
             'entity' => $entity,
-            'form'   => $form->createView(),
-            'id'     => $id,
+            'form' => $form->createView(),
+            'id' => $id,
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
@@ -341,6 +340,7 @@ class BuilderController extends BaseController
             } else {
                 $json['default'] = $this->get('templating')->render('GenyBundle:Builder:fieldDefault.html.twig', $context);
             }
+
             return new JsonResponse($json);
         }
 
@@ -363,10 +363,10 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity  = $this->get('geny')->getFieldEntity($id);
+        $entity = $this->get('geny')->getFieldEntity($id);
         $builder = $this->get('geny')->getBuilder($entity);
-        $data    = $this->get('geny')->getOptionsData($builder, $entity);
-        $form    = $this->get('geny')->getOptionsType($builder, $entity, $data);
+        $data = $this->get('geny')->getOptionsData($builder, $entity);
+        $form = $this->get('geny')->getOptionsType($builder, $entity, $data);
 
         $form->handleRequest($request);
         $isValid = $form->isValid();
@@ -379,8 +379,8 @@ class BuilderController extends BaseController
 
         $context = [
             'entity' => $entity,
-            'id'     => $id,
-            'form'   => $form->createView(),
+            'id' => $id,
+            'form' => $form->createView(),
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
@@ -414,10 +414,10 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity  = $this->get('geny')->getFieldEntity($id);
+        $entity = $this->get('geny')->getFieldEntity($id);
         $builder = $this->get('geny')->getBuilder($entity);
-        $data    = $this->get('geny')->getConstraintsData($builder, $entity);
-        $form    = $this->get('geny')->getConstraintsType($builder, $entity, $data);
+        $data = $this->get('geny')->getConstraintsData($builder, $entity);
+        $form = $this->get('geny')->getConstraintsType($builder, $entity, $data);
 
         $form->handleRequest($request);
         $isValid = $form->isValid();
@@ -430,8 +430,8 @@ class BuilderController extends BaseController
 
         $context = [
             'entity' => $entity,
-            'id'     => $id,
-            'form'   => $form->createView(),
+            'id' => $id,
+            'form' => $form->createView(),
         ];
 
         if (!$this->isFragment($request) && $this->isAjax($request)) {
@@ -465,21 +465,21 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity =  $this->get('geny')->getFormEntity($id);
-        $form = $this->getBuilder(sprintf("geny-submit-form-%d", $id), SubmitBuilderType::class, [], $entity)->getForm();
+        $entity = $this->get('geny')->getFormEntity($id);
+        $form = $this->getBuilder(sprintf('geny-submit-form-%d', $id), SubmitBuilderType::class, [], $entity)->getForm();
 
         $form->handleRequest($request);
         if ($form->isValid()) {
             $this->get('geny.repository.form')->saveForm($entity);
         }
 
-        $button = $this->getBuilder(sprintf("geny-submit-preview-%d", $id), Type\FormType::class, [], null);
-        $button->add($this->getBuilder("submit", Type\SubmitType::class, ['label' => $entity->getSubmit()]));
+        $button = $this->getBuilder(sprintf('geny-submit-preview-%d', $id), Type\FormType::class, [], null);
+        $button->add($this->getBuilder('submit', Type\SubmitType::class, ['label' => $entity->getSubmit()]));
 
         $context = [
-            'id'     => $id,
+            'id' => $id,
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
             'button' => $button->getForm()->createView(),
         ];
 
@@ -502,12 +502,12 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $form = $this->getBuilder(sprintf("geny-add-field-%d", $id), Type\FormType::class, [], null);
+        $form = $this->getBuilder(sprintf('geny-add-field-%d', $id), Type\FormType::class, [], null);
 
         $n = 0;
         $categories = array();
         foreach ($this->get('geny.builder')->getBuilders() as $builder) {
-            $name    = sprintf('geny-demo-%d-%d', $id, $n++);
+            $name = sprintf('geny-demo-%d-%d', $id, $n++);
             $preview = $this->get('geny.repository.field')->createFilledField($builder, null, $name);
 
             $form->add(
@@ -516,18 +516,18 @@ class BuilderController extends BaseController
 
             $categories[$builder->getCategory()][] = [
                 'builder' => $builder,
-                'name'    => $name,
+                'name' => $name,
             ];
         }
 
         return [
-            'id'         => $id,
+            'id' => $id,
             'categories' => $categories,
-            'form'       => $form->getForm()->createView(),
+            'form' => $form->getForm()->createView(),
         ];
     }
 
-  /**
+    /**
      * @Route(
      *     "/builder/add-field/{id}/{type}",
      *     name = "geny_builder_add_field",
@@ -542,7 +542,7 @@ class BuilderController extends BaseController
             throw $this->createNotFoundException();
         }
 
-        $entity =  $this->get('geny')->getFormEntity($id);
+        $entity = $this->get('geny')->getFormEntity($id);
         $this->get('geny.repository.field')->createField($entity, $type);
 
         return $this->forward('GenyBundle:Builder:fields', [
@@ -567,7 +567,7 @@ class BuilderController extends BaseController
         }
 
         $field = $this->get('geny')->getFieldEntity($id);
-        $form  = $field->getForm();
+        $form = $field->getForm();
 
         $this->get('geny.repository.field')->moveTo($form, $field, $position);
 
@@ -592,7 +592,7 @@ class BuilderController extends BaseController
         }
 
         $field = $this->get('geny')->getFieldEntity($id);
-        $form  = $field->getForm();
+        $form = $field->getForm();
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($field);

@@ -31,11 +31,11 @@ class ReadonlyOption implements OptionInterface
     {
         $builder
            ->add('readonly', Type\CheckboxType::class, [
-               'label'       => 'geny.builders.option.readonly',
+               'label' => 'geny.builders.option.readonly',
                'constraints' => [
                    new Assert\Type(['type' => 'bool']),
                ],
-               'required'    => false,
+               'required' => false,
         ]);
     }
 }
