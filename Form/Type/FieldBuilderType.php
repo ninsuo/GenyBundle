@@ -1,14 +1,11 @@
 <?php
-
 namespace GenyBundle\Form\Type;
-
 use GenyBundle\Base\BaseType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-
 class FieldBuilderType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -63,7 +60,6 @@ class FieldBuilderType extends BaseType
            ])
         ;
     }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
