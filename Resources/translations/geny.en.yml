@@ -1,0 +1,119 @@
+geny:
+    builder:
+        field:
+            help: Help
+            label: 'Untitled Question'
+            name: field
+    builders:
+        category:
+            checkbox: Checkbox
+            choice: Choice
+            text: 'Simple text'
+            textarea: Textarea
+        checkbox:
+            description: 'To create checkbox'
+        choice:
+            description: 'Multiple choice'
+        constraint:
+            email:
+                check_host:
+                    help: 'Email will be considered wrong if host can''t be resolved.'
+                    label: 'Check for MX or A or AAAA record validity'
+                check_mx:
+                    help: 'Email will be considered wrong if there are no MX record for the given domain name.'
+                    label: 'Check for MX record validity'
+            expression:
+                help: 'Example: (value > 10 and value < 30 and not value == 20) or value == 42'
+                label: 'Expression language:'
+            regexes:
+                error: 'This pattern is invalid.'
+                label: 'Regular expression:'
+            url:
+                check_dns:
+                    help: 'URL will be refused if the domain name can''t be resolved.'
+                    label: 'Check for domain name existance'
+                protocols:
+                    help: 'One protocol per line.'
+                    label: 'Allowed protocols:'
+        email:
+            description: Email
+        option:
+            disabled: 'Field is disabled'
+            readonly: 'Field is read-only'
+            trim: 'Clear leading and trailing whitespaces'
+        text:
+            description: 'Short answer'
+        textarea:
+            description: 'To create textarea'
+        url:
+            description: URL
+    modal:
+        close:
+            title: 'Close the window'
+            value: Close
+    type:
+        field:
+            help:
+                label: 'Help text (optional)'
+            label:
+                default: 'Untitled Question'
+                label: 'Field label'
+                placeholder: Question
+            name:
+                default: field
+                error:
+                    already_used: 'This name is already used by another field.'
+                    begin_by_number: 'Name should not begin by a number.'
+                    not_alphanumeric: 'Name should be composed of alphanumeric characters and underscores.'
+                label: 'Field name'
+                placeholder: 'field name'
+            required:
+                label: Required
+        form:
+            description:
+                label: Description
+                placeholder: 'Description (optional)'
+            field_chooser:
+                button: Add
+                confirm: 'Field added successfully.'
+                label: 'Add a new field'
+            title:
+                default: 'Untitled form'
+                label: Title
+                placeholder: 'Please choose a form title'
+            save:
+                label: Save
+        submit:
+            submit:
+                default: Submit
+                label: 'Submit button''s label'
+                placeholder: Submit
+    view:
+        field_constraints:
+            button: Validation
+            save:
+                title: Apply
+                value: Apply
+            title: 'Constraints for field %name%'
+        field_default:
+            button: 'Default value'
+            save:
+                title: Save
+                value: Save
+            title: 'Default value for field %name%'
+        field_delete:
+            confirm: 'Do you really want to remove the "%name%" field?'
+            title: 'Delete the "%name%" field'
+        field_move_down:
+            title: 'Move field "%name%" down'
+        field_move_up:
+            title: 'Move field "%name%" up'
+        field_options:
+            button: Options
+            save:
+                title: Apply
+                value: Apply
+            title: 'Options for field %name%'
+        tabs:
+            editor: Editor
+            preview: Preview

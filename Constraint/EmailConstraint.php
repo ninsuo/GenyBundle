@@ -45,14 +45,14 @@ class EmailConstraint implements ConstraintInterface
         $builder
            ->add('email_check_mx', Type\CheckboxType::class, [
                'required' => false,
-               'label' => 'geny.builders.constraint.email.check_mx',
+               'label' => 'geny.builders.constraint.email.check_mx.label',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.email.check_mx.help',
                ],
            ])
            ->add('email_check_host', Type\CheckboxType::class, [
                'required' => false,
-               'label' => 'geny.builders.constraint.email.check_host',
+               'label' => 'geny.builders.constraint.email.check_host.label',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.email.check_host.help',
                ],

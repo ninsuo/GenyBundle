@@ -34,7 +34,7 @@ class ExpressionConstraint implements ConstraintInterface
     {
         $builder
            ->add('expression', Type\TextareaType::class, [
-               'label' => 'geny.builders.constraint.expression',
+               'label' => 'geny.builders.constraint.expression.label',
                'constraints' => [
                    new Assert\Callback([
                        'callback' => function ($data, ExecutionContextInterface $context) {

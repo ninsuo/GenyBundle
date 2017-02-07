@@ -45,14 +45,14 @@ class UrlConstraint implements ConstraintInterface
         $builder
            ->add('url_protocols', Type\TextareaType::class, [
                'required' => false,
-               'label' => 'geny.builders.constraint.url.protocols',
+               'label' => 'geny.builders.constraint.url.protocols.label',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.url.protocols.help',
                ],
            ])
            ->add('url_check_dns', Type\CheckboxType::class, [
                'required' => false,
-               'label' => 'geny.builders.constraint.url.check_dns',
+               'label' => 'geny.builders.constraint.url.check_dns.label',
                'attr' => [
                    'help_text' => 'geny.builders.constraint.url.check_dns.help',
                ],
