@@ -5,6 +5,7 @@ namespace GenyBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use GenyBundle\Entity\Form;
 
 class FormType extends AbstractType
@@ -14,9 +15,11 @@ class FormType extends AbstractType
         $builder
            ->add('form_builder', FormBuilderType::class, [
                'data_class' => Form::class,
+               'label' => false,
            ])
            ->add('submit_builder', SubmitBuilderType::class, [
                'data_class' => Form::class,
+               'label' => false,
            ])
            ->add('save', Type\SubmitType::class, [
                'label' => 'geny.type.form.save.label',
